@@ -1,0 +1,29 @@
+.m-login.m-login--2 .m-login__wrapper .m-login__container{
+    border: 1px solid #eaeaea;
+    background: #ffffff;
+    padding: 2rem;
+}
+.m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__form .form-control{
+  background:#efefef !important;
+}
+.m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__form .m-login__form-action .m-login__btn{
+  background:#f0791b;
+  border-color:#f0791b;
+  border-radius:0.25rem;
+}
+.m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__form .m-login__form-action .m-login__btn:hover{
+  background:#e5731a
+  }
+.m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__form .m-form__group .form-control{
+  border-radius:5px;
+}
+
+ .m-login__logo{
+  background-color: #eaeaea;
+  padding: 20px;
+  box-shadow: 0px 3px 18px -3px rgba(163,163,163,0.9);
+}
+.m-login.m-login--2 .m-login__wrapper .m-login__container {
+   width: 430px;
+   margin: -65px auto 0;
+}

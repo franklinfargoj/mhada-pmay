@@ -31,8 +31,8 @@
                   <div class="bgc-white bdrs-3 mB-20" style="overflow-x:auto;">
                      <div class="mr-auto m-portlet__head">
                         <h3 class="main-title">
-                           <?php echo $survey_numer;?>
-                           <a href="<?php echo base_url('schemes');?>" class="btn m-btn--pill btn-dark float-right mb-3">Back</a>
+                           <?php echo $project_code;?>
+                           <a href="<?php echo base_url('projects');?>" class="btn m-btn--pill btn-dark float-right mb-3">Back</a>
                         </h3>
                      </div>
                      <div class="m-portlet__body">
@@ -58,29 +58,19 @@
                                  <div>
                                     <div class="row">
                                     <div class="col-lg-3">
-                                       <div class="form-group m-form__group">
-                                          <label for="doc_name">
-                                             Select Project /Work
-                                          </label>
-                                          <select class="form-control m-input m-input--square chzn-select" name="doc_for">
-                                             <option class="category" value="<?php echo $project_and_work['project_name'];?>"><?php echo $project_and_work['project_name'];?></option>
-                                             <?php
-                                                if(is_array($project_and_work['work_for_project']) && array_filter($project_and_work['work_for_project'])){
-                                             ?>
-                                             <optgroup label="Work for above project">
-                                             <?php
-                                                   foreach($project_and_work['work_for_project'] as $each_work){
-                                             ?>
-                                                <option class="item" value="<?php echo $each_work['work_name_details'];?>"><?php echo $each_work['work_name_details'];?></option>
-                                             <?php
-                                                   }
-                                             ?>
-                                             </optgroup>
-                                             <?php
-                                                }
-                                             ?>
-                                          </select>
-                                       </div>
+                                            <div class="form-group m-form__group">
+                                                <label for="doc_name">
+                                                    Select Stage
+                                                </label>
+                                                <select class="form-control m-input m-input--square chzn-select" name="doc_stage">
+                                                    <option value="">Select Stage</option>
+                                                    <?php
+                                                    foreach($project_stages as $stage) {
+                                                    ?>
+                                                    <option value="<?php echo $stage['id'];?>"><?php echo $stage['stage'];?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
                                     </div>
                                     <div class="col-lg-3">
                                        <div class="form-group m-form__group">
@@ -88,27 +78,17 @@
                                              Select Type
                                           </label>
                                           <select class="form-control m-input m-input--square chzn-select" name="doc_type">
-                                             <option value="Photo">Photo</option>
-                                             <option value="Video">Video</option>
+                                             <option value="">Select Type</option>
+                                             <option value="0">Photo</option>
+                                             <option value="1">Video</option>
                                           </select>
                                        </div>
                                     </div>
-                                    <div class="col-lg-3">
-                                       <div class="form-group m-form__group">
-                                          <label for="doc_name">
-                                             Select Stage
-                                          </label>
-                                          <select class="form-control m-input m-input--square chzn-select" name="doc_stage">
-                                             <option value="Before">Before</option>
-                                             <option value="In process">In process</option>
-                                             <option value="After completion">After completion</option>
-                                          </select>
-                                       </div>
-                                    </div>
+
                                     <div class="col-lg-3">
                                        <div class="form-group m-form__group">
                                           <label for="doc_file">
-                                             Attach Photo
+                                             Attach Document
                                           </label>
                                           <input type="file" class="form-control m-input m-input--square" id="photo_file" name="photo_file">
                                           <input type="hidden" name="photo" value="upload_photo">
@@ -138,7 +118,7 @@
                                        </span>
                                        <h4 class="main-title">
                                           <span>
-                                          Previously Uploaded Photos
+                                          Previously Uploaded Photos / Videos
                                           </span>
                                        </h4>
                                     </div>
@@ -153,14 +133,11 @@
                                                 <th>
                                                    #
                                                 </th>
-                                                <th>
-                                                   Project / Work Name
-                                                </th>
+                                                 <th>
+                                                     Stage
+                                                 </th>
                                                 <th>
                                                    Type of file
-                                                </th>
-                                                <th>
-                                                   Stage
                                                 </th>
                                                 <th>
                                                    Uploaded On
@@ -172,36 +149,43 @@
                                           </thead>
                                           <tbody>
                                             <?php
-                                              if(is_array($prev_photos) && array_filter($prev_photos))
+                                              if(is_array($uploaded_photos_videos) && array_filter($uploaded_photos_videos))
                                               {
-                                                foreach($prev_photos as $serial_photos => $each_photos){
+                                                foreach($uploaded_photos_videos as $key => $each_document){
                                             ?>
                                              <tr>
                                                 <th scope="row">
-                                                   <?php echo $serial_photos+1;?>
+                                                   <?php echo $key+1;?>
                                                 </th>
+                                                 <td>
+                                                     <?php echo $each_document['stage_master_name'];?>
+                                                 </td>
                                                 <td>
-                                                   <?php echo $each_photos['doc_for'];?>
+                                                   <?php
+                                                   if($each_document['upload_type']==0)
+                                                   {
+                                                       echo "Photo";
+                                                   }
+                                                   else
+                                                   {
+                                                       echo "Video";
+                                                   }
+                                                   ?>
+                                                </td>
+
+                                                <td>
+                                                   <?php echo date('d-m-Y',strtotime($each_document['created_at']));?>
                                                 </td>
                                                 <td>
-                                                   <?php echo $each_photos['doc_type'];?>
-                                                </td>
-                                                <td>
-                                                   <?php echo $each_photos['doc_stage'];?>
-                                                </td>
-                                                <td>
-                                                   <?php echo date('d-m-Y',strtotime($each_photos['submitted_on']));?>
-                                                </td>
-                                                <td>
-                                                  <a href="<?php echo base_url('schemes/download_document/'.base64_encode($this->encryption->encrypt($each_photos['photo_file'])));?>" target="_blank" class="btn m-btn--pill btn-primary" style="color: white">Download</a>
-                                                  <a href="<?php echo base_url('schemes/delete_photos/'.base64_encode($this->encryption->encrypt($each_photos['id'].'|'.$survey_numer.'|'.$ref_id)));?>"  class="btn m-btn--pill btn-secondary" style="color: white" onclick="return confirm('Are you sure you want to discard this photo?');">Delete</a>
+                                                  <a href="<?php echo base_url('projects/download_document/'.base64_encode($this->encryption->encrypt($each_document['upload_path'])));?>" target="_blank" class="btn m-btn--pill btn-primary" style="color: white">Download</a>
+                                                  <a href="<?php echo base_url('projects/delete_photos/'.base64_encode($this->encryption->encrypt($each_document['id'].'|'.$project_code.'|'.$project_id)));?>"  class="btn m-btn--pill btn-secondary" style="color: white" onclick="return confirm('Are you sure you want to discard this photo?');">Delete</a>
                                                 </td>
                                              </tr>
                                             <?php
                                                 }
                                               }else{
                                             ?>
-                                                <tr><td colspan="3">No Photos are uploaded previously..</td></tr>
+                                                <tr><td colspan="5">No Photos / videos are uploaded previously..</td></tr>
                                             <?php
                                              }
                                             ?>

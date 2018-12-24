@@ -100,14 +100,16 @@
                               <td><?php echo date('F j, Y',strtotime($each_project['created_at']));?></td>
                               <td style="width:35%">
                                  <div class="button-group-custom">
-                                    <a href="<?php echo base_url('projects/view/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="mb-1 btn m-btn--pill btn-primary" style="color: white">View</a>
-                                 <a href="<?php echo base_url('projects/documents/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Documents</a>
-                                 <a href="<?php echo base_url('projects/photos/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Photos</a>
-                                 <!--update_stage-->
+                                    <a href="<?php echo base_url('projects/view/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>"  class="mb-1 btn m-btn--pill btn-primary" style="color: white">View</a>
+                                 <a href="<?php echo base_url('projects/documents/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Documents</a>
+                                 <a href="<?php echo base_url('projects/photos/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Photos</a>
+                                     <button class="mb-1 btn m-btn--pill btn-primary" style="color: white" data-toggle="modal" data-target="#update_status_<?php echo $each_project['id'];?>">Update Status</button>
+
+                                     <!--update_stage-->
                                  <a href="<?php echo base_url('projects/work_for_project/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Update Stage</a>
-                                 <button class="mb-1 btn m-btn--pill btn-primary" style="color: white" data-toggle="modal" data-target="#update_status_<?php echo $each_project['id'];?>">Update Status</button>
-                                 <a href="<?php echo base_url('projects/change_status_log/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Change Status log</a>
-                                 <a href="<?php echo base_url('projects/add_work_details/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Add Work</a>
+
+                                 <a href="<?php echo base_url('schemes/change_status_log/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Change Status log</a>
+                                 <a href="<?php echo base_url('schemes/add_work_details/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Add Work</a>
                                  </div>
                                 <!--  <a href="<?php //echo base_url('projects/add_building_details/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="btn m-btn--pill btn-primary" style="color: white">Add Details</a> -->
 
@@ -116,7 +118,7 @@
                                     <?php echo form_open(base_url('projects/update_status/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id']))),'method="post" id="update_status_form"');?>
                                        <div class="modal-content">
                                           <div class="modal-header">
-                                             <h5 class="modal-title" id="adduserLabel"><strong>Update Status</strong></h5>
+                                             <h5 class="modal-title" id="adduserLabel"><strong>Update Status Of Project - <?php echo $each_project['code']; ?></strong></h5>
                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                           </div>
                                           <div class="modal-body" style="overflow-y: scroll; height:200px;">
@@ -128,16 +130,12 @@
                                                    <select name="development_status" class="form-control" id="development_status">
                                                       <option value="">Select Status</option>
                                                       <?php
-                                                         if(is_array($development_status) && array_filter($development_status))
+                                                         if(is_array($statuses_master) && array_filter($statuses_master))
                                                          {
-                                                            foreach($development_status as $each_val_status)
+                                                            foreach($statuses_master as $status)
                                                             {
-                                                               $selected_status = "";
-                                                               if($each_val_status['id'] == $each_project['development_status']){
-                                                                  $selected_status = "selected='selected'";
-                                                               }
                                                       ?>
-                                                            <option value="<?php echo $each_val_status['id'];?>" <?php echo $selected_status;?>><?php echo $each_val_status['name'];?></option>
+                                                            <option value="<?php echo $status['id'];?>"><?php echo $status['status'];?></option>
                                                       <?php
                                                             }
                                                          }
@@ -145,12 +143,20 @@
                                                    </select>
                                                 </div>
                                              </div>
+                                              <div class="form-group">
+                                                  <label for="" class="form-control-label">
+                                                      <strong>Start Date Of Project</strong>
+                                                  </label>
+                                                  <div class="form-group">
+                                                      <input type="date" name="start_date_of_project" class="form-control" >
+                                                  </div>
+                                              </div>
                                              <div class="form-group">
                                                 <label for="" class="form-control-label">
-                                                   <strong>Actual Completion Date</strong>
+                                                   <strong>Tentative Completion Date Of Project</strong>
                                                 </label>
                                                 <div class="form-group">
-                                                   <input type="date" name="actual_completion_date" class="form-control" value="<?php echo date('Y-m-d');?>">
+                                                   <input type="date" name="tentative_completion_date_of_project" class="form-control" >
                                                 </div>
                                              </div>
                                           </div>

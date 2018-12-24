@@ -212,12 +212,6 @@ class Users_model extends CI_Model{
       }
    }
 
-   function get_documents($survey_numer)
-   {
-      $this->db->where('scheme_number',$survey_numer);
-      $this->db->order_by('submitted_on','DESC');
-      return $this->db->get('scheme_documents')->result_array();
-   }
 
    function get_prev_photos($survey_numer)
    {
@@ -1084,4 +1078,150 @@ class Users_model extends CI_Model{
     }
 
 
+    function get_documents($project_id)
+    {
+        $this->db->select('project_uploaded_documents.* , dm.name as document_master_name');
+        $this->db->join('project_documents_master dm','dm.id = project_uploaded_documents.document_id','left');
+        $this->db->where('project_id',$project_id);
+        $this->db->order_by('project_uploaded_documents.created_at','DESC');
+        return $this->db->get('project_uploaded_documents')->result_array();
+    }
+
+
+    function get_documents_master()
+    {
+        $master_records = $this->db->get('project_documents_master')->result_array();
+        return $master_records;
+    }
+
+    function upload_document($project_id,$document_name,$document_id,$encrypted_url)
+    {
+        $config['upload_path'] = FCPATH.'public/uploads';
+        $config['allowed_types'] ='*';
+        $config['file_name'] = generate_unique_id();
+        $this->load->library('upload', $config);
+
+        if($this->upload->do_upload('doc_file'))
+        {
+            $uploaded = $this->upload->data();
+
+            $doc_array = array(
+                'project_id' => $project_id,
+                'document_id' => $document_id,
+                'document_name' =>  $document_name,
+                'document_path' => $uploaded['file_name'],
+                'uploaded_by_user_id' => $this->session->userdata('id_of_user'),
+                'created_at' => date('Y-m-d H:i:s')
+            );
+
+            $this->db->insert('project_uploaded_documents',$doc_array);
+            return 1;
+        }
+        else{
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('error',$error['error']);
+            redirect('projects/documents/'.$encrypted_url);
+
+        }
+    }
+
+    function delete_project_document($doc_id)
+    {
+        $this->db->where('id',$doc_id);
+        $this->db->delete('project_uploaded_documents');
+    }
+
+    function get_uploaded_photos($project_id)
+    {
+        $this->db->select('project_uploaded_photos_videos.* , sm.stage as stage_master_name');
+        $this->db->join('project_stages_master sm','sm.id = project_uploaded_photos_videos.stage_id','left');
+        $this->db->where('project_id',$project_id);
+        $this->db->order_by('project_uploaded_photos_videos.created_at','DESC');
+        return $this->db->get('project_uploaded_photos_videos')->result_array();
+    }
+
+
+    function upload_project_photo_video($project_id,$postData,$encrypted_url)
+    {
+        $config['upload_path'] = FCPATH.'public/uploads';
+        $config['allowed_types'] = '*';
+        $config['file_name'] = generate_unique_id();
+        $this->load->library('upload', $config);
+
+        if($this->upload->do_upload('photo_file'))
+        {
+            $uploaded = $this->upload->data();
+
+            $doc_array = array(
+                'project_id' => $project_id,
+                'stage_id' => $postData['doc_stage'],
+                'upload_type' => $postData['doc_type'],
+                'upload_path' => $uploaded['file_name'],
+                'uploaded_by_user_id'=> $this->session->userdata('id_of_user'),
+                'created_at' => date('Y-m-d H:i:s')
+            );
+
+            $this->db->insert('project_uploaded_photos_videos',$doc_array);
+            return 1;
+        }
+        else{
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('error',$error['error']);
+            redirect('projects/photos/'.$encrypted_url);
+        }
+    }
+
+    function get_stages_master()
+    {
+        $master_records = $this->db->get('project_stages_master')->result_array();
+        return $master_records;
+    }
+
+    function delete_photos_videos($photo_id)
+    {
+        $this->db->where('id',$photo_id);
+        $this->db->delete('project_uploaded_photos_videos');
+    }
+
+    function get_statuses_master()
+    {
+        $master_records = $this->db->get('project_statuses_master')->result_array();
+        return $master_records;
+    }
+
+    function update_project_status($project_id,$development_status,$start_date_of_project,$tentative_completion_date_of_project,$user_id)
+    {
+        $this->db->select('ps.current_status_id,sm.status as development_status_name');
+        $this->db->join('project_statuses_master sm','sm.id = ps.current_status_id','left');
+        $this->db->where('ps.id',$project_id);
+        $current_status = $this->db->get('projects ps')->row_array();
+
+        $this->db->select('status');
+        $this->db->where('id',$development_status);
+        $new_status_name = $this->db->get('project_statuses_master')->row('name');
+
+        if($development_status == $current_status['current_status_id'])
+        {
+            return false;
+        }
+
+        $this->db->where('id',$project_id);
+        $this->db->update('projects',array('current_status_id' => $development_status));
+
+        $log_array = array(
+            'project_id' => $project_id,
+            'status_id' => $development_status,
+            'start_date_of_project' => $start_date_of_project,
+            'tentative_completion_date_of_project' => $tentative_completion_date_of_project	,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_by_user_id' => $user_id
+        );
+
+        $this->db->insert('project_status_log',$log_array);
+
+        return true;
+    }
+
+
  }
+

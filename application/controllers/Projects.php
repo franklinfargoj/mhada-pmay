@@ -31,7 +31,7 @@ class Projects extends CI_Controller {
             $search_param = $this->input->get('search');
         }
 
-
+        $arrData['statuses_master'] = $this->users_model->get_statuses_master();
         $arrData['projects_data'] = $this->users_model->get_all_projects($search_param,$user_id);
     	$arrData['middle'] = 'projects';
         $this->load->view('template_new/template',$arrData);
@@ -161,36 +161,31 @@ class Projects extends CI_Controller {
             $decrypted_url = $this->encryption->decrypt($decrypted_url);
             $decrypted_url = explode('|', $decrypted_url);
 
-            $arrData['survey_numer'] = $survey_numer = $decrypted_url[0];
-            $arrData['ref_id'] = $ref_id = $decrypted_url[1];
+            $arrData['project_code'] = $project_code = $decrypted_url[0];
+            $arrData['project_id'] = $project_id = $decrypted_url[1];
 
-            $arrData['project_and_work'] = $this->users_model->get_project_and_work($survey_numer,$ref_id);
+            $arrData['documents'] = $this->users_model->get_documents_master();
 
             if($postData = $this->input->post())
             {
                 $document_name = $this->input->post('doc_name');
-                $document_for = $this->input->post('doc_for');
+                $document_id = $this->input->post('doc_for');
 
-                if(trim($document_name) == '')
-                {
-                    $this->session->set_flashdata('error','Document name cant be blank.Please fill the same and retry.');
-                    redirect('schemes/documents/'.$encrypted_url);
-                }
 
-                $response = $this->users_model->upload_document_scheme($survey_numer,$ref_id,$document_name,$document_for);
+                $response = $this->users_model->upload_document($project_id,$document_name,$document_id,$encrypted_url);
                 if($response == '1')
                 {
                     $this->session->set_flashdata('success','Document has been uploaded successfully.');
-                    redirect('schemes/documents/'.$encrypted_url);
+                    redirect('projects/documents/'.$encrypted_url);
                 }
                 else{
                     $this->session->set_flashdata('error','Some error has occured while uploading document.Please check');
-                    redirect('schemes/documents/'.$encrypted_url);
+                    redirect('projects/documents/'.$encrypted_url);
                 }
             }
 
-            $arrData['documents_schemens'] = $this->users_model->get_documents($survey_numer);
-            $arrData['middle'] = 'schemes_documents';
+            $arrData['project_documents'] = $this->users_model->get_documents($project_id);
+            $arrData['middle'] = 'project_documents';
             $this->load->view('template_new/template',$arrData);
         }
         else{
@@ -207,27 +202,27 @@ class Projects extends CI_Controller {
             $decrypted_url = $this->encryption->decrypt($decrypted_url);
             $decrypted_url = explode('|', $decrypted_url);
 
-            $arrData['survey_numer'] = $survey_numer = $decrypted_url[0];
-            $arrData['ref_id'] = $ref_id = $decrypted_url[1];
+            $arrData['project_code'] = $project_code = $decrypted_url[0];
+            $arrData['project_id'] = $project_id = $decrypted_url[1];
 
-            $arrData['project_and_work'] = $this->users_model->get_project_and_work($survey_numer,$ref_id);
+           $arrData['project_stages'] = $this->users_model->get_stages_master();
 
             if($postData = $this->input->post())
             {
-                $response = $this->users_model->upload_photo_scheme($survey_numer,$ref_id,$postData);
+                $response = $this->users_model->upload_project_photo_video($project_id,$postData,$encrypted_url);
                 if($response == '1')
                 {
-                    $this->session->set_flashdata('success','Photo has been uploaded successfully.');
-                    redirect('schemes/photos/'.$encrypted_url);
+                    $this->session->set_flashdata('success','Document uploaded successfully.');
+                    redirect('projects/photos/'.$encrypted_url);
                 }
                 else{
                     $this->session->set_flashdata('error','Some error has occured while uploading photo.Please check');
-                    redirect('schemes/photos/'.$encrypted_url);
+                    redirect('projects/photos/'.$encrypted_url);
                 }
             }
 
-            $arrData['prev_photos'] = $this->users_model->get_prev_photos($survey_numer);
-            $arrData['middle'] = 'schemes_photos';
+            $arrData['uploaded_photos_videos'] = $this->users_model->get_uploaded_photos($project_id);
+            $arrData['middle'] = 'project_photos';
             $this->load->view('template_new/template',$arrData);
         }
         else{
@@ -277,13 +272,13 @@ class Projects extends CI_Controller {
             $decrypted_url = explode('|', $decrypted_url);
 
             $arrData['doc_id'] = $doc_id = $decrypted_url[0];
-            $arrData['survey_numer'] = $survey_numer = $decrypted_url[1];
-            $arrData['ref_id'] = $ref_id = $decrypted_url[2];
+            $arrData['project_code'] = $project_code = $decrypted_url[1];
+            $arrData['project_id'] = $project_id = $decrypted_url[2];
 
-            $this->users_model->delete_documents($doc_id);
+            $this->users_model->delete_project_document($doc_id);
 
             $this->session->set_flashdata('success','Document has been discarded successfully.');
-            redirect('schemes/documents/'.base64_encode($this->encryption->encrypt($survey_numer.'|'.$ref_id)));
+            redirect('projects/documents/'.base64_encode($this->encryption->encrypt($project_code.'|'.$project_id)));
         }
         else{
             show_error('No Information found.');
@@ -300,13 +295,13 @@ class Projects extends CI_Controller {
             $decrypted_url = explode('|', $decrypted_url);
 
             $arrData['photo_id'] = $photo_id = $decrypted_url[0];
-            $arrData['survey_numer'] = $survey_numer = $decrypted_url[1];
-            $arrData['ref_id'] = $ref_id = $decrypted_url[2];
+            $arrData['project_code'] = $project_code = $decrypted_url[1];
+            $arrData['project_id'] = $project_id = $decrypted_url[2];
 
-            $this->users_model->delete_photos($photo_id);
+            $this->users_model->delete_photos_videos($photo_id);
 
-            $this->session->set_flashdata('success','Photo has been discarded successfully.');
-            redirect('schemes/photos/'.base64_encode($this->encryption->encrypt($survey_numer.'|'.$ref_id)));
+            $this->session->set_flashdata('success','Document has been discarded successfully.');
+            redirect('projects/photos/'.base64_encode($this->encryption->encrypt($project_code.'|'.$project_id)));
         }
         else{
             show_error('No Information found.');
@@ -324,28 +319,29 @@ class Projects extends CI_Controller {
             $decrypted_url = $this->encryption->decrypt($decrypted_url);
             $decrypted_url = explode('|', $decrypted_url);
 
-            $arrData['survey_numer'] = $survey_numer = $decrypted_url[0];
-            $arrData['ref_id'] = $ref_id = $decrypted_url[1];
+            $arrData['project_code'] = $project_code = $decrypted_url[0];
+            $arrData['project_id'] = $project_id = $decrypted_url[1];
 
             $development_status = $this->input->post('development_status');
-            $actual_completion_date = $this->input->post('actual_completion_date');
+            $start_date_of_project = $this->input->post('start_date_of_project');
+            $tentative_completion_date_of_project = $this->input->post('tentative_completion_date_of_project');
 
-            if($development_status == '' || $actual_completion_date == '')
+            if($development_status == '' || $start_date_of_project == '' || $tentative_completion_date_of_project == '')
             {
-                $this->session->set_flashdata('error','Development Status and Actual completion date cant be blank.Please select the same and submit.');
-                redirect('schemes');
+                $this->session->set_flashdata('error','Please select all fields.');
+                redirect('projects');
             }
 
-            $response = $this->users_model->update_development_status($development_status,$ref_id,$actual_completion_date,$survey_numer,$user_id);
+            $response = $this->users_model->update_project_status($project_id,$development_status,$start_date_of_project,$tentative_completion_date_of_project,$user_id);
 
             if($response)
             {
-                $this->session->set_flashdata('success','Status has been updated successfully for '.$survey_numer);
+                $this->session->set_flashdata('success','Status has been updated successfully for '.$project_code);
             }
             else{
                $this->session->set_flashdata('error','Status cant be the same as the current status.Please select different status and retry.'); 
             }
-            redirect('schemes');
+            redirect('projects');
         }
         else{
             show_error('No Information found.');

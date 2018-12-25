@@ -1222,6 +1222,81 @@ class Users_model extends CI_Model{
         return true;
     }
 
+    public function add_stages_log($postData,$encrypted_url)
+    {
+
+
+        $config['upload_path'] = FCPATH.'public/uploads';
+        $config['allowed_types'] = '*';
+        $config['file_name'] = generate_unique_id();
+        $this->load->library('upload', $config);
+
+        if (empty($_FILES['beneficiary_list_file']['name'])) {
+
+            $postData['created_at'] = date('Y-m-d H:i:s');
+            $inserted_id = $this->db->insert('project_stages_log', $postData);
+
+            return 1;
+        }
+        else {
+            if ($this->upload->do_upload('beneficiary_list_file')) {
+                $uploaded = $this->upload->data();
+
+                $postData['beneficiary_list_path'] = $uploaded['file_name'];
+                $postData['created_at'] = date('Y-m-d H:i:s');
+                $inserted_id = $this->db->insert('project_stages_log', $postData);
+
+                return 1;
+            } else {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $error['error']);
+                redirect('projects/photos/' . $encrypted_url);
+            }
+        }
+
+
+
+    }
+
+
+    function get_project_stages_dus_details($project_id)
+    {
+        $this->db->select('psd.*,stages.stage as project_stage');
+        $this->db->join('project_stages_master stages','stages.id = psd.stage_id','left');
+        $this->db->where('psd.project_id',$project_id);
+        $project_stages_dus_details = $this->db->get('project_stages_dus_details psd')->result_array();
+
+        return $project_stages_dus_details;
+    }
+
+
+    public function save_stage_details($postData,$stages_master)
+    {
+        foreach($stages_master as $stage)
+        {
+            $insertArr =[
+                "project_id" => $postData['project_id'],
+                "stage_id" => $stage['id'],
+                "no_of_dus" => $postData['stage_dus'][$stage['id']]['no_of_dus'],
+                "additional_information" => $postData['stage_dus'][$stage['id']]['additional_information'],
+                "created_at" => date('Y-m-d H:i:s')
+            ];
+
+            $this->db->insert('project_stages_dus_details', $insertArr);
+        }
+    }
+
+    public function get_dus_started_count($project_id)
+    {
+        $this->db->select_sum('total_dus_work_started');
+        $this->db->from('project_stages_log');
+        $this->db->where('project_id',$project_id);
+        $query = $this->db->get();
+        return $query->row()->total_dus_work_started;
+    }
+
+
+
 
  }
 

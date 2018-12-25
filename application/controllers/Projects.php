@@ -946,4 +946,102 @@ class Projects extends CI_Controller {
             }
         }
     }
+
+    public function update_project_stage($encrypted_url='')
+    {
+        url_manupulation();
+        if($encrypted_url != NULL)
+        {
+            $user_id = $this->session->userdata('id_of_user');
+
+            $decrypted_url = base64_decode($encrypted_url);
+            $decrypted_url = $this->encryption->decrypt($decrypted_url);
+            $decrypted_url = explode('|', $decrypted_url);
+
+            $arrData['project_code'] = $project_code = $decrypted_url[0];
+            $arrData['project_id'] = $project_id = $decrypted_url[1];
+
+            $arrData['encrypted_url'] = $encrypted_url;
+            $arrData['project_stages_master'] = $this->users_model->get_stages_master();
+            $arrData['project_details'] = $this->users_model->get_project_details($project_code,$project_id);
+            $stage_details_data = $this->users_model->get_project_stages_dus_details($project_id);
+            $arrData['dus_for_which_work_started'] =  $this->users_model->get_dus_started_count($project_id);
+
+            $stage_dus_details =[];
+            $total_dus_under_construction = 0;
+            $last_updated_date ='';
+            foreach($stage_details_data as $stage_detail)
+            {
+                $stage_dus_details[$stage_detail['stage_id']] = $stage_detail;
+                $total_dus_under_construction += $stage_detail['no_of_dus'];
+                $last_updated_date = $stage_detail['created_at'];
+            }
+            $arrData['project_stages_dus_details'] = $stage_dus_details;
+            $arrData['total_dus_under_construction'] = $total_dus_under_construction;
+            $arrData['last_updated_date'] = $last_updated_date;
+
+
+            if($postData = $this->input->post())
+            {
+
+                $this->form_validation->set_rules('total_dus_work_started' , 'Total Dus', 'required|is_natural_no_zero');
+
+                if ($this->form_validation->run() == TRUE)
+                {
+                    $postData['project_id'] = $project_id;
+                    $postData['updated_by_user_id'] = $this->session->userdata('id_of_user');
+                    $this->users_model->add_stages_log($postData,$encrypted_url);
+                    $this->session->set_flashdata('success','Dus added successfully.');
+                    redirect('projects/update_project_stage/'.$encrypted_url);
+                }
+                else{
+
+                    $error_message = array_values($this->form_validation->error_array())[0];
+                    $this->session->set_flashdata('error',$error_message);
+                    redirect('projects/update_project_stage/'.$encrypted_url);
+                }
+
+            }
+
+            $arrData['encrypted_url'] =  $encrypted_url;
+            $arrData['middle'] = 'project_stages';
+            $this->load->view('template_new/template',$arrData);
+
+
+        }
+        else{
+            show_error('No Information found.');
+        }
+    }
+
+
+    public function save_stage_dus_details()
+    {
+            $postData = $this->input->post();
+            $stages_master = $this->users_model->get_stages_master();
+
+
+        if(isset($postData["stage_dus"])){
+
+            $stages_master = $this->users_model->get_stages_master();
+            $this->users_model->save_stage_details($postData,$stages_master);
+
+            $stage_details_data = $this->users_model->get_project_stages_dus_details($postData['project_id']);
+
+            $stage_dus_details =[];
+            $total_dus_under_construction = 0;
+            foreach($stage_details_data as $stage_detail)
+            {
+                $stage_dus_details[$stage_detail['stage_id']] = $stage_detail;
+                $total_dus_under_construction += $stage_detail['no_of_dus'];
+            }
+
+            echo json_encode($stage_dus_details);
+        }
+
+    }
+
+
+
+
 }

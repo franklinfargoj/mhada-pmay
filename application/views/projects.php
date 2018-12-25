@@ -100,17 +100,16 @@
                               <td><?php echo date('F j, Y',strtotime($each_project['created_at']));?></td>
                               <td style="width:35%">
                                  <div class="button-group-custom">
-                                    <a href="<?php echo base_url('projects/view/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>"  class="mb-1 btn m-btn--pill btn-primary" style="color: white">View</a>
-                                 <a href="<?php echo base_url('projects/documents/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Documents</a>
-                                 <a href="<?php echo base_url('projects/photos/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Photos</a>
-                                     <button class="mb-1 btn m-btn--pill btn-primary" style="color: white" data-toggle="modal" data-target="#update_status_<?php echo $each_project['id'];?>">Update Status</button>
+                                        <a href="<?php echo base_url('projects/view/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>"  class="mb-1 btn m-btn--pill btn-primary" style="color: white">View</a>
+                                     <a href="<?php echo base_url('projects/documents/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Documents</a>
+                                     <a href="<?php echo base_url('projects/photos/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Photos</a>
+                                         <button class="mb-1 btn m-btn--pill btn-primary" style="color: white" data-toggle="modal" data-target="#update_status_<?php echo $each_project['id'];?>">Update Status</button>
 
-                                     <!--update_stage-->
-                                 <a href="<?php echo base_url('projects/work_for_project/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Update Stage</a>
+                                         <!--update_stage-->
+                                     <a href="<?php echo base_url('projects/update_project_stage/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>"  class="mb-1 btn m-btn--pill btn-primary" style="color: white">Update Stage</a>
 
-                                 <a href="<?php echo base_url('schemes/change_status_log/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Change Status log</a>
-                                 <a href="<?php echo base_url('schemes/add_work_details/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Add Work</a>
-                                 </div>
+                                     <a href="<?php echo base_url('schemes/change_status_log/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Financial Details</a>
+                                     </div>
                                 <!--  <a href="<?php //echo base_url('projects/add_building_details/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="btn m-btn--pill btn-primary" style="color: white">Add Details</a> -->
 
                                  <div class="modal fade" id="update_status_<?php echo $each_project['id'];?>" tabindex="-1" role="dialog" aria-labelledby="updateStatuslabel" aria-hidden="true">

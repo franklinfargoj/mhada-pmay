@@ -325,11 +325,11 @@
                                              }
                                              ?>
 
-                                                 <tr>
+                                                 <!--<tr>
                                                      <td><h5>Total</h5></td>
                                                      <td><?php if(isset($total_dus_under_construction)) { echo $total_dus_under_construction; } ?></td>
                                                     <td colspan="9"></td>
-                                                 </tr>
+                                                 </tr>-->
                                              </tbody>
                                          </table>
 
@@ -425,11 +425,11 @@
                                              }
                                              ?>
 
-                                             <tr>
+                                             <!--<tr>
                                                  <td><h5>Total</h5></td>
                                                  <td><input readonly class="form-control" type="text" name="total_dus_to_update" id="total_dus_to_update" value="<?php if(isset($total_dus_under_construction)) { echo $total_dus_under_construction; } ?>" /></td>
                                                  <td colspan="9"></td>
-                                             </tr>
+                                             </tr>-->
                                              </tbody>
                                          </table>
 
@@ -529,6 +529,29 @@
 
         $("#save_stage").click(function(){
 
+
+            var sum = 0;
+            $(".total_dus_to_update").each(function() {
+                sum += parseInt($(this).val());
+            });
+
+            var dus_for_which_work_started = $('#dus_for_which_work_started').val();
+            var approved_total_dus = $('#approved_total_dus').val();
+
+            if(sum < dus_for_which_work_started)
+            {
+                alert('Total DUs can not be less than DUs for which work has started.');
+                $(this).val('0');
+                return false;
+            }else if(sum > approved_total_dus)
+            {
+                alert('Total DUs can not be greater than approved DUs.');
+                $(this).val('0');
+                return false;
+            }
+
+
+
             $.ajax({
                 type: "POST",
                 url: "projects/save_stage_dus_details",
@@ -570,35 +593,35 @@
         });
 
 
-        $(document).on("keyup", ".total_dus_to_update", function () {
+         /*   $(document).on("blur", ".total_dus_to_update", function () {
 
-            var sum = 0;
-            $(".total_dus_to_update").each(function() {
-                sum += parseInt($(this).val());
-            });
+                 var sum = 0;
+                 $(".total_dus_to_update").each(function() {
+                     sum += parseInt($(this).val());
+                 });
 
-            $('#total_dus_to_update').attr('value',sum);
+              //   $('#total_dus_to_update').attr('value',sum);
 
-        /*    var dus_for_which_work_started = $('#dus_for_which_work_started').val();
-            var approved_total_dus = $('#approved_total_dus').val();
+                 var dus_for_which_work_started = $('#dus_for_which_work_started').val();
+                 var approved_total_dus = $('#approved_total_dus').val();
 
-            if(sum < dus_for_which_work_started)
-            {
-                alert('Total DUs can not be less than DUs for which work has started.');
-                $('.total_dus_to_update').val('0');
-                $('#total_dus_to_update').attr('value','0');
-                return false;
-            }else if(sum > approved_total_dus)
-            {
-                alert('Total DUs can not be greater than approved DUs.');
-                $('.total_dus_to_update').val('0');
-                $('#total_dus_to_update').attr('value','0');
-                return false;
-            }
-*/
+                 if(sum < dus_for_which_work_started)
+                 {
+                     alert('Total DUs can not be less than DUs for which work has started.');
+                     $(this).val('0');
+                    // $('#total_dus_to_update').attr('value','0');
+                     return false;
+                 }else if(sum > approved_total_dus)
+                 {
+                     alert('Total DUs can not be greater than approved DUs.');
+                     $(this).val('0');
+                     //$('#total_dus_to_update').attr('value','0');
+                     return false;
+                 }
 
 
-        });
+
+        });*/
 
 
 

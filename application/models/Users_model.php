@@ -1274,6 +1274,12 @@ class Users_model extends CI_Model{
     {
         foreach($stages_master as $stage)
         {
+
+            $this->db->where('project_id', $postData['project_id']);
+            $this->db->where('stage_id', $stage['id']);
+            $q = $this->db->get('project_stages_dus_details');
+            $this->db->reset_query();
+
             $insertArr =[
                 "project_id" => $postData['project_id'],
                 "stage_id" => $stage['id'],
@@ -1282,7 +1288,18 @@ class Users_model extends CI_Model{
                 "created_at" => date('Y-m-d H:i:s')
             ];
 
-            $this->db->insert('project_stages_dus_details', $insertArr);
+
+
+            if ( $q->num_rows() > 0 )
+            {
+                $this->db->where('project_id', $postData['project_id']);
+                $this->db->where('stage_id', $stage['id'])->update('project_stages_dus_details', $insertArr);
+
+            } else {
+                $this->db->insert('project_stages_dus_details', $insertArr);
+            }
+
+
         }
     }
 

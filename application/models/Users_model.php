@@ -1313,6 +1313,157 @@ class Users_model extends CI_Model{
     }
 
 
+    public function add_financial_details($postData,$categoryArr,$encrypted_url)
+    {
+        foreach($categoryArr as $category)
+        {
+            $postData[$category.'_amount'] = $postData['financial_details'][$category]['amount'];
+            $postData[$category.'_goi_order_no'] = $postData['financial_details'][$category]['goi_order_no'];
+            $postData[$category.'_goi_order_date'] = $postData['financial_details'][$category]['goi_order_date'];
+
+            $postData[$category.'_gom_order_no'] = $postData['financial_details'][$category]['gom_order_no'];
+            $postData[$category.'_gom_order_date'] = $postData['financial_details'][$category]['gom_order_date'];
+            $postData[$category.'_mhada_order_no'] = $postData['financial_details'][$category]['mhada_order_no'];
+            $postData[$category.'_mhada_order_date'] = $postData['financial_details'][$category]['mhada_order_date'];
+            $postData[$category.'_utilization_amount'] = $postData['financial_details'][$category]['utilization_amount'];
+
+        }
+
+            unset($postData['gom_financial_details']);
+            unset($postData['gom_total_amount']);
+            unset($postData['gom_total_utilization_amount']);
+
+            unset($postData['financial_details']);
+            unset($postData['save_financial_details']);
+
+            $this->db->where('project_id', $postData['project_id']);
+            $this->db->where('nodel_agency', $postData['nodel_agency']);
+            $this->db->where('installment', $postData['installment']);
+            $q = $this->db->get('project_financial_details');
+            $this->db->reset_query();
+
+
+            if ( $q->num_rows() > 0 )
+            {
+                $postData['updated_at'] = date('Y-m-d H:i:s');
+                $this->db->where('project_id', $postData['project_id']);
+                $this->db->where('nodel_agency', $postData['nodel_agency']);
+                $this->db->where('installment', $postData['installment'])->update('project_financial_details', $postData);
+
+            } else {
+
+                $postData['created_at'] = date('Y-m-d H:i:s');
+                $this->db->insert('project_financial_details', $postData);
+            }
+
+
+
+    }
+
+    public function add_gom_financial_details($postData,$categoryArr,$encrypted_url)
+    {
+        unset($postData['total_amount']);
+        unset($postData['total_utilization_amount']);
+        unset($postData['financial_details']);
+
+        foreach($categoryArr as $category)
+        {
+            $postData[$category.'_amount'] = $postData['gom_financial_details'][$category]['amount'];
+            $postData[$category.'_gom_order_no'] = $postData['gom_financial_details'][$category]['gom_order_no'];
+            $postData[$category.'_gom_order_date'] = $postData['gom_financial_details'][$category]['gom_order_date'];
+            $postData[$category.'_mhada_order_no'] = $postData['gom_financial_details'][$category]['mhada_order_no'];
+            $postData[$category.'_mhada_order_date'] = $postData['gom_financial_details'][$category]['mhada_order_date'];
+            $postData[$category.'_utilization_amount'] = $postData['gom_financial_details'][$category]['utilization_amount'];
+
+        }
+
+            $postData['total_amount'] = $postData['gom_total_amount'];
+            $postData['total_utilization_amount'] = $postData['gom_total_utilization_amount'];
+
+
+
+
+        unset($postData['gom_total_amount']);
+        unset($postData['gom_total_utilization_amount']);
+
+        unset($postData['gom_financial_details']);
+        unset($postData['save_financial_details']);
+
+        $this->db->where('project_id', $postData['project_id']);
+        $this->db->where('nodel_agency', $postData['nodel_agency']);
+        $this->db->where('installment', $postData['installment']);
+        $q = $this->db->get('project_financial_details');
+        $this->db->reset_query();
+
+
+        if ( $q->num_rows() > 0 )
+        {
+            $postData['updated_at'] = date('Y-m-d H:i:s');
+            $this->db->where('project_id', $postData['project_id']);
+            $this->db->where('nodel_agency', $postData['nodel_agency']);
+            $this->db->where('installment', $postData['installment'])->update('project_financial_details', $postData);
+
+        } else {
+
+            $postData['created_at'] = date('Y-m-d H:i:s');
+            $this->db->insert('project_financial_details', $postData);
+        }
+
+
+
+    }
+
+    public function get_financial_details($project_id,$nodel_agency_id)
+    {
+        $this->db->where('project_id', $project_id);
+        $this->db->where('nodel_agency', $nodel_agency_id);
+        $this->db->order_by('installment','ASC');
+        $q = $this->db->get('project_financial_details')->result_array();
+
+        return $q;
+    }
+
+
+    public function get_fund_amount($project_id,$nodel_agency_id)
+    {
+        $this->db->select('total_amount');
+        $this->db->where('project_id', $project_id);
+        $this->db->where('nodel_agency', $nodel_agency_id);
+        $this->db->order_by('installment','ASC');
+        $q = $this->db->get('project_financial_details')->result_array();
+
+        return $q;
+    }
+
+    function get_all_agents($search_param,$user_id)
+    {
+        $today = date('Y-m-d H:i:s');
+
+        $agent_count = $this->db->get('agencies as')->num_rows();
+
+        $this->db->select('as.*');
+
+
+        $this->db->order_by('created_at','DESC');
+        $agent_details = $this->db->get('agencies as')->result_array();
+
+        return array(
+            'agent_count' => $agent_count,
+            'agents' => $agent_details
+        );
+    }
+
+
+    function get_agent_project_details($agent_id)
+    {
+        $this->db->select('ps.*, districts.name as district, cities.name as city');
+        $this->db->join('districts_master districts','districts.id = ps.district_id','left');
+        $this->db->join('cities_master cities','cities.id = ps.city_id','left');
+        $this->db->where('ps.agency_id',$agent_id);
+        $project_details = $this->db->get('projects ps')->result_array();
+
+        return $project_details;
+    }
 
 
  }

@@ -24,6 +24,7 @@
             if($admin_role){
          ?>
          <li class="nav-item active"><a class="sidebar-link" href="<?php echo base_url('projects');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Projects</span></a></li>
+         <li class="nav-item active"><a class="sidebar-link" href="<?php echo base_url('agents');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Agents</span></a></li>
         <!-- <li class="nav-item"><a class="sidebar-link" href="<?php echo base_url('masters');?>"><span class="icon-holder"><i class="c-orange-500 ti-layout-list-thumb"></i> </span><span class="title">Manage Masters</span></a></li>
          <li class="nav-item"><a class="sidebar-link" href="<?php echo base_url('users');?>"><span class="icon-holder"><i class="c-deep-orange-500 ti-calendar"></i> </span><span class="title">Users</span></a></li>-->
          <?php

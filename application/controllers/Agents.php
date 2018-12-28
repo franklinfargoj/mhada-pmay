@@ -10,7 +10,7 @@ if (!defined('BASEPATH'))
  * @copyright   Copyright (c) 2018
  * @since   Version 1.0
  */
-class Projects extends CI_Controller {
+class Agents extends CI_Controller {
 
 	 function __construct() {
         parent::__construct();
@@ -31,9 +31,8 @@ class Projects extends CI_Controller {
             $search_param = $this->input->get('search');
         }
 
-        $arrData['statuses_master'] = $this->users_model->get_statuses_master();
-        $arrData['projects_data'] = $this->users_model->get_all_projects($search_param,$user_id);
-    	$arrData['middle'] = 'projects';
+        $arrData['agents_data'] = $this->users_model->get_all_agents($search_param,$user_id);
+    	$arrData['middle'] = 'agents';
         $this->load->view('template_new/template',$arrData);
     }
 
@@ -138,13 +137,12 @@ class Projects extends CI_Controller {
             $decrypted_url = $this->encryption->decrypt($decrypted_url);
             $decrypted_url = explode('|', $decrypted_url);
 
-            $arrData['project_code'] = $project_code = $decrypted_url[0];
-            $arrData['project_id'] = $project_id = $decrypted_url[1];
+            $arrData['agent_id'] = $agent_id = $decrypted_url[0];
 
-            $arrData['project_details'] = $this->users_model->get_project_details($project_code,$project_id);
-            $arrData['consultant_details'] = $this->users_model->get_consultant_details($project_id);
+            $arrData['agent_project_details'] = $this->users_model->get_agent_project_details($agent_id);
+
             $arrData['encrypted_url'] =  $encrypted_url;
-            $arrData['middle'] = 'project_details';
+            $arrData['middle'] = 'agent_project_details';
             $this->load->view('template_new/template',$arrData);
         }
         else{

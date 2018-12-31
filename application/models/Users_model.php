@@ -1035,6 +1035,7 @@ class Users_model extends CI_Model{
         unset($postData['consultant_mobile_no']);
         unset($postData['consultant_landline']);
 
+        $postData['current_status_id'] = 3; //work not started - default
         $postData['created_at'] = date('Y-m-d H:i:s');
         $inserted_id = $this->db->insert('projects',$postData);
 
@@ -1435,7 +1436,7 @@ class Users_model extends CI_Model{
         return $q;
     }
 
-    function get_all_agents($search_param,$user_id)
+    function get_all_agencies($search_param,$user_id)
     {
         $today = date('Y-m-d H:i:s');
 
@@ -1449,22 +1450,67 @@ class Users_model extends CI_Model{
 
         return array(
             'agent_count' => $agent_count,
-            'agents' => $agent_details
+            'Agencies' => $agent_details
         );
     }
 
 
-    function get_agent_project_details($agent_id)
+    function get_agency_project_details($agency_id)
     {
         $this->db->select('ps.*, districts.name as district, cities.name as city');
         $this->db->join('districts_master districts','districts.id = ps.district_id','left');
         $this->db->join('cities_master cities','cities.id = ps.city_id','left');
-        $this->db->where('ps.agency_id',$agent_id);
+        $this->db->where('ps.agency_id',$agency_id);
         $project_details = $this->db->get('projects ps')->result_array();
 
         return $project_details;
     }
 
 
+    function add_agency($postData)
+    {
+
+        unset($postData['confirm_password']);
+        $postData['password'] =  md5($postData['password']);
+        $postData['created_at'] = date('Y-m-d H:i:s');
+        $inserted_id = $this->db->insert('agencies',$postData);
+
+    }
+
+    function get_agency_details($agency_id)
+    {
+        $this->db->where('id',$agency_id);
+        $agency_details = $this->db->get('agencies')->result_array();
+
+        return $agency_details;
+    }
+
+    function get_projects_to_assign($agency_id)
+    {
+        $this->db->where('agency_id',$agency_id);
+        $this->db->or_where('agency_id',0);
+        $projects_list = $this->db->get('projects')->result_array();
+
+        return $projects_list;
+    }
+
+    function add_agency_projects($postData)
+    {
+        foreach($postData['project_ids'] as $project_id)
+        {
+            $update_data = array(
+                'agency_id' => $postData['agency_id']
+            );
+            $this->db->update('projects', $update_data, array('id' => $project_id));
+        }
+    }
+
+    function remove_project($project_id)
+    {
+        $update_data = array(
+            'agency_id' => 0
+        );
+        $this->db->update('projects', $update_data, array('id' => $project_id));
+    }
  }
 

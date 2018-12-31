@@ -10,7 +10,7 @@ if (!defined('BASEPATH'))
  * @copyright   Copyright (c) 2018
  * @since   Version 1.0
  */
-class Agents extends CI_Controller {
+class Agencies extends CI_Controller {
 
 	 function __construct() {
         parent::__construct();
@@ -31,8 +31,8 @@ class Agents extends CI_Controller {
             $search_param = $this->input->get('search');
         }
 
-        $arrData['agents_data'] = $this->users_model->get_all_agents($search_param,$user_id);
-    	$arrData['middle'] = 'agents';
+        $arrData['agents_data'] = $this->users_model->get_all_agencies($search_param,$user_id);
+    	$arrData['middle'] = 'agencies';
         $this->load->view('template_new/template',$arrData);
     }
 
@@ -137,12 +137,14 @@ class Agents extends CI_Controller {
             $decrypted_url = $this->encryption->decrypt($decrypted_url);
             $decrypted_url = explode('|', $decrypted_url);
 
-            $arrData['agent_id'] = $agent_id = $decrypted_url[0];
+            $arrData['agency_id'] = $agency_id = $decrypted_url[0];
 
-            $arrData['agent_project_details'] = $this->users_model->get_agent_project_details($agent_id);
+            $arrData['agency_details'] = $this->users_model->get_agency_details($agency_id);
+            $arrData['projects_to_assign'] = $this->users_model->get_projects_to_assign($agency_id);
 
+            $arrData['agency_project_details'] = $this->users_model->get_agency_project_details($agency_id);
             $arrData['encrypted_url'] =  $encrypted_url;
-            $arrData['middle'] = 'agent_project_details';
+            $arrData['middle'] = 'agency_project_details';
             $this->load->view('template_new/template',$arrData);
         }
         else{
@@ -1123,5 +1125,75 @@ class Agents extends CI_Controller {
 
 
 
+    function add_agency()
+    {
+        if($postData = $this->input->post())
+        {
+
+            $this->form_validation->set_rules('name','Name','trim|required');
+            $this->form_validation->set_rules('mobile_no','Mobile Number','trim|required');
+            $this->form_validation->set_rules('email_address','Email','trim|required|valid_email');
+            $this->form_validation->set_rules('username','Username','trim|required');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
+
+
+            if ($this->form_validation->run() == TRUE)
+            {
+
+                $this->users_model->add_agency($postData);
+                $this->session->set_flashdata('success','Agency added successfully.');
+                redirect('agencies');
+            }
+            else{
+
+                $error_message = array_values($this->form_validation->error_array())[0];
+                $this->session->set_flashdata('error',$error_message);
+                redirect('agencies');
+            }
+        }
+
+        $arrData['districts'] = $this->users_model->get_all_districts();
+        $arrData['middle'] = 'add_project';
+        $this->load->view('template_new/template',$arrData);
+    }
+
+    public function assign_project_to_agency()
+    {
+        if($postData = $this->input->post())
+        {
+
+           // $this->form_validation->set_rules('project_ids','Project','trim|required');
+
+
+
+                $this->users_model->add_agency_projects($postData);
+                $this->session->set_flashdata('success','Projects assigned successfully.');
+                redirect('agencies');
+        }
+
+    }
+
+    public function delete_project($encrypted_url='')
+    {
+        url_manupulation();
+        if($encrypted_url != NULL)
+        {
+
+            $decrypted_url = base64_decode($encrypted_url);
+            $decrypted_url = $this->encryption->decrypt($decrypted_url);
+            $decrypted_url = explode('|', $decrypted_url);
+
+            $arrData['project_id'] = $project_id = $decrypted_url[0];
+            $this->users_model->remove_project($project_id);
+
+            redirect('agencies');
+
+
+        }
+        else{
+            show_error('No Information found.');
+        }
+    }
 
 }

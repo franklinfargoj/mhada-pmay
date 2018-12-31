@@ -178,7 +178,7 @@
                                                  <label for="nodel_agency" class="form-control-label">
                                                      <strong>Select Noddel Agency <span style="color: red">*</span></strong>
                                                  </label>
-                                                 <select name="nodel_agency" class="form-control agency_installment" id="nodel_agency">
+                                                 <select required name="nodel_agency" class="form-control agency_installment" id="nodel_agency">
                                                      <option value="">Select</option>
                                                      <option value="1">GOI</option>
                                                      <option value="2">GOM</option>
@@ -190,7 +190,7 @@
                                                  <label for="installment" class="form-control-label">
                                                      <strong>Select Installment <span style="color: red">*</span></strong>
                                                  </label>
-                                                 <select name="installment" class="form-control agency_installment" id="installment">
+                                                 <select required name="installment" class="form-control agency_installment" id="installment">
                                                      <option value="">Select Installment</option>
                                                      <option value="1">First Installment (40%)</option>
                                                      <option value="2">Second Installment (40%)</option>
@@ -243,7 +243,7 @@
                                                  <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_order_no]"  /> </td>
                                                  <td><input type="date" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_order_date]"  /> </td>
                                                  <td><input type="text" class="form-control total_utilization_amount" name="financial_details[<?php echo $category; ?>][utilization_amount]" value="0" /> </td>
-                                                 <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][utilization_certificate]"  /> </td>
+                                                 <td><a href="javascript:void(0);">Download Certificate</a></td>
 
                                              </tr>
                                              <?php
@@ -301,7 +301,7 @@
                                                  <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_no]"  /> </td>
                                                  <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_date]"  /> </td>
                                                  <td><input type="text" class="form-control gom_total_utilization_amount" name="gom_financial_details[<?php echo $category; ?>][utilization_amount]"  value="0" /> </td>
-                                                 <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][utilization_certificate]"  /> </td>
+                                                 <td><a href="javascript:void(0);">Download Certificate</a></td>
 
                                              </tr>
                                              <?php
@@ -326,9 +326,9 @@
                                              Save
                                          </button>
 
-                                         <button type="button" id="cancel_stage" name="cancel_stage" class="btn m-btn--pill btn-dark">
+                                        <!-- <button type="button" id="cancel_stage" name="cancel_stage" class="btn m-btn--pill btn-dark">
                                              Cancel
-                                         </button>
+                                         </button> -->
                                      </div>
                                      <?php echo form_close();?>
 
@@ -348,7 +348,7 @@
                                           </span>
                                                  <h4 class="main-title">
                                              <span>
-                                                Details Of Fund Released
+                                               View Details Of Fund Released
                                              </span>
                                                  </h4>
                                              </div>
@@ -572,30 +572,30 @@
                                                  ?>
                                                  <tr>
                                                      <td><h5><?php echo $category; ?></h5></td>
-                                                     <td><?php echo isset($goi_details[0][$category.'_amount'])?$goi_details[0][$category.'_amount']:null;   ?></td>
-                                                     <td><?php echo isset($goi_details[0][$category.'_gom_order_no'])?$goi_details[0][$category.'_gom_order_no']:null;   ?></td>
-                                                     <td><?php echo isset($goi_details[0][$category.'_gom_order_date'])?date('d-m-Y',strtotime($goi_details[0][$category.'_gom_order_date'])):null;   ?></td>
-                                                     <td><?php echo isset($goi_details[0][$category.'_mhada_order_no'])?$goi_details[0][$category.'_mhada_order_no']:null;   ?></td>
-                                                     <td><?php echo isset($goi_details[0][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($goi_details[0][$category.'_mhada_order_date'])):null;   ?></td>
-                                                     <td><?php echo isset($goi_details[0][$category.'_utilization_amount'])?$goi_details[0][$category.'_utilization_amount']:null;   ?></td>
+                                                     <td><?php echo isset($gom_details[0][$category.'_amount'])?$gom_details[0][$category.'_amount']:null;   ?></td>
+                                                     <td><?php echo isset($gom_details[0][$category.'_gom_order_no'])?$gom_details[0][$category.'_gom_order_no']:null;   ?></td>
+                                                     <td><?php echo isset($gom_details[0][$category.'_gom_order_date'])?date('d-m-Y',strtotime($gom_details[0][$category.'_gom_order_date'])):null;   ?></td>
+                                                     <td><?php echo isset($gom_details[0][$category.'_mhada_order_no'])?$gom_details[0][$category.'_mhada_order_no']:null;   ?></td>
+                                                     <td><?php echo isset($gom_details[0][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($gom_details[0][$category.'_mhada_order_date'])):null;   ?></td>
+                                                     <td><?php echo isset($gom_details[0][$category.'_utilization_amount'])?$gom_details[0][$category.'_utilization_amount']:null;   ?></td>
                                                      <td><?php  ?></td>
 
                                                      <td><?php echo $category; ?></td>
-                                                     <td><?php echo isset($goi_details[1][$category.'_amount'])?$goi_details[1][$category.'_amount']:null;   ?></td>
-                                                     <td><?php echo isset($goi_details[1][$category.'_gom_order_no'])?$goi_details[1][$category.'_gom_order_no']:null;   ?></td>
-                                                     <td><?php echo isset($goi_details[1][$category.'_gom_order_date'])?date('d-m-Y',strtotime($goi_details[1][$category.'_gom_order_date'])):null;   ?></td>
-                                                     <td><?php echo isset($goi_details[1][$category.'_mhada_order_no'])?$goi_details[1][$category.'_mhada_order_no']:null;   ?></td>
-                                                     <td><?php echo isset($goi_details[1][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($goi_details[1][$category.'_mhada_order_date'])):null;   ?></td>
-                                                     <td><?php echo isset($goi_details[1][$category.'_utilization_amount'])?$goi_details[1][$category.'_utilization_amount']:null;   ?></td>
+                                                     <td><?php echo isset($gom_details[1][$category.'_amount'])?$gom_details[1][$category.'_amount']:null;   ?></td>
+                                                     <td><?php echo isset($gom_details[1][$category.'_gom_order_no'])?$gom_details[1][$category.'_gom_order_no']:null;   ?></td>
+                                                     <td><?php echo isset($gom_details[1][$category.'_gom_order_date'])?date('d-m-Y',strtotime($gom_details[1][$category.'_gom_order_date'])):null;   ?></td>
+                                                     <td><?php echo isset($gom_details[1][$category.'_mhada_order_no'])?$gom_details[1][$category.'_mhada_order_no']:null;   ?></td>
+                                                     <td><?php echo isset($gom_details[1][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($gom_details[1][$category.'_mhada_order_date'])):null;   ?></td>
+                                                     <td><?php echo isset($gom_details[1][$category.'_utilization_amount'])?$gom_details[1][$category.'_utilization_amount']:null;   ?></td>
                                                      <td><?php  ?></td>
 
                                                      <td><?php echo $category; ?></td>
-                                                     <td><?php echo isset($goi_details[2][$category.'_amount'])?$goi_details[2][$category.'_amount']:null;   ?></td>
-                                                     <td><?php echo isset($goi_details[2][$category.'_gom_order_no'])?$goi_details[2][$category.'_gom_order_no']:null;   ?></td>
-                                                     <td><?php echo isset($goi_details[2][$category.'_gom_order_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_gom_order_date'])):null;   ?></td>
-                                                     <td><?php echo isset($goi_details[2][$category.'_mhada_order_no'])?$goi_details[2][$category.'_mhada_order_no']:null;   ?></td>
-                                                     <td><?php echo isset($goi_details[2][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_mhada_order_date'])):null;   ?></td>
-                                                     <td><?php echo isset($goi_details[2][$category.'_utilization_amount'])?$goi_details[2][$category.'_utilization_amount']:null;   ?></td>
+                                                     <td><?php echo isset($gom_details[2][$category.'_amount'])?$gom_details[2][$category.'_amount']:null;   ?></td>
+                                                     <td><?php echo isset($gom_details[2][$category.'_gom_order_no'])?$gom_details[2][$category.'_gom_order_no']:null;   ?></td>
+                                                     <td><?php echo isset($gom_details[2][$category.'_gom_order_date'])?date('d-m-Y',strtotime($gom_details[2][$category.'_gom_order_date'])):null;   ?></td>
+                                                     <td><?php echo isset($gom_details[2][$category.'_mhada_order_no'])?$gom_details[2][$category.'_mhada_order_no']:null;   ?></td>
+                                                     <td><?php echo isset($gom_details[2][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($gom_details[2][$category.'_mhada_order_date'])):null;   ?></td>
+                                                     <td><?php echo isset($gom_details[2][$category.'_utilization_amount'])?$gom_details[2][$category.'_utilization_amount']:null;   ?></td>
                                                      <td><?php  ?></td>
 
                                                  </tr>

@@ -17,7 +17,7 @@ class Login extends CI_Controller {
          $this->load->library('session');
         $this->load->library('form_validation');
         $this->load->model('Users_model','users_model');
-
+         $this->load->model('Agency_model','agency_model');
     }
 
     function index()
@@ -78,6 +78,37 @@ class Login extends CI_Controller {
             echo 0;
         }
     }
+
+
+
+    function agency_login()
+    {
+        remember_me_agency();
+        if($postInfo = $this->input->post())
+        {
+            $captcha = $this->session->userdata('captcha');
+            if (isset($captcha['word']) && $captcha['word'] == $this->input->post('verification_code')) {
+
+                unset($postInfo['verification_code']);
+                $this->session->unset_userdata('captcha');
+
+                $response = $this->agency_model->login($postInfo);
+                if($response == 'true'){
+                    redirect('agency/projects');
+                }else{
+                    $this->session->set_flashdata('error', 'Invalid Username or password.Please retry with correct credentials.');
+                    redirect('agency/');
+                }
+            }
+            else{
+                $this->session->set_flashdata('error','Invalid captcha.Please check the word and retry.');
+                redirect('agency/');
+            }
+        }
+        $arrData['captcha'] = generate_captcha();
+        $this->load->view('agency_login',$arrData);
+    }
+
 
 }
 

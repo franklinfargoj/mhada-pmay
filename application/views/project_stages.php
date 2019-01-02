@@ -311,11 +311,16 @@
                                                      <td><?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; }  else { echo '-';}  ?></td>
                                                      <?php if($stage['id']!=3) {
                                                          $offset = $stage['id']-1;
-                                                         if($stage['id']==4) { $offset = 2; } ?>
+                                                         if($stage['id']==4) { $offset = 2; }
+
+                                                         if(!isset($goi_fund_details[$offset]['total_amount'])) { $goi_amount = 0; } else { $goi_amount = $goi_fund_details[$offset]['total_amount']; }
+                                                         if(!isset($gom_fund_details[$offset]['total_amount'])) { $gom_amount = 0; } else { $gom_amount = $gom_fund_details[$offset]['total_amount']; }
+
+                                                         ?>
                                                      <td><?php if(isset($goi_fund_details[$offset]['total_amount'])) { echo $goi_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
                                                      <td><?php if(isset($gom_fund_details[$offset]['total_amount'])) { echo $gom_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
-                                                     <td><?php if(isset($goi_fund_details[$offset]['total_amount']) || isset($gom_fund_details[$offset]['total_amount']) ) { echo ($goi_fund_details[$offset]['total_amount'] + $gom_fund_details[$offset]['total_amount']); } else { echo '-';  } ?></td>
-                                                     <td><?php if(isset($goi_fund_details[$offset]['total_amount']) || isset($gom_fund_details[$offset]['total_amount']) ) { echo ($goi_fund_details[$offset]['total_amount'] + $gom_fund_details[$offset]['total_amount']); } else { echo '-';  } ?></td>
+                                                     <td><?php echo ($goi_amount + $gom_amount); ?></td>
+                                                     <td><?php echo ($goi_amount + $gom_amount); ?></td>
                                                      <?php } else { ?>
                                                          <td>-</td>
                                                          <td>-</td>
@@ -420,11 +425,16 @@
                                                      <td><input type="text" class="form-control" name="stage_dus[<?php echo $stage['id']; ?>][additional_information]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; } ?>" /> </td>
                                                      <?php if($stage['id']!=3) {
                                                          $offset = $stage['id']-1;
-                                                         if($stage['id']==4) { $offset = 2; } ?>
+                                                         if($stage['id']==4) { $offset = 2; }
+
+                                                         if(!isset($goi_fund_details[$offset]['total_amount'])) { $goi_amount = 0; } else { $goi_amount = $goi_fund_details[$offset]['total_amount']; }
+                                                         if(!isset($gom_fund_details[$offset]['total_amount'])) { $gom_amount = 0; } else { $gom_amount = $gom_fund_details[$offset]['total_amount']; }
+
+                                                         ?>
                                                          <td><?php if(isset($goi_fund_details[$offset]['total_amount'])) { echo $goi_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
                                                          <td><?php if(isset($gom_fund_details[$offset]['total_amount'])) { echo $gom_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
-                                                         <td><?php if(isset($goi_fund_details[$offset]['total_amount']) || isset($gom_fund_details[$offset]['total_amount']) ) { echo ($goi_fund_details[$offset]['total_amount'] + $gom_fund_details[$offset]['total_amount']); } else { echo '-';  } ?></td>
-                                                         <td><?php if(isset($goi_fund_details[$offset]['total_amount']) || isset($gom_fund_details[$offset]['total_amount']) ) { echo ($goi_fund_details[$offset]['total_amount'] + $gom_fund_details[$offset]['total_amount']); } else { echo '-';  } ?></td>
+                                                         <td><?php echo ($goi_amount + $gom_amount); ?></td>
+                                                         <td><?php echo ($goi_amount + $gom_amount); ?></td>
                                                      <?php } else { ?>
                                                          <td>-</td>
                                                          <td>-</td>

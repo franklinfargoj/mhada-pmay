@@ -7,6 +7,15 @@ function check_login()
 		redirect();
 	}
 }
+
+function check_agency_login()
+{
+    $ci =& get_instance();
+    if(!$ci->session->userdata('id_of_agency'))
+    {
+        redirect();
+    }
+}
 function check_admin_login()
 {
     $ci =& get_instance();
@@ -191,6 +200,18 @@ if (!function_exists('url_manupulation')) {
 
 function generate_password($lenght = 4) {
     return bin2hex(openssl_random_pseudo_bytes($lenght));
-} 
+}
+
+
+function remember_me_agency()
+{
+    $ci =& get_instance();
+
+    if($ci->session->userdata('remember_me_agency') && !$ci->session->userdata('is_agency_role'))
+    {
+        redirect('dashboard');
+    }
+}
+
 
 ?>

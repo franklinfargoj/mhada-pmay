@@ -25,9 +25,8 @@
       <?php
          }
          ?>
-      <div class="row gap-20 masonry pos-r">
-         <div class="masonry-sizer col-md-12"></div>
-         <div class="masonry-item col-12">
+      <div class="row gap-20 pos-r">
+         <div class="col-12">
             <div class="">
                <div class="m-portlet">
                   <div class="bgc-white bdrs-3">
@@ -286,62 +285,67 @@
                                          </div>
 
                                         <div class="table-responsive">
-                                            <table class="table mb-0 table-hover" id="display_table">
-                                                <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col">Stage</th>
-                                                    <th scope="col">No Of DUs</th>
-                                                    <th scope="col">Additional Information</th>
-                                                    <th scope="col">Fund released by centre (In Rs.)</th>
-                                                    <th scope="col">Fund released by state (In Rs.)</th>
-                                                    <th scope="col">Total fund released (In Rs.)</th>
-                                                    <th scope="col">Fund released by MHADA (In Rs.)</th>
-                                                    <th scope="col">Expense by implementing agency</th>
-                                                    <th scope="col">Files</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <?php
-                                                foreach($project_stages_master as $key=>$stage) {
-                                                        ?>
-                                                    <tr>
-                                                        <td><h5><?php echo $stage['stage']; ?></h5></td>
+                                         <table class="table mb-0 table-hover" id="display_table">
+                                             <thead class="thead-light">
+                                             <tr>
+                                                 <th scope="col">Stage</th>
+                                                 <th scope="col">No Of DUs</th>
+                                                 <th scope="col">Additional Information</th>
+                                                 <th scope="col">Fund released by centre (In Rs.)</th>
+                                                 <th scope="col">Fund released by state (In Rs.)</th>
+                                                 <th scope="col">Total fund released (In Rs.)</th>
+                                                 <th scope="col">Fund released by MHADA (In Rs.)</th>
+                                                 <th scope="col">Expense by implementing agency</th>
+                                                 <th scope="col">Files</th>
+                                             </tr>
+                                             </thead>
+                                             <tbody>
+                                             <?php
+                                             foreach($project_stages_master as $key=>$stage) {
+                                                     ?>
+                                                 <tr>
+                                                     <td><h5><?php echo $stage['stage']; ?></h5></td>
 
-                                                        <td><?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?></td>
-                                                        <td><?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; }  else { echo '-';}  ?></td>
-                                                        <?php if($stage['id']!=3) {
-                                                            $offset = $stage['id']-1;
-                                                            if($stage['id']==4) { $offset = 2; } ?>
-                                                        <td><?php if(isset($goi_fund_details[$offset]['total_amount'])) { echo $goi_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
-                                                        <td><?php if(isset($gom_fund_details[$offset]['total_amount'])) { echo $gom_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
-                                                        <td><?php if(isset($goi_fund_details[$offset]['total_amount']) || isset($gom_fund_details[$offset]['total_amount']) ) { echo ($goi_fund_details[$offset]['total_amount'] + $gom_fund_details[$offset]['total_amount']); } else { echo '-';  } ?></td>
-                                                        <td><?php if(isset($goi_fund_details[$offset]['total_amount']) || isset($gom_fund_details[$offset]['total_amount']) ) { echo ($goi_fund_details[$offset]['total_amount'] + $gom_fund_details[$offset]['total_amount']); } else { echo '-';  } ?></td>
-                                                        <?php } else { ?>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                        <?php } ?>
-                                                        <td><?php echo '-'; ?></td>
-                                                        <?php
-                                                        if($key==0)
-                                                        {
-                                                        ?>
-                                                            <td rowspan="4"><a href="<?php echo base_url('projects/documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('projects/photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
-                                                        <?php } ?>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                                ?>
+                                                     <td><?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?></td>
+                                                     <td><?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; }  else { echo '-';}  ?></td>
+                                                     <?php if($stage['id']!=3) {
+                                                         $offset = $stage['id']-1;
+                                                         if($stage['id']==4) { $offset = 2; }
 
-                                                    <!--<tr>
-                                                        <td><h5>Total</h5></td>
-                                                        <td><?php if(isset($total_dus_under_construction)) { echo $total_dus_under_construction; } ?></td>
-                                                        <td colspan="9"></td>
-                                                    </tr>-->
-                                                </tbody>
-                                            </table>
-                                         </div>
+                                                         if(!isset($goi_fund_details[$offset]['total_amount'])) { $goi_amount = 0; } else { $goi_amount = $goi_fund_details[$offset]['total_amount']; }
+                                                         if(!isset($gom_fund_details[$offset]['total_amount'])) { $gom_amount = 0; } else { $gom_amount = $gom_fund_details[$offset]['total_amount']; }
+
+                                                         ?>
+                                                     <td><?php if(isset($goi_fund_details[$offset]['total_amount'])) { echo $goi_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
+                                                     <td><?php if(isset($gom_fund_details[$offset]['total_amount'])) { echo $gom_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
+                                                     <td><?php echo ($goi_amount + $gom_amount); ?></td>
+                                                     <td><?php echo ($goi_amount + $gom_amount); ?></td>
+                                                     <?php } else { ?>
+                                                         <td>-</td>
+                                                         <td>-</td>
+                                                         <td>-</td>
+                                                         <td>-</td>
+                                                     <?php } ?>
+                                                     <td><?php echo '-'; ?></td>
+                                                     <?php
+                                                     if($key==0)
+                                                     {
+                                                     ?>
+                                                         <td rowspan="4"><a href="<?php echo base_url('projects/documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('projects/photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
+                                                     <?php } ?>
+                                                 </tr>
+                                                 <?php
+                                             }
+                                             ?>
+
+                                                 <!--<tr>
+                                                     <td><h5>Total</h5></td>
+                                                     <td><?php if(isset($total_dus_under_construction)) { echo $total_dus_under_construction; } ?></td>
+                                                    <td colspan="9"></td>
+                                                 </tr>-->
+                                             </tbody>
+                                         </table>
+                                        </div>
 
                                          <div class="m-form__actions">
                                              <br>
@@ -421,11 +425,16 @@
                                                      <td><input type="text" class="form-control" name="stage_dus[<?php echo $stage['id']; ?>][additional_information]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; } ?>" /> </td>
                                                      <?php if($stage['id']!=3) {
                                                          $offset = $stage['id']-1;
-                                                         if($stage['id']==4) { $offset = 2; } ?>
+                                                         if($stage['id']==4) { $offset = 2; }
+
+                                                         if(!isset($goi_fund_details[$offset]['total_amount'])) { $goi_amount = 0; } else { $goi_amount = $goi_fund_details[$offset]['total_amount']; }
+                                                         if(!isset($gom_fund_details[$offset]['total_amount'])) { $gom_amount = 0; } else { $gom_amount = $gom_fund_details[$offset]['total_amount']; }
+
+                                                         ?>
                                                          <td><?php if(isset($goi_fund_details[$offset]['total_amount'])) { echo $goi_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
                                                          <td><?php if(isset($gom_fund_details[$offset]['total_amount'])) { echo $gom_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
-                                                         <td><?php if(isset($goi_fund_details[$offset]['total_amount']) || isset($gom_fund_details[$offset]['total_amount']) ) { echo ($goi_fund_details[$offset]['total_amount'] + $gom_fund_details[$offset]['total_amount']); } else { echo '-';  } ?></td>
-                                                         <td><?php if(isset($goi_fund_details[$offset]['total_amount']) || isset($gom_fund_details[$offset]['total_amount']) ) { echo ($goi_fund_details[$offset]['total_amount'] + $gom_fund_details[$offset]['total_amount']); } else { echo '-';  } ?></td>
+                                                         <td><?php echo ($goi_amount + $gom_amount); ?></td>
+                                                         <td><?php echo ($goi_amount + $gom_amount); ?></td>
                                                      <?php } else { ?>
                                                          <td>-</td>
                                                          <td>-</td>

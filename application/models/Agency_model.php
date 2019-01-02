@@ -51,7 +51,7 @@ class Agency_model extends CI_Model{
       $this->db->insert('mhada_schemes',$postData);
    }
 
-   function get_all_projects($search_param,$user_id)
+   function get_agency_projects($search_param,$user_id)
    {
       $today = date('Y-m-d H:i:s');
 
@@ -59,7 +59,7 @@ class Agency_model extends CI_Model{
 
        $this->db->select('ps.*,statuses.status as current_status');
        $this->db->join('project_statuses_master statuses','statuses.id = ps.current_status_id','left');
-
+       $this->db->where('ps.agency_id',$user_id);
 
       if($search_param != '')
       {

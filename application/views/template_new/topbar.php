@@ -16,7 +16,7 @@
       </div>
       <?php
          $admin_role = $this->session->userdata('is_admin_role');
-         $is_account_role = $this->session->userdata('is_account_role');
+         $is_agency_role = $this->session->userdata('is_agency_role');
       ?>
       <ul class="sidebar-menu scrollable pos-r">
          <li class="nav-item "><a class="sidebar-link" href="<?php echo base_url('schemes/dashboard');?>"><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a></li>
@@ -28,7 +28,11 @@
         <!-- <li class="nav-item"><a class="sidebar-link" href="<?php echo base_url('masters');?>"><span class="icon-holder"><i class="c-orange-500 ti-layout-list-thumb"></i> </span><span class="title">Manage Masters</span></a></li>
          <li class="nav-item"><a class="sidebar-link" href="<?php echo base_url('users');?>"><span class="icon-holder"><i class="c-deep-orange-500 ti-calendar"></i> </span><span class="title">Users</span></a></li>-->
          <?php
-            }
+            } elseif($is_agency_role)
+            { ?>
+                <li class="nav-item active"><a class="sidebar-link" href="<?php echo base_url('agency/projects');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Projects</span></a></li>
+
+          <?php  }
          ?>
       </ul>
    </div>

@@ -23,9 +23,8 @@
       <?php
          }
          ?>
-      <div class="row gap-20 masonry pos-r">
-         <div class="masonry-sizer col-md-12"></div>
-         <div class="masonry-item col-12">
+      <div class="row gap-20 pos-r">
+         <div class="col-12">
             <div class="">
                <div class="m-portlet">
                   <div class="bgc-white bdrs-3" style="overflow-x:auto;">

@@ -25,12 +25,11 @@
       <?php
          }
          ?>
-      <div class="row gap-20 masonry pos-r">
-         <div class="masonry-sizer col-md-12"></div>
-         <div class="masonry-item col-12">
+      <div class="row gap-20 pos-r">
+         <div class="col-12">
             <div class="">
                <div class="m-portlet">
-                  <div class="bgc-white bdrs-3" style="overflow-x:auto;">
+                  <div class="bgc-white bdrs-3">
                      <div class="mr-auto m-portlet__head">
                         <h3 class="main-title"><?php echo $project_code;?>
                            <a href="<?php echo base_url('projects');?>" class="btn m-btn--pill btn-dark float-right mb-3">Back</a>
@@ -274,7 +273,6 @@
                                          </div>
                                      </div>
                                      <div class="m-portlet__body" style="margin-top: -5%;">
-
                                          <div class="row">
                                              <div class="col-lg-6">
                                                  <h5>No Of DUs Under Construction</h5> <input type="hidden" name="dus_for_which_work_started" id="dus_for_which_work_started" value="<?php echo $dus_for_which_work_started; ?>"/>
@@ -286,6 +284,7 @@
                                              </div>
                                          </div>
 
+                                        <div class="table-responsive">
                                          <table class="table mb-0 table-hover" id="display_table">
                                              <thead class="thead-light">
                                              <tr>
@@ -346,6 +345,7 @@
                                                  </tr>-->
                                              </tbody>
                                          </table>
+                                        </div>
 
                                          <div class="m-form__actions">
                                              <br>

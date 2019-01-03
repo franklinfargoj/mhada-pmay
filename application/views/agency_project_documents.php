@@ -35,7 +35,7 @@
                      <div class="mr-auto m-portlet__head">
                         <h3 class="main-title">
                         <?php echo $project_code;?>
-                           <a href="<?php echo base_url('projects');?>" class="btn m-btn--pill btn-dark float-right mb-3">Back</a>
+                           <a href="<?php echo base_url('agency/projects');?>" class="btn m-btn--pill btn-dark float-right mb-3">Back</a>
                         </h3>
                      </div>
                      <div class="m-portlet__body">
@@ -63,7 +63,7 @@
                                                 <label for="doc_name">
                                                    Select Document
                                                 </label>
-                                                <select class="form-control m-input m-input--square chzn-select" name="doc_for" id="project_documents">
+                                                <select class="form-control m-input m-input--square chzn-select" name="doc_for" id="project_documents" required>
                                                     <option value="">Select Document</option>
                                                    <?php
                                                    foreach ($documents as $document) {
@@ -80,7 +80,7 @@
                                                 <label for="doc_name">
                                                 Document Name
                                                 </label>
-                                                <input type="text" class="form-control m-input m-input--square" id="doc_name" placeholder="Enter Document name" name="doc_name">
+                                                <input type="text" class="form-control m-input m-input--square" id="doc_name" placeholder="Enter Document name" name="doc_name" >
                                              </div>
                                           </div>
                                           <div class="col-lg-4">
@@ -88,7 +88,7 @@
                                                 <label for="doc_file">
                                                 Attach Document
                                                 </label>
-                                                <input type="file" class="form-control m-input m-input--square" id="doc_file" name="doc_file">
+                                                <input type="file" class="form-control m-input m-input--square" id="doc_file" name="doc_file" required >
                                              </div>
                                           </div>
                                        </div>
@@ -168,8 +168,10 @@
                                                       <?php echo date('d-m-Y',strtotime($each_document['created_at']));?>
                                                    </td>
                                                    <td>
-                                                     <a href="<?php echo base_url('projects/download_document/'.base64_encode($this->encryption->encrypt($each_document['document_path'])));?>" target="_blank" class="btn m-btn--pill btn-primary" style="color: white">Download</a>
-                                                     <a href="<?php echo base_url('projects/delete_document/'.base64_encode($this->encryption->encrypt($each_document['id'].'|'.$project_code.'|'.$project_id)));?>"  class="btn m-btn--pill btn-secondary" style="color: white">Delete</a>
+                                                     <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($each_document['document_path'])));?>" target="_blank" class="btn m-btn--pill btn-primary" style="color: white">Download</a>
+                                                       <?php if(isset($each_document['uploaded_by_agency_id']) && $each_document['uploaded_by_agency_id']!=0) { ?>
+                                                     <a href="<?php echo base_url('agency/delete_document/'.base64_encode($this->encryption->encrypt($each_document['id'].'|'.$project_code.'|'.$project_id)));?>"  class="btn m-btn--pill btn-secondary" style="color: white">Delete</a>
+                                                       <?php } ?>
                                                    </td>
                                                 </tr>
                                                <?php

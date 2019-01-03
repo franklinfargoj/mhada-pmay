@@ -1091,6 +1091,7 @@ class Agency_model extends CI_Model{
 
     function get_documents_master()
     {
+        $this->db->where('for_agency',1);
         $master_records = $this->db->get('project_documents_master')->result_array();
         return $master_records;
     }
@@ -1111,7 +1112,7 @@ class Agency_model extends CI_Model{
                 'document_id' => $document_id,
                 'document_name' =>  $document_name,
                 'document_path' => $uploaded['file_name'],
-                'uploaded_by_user_id' => $this->session->userdata('id_of_user'),
+                'uploaded_by_agency_id' => $this->session->userdata('id_of_agency'),
                 'created_at' => date('Y-m-d H:i:s')
             );
 
@@ -1286,6 +1287,7 @@ class Agency_model extends CI_Model{
                 "stage_id" => $stage['id'],
                 "no_of_dus" => $postData['stage_dus'][$stage['id']]['no_of_dus'],
                 "additional_information" => $postData['stage_dus'][$stage['id']]['additional_information'],
+                "expense_by_implementing_agency" => $postData['stage_dus'][$stage['id']]['expense_by_implementing_agency'],
                 "created_at" => date('Y-m-d H:i:s')
             ];
 
@@ -1313,6 +1315,15 @@ class Agency_model extends CI_Model{
         return $query->row()->total_dus_work_started;
     }
 
+    public function get_dus_started($project_id)
+    {
+
+        $this->db->where('project_id',$project_id);
+        $master_records = $this->db->get('project_stages_log')->result_array();
+        return $master_records;
+
+
+    }
 
     public function add_financial_details($postData,$categoryArr,$encrypted_url)
     {

@@ -19,7 +19,7 @@
          $is_agency_role = $this->session->userdata('is_agency_role');
       ?>
       <ul class="sidebar-menu scrollable pos-r">
-         <li class="nav-item "><a class="sidebar-link" href="<?php echo base_url('schemes/dashboard');?>"><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a></li>
+         <li class="nav-item"><a class="sidebar-link" href="<?php echo base_url('schemes/dashboard');?>"><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a></li>
          <?php
             if($admin_role){
          ?>

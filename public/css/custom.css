@@ -201,7 +201,8 @@
 }
 
 .sidebar .sidebar-menu>li>a:hover,
-.sidebar-menu li a:focus {
+.sidebar-menu li a:focus,
+.sidebar-menu li.active a {
   background: #ffffff;
 }
 
@@ -210,7 +211,9 @@
 }
 
 .sidebar .sidebar-menu>li>a:hover .icon-holder i,
-.sidebar-menu li a:focus .icon-holder i {
+.sidebar-menu li a:focus .icon-holder i,
+.sidebar-menu li.active a,
+.sidebar-menu li.active a .icon-holder i {
   color: #313435 !important;
 }
 
@@ -694,4 +697,8 @@ a.btn-outline-dark:hover,
   right: 10px;
   padding: .75rem 1.25rem;
   color: #ffffff;
+}
+
+.modal-body .form-group.row {
+  text-align: left;
 }

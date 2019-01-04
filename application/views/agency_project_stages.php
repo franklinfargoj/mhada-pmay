@@ -198,9 +198,11 @@
 
                                              <div class="col-lg-6">
                                                  <h5>Beneficiary List</h5>
-                                                <!-- <p>
-                                                     <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($started_work_dus[0]['beneficiary_list_path'])));?>" target="_blank" class="btn m-btn--pill btn-primary" style="color: white">Download</a>
-                                                 </p> -->
+                                                 <p>
+                                                <?php if(isset($benificiary_list[0]['beneficiary_list_path'])) { ?>
+                                                     <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($benificiary_list[0]['beneficiary_list_path'])));?>" target="_blank" class="btn m-btn--pill btn-primary" style="color: white">Download</a>
+                                                 <?php } ?>
+                                                </p>
                                              </div>
                                          </div>
 

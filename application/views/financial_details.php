@@ -289,10 +289,8 @@
                                                                 </td>
                                                                 <td><input type="date" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_order_date]" />
                                                                 </td>
-                                                                <td><input type="text" class="form-control total_utilization_amount"
-                                                                        name="financial_details[<?php echo $category; ?>][utilization_amount]"
-                                                                        value="0" /> </td>
-                                                                <td><a href="javascript:void(0);">Download Certificate</a></td>
+                                                                <td>- </td>
+                                                                <td>-</td>
 
                                                             </tr>
                                                             <?php
@@ -310,9 +308,7 @@
                                                                 <td> - </td>
                                                                 <td> - </td>
                                                                 <td> - </td>
-                                                                <td><input readonly class="form-control" type="text"
-                                                                        name="total_utilization_amount" id="total_utilization_amount"
-                                                                        value="0" /></td>
+                                                                <td>-</td>
                                                                 <td> - </td>
                                                             </tr>
                                                         </tbody>
@@ -367,10 +363,8 @@
                                                                 </td>
                                                                 <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_date]" />
                                                                 </td>
-                                                                <td><input type="text" class="form-control gom_total_utilization_amount"
-                                                                        name="gom_financial_details[<?php echo $category; ?>][utilization_amount]"
-                                                                        value="0" /> </td>
-                                                                <td><a href="javascript:void(0);">Download Certificate</a></td>
+                                                                <td> </td>
+                                                                <td></td>
 
                                                             </tr>
                                                             <?php
@@ -387,9 +381,7 @@
                                                                 <td> - </td>
                                                                 <td> - </td>
                                                                 <td> - </td>
-                                                                <td><input readonly class="form-control" type="text"
-                                                                        name="gom_total_utilization_amount" id="gom_total_utilization_amount"
-                                                                        value="0" /></td>
+                                                                <td>-</td>
                                                                 <td> - </td>
                                                             </tr>
                                                         </tbody>

@@ -162,7 +162,7 @@ class Agency extends CI_Controller {
         if($encrypted_url != NULL)
         {
             $file_name = base64_decode($encrypted_url);
-           // $file_name = $this->encryption->decrypt($file_name);
+            $file_name = $this->encryption->decrypt($file_name);
 
             if (!empty($file_name)) {
                 $filename = FCPATH.'/public/uploads/'.$file_name;
@@ -295,6 +295,7 @@ class Agency extends CI_Controller {
             $arrData['gom_fund_details'] = $this->agency_model->get_fund_amount($project_id,2);
 
             $arrData['started_work_dus'] = $this->agency_model->get_dus_started($project_id);
+            $arrData['benificiary_list'] = $this->agency_model->get_beneficiary_list_name($project_id);
 
             $arrData['encrypted_url'] =  $encrypted_url;
             $arrData['middle'] = 'agency_project_stages';

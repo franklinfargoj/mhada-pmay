@@ -1006,6 +1006,8 @@ class Projects extends CI_Controller {
             $arrData['goi_fund_details'] = $this->users_model->get_fund_amount($project_id,1);
             $arrData['gom_fund_details'] = $this->users_model->get_fund_amount($project_id,2);
 
+            $arrData['started_work_dus'] = $this->users_model->get_dus_started($project_id);
+
             $arrData['encrypted_url'] =  $encrypted_url;
             $arrData['middle'] = 'project_stages';
             $this->load->view('template_new/template',$arrData);

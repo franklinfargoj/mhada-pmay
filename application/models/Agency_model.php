@@ -1329,6 +1329,15 @@ class Agency_model extends CI_Model{
 
     }
 
+    public function get_beneficiary_list_name($project_id)
+    {
+        $this->db->select('beneficiary_list_path');
+        $this->db->where('project_id',$project_id);
+        $this->db->order_by('id','DESC');
+        $master_records = $this->db->get('project_stages_log')->result_array();
+        return $master_records;
+    }
+
     public function add_financial_details($postData,$categoryArr,$encrypted_url)
     {
 
@@ -1396,7 +1405,7 @@ class Agency_model extends CI_Model{
         $config['file_name'] = generate_unique_id();
         $this->load->library('upload', $config);
 
-        
+
         unset($postData['total_amount']);
         unset($postData['total_utilization_amount']);
         unset($postData['financial_details']);

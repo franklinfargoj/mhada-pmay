@@ -1310,7 +1310,19 @@ class Users_model extends CI_Model{
         $query = $this->db->get();
         return $query->row()->total_dus_work_started;
     }
+    public function get_dus_started($project_id)
+    {
+        $this->db->select_sum('EWS');
+        $this->db->select_sum('LIG');
+        $this->db->select_sum('MIG');
+        $this->db->select_sum('HIG');
+        $this->db->select_sum('total_dus_work_started');
+        $this->db->where('project_id',$project_id);
+        $master_records = $this->db->get('project_stages_log')->result_array();
+        return $master_records;
 
+
+    }
 
     public function add_financial_details($postData,$categoryArr,$encrypted_url)
     {

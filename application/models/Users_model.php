@@ -1232,17 +1232,15 @@ class Users_model extends CI_Model{
         $config['file_name'] = generate_unique_id();
         $this->load->library('upload', $config);
 
-        if (empty($_FILES['beneficiary_list_file']['name'])) {
-
+        if (empty($_FILES['beneficiary_list_path']['name'])) {
             $postData['created_at'] = date('Y-m-d H:i:s');
             $inserted_id = $this->db->insert('project_stages_log', $postData);
 
             return 1;
         }
         else {
-            if ($this->upload->do_upload('beneficiary_list_file')) {
+            if ($this->upload->do_upload('beneficiary_list_path')) {
                 $uploaded = $this->upload->data();
-
                 $postData['beneficiary_list_path'] = $uploaded['file_name'];
                 $postData['created_at'] = date('Y-m-d H:i:s');
                 $inserted_id = $this->db->insert('project_stages_log', $postData);
@@ -1251,7 +1249,7 @@ class Users_model extends CI_Model{
             } else {
                 $error = array('error' => $this->upload->display_errors());
                 $this->session->set_flashdata('error', $error['error']);
-                redirect('projects/photos/' . $encrypted_url);
+                redirect('projects/update_project_stage/' . $encrypted_url);
             }
         }
 

@@ -198,7 +198,9 @@
 
                                              <div class="col-lg-6">
                                                  <h5>Beneficiary List</h5>
-                                                 <p></p>
+                                                <!-- <p>
+                                                     <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($started_work_dus[0]['beneficiary_list_path'])));?>" target="_blank" class="btn m-btn--pill btn-primary" style="color: white">Download</a>
+                                                 </p> -->
                                              </div>
                                          </div>
 

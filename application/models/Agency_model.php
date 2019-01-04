@@ -1317,7 +1317,11 @@ class Agency_model extends CI_Model{
 
     public function get_dus_started($project_id)
     {
-
+        $this->db->select_sum('EWS');
+        $this->db->select_sum('LIG');
+        $this->db->select_sum('MIG');
+        $this->db->select_sum('HIG');
+        $this->db->select_sum('total_dus_work_started');
         $this->db->where('project_id',$project_id);
         $master_records = $this->db->get('project_stages_log')->result_array();
         return $master_records;
@@ -1327,20 +1331,32 @@ class Agency_model extends CI_Model{
 
     public function add_financial_details($postData,$categoryArr,$encrypted_url)
     {
+
+
+        $config['upload_path'] = FCPATH.'public/uploads';
+        $config['allowed_types'] = '*';
+        $config['file_name'] = generate_unique_id();
+        $this->load->library('upload', $config);
+
+
+
+
         foreach($categoryArr as $category)
         {
-            $postData[$category.'_amount'] = $postData['financial_details'][$category]['amount'];
-            $postData[$category.'_goi_order_no'] = $postData['financial_details'][$category]['goi_order_no'];
-            $postData[$category.'_goi_order_date'] = $postData['financial_details'][$category]['goi_order_date'];
-
-            $postData[$category.'_gom_order_no'] = $postData['financial_details'][$category]['gom_order_no'];
-            $postData[$category.'_gom_order_date'] = $postData['financial_details'][$category]['gom_order_date'];
-            $postData[$category.'_mhada_order_no'] = $postData['financial_details'][$category]['mhada_order_no'];
-            $postData[$category.'_mhada_order_date'] = $postData['financial_details'][$category]['mhada_order_date'];
             $postData[$category.'_utilization_amount'] = $postData['financial_details'][$category]['utilization_amount'];
 
-        }
+            if(!empty($_FILES[$category.'_utilization_certificate']['name']))
+            {
+                if($this->upload->do_upload($category.'_utilization_certificate')) {
+                    $uploaded = $this->upload->data();
 
+                    $postData[$category.'_utilization_certificate'] =  $uploaded['file_name'];
+
+                }
+            }
+
+
+        }
             unset($postData['gom_financial_details']);
             unset($postData['gom_total_amount']);
             unset($postData['gom_total_utilization_amount']);
@@ -1374,6 +1390,13 @@ class Agency_model extends CI_Model{
 
     public function add_gom_financial_details($postData,$categoryArr,$encrypted_url)
     {
+
+        $config['upload_path'] = FCPATH.'public/uploads';
+        $config['allowed_types'] = '*';
+        $config['file_name'] = generate_unique_id();
+        $this->load->library('upload', $config);
+
+        
         unset($postData['total_amount']);
         unset($postData['total_utilization_amount']);
         unset($postData['financial_details']);
@@ -1386,6 +1409,16 @@ class Agency_model extends CI_Model{
             $postData[$category.'_mhada_order_no'] = $postData['gom_financial_details'][$category]['mhada_order_no'];
             $postData[$category.'_mhada_order_date'] = $postData['gom_financial_details'][$category]['mhada_order_date'];
             $postData[$category.'_utilization_amount'] = $postData['gom_financial_details'][$category]['utilization_amount'];
+
+            if(!empty($_FILES[$category.'_utilization_certificate']['name']))
+            {
+                if($this->upload->do_upload($category.'_utilization_certificate')) {
+                    $uploaded = $this->upload->data();
+
+                    $postData[$category.'_utilization_certificate'] =  $uploaded['file_name'];
+
+                }
+            }
 
         }
 

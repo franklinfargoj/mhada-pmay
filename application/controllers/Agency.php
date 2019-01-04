@@ -162,7 +162,7 @@ class Agency extends CI_Controller {
         if($encrypted_url != NULL)
         {
             $file_name = base64_decode($encrypted_url);
-            $file_name = $this->encryption->decrypt($file_name);
+           // $file_name = $this->encryption->decrypt($file_name);
 
             if (!empty($file_name)) {
                 $filename = FCPATH.'/public/uploads/'.$file_name;
@@ -332,6 +332,74 @@ class Agency extends CI_Controller {
             echo json_encode($stage_dus_details);
         }
 
+    }
+
+
+    public function financial_details($encrypted_url='')
+    {
+        url_manupulation();
+        if($encrypted_url != NULL)
+        {
+            $user_id = $this->session->userdata('id_of_agency');
+
+            $decrypted_url = base64_decode($encrypted_url);
+            $decrypted_url = $this->encryption->decrypt($decrypted_url);
+            $decrypted_url = explode('|', $decrypted_url);
+
+            $arrData['project_code'] = $project_code = $decrypted_url[0];
+            $arrData['project_id'] = $project_id = $decrypted_url[1];
+
+            $arrData['encrypted_url'] = $encrypted_url;
+            $arrData['project_stages_master'] = $this->agency_model->get_stages_master();
+            $arrData['project_details'] = $this->agency_model->get_project_details($project_code,$project_id);
+
+            $stage_details_data = $this->agency_model->get_project_stages_dus_details($project_id);
+
+            $stage_dus_details =[];
+            $total_dus_under_construction = 0;
+            foreach($stage_details_data as $stage_detail)
+            {
+                $stage_dus_details[$stage_detail['stage_id']] = $stage_detail;
+                $total_dus_under_construction += $stage_detail['no_of_dus'];
+            }
+            $arrData['project_stages_dus_details'] = $stage_dus_details;
+            $arrData['total_dus_under_construction'] = $total_dus_under_construction;
+            $arrData['categories'] = ['sc','st','other'];
+
+
+            if($postData = $this->input->post())
+            {
+
+
+                $postData['project_id'] = $project_id;
+
+                if($postData['nodel_agency'] == 1)
+                {
+                    $this->agency_model->add_financial_details($postData,$arrData['categories'],$encrypted_url);
+                }
+                elseif($postData['nodel_agency'] == 2)
+                {
+                    $this->agency_model->add_gom_financial_details($postData,$arrData['categories'],$encrypted_url);
+                }
+
+
+                $this->session->set_flashdata('success','Fund added successfully.');
+                redirect('agency/financial_details/'.$encrypted_url);
+
+            }
+
+            $arrData['goi_details'] = $this->agency_model->get_financial_details($project_id,1);
+            $arrData['gom_details'] = $this->agency_model->get_financial_details($project_id,2);
+
+            $arrData['encrypted_url'] =  $encrypted_url;
+            $arrData['middle'] = 'agency_financial_details';
+            $this->load->view('template_new/template',$arrData);
+
+
+        }
+        else{
+            show_error('No Information found.');
+        }
     }
 
 

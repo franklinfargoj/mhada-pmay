@@ -107,7 +107,7 @@
                                          <!--update_stage-->
                                      <a href="<?php echo base_url('agency/update_project_stage/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>"  class="mb-1 btn m-btn--pill btn-primary" style="color: white">Update Stage</a>
 
-                                     <a href="<?php echo base_url('agency/projects/financial_details/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Financial Details</a>
+                                     <a href="<?php echo base_url('agency/financial_details/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Financial Details</a>
                                      </div>
                                 <!--  <a href="<?php //echo base_url('projects/add_building_details/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="btn m-btn--pill btn-primary" style="color: white">Add Details</a> -->
 

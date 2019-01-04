@@ -164,7 +164,7 @@
                                          </div>
                                      </div>
                                      <div class="m-portlet__body" style="margin-top: -5%;">
-                                         <?php echo form_open('','class="class="m-form m-form--fit m-form--label-align-right" id="scheme_form"');?>
+                                         <?php echo form_open_multipart('','class="class="m-form m-form--fit m-form--label-align-right" id="scheme_form"');?>
 
                                          <div class="row" style="margin-top: 2%">
                                              <div class="col-lg-6">
@@ -220,7 +220,7 @@
                                                      <label for="probable_start_date_of_project" class="form-control-label">
                                                          <strong>Upload Beneficiary List <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input type="file" class="form-control m-input m-input--square" id="beneficiary_list_path" name="beneficiary_list_path">
+                                                     <input type="file" class="form-control " id="beneficiary_list_path" name="beneficiary_list_path">
                                                  </div>
 
                                              </div>

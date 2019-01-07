@@ -21,10 +21,17 @@
       <div class="row gap-20 masonry pos-r">
          <div class="masonry-sizer col-md-12"></div>
          <div class="masonry-item w-100">
-            <div class="row gap-20">
-               <div class="col-md-12">
-               </div>
-            </div>
+             <div class="row gap-20">
+                 <div class="col-md-12">
+                     <div class="m-alert m-alert--outline alert alert-success alert-dismissible fade show">
+                         <div class="layer w-100">
+                             <label class="mb-0"><strong>Total Projects Submitted</strong></label>
+                             <span class="m-badge m-badge--brand m-badge--wide d-ib va-m fw-600 br-rd bg-color mr-1 float-right"><?php echo isset($projects_data['project_count'])?$projects_data['project_count']:0;?></span>
+
+                         </div>
+                     </div>
+                 </div>
+             </div>
          </div>
          <div class="masonry-item col-12">
             <div class="">

@@ -442,7 +442,7 @@
                                                          <td>-</td>
                                                          <td>-</td>
                                                      <?php } ?>
-                                                     <td><?php echo '-'; ?></td>
+                                                     <td><?php if(isset($project_stages_dus_details[$stage['id']]['expense_by_implementing_agency'])) { echo $project_stages_dus_details[$stage['id']]['expense_by_implementing_agency']; } else { echo '0';} ?></td>
                                                      <?php
                                                      if($key==0)
                                                      {

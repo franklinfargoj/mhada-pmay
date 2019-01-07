@@ -540,7 +540,7 @@
                                                                     <?php if(isset($goi_details[0][$category.'_utilization_certificate']))
                                                                     {
                                                                         ?>
-                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($goi_details[0][$category.'_utilization_certificate'])); ?>">Download Certificate</a>
+                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($goi_details[0][$category.'_utilization_certificate']))); ?>">Download Certificate</a>
                                                                 <?php      } else { echo '-'; } ?>
                                                                 </td>
 

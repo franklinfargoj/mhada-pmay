@@ -1037,7 +1037,8 @@ class Users_model extends CI_Model{
 
         $postData['current_status_id'] = 3; //work not started - default
         $postData['created_at'] = date('Y-m-d H:i:s');
-        $inserted_id = $this->db->insert('projects',$postData);
+        $this->db->insert('projects',$postData);
+        $inserted_id = $this->db->insert_id();
 
         $consultant_details=[];
         $posted_data['consultant_name'] =$posted_data_arr['consultant_name'];

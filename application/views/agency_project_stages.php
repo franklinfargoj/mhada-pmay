@@ -298,7 +298,7 @@
                                                      if($key==0)
                                                      {
                                                      ?>
-                                                         <td rowspan="4"><a href="<?php echo base_url('projects/documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('projects/photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
+                                                         <td rowspan="4"><a href="<?php echo base_url('agency/project_documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('agency/project_photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
                                                      <?php } ?>
                                                  </tr>
                                                  <?php
@@ -413,7 +413,7 @@
                                                      if($key==0)
                                                      {
                                                          ?>
-                                                         <td rowspan="4"><a href="<?php echo base_url('projects/documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('projects/photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
+                                                         <td rowspan="4"><a href="<?php echo base_url('agency/project_documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('agency/project_photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
                                                      <?php } ?>
                                                  </tr>
                                                  <?php

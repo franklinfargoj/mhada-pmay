@@ -85,7 +85,7 @@
                                                                 <div class="col-sm-8">
                                                                     <div class="form-group">
                                                                         <select id="project_ids" name="project_ids[]"
-                                                                            multiple="multiple" style="width: 150px;">
+                                                                            multiple="multiple" style="width: 150px;" required>
                                                                             <?php  foreach($projects_to_assign as $project) {  ?>
                                                                             <option value="<?php echo $project['id']; ?>"
                                                                                 <?php if($project['agency_id']==$agency_details[0]['id']){

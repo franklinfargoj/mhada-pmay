@@ -38,7 +38,7 @@
                             <div class="mr-auto m-portlet__head">
                                 <h3 class="main-title">
                                     <?php echo $project_code;?>
-                                    <a href="<?php echo base_url('agency');?>" class="btn m-btn--pill btn-dark float-right mb-3">Back</a>
+                                    <a href="<?php echo base_url('agency/projects');?>" class="btn m-btn--pill btn-dark float-right mb-3">Back</a>
                                 </h3>
                             </div>
                             <div class="m-portlet__body">

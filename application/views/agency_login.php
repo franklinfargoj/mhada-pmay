@@ -4,7 +4,7 @@
    <head>
       <meta charset="utf-8" />
       <title>
-         MHADA
+         PMAY - PMTT
       </title>
       <meta name="description" content="MHADA">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +50,7 @@
                   <div class="m-login__signin">
                      <div class="m-login__head">
                         <h3 class="m-login__title">
-                           PROJECT MANAGEMENT TRACKING TOOL
+                           PRADHAN MANTRI AWAAS YOJNA
                         </h3>
                      </div>
                      <?php

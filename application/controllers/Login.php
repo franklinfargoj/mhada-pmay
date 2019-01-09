@@ -62,6 +62,12 @@ class Login extends CI_Controller {
         redirect();
     }
 
+    function agency_logout(){
+        url_manupulation();
+        $this->session->sess_destroy();
+        redirect('agency');
+    }
+
     function isValidMd5($md5 ='')
     {
         return preg_match('/^[a-f0-9]{32}$/', $md5);

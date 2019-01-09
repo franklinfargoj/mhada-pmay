@@ -198,7 +198,11 @@
 
                                              <div class="col-lg-6">
                                                  <h5>Beneficiary List</h5>
-                                                 <p></p>
+                                                 <p>
+                                                <?php if(isset($benificiary_list[0]['beneficiary_list_path'])) { ?>
+                                                     <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($benificiary_list[0]['beneficiary_list_path'])));?>" target="_blank" class="btn m-btn--pill btn-primary" style="color: white">Download</a>
+                                                 <?php } ?>
+                                                </p>
                                              </div>
                                          </div>
 
@@ -294,7 +298,7 @@
                                                      if($key==0)
                                                      {
                                                      ?>
-                                                         <td rowspan="4"><a href="<?php echo base_url('projects/documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('projects/photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
+                                                         <td rowspan="4"><a href="<?php echo base_url('agency/project_documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('agency/project_photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
                                                      <?php } ?>
                                                  </tr>
                                                  <?php
@@ -409,7 +413,7 @@
                                                      if($key==0)
                                                      {
                                                          ?>
-                                                         <td rowspan="4"><a href="<?php echo base_url('projects/documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('projects/photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
+                                                         <td rowspan="4"><a href="<?php echo base_url('agency/project_documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('agency/project_photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
                                                      <?php } ?>
                                                  </tr>
                                                  <?php

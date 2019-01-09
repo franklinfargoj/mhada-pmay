@@ -1,4 +1,4 @@
-<footer class="bdT ta-c p-30"><span>Copyright © 2018 Project Management Tracking Tool (MHADA)</span></footer>
+<footer class="bdT ta-c p-30"></footer>
 </div>
 </div>
 <!-- <script

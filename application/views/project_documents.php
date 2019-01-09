@@ -63,7 +63,7 @@
                                                 <label for="doc_name">
                                                    Select Document
                                                 </label>
-                                                <select class="form-control m-input m-input--square chzn-select" name="doc_for" id="project_documents">
+                                                <select class="form-control m-input m-input--square chzn-select" name="doc_for" id="project_documents" required>
                                                     <option value="">Select Document</option>
                                                    <?php
                                                    foreach ($documents as $document) {

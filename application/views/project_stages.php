@@ -90,7 +90,8 @@
                                          <div class="col-lg-6">
                                              <h5>Total DUs</h5>
                                              <p><?php echo isset($project_details['total_dus'])?$project_details['total_dus']:null;?></p>
-                                             <input type="hidden" name="approved_total_dus" id="approved_total_dus" value="<?php echo isset($project_details['total_dus'])?$project_details['total_dus']:null;?>" />
+                                             <input type="hidden" name="approved_total_dus" id="approved_total_dus" value="<?php echo isset($project_details['total_dus'])?$project_details['total_dus']:0;?>" />
+                                             <input type="hidden" name="work_started" id="work_started" value="<?php echo isset($started_work_dus[0]['total_dus_work_started'])?$started_work_dus[0]['total_dus_work_started']:0;?>" />
                                          </div>
                                          <div class="col-lg-6">
                                              <h5>Probable Start Date Of Project</h5>
@@ -164,7 +165,7 @@
                                          </div>
                                      </div>
                                      <div class="m-portlet__body" style="margin-top: -5%;">
-                                         <?php echo form_open('','class="class="m-form m-form--fit m-form--label-align-right" id="scheme_form"');?>
+                                         <?php echo form_open_multipart('','class="class="m-form m-form--fit m-form--label-align-right" id="scheme_form"');?>
 
                                          <div class="row" style="margin-top: 2%">
                                              <div class="col-lg-6">
@@ -220,7 +221,7 @@
                                                      <label for="probable_start_date_of_project" class="form-control-label">
                                                          <strong>Upload Beneficiary List <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input type="file" class="form-control m-input m-input--square" id="beneficiary_list_path" name="beneficiary_list_path">
+                                                     <input type="file" class="form-control " id="beneficiary_list_path" name="beneficiary_list_path">
                                                  </div>
 
                                              </div>
@@ -326,7 +327,7 @@
                                                          <td>-</td>
                                                          <td>-</td>
                                                      <?php } ?>
-                                                     <td><?php echo '-'; ?></td>
+                                                     <td><?php if(isset($project_stages_dus_details[$stage['id']]['expense_by_implementing_agency'])) { echo $project_stages_dus_details[$stage['id']]['expense_by_implementing_agency']; } else { echo '0';} ?></td>
                                                      <?php
                                                      if($key==0)
                                                      {
@@ -441,7 +442,7 @@
                                                          <td>-</td>
                                                          <td>-</td>
                                                      <?php } ?>
-                                                     <td><?php echo '-'; ?></td>
+                                                     <td><?php if(isset($project_stages_dus_details[$stage['id']]['expense_by_implementing_agency'])) { echo $project_stages_dus_details[$stage['id']]['expense_by_implementing_agency']; } else { echo '0';} ?></td>
                                                      <?php
                                                      if($key==0)
                                                      {
@@ -531,7 +532,11 @@
 
           var approved_total_dus = $('#approved_total_dus').val();
 
-          if(sum > approved_total_dus)
+            var work_started = $('#work_started').val();
+
+            var work_can_start =  approved_total_dus - work_started;
+
+          if(sum > work_can_start)
           {
               alert('Total Dus can not be greater than approved Dus.');
               $('.total_dus').val('0');

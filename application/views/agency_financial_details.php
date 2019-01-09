@@ -38,7 +38,7 @@
                             <div class="mr-auto m-portlet__head">
                                 <h3 class="main-title">
                                     <?php echo $project_code;?>
-                                    <a href="<?php echo base_url('projects');?>" class="btn m-btn--pill btn-dark float-right mb-3">Back</a>
+                                    <a href="<?php echo base_url('agency/projects');?>" class="btn m-btn--pill btn-dark float-right mb-3">Back</a>
                                 </h3>
                             </div>
                             <div class="m-portlet__body">
@@ -203,7 +203,7 @@
                                                 </div>
                                             </div>
                                             <div class="m-portlet__body" style="margin-top: -5%;">
-                                                <?php echo form_open('','class="class="m-form m-form--fit m-form--label-align-right" id="save_stage_form"');?>
+                                                <?php echo form_open_multipart('','class="class="m-form m-form--fit m-form--label-align-right" id="save_stage_form"');?>
 
                                                 <div class="row">
                                                     <div class="col-lg-6">
@@ -274,23 +274,17 @@
                                                                     </h5>
                                                                 </td>
 
-                                                                <td><input type="text" class="form-control total_amount"
-                                                                        name="financial_details[<?php echo $category; ?>][amount]"
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><input type="text" class="form-control total_utilization_amount"
+                                                                        name="financial_details[<?php echo $category; ?>][utilization_amount]"
                                                                         value="0" /> </td>
-                                                                <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][goi_order_no]" />
-                                                                </td>
-                                                                <td><input class="form-control" type="date" name="financial_details[<?php echo $category; ?>][goi_order_date]"
-                                                                        value=""></td>
-                                                                <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][gom_order_no]" />
-                                                                </td>
-                                                                <td><input type="date" class="form-control" name="financial_details[<?php echo $category; ?>][gom_order_date]" />
-                                                                </td>
-                                                                <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_order_no]" />
-                                                                </td>
-                                                                <td><input type="date" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_order_date]" />
-                                                                </td>
-                                                                <td>- </td>
-                                                                <td>-</td>
+                                                                <td><input type="file" name="<?php echo $category; ?>_utilization_certificate"  class="form-control" /></td>
 
                                                             </tr>
                                                             <?php
@@ -300,15 +294,16 @@
                                                                 <td>
                                                                     <h5>Total Amount</h5>
                                                                 </td>
+                                                                <td></td>
+                                                                <td> - </td>
+                                                                <td> - </td>
+                                                                <td> - </td>
+                                                                <td> - </td>
+                                                                <td> - </td>
+                                                                <td> - </td>
                                                                 <td><input readonly class="form-control" type="text"
-                                                                        name="total_amount" id="total_amount" value="0" /></td>
-                                                                <td> - </td>
-                                                                <td> - </td>
-                                                                <td> - </td>
-                                                                <td> - </td>
-                                                                <td> - </td>
-                                                                <td> - </td>
-                                                                <td>-</td>
+                                                                        name="total_utilization_amount" id="total_utilization_amount"
+                                                                        value="0" /></td>
                                                                 <td> - </td>
                                                             </tr>
                                                         </tbody>
@@ -363,8 +358,10 @@
                                                                 </td>
                                                                 <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_date]" />
                                                                 </td>
-                                                                <td> </td>
-                                                                <td></td>
+                                                                <td><input type="text" class="form-control gom_total_utilization_amount"
+                                                                        name="gom_financial_details[<?php echo $category; ?>][utilization_amount]"
+                                                                        value="0" /> </td>
+                                                                <td><a href="javascript:void(0);">Download Certificate</a></td>
 
                                                             </tr>
                                                             <?php
@@ -381,7 +378,9 @@
                                                                 <td> - </td>
                                                                 <td> - </td>
                                                                 <td> - </td>
-                                                                <td>-</td>
+                                                                <td><input readonly class="form-control" type="text"
+                                                                        name="gom_total_utilization_amount" id="gom_total_utilization_amount"
+                                                                        value="0" /></td>
                                                                 <td> - </td>
                                                             </tr>
                                                         </tbody>
@@ -538,7 +537,11 @@
                                                                     <?php echo isset($goi_details[0][$category.'_utilization_amount'])?$goi_details[0][$category.'_utilization_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php  ?>
+                                                                    <?php if(isset($goi_details[0][$category.'_utilization_certificate']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($goi_details[0][$category.'_utilization_certificate']))); ?>">Download Certificate</a>
+                                                                <?php      } else { echo '-'; } ?>
                                                                 </td>
 
                                                                 <td>

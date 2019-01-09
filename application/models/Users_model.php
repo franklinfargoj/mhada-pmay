@@ -1037,7 +1037,8 @@ class Users_model extends CI_Model{
 
         $postData['current_status_id'] = 3; //work not started - default
         $postData['created_at'] = date('Y-m-d H:i:s');
-        $inserted_id = $this->db->insert('projects',$postData);
+        $this->db->insert('projects',$postData);
+        $inserted_id = $this->db->insert_id();
 
         $consultant_details=[];
         $posted_data['consultant_name'] =$posted_data_arr['consultant_name'];
@@ -1232,17 +1233,15 @@ class Users_model extends CI_Model{
         $config['file_name'] = generate_unique_id();
         $this->load->library('upload', $config);
 
-        if (empty($_FILES['beneficiary_list_file']['name'])) {
-
+        if (empty($_FILES['beneficiary_list_path']['name'])) {
             $postData['created_at'] = date('Y-m-d H:i:s');
             $inserted_id = $this->db->insert('project_stages_log', $postData);
 
             return 1;
         }
         else {
-            if ($this->upload->do_upload('beneficiary_list_file')) {
+            if ($this->upload->do_upload('beneficiary_list_path')) {
                 $uploaded = $this->upload->data();
-
                 $postData['beneficiary_list_path'] = $uploaded['file_name'];
                 $postData['created_at'] = date('Y-m-d H:i:s');
                 $inserted_id = $this->db->insert('project_stages_log', $postData);
@@ -1251,7 +1250,7 @@ class Users_model extends CI_Model{
             } else {
                 $error = array('error' => $this->upload->display_errors());
                 $this->session->set_flashdata('error', $error['error']);
-                redirect('projects/photos/' . $encrypted_url);
+                redirect('projects/update_project_stage/' . $encrypted_url);
             }
         }
 
@@ -1312,7 +1311,19 @@ class Users_model extends CI_Model{
         $query = $this->db->get();
         return $query->row()->total_dus_work_started;
     }
+    public function get_dus_started($project_id)
+    {
+        $this->db->select_sum('EWS');
+        $this->db->select_sum('LIG');
+        $this->db->select_sum('MIG');
+        $this->db->select_sum('HIG');
+        $this->db->select_sum('total_dus_work_started');
+        $this->db->where('project_id',$project_id);
+        $master_records = $this->db->get('project_stages_log')->result_array();
+        return $master_records;
 
+
+    }
 
     public function add_financial_details($postData,$categoryArr,$encrypted_url)
     {

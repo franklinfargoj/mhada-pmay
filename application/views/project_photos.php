@@ -62,7 +62,7 @@
                                                 <label for="doc_name">
                                                     Select Stage
                                                 </label>
-                                                <select class="form-control m-input m-input--square chzn-select" name="doc_stage">
+                                                <select class="form-control m-input m-input--square chzn-select" name="doc_stage" required>
                                                     <option value="">Select Stage</option>
                                                     <?php
                                                     foreach($project_stages as $stage) {
@@ -77,7 +77,7 @@
                                           <label for="doc_name">
                                              Select Type
                                           </label>
-                                          <select class="form-control m-input m-input--square chzn-select" name="doc_type">
+                                          <select class="form-control m-input m-input--square chzn-select" name="doc_type" required>
                                              <option value="">Select Type</option>
                                              <option value="0">Photo</option>
                                              <option value="1">Video</option>

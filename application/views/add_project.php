@@ -65,7 +65,7 @@
                                               <label for="code" class="form-control-label">
                                                   <strong>Code <span style="color: red">*</span></strong>
                                               </label>
-                                              <input type="text" name="code" class="form-control" id="code">
+                                              <input type="text" name="code" class="form-control" id="code" required>
                                           </div>
                                       </div>
                                   </div>
@@ -75,7 +75,7 @@
                                           <label for="title" class="form-control-label">
                                              <strong>Title <span style="color: red">*</span></strong>
                                           </label>
-                                          <input type="text" name="title" class="form-control" id="title">
+                                          <input type="text" name="title" class="form-control" id="title" required>
                                        </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -83,7 +83,7 @@
                                           <label for="address" class="form-control-label">
                                              <strong>Address <span style="color: red">*</span></strong>
                                           </label>
-                                          <input type="text" name="address" class="form-control" id="address">
+                                          <input type="text" name="address" class="form-control" id="address" required>
                                        </div>
                                     </div>
                                  </div>
@@ -94,7 +94,7 @@
                                               <label for="district_id" class="form-control-label">
                                                   <strong>District <span style="color: red">*</span></strong>
                                               </label>
-                                              <select name="district_id" class="form-control" id="district_id">
+                                              <select name="district_id" class="form-control" id="district_id" required>
                                                   <option value="">Select District</option>
                                                   <?php
                                                   if(is_array($districts) && array_filter($districts))
@@ -114,7 +114,7 @@
                                               <label for="city" class="form-control-label">
                                                   <strong>City <span style="color: red">*</span></strong>
                                               </label>
-                                              <select name="city_id" class="form-control" id="city_id">
+                                              <select name="city_id" class="form-control" id="city_id" required>
                                                   <option value="">Select City</option>
                                               </select>
                                           </div>
@@ -128,7 +128,7 @@
                                               <label for="slac_meeting_date" class="form-control-label">
                                                   <strong>SLAC Meeting Date <span style="color: red">*</span></strong>
                                               </label>
-                                              <input class="form-control" type="date" name="slac_meeting_date" value="" id="slac_meeting_date">
+                                              <input class="form-control" type="date" name="slac_meeting_date" value="" id="slac_meeting_date" required>
                                           </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -136,7 +136,7 @@
                                               <label for="slac_meeting_no" class="form-control-label">
                                                   <strong>SLAC Meeting No <span style="color: red">*</span></strong>
                                               </label>
-                                              <input type="text" name="slac_meeting_no" class="form-control" id="slac_meeting_no">
+                                              <input type="text" name="slac_meeting_no" class="form-control" id="slac_meeting_no" required>
                                           </div>
                                       </div>
                                   </div>
@@ -148,7 +148,7 @@
                                               <label for="slsmc_meeting_date" class="form-control-label">
                                                   <strong>SLSMC Meeting Date <span style="color: red">*</span></strong>
                                               </label>
-                                              <input class="form-control" type="date" name="slsmc_meeting_date" value="" id="slsmc_meeting_date">
+                                              <input class="form-control" type="date" name="slsmc_meeting_date" value="" id="slsmc_meeting_date" required>
                                           </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -156,7 +156,7 @@
                                               <label for="slsmc_meeting_no" class="form-control-label">
                                                   <strong>SLSMC Meeting No <span style="color: red">*</span></strong>
                                               </label>
-                                              <input type="text" name="slsmc_meeting_no" class="form-control" id="slsmc_meeting_no">
+                                              <input type="text" name="slsmc_meeting_no" class="form-control" id="slsmc_meeting_no" required>
                                           </div>
                                       </div>
                                   </div>
@@ -168,7 +168,7 @@
                                               <label for="csmc_meeting_date" class="form-control-label">
                                                   <strong>CSMC Meeting Date <span style="color: red">*</span></strong>
                                               </label>
-                                              <input class="form-control" type="date" name="csmc_meeting_date" value="" id="csmc_meeting_date">
+                                              <input class="form-control" type="date" name="csmc_meeting_date" value="" id="csmc_meeting_date" required>
                                           </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -176,7 +176,7 @@
                                               <label for="csmc_meeting_no" class="form-control-label">
                                                   <strong>CSMC Meeting No <span style="color: red">*</span></strong>
                                               </label>
-                                              <input type="text" name="csmc_meeting_no" class="form-control" id="csmc_meeting_no">
+                                              <input type="text" name="csmc_meeting_no" class="form-control" id="csmc_meeting_no" required>
                                           </div>
                                       </div>
                                   </div>
@@ -187,7 +187,7 @@
                                               <label for="vertical" class="form-control-label">
                                                   <strong>Vertical <span style="color: red">*</span></strong>
                                               </label>
-                                              <select name="vertical" class="form-control" id="vertical">
+                                              <select name="vertical" class="form-control" id="vertical" required>
                                                   <option value="">Select Vertical</option>
                                                   <option value="AHP">AHP</option>
                                                   <option value="AHP | PPP">AHP | PPP</option>
@@ -202,7 +202,7 @@
                                               <label for="implementing_agency" class="form-control-label">
                                                   <strong>Implementing Agency <span style="color: red">*</span></strong>
                                               </label>
-                                              <input type="text" name="implementing_agency" class="form-control" id="implementing_agency">
+                                              <input type="text" name="implementing_agency" class="form-control" id="implementing_agency" required>
                                           </div>
                                       </div>
                                   </div>
@@ -214,7 +214,7 @@
                                               <label for="dpr" class="form-control-label">
                                                   <strong>DPR <span style="color: red">*</span></strong>
                                               </label>
-                                              <input type="text" name="dpr" class="form-control" id="dpr">
+                                              <input type="text" name="dpr" class="form-control" id="dpr" required>
                                           </div>
                                       </div>
                                   </div>

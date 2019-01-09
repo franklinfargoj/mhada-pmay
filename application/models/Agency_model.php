@@ -1412,12 +1412,7 @@ class Agency_model extends CI_Model{
 
         foreach($categoryArr as $category)
         {
-            $postData[$category.'_amount'] = $postData['gom_financial_details'][$category]['amount'];
-            $postData[$category.'_gom_order_no'] = $postData['gom_financial_details'][$category]['gom_order_no'];
-            $postData[$category.'_gom_order_date'] = $postData['gom_financial_details'][$category]['gom_order_date'];
-            $postData[$category.'_mhada_order_no'] = $postData['gom_financial_details'][$category]['mhada_order_no'];
-            $postData[$category.'_mhada_order_date'] = $postData['gom_financial_details'][$category]['mhada_order_date'];
-            $postData[$category.'_utilization_amount'] = $postData['gom_financial_details'][$category]['utilization_amount'];
+              $postData[$category.'_utilization_amount'] = $postData['gom_financial_details'][$category]['utilization_amount'];
 
             if(!empty($_FILES[$category.'_utilization_certificate']['name']))
             {
@@ -1564,6 +1559,16 @@ class Agency_model extends CI_Model{
             'agency_id' => 0
         );
         $this->db->update('projects', $update_data, array('id' => $project_id));
+    }
+
+    public function get_financial_details_data($project_id,$nodel_agency_id,$installment_id)
+    {
+        $this->db->where('project_id', $project_id);
+        $this->db->where('nodel_agency', $nodel_agency_id);
+        $this->db->where('installment',$installment_id);
+        $q = $this->db->get('project_financial_details')->result_array();
+
+        return $q;
     }
  }
 

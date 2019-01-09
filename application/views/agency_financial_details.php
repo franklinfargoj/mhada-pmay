@@ -74,7 +74,7 @@
                                                     <div class="col-lg-6">
 
                                                         <h5>Project Code</h5>
-                                                        <p>
+                                                        <p> <input type="hidden" name="project_id" id="project_id" value="<?php echo $project_details['id']; ?>" />
                                                             <?php echo isset($project_details['code'])?$project_details['code']:null;?>
                                                         </p>
                                                     </div>
@@ -274,16 +274,16 @@
                                                                     </h5>
                                                                 </td>
 
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
+                                                                <td id="<?php echo $category.'_amount'; ?>"></td>
+                                                                <td id="<?php echo $category.'_goi_order_no'; ?>"></td>
+                                                                <td id="<?php echo $category.'_goi_order_date'; ?>"></td>
+                                                                <td id="<?php echo $category.'_gom_order_no'; ?>"></td>
+                                                                <td id="<?php echo $category.'_gom_order_date'; ?>"></td>
+                                                                <td id="<?php echo $category.'_mhada_order_no'; ?>"></td>
+                                                                <td id="<?php echo $category.'_mhada_order_date'; ?>"></td>
                                                                 <td><input type="text" class="form-control total_utilization_amount"
                                                                         name="financial_details[<?php echo $category; ?>][utilization_amount]"
-                                                                        value="0" /> </td>
+                                                                           id="<?php echo $category.'_utilization_amount'; ?>" value="0" /> </td>
                                                                 <td><input type="file" name="<?php echo $category; ?>_utilization_certificate"  class="form-control" /></td>
 
                                                             </tr>
@@ -294,7 +294,7 @@
                                                                 <td>
                                                                     <h5>Total Amount</h5>
                                                                 </td>
-                                                                <td></td>
+                                                                <td id="<?php echo 'total_amount'; ?>"></td>
                                                                 <td> - </td>
                                                                 <td> - </td>
                                                                 <td> - </td>
@@ -346,22 +346,16 @@
                                                                         <?php echo strtoupper($category); ?>
                                                                     </h5>
                                                                 </td>
-
-                                                                <td><input type="text" class="form-control gom_total_amount"
-                                                                        name="gom_financial_details[<?php echo $category; ?>][amount]"
-                                                                        value="0" /> </td>
-                                                                <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][gom_order_no]" />
-                                                                </td>
-                                                                <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][gom_order_date]" />
-                                                                </td>
-                                                                <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_no]" />
-                                                                </td>
-                                                                <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_date]" />
-                                                                </td>
+                                                                <td id="<?php echo $category.'_amount'; ?>"></td>
+                                                                <td id="<?php echo $category.'_gom_order_no'; ?>"></td>
+                                                                <td id="<?php echo $category.'_gom_order_date'; ?>"></td>
+                                                                <td id="<?php echo $category.'_mhada_order_no'; ?>"></td>
+                                                                <td id="<?php echo $category.'_mhada_order_date'; ?>"></td>
                                                                 <td><input type="text" class="form-control gom_total_utilization_amount"
                                                                         name="gom_financial_details[<?php echo $category; ?>][utilization_amount]"
-                                                                        value="0" /> </td>
-                                                                <td><a href="javascript:void(0);">Download Certificate</a></td>
+                                                                           id="<?php echo $category.'_utilization_amount'?>" value="0" /> </td>
+
+                                                                <td><input type="file" name="<?php echo $category; ?>_utilization_certificate"  class="form-control" /></td>
 
                                                             </tr>
                                                             <?php
@@ -371,9 +365,7 @@
                                                                 <td>
                                                                     <h5>Total Amount</h5>
                                                                 </td>
-                                                                <td><input readonly class="form-control" type="text"
-                                                                        name="gom_total_amount" id="gom_total_amount"
-                                                                        value="0" /></td>
+                                                                <td id="<?php echo 'total_amount'; ?>"></td>
                                                                 <td> - </td>
                                                                 <td> - </td>
                                                                 <td> - </td>
@@ -389,7 +381,7 @@
 
                                                 <div class="m-form__actions">
                                                     <br>
-                                                    <button type="submit" id="save_stage" name="save_financial_details"
+                                                    <button type="submit" id="save_financial_details" name="save_financial_details"
                                                         class="btn m-btn--pill btn-primary">
                                                         Save
                                                     </button>
@@ -752,8 +744,13 @@
                                                                     <?php echo isset($gom_details[0][$category.'_utilization_amount'])?$gom_details[0][$category.'_utilization_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php  ?>
+                                                                    <?php if(isset($gom_details[0][$category.'_utilization_certificate']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($gom_details[0][$category.'_utilization_certificate']))); ?>">Download Certificate</a>
+                                                                    <?php      } else { echo '-'; } ?>
                                                                 </td>
+
 
                                                                 <td>
                                                                     <?php echo $category; ?>
@@ -777,8 +774,13 @@
                                                                     <?php echo isset($gom_details[1][$category.'_utilization_amount'])?$gom_details[1][$category.'_utilization_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php  ?>
+                                                                    <?php if(isset($gom_details[1][$category.'_utilization_certificate']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($gom_details[1][$category.'_utilization_certificate']))); ?>">Download Certificate</a>
+                                                                    <?php      } else { echo '-'; } ?>
                                                                 </td>
+
 
                                                                 <td>
                                                                     <?php echo $category; ?>
@@ -802,8 +804,13 @@
                                                                     <?php echo isset($gom_details[2][$category.'_utilization_amount'])?$gom_details[2][$category.'_utilization_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php  ?>
+                                                                    <?php if(isset($gom_details[2][$category.'_utilization_certificate']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($gom_details[2][$category.'_utilization_certificate']))); ?>">Download Certificate</a>
+                                                                    <?php      } else { echo '-'; } ?>
                                                                 </td>
+
 
                                                             </tr>
 
@@ -886,6 +893,8 @@
         $('#nodel_agency').change(function () {
 
             var nodel_agency = $('#nodel_agency').val();
+            var installment = $('#installment').val();
+
 
             if (nodel_agency != '') {
                 if (nodel_agency == 1) {
@@ -904,6 +913,193 @@
                 }
             }
 
+            if(nodel_agency!='' && installment!='')
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "agency/get_financial_details_data",
+                    data: {'nodel_agency': nodel_agency, 'installment': installment , 'project_id': $('#project_id').val() },
+                    dataType: "html",
+                    success: function(data){
+                        console.log(data);
+
+                        var data = JSON.parse(data);
+
+                        if ($.trim(data)) {
+                            if (data[0].nodel_agency == 1) {
+
+                                $('#update_form_of_goi_fund #sc_amount').html(data[0].sc_amount);
+                                $('#update_form_of_goi_fund #st_amount').html(data[0].st_amount);
+                                $('#update_form_of_goi_fund #other_amount').html(data[0].other_amount);
+
+                                $('#update_form_of_goi_fund #sc_goi_order_no').html(data[0].sc_goi_order_no);
+                                $('#update_form_of_goi_fund #sc_goi_order_date').html(data[0].sc_goi_order_date);
+                                $('#update_form_of_goi_fund #sc_gom_order_no').html(data[0].sc_gom_order_no);
+                                $('#update_form_of_goi_fund #sc_gom_order_date').html(data[0].sc_gom_order_date);
+                                $('#update_form_of_goi_fund #sc_mhada_order_no').html(data[0].sc_mhada_order_no);
+                                $('#update_form_of_goi_fund #sc_mhada_order_date').html(data[0].sc_mhada_order_date);
+                                $('#update_form_of_goi_fund #sc_utilization_amount').attr('value', data[0].sc_utilization_amount);
+
+                                $('#update_form_of_goi_fund #st_goi_order_no').html(data[0].st_goi_order_no);
+                                $('#update_form_of_goi_fund #st_goi_order_date').html(data[0].st_goi_order_date);
+                                $('#update_form_of_goi_fund #st_gom_order_no').html(data[0].st_gom_order_no);
+                                $('#update_form_of_goi_fund #st_gom_order_date').html(data[0].st_gom_order_date);
+                                $('#update_form_of_goi_fund #st_mhada_order_no').html(data[0].st_mhada_order_no);
+                                $('#update_form_of_goi_fund #st_mhada_order_date').html(data[0].st_mhada_order_date);
+                                $('#update_form_of_goi_fund #st_utilization_amount').attr('value', data[0].st_utilization_amount);
+
+                                $('#update_form_of_goi_fund #other_goi_order_no').html(data[0].other_goi_order_no);
+                                $('#update_form_of_goi_fund #other_goi_order_date').html(data[0].other_goi_order_date);
+                                $('#update_form_of_goi_fund #other_gom_order_no').html(data[0].other_gom_order_no);
+                                $('#update_form_of_goi_fund #other_gom_order_date').html(data[0].other_gom_order_date);
+                                $('#update_form_of_goi_fund #other_mhada_order_no').html(data[0].other_mhada_order_no);
+                                $('#update_form_of_goi_fund #other_mhada_order_date').html(data[0].other_mhada_order_date);
+                                $('#update_form_of_goi_fund #other_utilization_amount').attr('value', data[0].other_utilization_amount);
+
+                                $('#update_form_of_goi_fund #total_amount').html(data[0].total_amount);
+                                $('#update_form_of_goi_fund #total_utilization_amount').attr('value', data[0].total_utilization_amount);
+
+
+                                if(data[0].sc_amount=='' || data[0].sc_amount==0)
+                                {
+                                    $('#update_form_of_goi_fund #sc_utilization_amount').attr('readonly', true);
+
+                                }
+
+                                if(data[0].st_amount=='' || data[0].st_amount==0)
+                                {
+                                    $('#update_form_of_goi_fund #st_utilization_amount').attr('readonly', true);
+
+                                }
+
+                                if(data[0].other_amount=='' || data[0].other_amount==0)
+                                {
+                                    $('#update_form_of_goi_fund #other_utilization_amount').attr('readonly', true);
+
+                                }
+                            }
+                            else if (data[0].nodel_agency == 2) {
+
+                                $('#update_form_of_gom_fund #sc_amount').html(data[0].sc_amount);
+                                $('#update_form_of_gom_fund #st_amount').html(data[0].st_amount);
+                                $('#update_form_of_gom_fund #other_amount').html(data[0].other_amount);
+
+                                $('#update_form_of_gom_fund #sc_gom_order_no').html(data[0].sc_gom_order_no);
+                                $('#update_form_of_gom_fund #sc_gom_order_date').html(data[0].sc_gom_order_date);
+                                $('#update_form_of_gom_fund #sc_mhada_order_no').html(data[0].sc_mhada_order_no);
+                                $('#update_form_of_gom_fund #sc_mhada_order_date').html(data[0].sc_mhada_order_date);
+                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('value', data[0].sc_utilization_amount);
+
+                                $('#update_form_of_gom_fund #st_gom_order_no').html(data[0].st_gom_order_no);
+                                $('#update_form_of_gom_fund #st_gom_order_date').html(data[0].st_gom_order_date);
+                                $('#update_form_of_gom_fund #st_mhada_order_no').html(data[0].st_mhada_order_no);
+                                $('#update_form_of_gom_fund #st_mhada_order_date').html(data[0].st_mhada_order_date);
+                                $('#update_form_of_gom_fund #st_utilization_amount').attr('value', data[0].st_utilization_amount);
+
+                                $('#update_form_of_gom_fund #other_gom_order_no').html(data[0].other_gom_order_no);
+                                $('#update_form_of_gom_fund #other_gom_order_date').html(data[0].other_gom_order_date);
+                                $('#update_form_of_gom_fund #other_mhada_order_no').html(data[0].other_mhada_order_no);
+                                $('#update_form_of_gom_fund #other_mhada_order_date').html(data[0].other_mhada_order_date);
+                                $('#update_form_of_gom_fund #other_utilization_amount').attr('value', data[0].other_utilization_amount);
+
+                                $('#update_form_of_gom_fund #total_amount').html(data[0].total_amount);
+                                $('#update_form_of_gom_fund #gom_total_utilization_amount').attr('value', data[0].total_utilization_amount);
+
+                            }
+
+                            if(data[0].sc_amount=='' || data[0].sc_amount==0)
+                            {
+                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('readonly', true);
+
+                            }
+
+                            if(data[0].st_amount=='' || data[0].st_amount==0)
+                            {
+                                $('#update_form_of_gom_fund #st_utilization_amount').attr('readonly', true);
+
+                            }
+
+                            if(data[0].other_amount=='' || data[0].other_amount==0)
+                            {
+                                $('#update_form_of_gom_fund #other_utilization_amount').attr('readonly', true);
+
+                            }
+
+                        }
+                        else
+                        {
+                            if (nodel_agency == 1) {
+
+
+                                $('#update_form_of_goi_fund #sc_amount').html('');
+                                $('#update_form_of_goi_fund #st_amount').html('');
+                                $('#update_form_of_goi_fund #other_amount').html('');
+
+                                $('#update_form_of_goi_fund #sc_goi_order_no').html('');
+                                $('#update_form_of_goi_fund #sc_goi_order_date').html('');
+                                $('#update_form_of_goi_fund #sc_gom_order_no').html('');
+                                $('#update_form_of_goi_fund #sc_gom_order_date').html('');
+                                $('#update_form_of_goi_fund #sc_mhada_order_no').html('');
+                                $('#update_form_of_goi_fund #sc_mhada_order_date').html('');
+                                $('#update_form_of_goi_fund #sc_utilization_amount').attr('value',0);
+
+                                $('#update_form_of_goi_fund #st_goi_order_no').html('');
+                                $('#update_form_of_goi_fund #st_goi_order_date').html('');
+                                $('#update_form_of_goi_fund #st_gom_order_no').html('');
+                                $('#update_form_of_goi_fund #st_gom_order_date').html('');
+                                $('#update_form_of_goi_fund #st_mhada_order_no').html('');
+                                $('#update_form_of_goi_fund #st_mhada_order_date').html('');
+                                $('#update_form_of_goi_fund #st_utilization_amount').attr('value', 0);
+
+                                $('#update_form_of_goi_fund #other_goi_order_no').html('');
+                                $('#update_form_of_goi_fund #other_goi_order_date').html('');
+                                $('#update_form_of_goi_fund #other_gom_order_no').html('');
+                                $('#update_form_of_goi_fund #other_gom_order_date').html('');
+                                $('#update_form_of_goi_fund #other_mhada_order_no').html('');
+                                $('#update_form_of_goi_fund #other_mhada_order_date').html('');
+                                $('#update_form_of_goi_fund #other_utilization_amount').attr('value', 0);
+
+                                $('#update_form_of_goi_fund #total_amount').html('');
+                                $('#update_form_of_goi_fund #total_utilization_amount').attr('value', 0);
+
+                            }
+                            else if (nodel_agency == 2) {
+
+                                $('#update_form_of_gom_fund #sc_amount').html('');
+                                $('#update_form_of_gom_fund #st_amount').html('');
+                                $('#update_form_of_gom_fund #other_amount').html('');
+
+                                $('#update_form_of_gom_fund #sc_gom_order_no').html('');
+                                $('#update_form_of_gom_fund #sc_gom_order_date').html('');
+                                $('#update_form_of_gom_fund #sc_mhada_order_no').html('');
+                                $('#update_form_of_gom_fund #sc_mhada_order_date').html('');
+                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('value', 0);
+
+                                $('#update_form_of_gom_fund #st_gom_order_no').html('');
+                                $('#update_form_of_gom_fund #st_gom_order_date').html('');
+                                $('#update_form_of_gom_fund #st_mhada_order_no').html('');
+                                $('#update_form_of_gom_fund #st_mhada_order_date').html('');
+                                $('#update_form_of_gom_fund #st_utilization_amount').attr('value', 0);
+
+                                $('#update_form_of_gom_fund #other_gom_order_no').html('');
+                                $('#update_form_of_gom_fund #other_gom_order_date').html('');
+                                $('#update_form_of_gom_fund #other_mhada_order_no').html('');
+                                $('#update_form_of_gom_fund #other_mhada_order_date').html('');
+                                $('#update_form_of_gom_fund #other_utilization_amount').attr('value',0);
+
+                                $('#update_form_of_gom_fund #total_amount').html('');
+                                $('#update_form_of_gom_fund #gom_total_utilization_amount').attr('value', 0);
+
+                            }
+
+                            $('#save_financial_details').attr('disabled','disabled');
+                        }
+                    },
+                    error: function() { alert("Error posting form."); }
+                });
+            }
+
+
 
         });
 
@@ -917,6 +1113,193 @@
                 alert('Please select nodel agency');
                 return false;
             }
+
+            if(nodel_agency!='' && installment!='')
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "agency/get_financial_details_data",
+                    data: {'nodel_agency': nodel_agency, 'installment': installment , 'project_id': $('#project_id').val() },
+                    dataType: "html",
+                    success: function(data){
+                        console.log(data);
+
+                        var data = JSON.parse(data);
+
+                        if ($.trim(data)) {
+                            if (data[0].nodel_agency == 1) {
+
+                                $('#update_form_of_goi_fund #sc_amount').html(data[0].sc_amount);
+                                $('#update_form_of_goi_fund #st_amount').html(data[0].st_amount);
+                                $('#update_form_of_goi_fund #other_amount').html(data[0].other_amount);
+
+                                $('#update_form_of_goi_fund #sc_goi_order_no').html(data[0].sc_goi_order_no);
+                                $('#update_form_of_goi_fund #sc_goi_order_date').html(data[0].sc_goi_order_date);
+                                $('#update_form_of_goi_fund #sc_gom_order_no').html(data[0].sc_gom_order_no);
+                                $('#update_form_of_goi_fund #sc_gom_order_date').html(data[0].sc_gom_order_date);
+                                $('#update_form_of_goi_fund #sc_mhada_order_no').html(data[0].sc_mhada_order_no);
+                                $('#update_form_of_goi_fund #sc_mhada_order_date').html(data[0].sc_mhada_order_date);
+                                $('#update_form_of_goi_fund #sc_utilization_amount').attr('value', data[0].sc_utilization_amount);
+
+                                $('#update_form_of_goi_fund #st_goi_order_no').html(data[0].st_goi_order_no);
+                                $('#update_form_of_goi_fund #st_goi_order_date').html(data[0].st_goi_order_date);
+                                $('#update_form_of_goi_fund #st_gom_order_no').html(data[0].st_gom_order_no);
+                                $('#update_form_of_goi_fund #st_gom_order_date').html(data[0].st_gom_order_date);
+                                $('#update_form_of_goi_fund #st_mhada_order_no').html(data[0].st_mhada_order_no);
+                                $('#update_form_of_goi_fund #st_mhada_order_date').html(data[0].st_mhada_order_date);
+                                $('#update_form_of_goi_fund #st_utilization_amount').attr('value', data[0].st_utilization_amount);
+
+                                $('#update_form_of_goi_fund #other_goi_order_no').html(data[0].other_goi_order_no);
+                                $('#update_form_of_goi_fund #other_goi_order_date').html(data[0].other_goi_order_date);
+                                $('#update_form_of_goi_fund #other_gom_order_no').html(data[0].other_gom_order_no);
+                                $('#update_form_of_goi_fund #other_gom_order_date').html(data[0].other_gom_order_date);
+                                $('#update_form_of_goi_fund #other_mhada_order_no').html(data[0].other_mhada_order_no);
+                                $('#update_form_of_goi_fund #other_mhada_order_date').html(data[0].other_mhada_order_date);
+                                $('#update_form_of_goi_fund #other_utilization_amount').attr('value', data[0].other_utilization_amount);
+
+                                $('#update_form_of_goi_fund #total_amount').html(data[0].total_amount);
+                                $('#update_form_of_goi_fund #total_utilization_amount').attr('value', data[0].total_utilization_amount);
+
+
+                                if(data[0].sc_amount=='' || data[0].sc_amount==0)
+                                {
+                                    $('#update_form_of_goi_fund #sc_utilization_amount').attr('readonly', true);
+
+                                }
+
+                                if(data[0].st_amount=='' || data[0].st_amount==0)
+                                {
+                                    $('#update_form_of_goi_fund #st_utilization_amount').attr('readonly', true);
+
+                                }
+
+                                if(data[0].other_amount=='' || data[0].other_amount==0)
+                                {
+                                    $('#update_form_of_goi_fund #other_utilization_amount').attr('readonly', true);
+
+                                }
+                            }
+                            else if (data[0].nodel_agency == 2) {
+
+                                $('#update_form_of_gom_fund #sc_amount').html(data[0].sc_amount);
+                                $('#update_form_of_gom_fund #st_amount').html(data[0].st_amount);
+                                $('#update_form_of_gom_fund #other_amount').html(data[0].other_amount);
+
+                                $('#update_form_of_gom_fund #sc_gom_order_no').html(data[0].sc_gom_order_no);
+                                $('#update_form_of_gom_fund #sc_gom_order_date').html(data[0].sc_gom_order_date);
+                                $('#update_form_of_gom_fund #sc_mhada_order_no').html(data[0].sc_mhada_order_no);
+                                $('#update_form_of_gom_fund #sc_mhada_order_date').html(data[0].sc_mhada_order_date);
+                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('value', data[0].sc_utilization_amount);
+
+                                $('#update_form_of_gom_fund #st_gom_order_no').html(data[0].st_gom_order_no);
+                                $('#update_form_of_gom_fund #st_gom_order_date').html(data[0].st_gom_order_date);
+                                $('#update_form_of_gom_fund #st_mhada_order_no').html(data[0].st_mhada_order_no);
+                                $('#update_form_of_gom_fund #st_mhada_order_date').html(data[0].st_mhada_order_date);
+                                $('#update_form_of_gom_fund #st_utilization_amount').attr('value', data[0].st_utilization_amount);
+
+                                $('#update_form_of_gom_fund #other_gom_order_no').html(data[0].other_gom_order_no);
+                                $('#update_form_of_gom_fund #other_gom_order_date').html(data[0].other_gom_order_date);
+                                $('#update_form_of_gom_fund #other_mhada_order_no').html(data[0].other_mhada_order_no);
+                                $('#update_form_of_gom_fund #other_mhada_order_date').html(data[0].other_mhada_order_date);
+                                $('#update_form_of_gom_fund #other_utilization_amount').attr('value', data[0].other_utilization_amount);
+
+                                $('#update_form_of_gom_fund #total_amount').html(data[0].total_amount);
+                                $('#update_form_of_gom_fund #gom_total_utilization_amount').attr('value', data[0].total_utilization_amount);
+
+                            }
+
+                            if(data[0].sc_amount=='' || data[0].sc_amount==0)
+                            {
+                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('readonly', true);
+
+                            }
+
+                            if(data[0].st_amount=='' || data[0].st_amount==0)
+                            {
+                                $('#update_form_of_gom_fund #st_utilization_amount').attr('readonly', true);
+
+                            }
+
+                            if(data[0].other_amount=='' || data[0].other_amount==0)
+                            {
+                                $('#update_form_of_gom_fund #other_utilization_amount').attr('readonly', true);
+
+                            }
+
+                        }
+                        else
+                        {
+                            if (nodel_agency == 1) {
+
+
+                                $('#update_form_of_goi_fund #sc_amount').html('');
+                                $('#update_form_of_goi_fund #st_amount').html('');
+                                $('#update_form_of_goi_fund #other_amount').html('');
+
+                                $('#update_form_of_goi_fund #sc_goi_order_no').html('');
+                                $('#update_form_of_goi_fund #sc_goi_order_date').html('');
+                                $('#update_form_of_goi_fund #sc_gom_order_no').html('');
+                                $('#update_form_of_goi_fund #sc_gom_order_date').html('');
+                                $('#update_form_of_goi_fund #sc_mhada_order_no').html('');
+                                $('#update_form_of_goi_fund #sc_mhada_order_date').html('');
+                                $('#update_form_of_goi_fund #sc_utilization_amount').attr('value',0);
+
+                                $('#update_form_of_goi_fund #st_goi_order_no').html('');
+                                $('#update_form_of_goi_fund #st_goi_order_date').html('');
+                                $('#update_form_of_goi_fund #st_gom_order_no').html('');
+                                $('#update_form_of_goi_fund #st_gom_order_date').html('');
+                                $('#update_form_of_goi_fund #st_mhada_order_no').html('');
+                                $('#update_form_of_goi_fund #st_mhada_order_date').html('');
+                                $('#update_form_of_goi_fund #st_utilization_amount').attr('value', 0);
+
+                                $('#update_form_of_goi_fund #other_goi_order_no').html('');
+                                $('#update_form_of_goi_fund #other_goi_order_date').html('');
+                                $('#update_form_of_goi_fund #other_gom_order_no').html('');
+                                $('#update_form_of_goi_fund #other_gom_order_date').html('');
+                                $('#update_form_of_goi_fund #other_mhada_order_no').html('');
+                                $('#update_form_of_goi_fund #other_mhada_order_date').html('');
+                                $('#update_form_of_goi_fund #other_utilization_amount').attr('value', 0);
+
+                                $('#update_form_of_goi_fund #total_amount').html('');
+                                $('#update_form_of_goi_fund #total_utilization_amount').attr('value', 0);
+
+                            }
+                            else if (nodel_agency == 2) {
+
+                                $('#update_form_of_gom_fund #sc_amount').html('');
+                                $('#update_form_of_gom_fund #st_amount').html('');
+                                $('#update_form_of_gom_fund #other_amount').html('');
+
+                                $('#update_form_of_gom_fund #sc_gom_order_no').html('');
+                                $('#update_form_of_gom_fund #sc_gom_order_date').html('');
+                                $('#update_form_of_gom_fund #sc_mhada_order_no').html('');
+                                $('#update_form_of_gom_fund #sc_mhada_order_date').html('');
+                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('value', 0);
+
+                                $('#update_form_of_gom_fund #st_gom_order_no').html('');
+                                $('#update_form_of_gom_fund #st_gom_order_date').html('');
+                                $('#update_form_of_gom_fund #st_mhada_order_no').html('');
+                                $('#update_form_of_gom_fund #st_mhada_order_date').html('');
+                                $('#update_form_of_gom_fund #st_utilization_amount').attr('value', 0);
+
+                                $('#update_form_of_gom_fund #other_gom_order_no').html('');
+                                $('#update_form_of_gom_fund #other_gom_order_date').html('');
+                                $('#update_form_of_gom_fund #other_mhada_order_no').html('');
+                                $('#update_form_of_gom_fund #other_mhada_order_date').html('');
+                                $('#update_form_of_gom_fund #other_utilization_amount').attr('value',0);
+
+                                $('#update_form_of_gom_fund #total_amount').html('');
+                                $('#update_form_of_gom_fund #gom_total_utilization_amount').attr('value', 0);
+
+                            }
+
+                            $('#save_financial_details').attr('disabled','disabled');
+                        }
+                    },
+                    error: function() { alert("Error posting form."); }
+                });
+            }
+
 
 
         });

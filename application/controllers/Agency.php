@@ -404,5 +404,18 @@ class Agency extends CI_Controller {
     }
 
 
+    public function get_financial_details_data()
+    {
+        $postData = $this->input->post();
+
+
+        if(isset($postData["nodel_agency"]) && isset($postData["installment"])){
+
+            $financial_details_data = $this->agency_model->get_financial_details_data($postData['project_id'],$postData["nodel_agency"],$postData["installment"]);
+
+            echo json_encode($financial_details_data);
+        }
+    }
+
 
 }

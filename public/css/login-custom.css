@@ -27,3 +27,24 @@
    width: 430px;
    margin: -65px auto 0;
 }
+
+.m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__form {
+  margin: 0 !important;
+}
+
+.m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__form .m-login__form-action .m-login__btn {
+  padding: 0.8rem 3rem;
+  margin-top: 0;
+}
+
+.m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__head {
+  margin-top: 0;
+}
+
+.m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__form .m-login__form-action {
+  margin-top: 1.5rem;
+}
+
+.m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__head .m-login__title {
+  font-size: 1.3rem;
+}

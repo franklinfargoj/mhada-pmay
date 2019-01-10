@@ -87,7 +87,7 @@
                                                         </p>
                                                     </div>
                                                     <div class="col-lg-6">
-                                                        <h5>Projet Address</h5>
+                                                        <h5>Project Address</h5>
                                                         <p>
                                                             <?php echo isset($project_details['address'])?$project_details['address']:null;?>
                                                         </p>

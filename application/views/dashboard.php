@@ -207,6 +207,7 @@
             </div>
          </div>
       </div>
+       <!--
       <div class="m-portlet" id="m_portlet_tools_2">
          <div class="mr-auto m-portlet__head">
             <div class="m-portlet__head-caption">
@@ -251,7 +252,6 @@
                   {
                   ?>
                <div class="col-md-12 col-lg-6 col-xl-3 stage-wise-widget">
-                  <!--begin::Total Profit-->
                   <div class="m-widget24">
                      <div class="m-widget24__item">
                         <?php
@@ -332,7 +332,6 @@
                         </span>
                      </div>
                   </div>
-                  <!--end::Total Profit-->
                </div>
                <?php
                   }
@@ -441,7 +440,6 @@
                     foreach($work_blocks as $block_name => $each_blocks){
                   ?>
                <div class="col-md-12 col-lg-6 col-xl-3 status-wise-widget" style="margin-bottom: 5%">
-                  <!--begin::Total Profit-->
                   <div class="m-widget24">
                      <div class="m-widget24__item">
                         <i class='fa fa-cubes'></i>
@@ -460,7 +458,6 @@
                         </div>
                      </div>
                   </div>
-                  <!--end::Total Profit-->
                </div>
                <?php
                   }
@@ -600,6 +597,7 @@
             </div>
          </div>
       </div>
+    -->
    </div>
 </main>
 <script src="<?php echo base_url();?>assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>

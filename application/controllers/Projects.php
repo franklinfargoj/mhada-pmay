@@ -43,8 +43,8 @@ class Projects extends CI_Controller {
 
         $arrData['user_details'] = get_user_details($user_id);
 
-        $arrData['status_abstract'] = $this->users_model->get_status_abstract();
-        $arrData['status_abstract_json'] = $this->users_model->get_status_abstract_json($arrData['status_abstract']);
+        //$arrData['status_abstract'] = $this->users_model->get_status_abstract();
+       /* $arrData['status_abstract_json'] = $this->users_model->get_status_abstract_json($arrData['status_abstract']);
         $arrData['stage_abstract'] = $this->users_model->get_stage_abstract();
         $arrData['stage_abstract_json'] = $this->users_model->get_stage_abstract_json($arrData['stage_abstract']);
         $arrData['get_probity_data'] = $this->users_model->get_probity_data();
@@ -94,7 +94,7 @@ class Projects extends CI_Controller {
                     $arrData['board_wise_employee'][] = $each_array_check;
             }
         }
-
+*/
         $arrData['middle'] = 'dashboard';
         $this->load->view('template_new/template',$arrData);
     }

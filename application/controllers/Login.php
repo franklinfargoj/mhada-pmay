@@ -33,7 +33,7 @@ class Login extends CI_Controller {
 
                 $response = $this->users_model->login($postInfo);
                 if($response == 'true'){
-                        redirect('projects');
+                        redirect('projects/dashboard');
                 }else{
                     $this->session->set_flashdata('error', 'Invalid Username or password.Please retry with correct credentials.');
                     redirect();
@@ -100,7 +100,7 @@ class Login extends CI_Controller {
 
                 $response = $this->agency_model->login($postInfo);
                 if($response == 'true'){
-                    redirect('agency/projects');
+                    redirect('agency/dashboard');
                 }else{
                     $this->session->set_flashdata('error', 'Invalid Username or password.Please retry with correct credentials.');
                     redirect('agency/');

@@ -19,6 +19,26 @@ class Agency extends CI_Controller {
         check_agency_login();
     }
 
+    function dashboard()
+    {
+        $user_id = $this->session->userdata('id_of_agency');
+
+        $arrData['user_details'] = get_user_details($user_id);
+
+        $arrData['project_count'] = $this->agency_model->get_total_project_count($user_id);
+
+        $arrData['status_abstract'] = $status_abstract = $this->agency_model->get_status_abstract_details($user_id);
+
+        //echo "<pre>";print_r($arrData['status_abstract']);exit;
+
+        array_unshift($arrData['status_abstract'], array('status'=>'Total Projects','status_count'=>$arrData['project_count'][0]['project_count']));
+
+        $arrData['status_abstract_json'] = json_encode($status_abstract);
+
+        $arrData['middle'] = 'agency_dashboard';
+        $this->load->view('template_new/template',$arrData);
+    }
+
 
     function projects()
     {
@@ -26,14 +46,18 @@ class Agency extends CI_Controller {
 
         $arrData['user_details'] = get_user_details($user_id);
 
-        $search_param = null;
+        $search_param = $status_param = null;
         if($this->input->get('search'))
         {
             $search_param = $this->input->get('search');
         }
+        if($this->input->get('status'))
+        {
+            $status_param = $this->input->get('status');
+        }
 
         $arrData['statuses_master'] = $this->agency_model->get_statuses_master();
-        $arrData['projects_data'] = $this->agency_model->get_agency_projects($search_param,$user_id);
+        $arrData['projects_data'] = $this->agency_model->get_agency_projects($search_param,$status_param,$user_id);
         $arrData['middle'] = 'agency_projects';
         $this->load->view('template_new/template',$arrData);
     }

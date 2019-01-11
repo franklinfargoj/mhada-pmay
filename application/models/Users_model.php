@@ -51,7 +51,7 @@ class Users_model extends CI_Model{
       $this->db->insert('mhada_schemes',$postData);
    }
 
-   function get_all_projects($search_param,$user_id)
+   function get_all_projects($search_param,$status_param)
    {
       $today = date('Y-m-d H:i:s');
 
@@ -65,6 +65,11 @@ class Users_model extends CI_Model{
       {
         $this->db->where("(ps.title like '%".$search_param."%' OR ps.address like '%".$search_param."%' )");
       }
+
+       if($status_param != '')
+       {
+           $this->db->where("ps.current_status_id",$status_param);
+       }
 
 
       $this->db->order_by('created_at','DESC');
@@ -1526,7 +1531,7 @@ class Users_model extends CI_Model{
 
     function get_status_abstract_details()
     {
-        $this->db->select('statuses.status,count(ps.id) AS status_count');
+        $this->db->select('statuses.status,statuses.id As status_id,count(ps.id) AS status_count');
         $this->db->join('project_statuses_master statuses','statuses.id = ps.current_status_id','left');
         $this->db->group_by("current_status_id");
         $status_abstract_details = $this->db->get('projects ps')->result_array();

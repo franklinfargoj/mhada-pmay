@@ -51,7 +51,7 @@ class Agency_model extends CI_Model{
       $this->db->insert('mhada_schemes',$postData);
    }
 
-   function get_agency_projects($search_param,$user_id)
+   function get_agency_projects($search_param,$status_param,$user_id)
    {
       $today = date('Y-m-d H:i:s');
 
@@ -65,7 +65,10 @@ class Agency_model extends CI_Model{
       {
         $this->db->where("(ps.title like '%".$search_param."%' OR ps.address like '%".$search_param."%' )");
       }
-
+       if($status_param != '')
+       {
+           $this->db->where("ps.current_status_id",$status_param);
+       }
 
       $this->db->order_by('created_at','DESC');
       $project_details = $this->db->get('projects ps')->result_array();
@@ -1570,5 +1573,26 @@ class Agency_model extends CI_Model{
 
         return $q;
     }
+
+    function get_status_abstract_details($user_id)
+    {
+        $this->db->select('statuses.status,statuses.id As status_id,count(ps.id) AS status_count');
+        $this->db->join('project_statuses_master statuses','statuses.id = ps.current_status_id','left');
+        $this->db->where('ps.agency_id',$user_id);
+        $this->db->group_by("current_status_id");
+        $status_abstract_details = $this->db->get('projects ps')->result_array();
+
+        return $status_abstract_details;
+    }
+
+    public function get_total_project_count($user_id)
+    {
+        $this->db->select('count(id) AS project_count');
+        $this->db->where('agency_id',$user_id);
+        $project_count = $this->db->get('projects')->result_array();
+
+        return $project_count;
+    }
+
  }
 

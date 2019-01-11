@@ -25,14 +25,19 @@ class Projects extends CI_Controller {
 
         $arrData['user_details'] = get_user_details($user_id);
 
-        $search_param = null;
+        $search_param = $status_param = null;
         if($this->input->get('search'))
         {
             $search_param = $this->input->get('search');
         }
 
+        if($this->input->get('status'))
+        {
+            $status_param = $this->input->get('status');
+        }
+
         $arrData['statuses_master'] = $this->users_model->get_statuses_master();
-        $arrData['projects_data'] = $this->users_model->get_all_projects($search_param,$user_id);
+        $arrData['projects_data'] = $this->users_model->get_all_projects($search_param,$status_param);
     	$arrData['middle'] = 'projects';
         $this->load->view('template_new/template',$arrData);
     }
@@ -46,6 +51,8 @@ class Projects extends CI_Controller {
         $arrData['project_count'] = $this->users_model->get_total_project_count();
 
         $arrData['status_abstract'] = $status_abstract = $this->users_model->get_status_abstract_details();
+
+        //echo "<pre>";print_r($arrData['status_abstract']);exit;
 
         array_unshift($arrData['status_abstract'], array('status'=>'Total Projects','status_count'=>$arrData['project_count'][0]['project_count']));
 

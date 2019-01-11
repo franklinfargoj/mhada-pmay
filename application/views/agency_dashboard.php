@@ -124,12 +124,12 @@
                          <?php if($key == 0)
                          { ?>
                              <span class="m-widget24__desc">
-                        <a target="_blank" href="<?php echo base_url('projects');?>">View Details</a>
+                        <a target="_blank" href="<?php echo base_url('agency/projects');?>">View Details</a>
                         </span>
                          <?php } else { ?>
 
                              <span class="m-widget24__desc">
-                        <a target="_blank" href="<?php echo base_url('projects?status='.$status_data['status_id']);?>">View Details</a>
+                        <a target="_blank" href="<?php echo base_url('agency/projects?status='.$status_data['status_id']);?>">View Details</a>
                         </span>
 
                          <?php } ?>

@@ -19,10 +19,11 @@
          $is_agency_role = $this->session->userdata('is_agency_role');
       ?>
       <ul class="sidebar-menu scrollable pos-r">
-         <li class="nav-item"><a class="sidebar-link" href="<?php echo base_url('projects/dashboard');?>"><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a></li>
+
          <?php
             if($admin_role){
          ?>
+                <li class="nav-item <?php if(current_url()==base_url('projects/dashboard') ) { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('projects/dashboard');?>"><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a></li>
          <li class="nav-item <?php if(current_url()==base_url('projects') ) { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('projects');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Projects</span></a></li>
          <li class="nav-item <?php if(current_url()==base_url('agencies') ) { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('agencies');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Agencies</span></a></li>
         <!-- <li class="nav-item"><a class="sidebar-link" href="<?php echo base_url('masters');?>"><span class="icon-holder"><i class="c-orange-500 ti-layout-list-thumb"></i> </span><span class="title">Manage Masters</span></a></li>
@@ -30,7 +31,8 @@
          <?php
             } elseif($is_agency_role)
             { ?>
-                <li class="nav-item active"><a class="sidebar-link" href="<?php echo base_url('agency/projects');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Projects</span></a></li>
+                <li class="nav-item <?php if(current_url()==base_url('agency/dashboard') ) { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('agency/dashboard');?>"><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a></li>
+                <li class="nav-item <?php if(current_url()==base_url('agency/projects') ) { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('agency/projects');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Projects</span></a></li>
 
           <?php  }
          ?>

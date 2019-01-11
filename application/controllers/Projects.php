@@ -43,6 +43,15 @@ class Projects extends CI_Controller {
 
         $arrData['user_details'] = get_user_details($user_id);
 
+        $arrData['project_count'] = $this->users_model->get_total_project_count();
+
+        $arrData['status_abstract'] = $status_abstract = $this->users_model->get_status_abstract_details();
+
+        array_unshift($arrData['status_abstract'], array('status'=>'Total Projects','status_count'=>$arrData['project_count'][0]['project_count']));
+
+        $arrData['status_abstract_json'] = json_encode($status_abstract);
+
+
         //$arrData['status_abstract'] = $this->users_model->get_status_abstract();
        /* $arrData['status_abstract_json'] = $this->users_model->get_status_abstract_json($arrData['status_abstract']);
         $arrData['stage_abstract'] = $this->users_model->get_stage_abstract();

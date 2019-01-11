@@ -1523,5 +1523,23 @@ class Users_model extends CI_Model{
         );
         $this->db->update('projects', $update_data, array('id' => $project_id));
     }
+
+    function get_status_abstract_details()
+    {
+        $this->db->select('statuses.status,count(ps.id) AS status_count');
+        $this->db->join('project_statuses_master statuses','statuses.id = ps.current_status_id','left');
+        $this->db->group_by("current_status_id");
+        $status_abstract_details = $this->db->get('projects ps')->result_array();
+
+        return $status_abstract_details;
+    }
+
+    public function get_total_project_count()
+    {
+        $this->db->select('count(id) AS project_count');
+        $project_count = $this->db->get('projects')->result_array();
+
+        return $project_count;
+    }
  }
 

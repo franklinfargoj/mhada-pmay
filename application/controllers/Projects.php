@@ -59,58 +59,6 @@ class Projects extends CI_Controller {
         $arrData['status_abstract_json'] = json_encode($status_abstract);
 
 
-        //$arrData['status_abstract'] = $this->users_model->get_status_abstract();
-       /* $arrData['status_abstract_json'] = $this->users_model->get_status_abstract_json($arrData['status_abstract']);
-        $arrData['stage_abstract'] = $this->users_model->get_stage_abstract();
-        $arrData['stage_abstract_json'] = $this->users_model->get_stage_abstract_json($arrData['stage_abstract']);
-        $arrData['get_probity_data'] = $this->users_model->get_probity_data();
-
-        $probilty_array_final = array();
-        if(is_array($arrData['get_probity_data']['data']) && array_filter($arrData['get_probity_data']['data']))
-        {
-            $probilty_array_final = $this->get_formatted_probity_data($arrData['get_probity_data']['data']);
-        }
-
-        $arrData['final_probity_data'] = $probilty_array_final;        
-        $arrData['demand_and_collection'] = array();
-        $arrData['expenditure_budget'] = array();
-        $arrData['work_blocks'] = array();
-        $arrData['board_wise_employee'] = array();
-
-        if(is_array($probilty_array_final['finantial_accounting']['Demand and Collection']) && array_filter($probilty_array_final['finantial_accounting']['Demand and Collection']))
-        {
-            foreach($probilty_array_final['finantial_accounting']['Demand and Collection'] as $each_array_check){
-                foreach($each_array_check as $each_array_dup){
-                    $arrData['demand_and_collection'][] = $each_array_dup;
-                }
-            }
-        }
-
-        if(is_array($probilty_array_final['finantial_accounting']['Expenditure and Budget']) && array_filter($probilty_array_final['finantial_accounting']['Expenditure and Budget']))
-        {
-            foreach($probilty_array_final['finantial_accounting']['Expenditure and Budget'] as $each_array_check){
-                foreach($each_array_check as $each_array_dup){
-                    $arrData['expenditure_budget'][] = $each_array_dup;
-                }
-            }
-        }
-
-        if(is_array($probilty_array_final['work']['Blocks']) && array_filter($probilty_array_final['work']['Blocks']))
-        {
-            foreach($probilty_array_final['work']['Blocks'] as $each_array_check){
-                foreach($each_array_check as $key_dup =>  $each_array_dup){
-                    $arrData['work_blocks'][$key_dup] = $each_array_dup;
-                }
-            }
-        }
-
-        if(is_array($probilty_array_final['payroll']['Board Wise Employee']) && array_filter($probilty_array_final['payroll']['Board Wise Employee']))
-        {
-            foreach($probilty_array_final['payroll']['Board Wise Employee'] as $each_array_check){
-                    $arrData['board_wise_employee'][] = $each_array_check;
-            }
-        }
-*/
         $arrData['middle'] = 'dashboard';
         $this->load->view('template_new/template',$arrData);
     }

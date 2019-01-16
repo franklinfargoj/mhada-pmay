@@ -92,6 +92,20 @@
                                              <p><?php echo isset($project_details['total_dus'])?$project_details['total_dus']:null;?></p>
                                              <input type="hidden" name="approved_total_dus" id="approved_total_dus" value="<?php echo isset($project_details['total_dus'])?$project_details['total_dus']:0;?>" />
                                              <input type="hidden" name="work_started" id="work_started" value="<?php echo isset($started_work_dus[0]['total_dus_work_started'])?$started_work_dus[0]['total_dus_work_started']:0;?>" />
+
+                                             <input type="hidden" name="approved_EWS_dus" id="approved_EWS_dus" value="<?php echo isset($project_details['EWS'])?$project_details['EWS']:0;?>" />
+                                             <input type="hidden" name="EWS_work_started" id="EWS_work_started" value="<?php echo isset($started_work_dus[0]['EWS'])?$started_work_dus[0]['EWS']:0;?>" />
+
+                                             <input type="hidden" name="approved_LIG_dus" id="approved_LIG_dus" value="<?php echo isset($project_details['LIG'])?$project_details['LIG']:0;?>" />
+                                             <input type="hidden" name="LIG_work_started" id="LIG_work_started" value="<?php echo isset($started_work_dus[0]['LIG'])?$started_work_dus[0]['LIG']:0;?>" />
+
+                                             <input type="hidden" name="approved_MIG_dus" id="approved_MIG_dus" value="<?php echo isset($project_details['MIG'])?$project_details['MIG']:0;?>" />
+                                             <input type="hidden" name="MIG_work_started" id="MIG_work_started" value="<?php echo isset($started_work_dus[0]['MIG'])?$started_work_dus[0]['MIG']:0;?>" />
+
+                                             <input type="hidden" name="approved_HIG_dus" id="approved_HIG_dus" value="<?php echo isset($project_details['HIG'])?$project_details['HIG']:0;?>" />
+                                             <input type="hidden" name="HIG_work_started" id="HIG_work_started" value="<?php echo isset($started_work_dus[0]['HIG'])?$started_work_dus[0]['HIG']:0;?>" />
+
+
                                          </div>
                                          <div class="col-lg-6">
                                              <h5>Probable Start Date Of Project</h5>
@@ -519,8 +533,35 @@
             }
         });
 
+        $(document).on("focus", ".total_dus", function () {
+        });
+
 
         $(document).on("keyup", ".total_dus", function () {
+
+
+            var type_of_du = $(this).attr('id');
+
+            if($(this).val() !=0 && $(this).val() !='') {
+
+                var approved_type_du = $('#approved_' + type_of_du + '_dus').val();
+                var type_work_started = $('#'+type_of_du +'_work_started').val();
+
+                var type_work_can_start = approved_type_du - type_work_started;
+
+                if ($(this).val() > type_work_can_start) {
+                    alert(type_of_du + ' dus can not be greater than approved '+type_of_du + ' Dus.');
+                    $(this).val('0');
+                    $('#total_dus').attr('value', '0');
+                    return false;
+                }
+            }else if($(this).val() == '')
+            {
+                $(this).val('0');
+            }
+
+
+
 
             var sum = 0;
             $(".total_dus").each(function() {

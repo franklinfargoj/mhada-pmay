@@ -380,6 +380,10 @@
                                                 </div>
 
                                                 <div class="m-form__actions">
+                                                    <div class="form-group has-danger">
+
+                                                        <div id="save_note" class="form-control-feedback"></div>
+                                                    </div>
                                                     <br>
                                                     <button type="submit" id="save_financial_details" name="save_financial_details"
                                                         class="btn m-btn--pill btn-primary">
@@ -1025,6 +1029,8 @@
 
                             }
 
+                            $('#save_note').html('');
+
                         }
                         else
                         {
@@ -1093,6 +1099,8 @@
                             }
 
                             $('#save_financial_details').attr('disabled','disabled');
+                            $('#save_note').html('Note: As MHADA has not added fund details in the system, you are not allowed to add utilization amount');
+
                         }
                     },
                     error: function() { alert("Error posting form."); }
@@ -1226,6 +1234,8 @@
 
                             }
 
+                            $('#save_note').html('');
+
                         }
                         else
                         {
@@ -1294,6 +1304,7 @@
                             }
 
                             $('#save_financial_details').attr('disabled','disabled');
+                            $('#save_note').html('Note: As MHADA has not added fund details in the system, you are not allowed to add utilization amount');
                         }
                     },
                     error: function() { alert("Error posting form."); }

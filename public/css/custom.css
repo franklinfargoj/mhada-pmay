@@ -528,6 +528,23 @@ a.btn-outline-dark:hover,
   display: none !important;
 }
 
+.position-relative .m-input-icon__icon {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+}
+
+.m-alert .m-badge {
+  position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+}
+
+.flex-grow-0 {
+  flex-grow: 0 !important;
+}
+
 @media screen and (max-width: 1439px) and (min-width: 992px) {
   .sidebar .sidebar-inner .sidebar-menu>li>a .title {
     display: inline-block;

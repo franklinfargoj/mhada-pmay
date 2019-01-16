@@ -20,19 +20,18 @@
       ?>
       <div class="row gap-20 masonry pos-r">
          <div class="masonry-sizer col-md-12"></div>
-         <div class="masonry-item w-100">
-            <div class="row gap-20">
-                <div class="col-md-12">
-                    <div class="m-alert m-alert--outline alert alert-success alert-dismissible fade show">
-                        <div class="layer w-100">
-                            <label class="mb-0"><strong>Total Projects Submitted</strong></label>
-                            <span class="m-badge m-badge--brand m-badge--wide d-ib va-m fw-600 br-rd bg-color mr-1 float-right"><?php echo isset($projects_data['project_count'])?$projects_data['project_count']:0;?></span>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-         </div>
+          <div class="masonry-item w-100">
+              <div class="row justify-content-end gap-20">
+                  <div class="col flex-grow-0 text-nowrap">
+                      <div class="m-alert m-alert--outline alert alert-success alert-dismissible fade show">
+                          <div class="layer w-100">
+                              <label class="mb-0"><strong>Total Projects Submitted</strong></label>
+                              <span class="m-badge m-badge--brand m-badge--wide d-ib va-m fw-600 br-rd bg-color mr-1 float-right"><?php echo isset($projects_data['project_count'])?$projects_data['project_count']:0;?></span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
          <div class="masonry-item col-12">
             <div class="">
                <div class="m-portlet m_portlet_tools_project">
@@ -48,22 +47,26 @@
                      </div>
                      <div class="m-portlet__body" style="overflow-x:auto;">
                         <?php echo form_open('','method="get"');?>
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="m-input-icon m-input-icon--left">
-                                 <label>
-                                 <strong>Search by Project name / Address .:</strong>
-                                 </label>
-                                 <input type="text" class="form-control m-input m-input--solid" placeholder="Search..." id="m_form_search" name="search" value="<?php echo isset($_GET['search'])?$_GET['search']:NULL;?>">
-                                 <span class="m-input-icon__icon m-input-icon__icon--left">
-                                 <span style="margin-top: 37%;">
-                                 <i class="la la-search"></i>
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <div class="m-input-icon m-input-icon--left d-flex">
+                                     <label class="text-nowrap">
+                                         <strong>Search by Project name / Address: </strong>
+                                     </label>
+                                     <div class="position-relative w-100 ml-3">
+                                         <input type="text" class="form-control m-input m-input--solid" placeholder="Search..." id="m_form_search" name="search" value="<?php echo isset($_GET['search'])?$_GET['search']:NULL;?>">
+                                         <span class="m-input-icon__icon m-input-icon__icon--left">
+                                    <span>
+                                       <i class="la la-search"></i>
+                                    </span>
                                  </span>
-                                 </span>
-                              </div>
-                              <br>
-                           </div>
-                        </div>
+                                     </div>
+                                 </div>
+                                 <br>
+                             </div>
+                         </div>
+
+
                         <br>
                      <?php echo form_close();?>
 

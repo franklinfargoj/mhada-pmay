@@ -24,15 +24,15 @@
             if($admin_role){
          ?>
                 <li class="nav-item <?php if(current_url()==base_url('projects/dashboard') ) { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('projects/dashboard');?>"><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a></li>
-         <li class="nav-item <?php if(current_url()==base_url('projects') ) { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('projects');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Projects</span></a></li>
-         <li class="nav-item <?php if(current_url()==base_url('agencies') ) { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('agencies');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Agencies</span></a></li>
+         <li class="nav-item <?php if(current_url()==base_url('projects') || ($this->uri->segment(1)=='projects' && $this->uri->segment(2)=='view') || $this->uri->segment(2)=='documents' || $this->uri->segment(2)=='photos' || $this->uri->segment(2)=='update_project_stage' || $this->uri->segment(2)=='financial_details') { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('projects');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Projects</span></a></li>
+         <li class="nav-item <?php if(current_url()==base_url('agencies') || ($this->uri->segment(1)=='agencies' && $this->uri->segment(2)=='view') ) { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('agencies');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Agencies</span></a></li>
         <!-- <li class="nav-item"><a class="sidebar-link" href="<?php echo base_url('masters');?>"><span class="icon-holder"><i class="c-orange-500 ti-layout-list-thumb"></i> </span><span class="title">Manage Masters</span></a></li>
          <li class="nav-item"><a class="sidebar-link" href="<?php echo base_url('users');?>"><span class="icon-holder"><i class="c-deep-orange-500 ti-calendar"></i> </span><span class="title">Users</span></a></li>-->
          <?php
             } elseif($is_agency_role)
             { ?>
                 <li class="nav-item <?php if(current_url()==base_url('agency/dashboard') ) { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('agency/dashboard');?>"><span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span class="title">Dashboard</span></a></li>
-                <li class="nav-item <?php if(current_url()==base_url('agency/projects') ) { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('agency/projects');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Projects</span></a></li>
+                <li class="nav-item <?php if(current_url()==base_url('agency/projects') || $this->uri->segment(2)=='projects_view' || $this->uri->segment(2)=='project_documents' || $this->uri->segment(2)=='project_photos' || $this->uri->segment(2)=='update_project_stage' || $this->uri->segment(2)=='financial_details') { ?> active <?php } ?>"><a class="sidebar-link" href="<?php echo base_url('agency/projects');?>"><span class="icon-holder"><i class="c-red-500 ti-files"></i> </span><span class="title">Projects</span></a></li>
 
           <?php  }
          ?>

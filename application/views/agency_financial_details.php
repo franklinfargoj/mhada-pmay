@@ -552,13 +552,13 @@
                                                                     <?php echo isset($goi_details[1][$category.'_gom_order_no'])?$goi_details[1][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($goi_details[1][$category.'_gom_order_date'])?date('d-m-Y',strtotime($goi_details[1][$category.'_gom_order_date'])):null;   ?>
+                                                                    <?php echo (isset($goi_details[1][$category.'_gom_order_date']) && $goi_details[1][$category.'_gom_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[1][$category.'_gom_order_date'])):null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_mhada_order_no'])?$goi_details[1][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($goi_details[1][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($goi_details[1][$category.'_mhada_order_date'])):null;   ?>
+                                                                    <?php echo (isset($goi_details[1][$category.'_mhada_order_date']) && $goi_details[1][$category.'_mhada_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[1][$category.'_mhada_order_date'])):null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_utilization_amount'])?$goi_details[1][$category.'_utilization_amount']:null;   ?>
@@ -577,19 +577,19 @@
                                                                     <?php echo isset($goi_details[2][$category.'_goi_order_no'])?$goi_details[2][$category.'_goi_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($goi_details[2][$category.'_goi_order_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_goi_order_date'])):null;   ?>
+                                                                    <?php echo (isset($goi_details[2][$category.'_goi_order_date']) && $goi_details[2][$category.'_goi_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[2][$category.'_goi_order_date'])):null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_gom_order_no'])?$goi_details[2][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($goi_details[2][$category.'_gom_order_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_gom_order_date'])):null;   ?>
+                                                                    <?php echo (isset($goi_details[2][$category.'_gom_order_date']) && $goi_details[2][$category.'_gom_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[2][$category.'_gom_order_date'])):null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_mhada_order_no'])?$goi_details[2][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($goi_details[2][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_mhada_order_date'])):null;   ?>
+                                                                    <?php echo (isset($goi_details[2][$category.'_mhada_order_date']) && $goi_details[2][$category.'_mhada_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[2][$category.'_mhada_order_date'])):null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_utilization_amount'])?$goi_details[2][$category.'_utilization_amount']:null;   ?>
@@ -732,13 +732,13 @@
                                                                     <?php echo isset($gom_details[0][$category.'_gom_order_no'])?$gom_details[0][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($gom_details[0][$category.'_gom_order_date'])?date('d-m-Y',strtotime($gom_details[0][$category.'_gom_order_date'])):null;   ?>
+                                                                    <?php echo (isset($gom_details[0][$category.'_gom_order_date']) && $gom_details[0][$category.'_gom_order_date']!='0000-00-00')?date('d-m-Y',strtotime($gom_details[0][$category.'_gom_order_date'])):null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[0][$category.'_mhada_order_no'])?$gom_details[0][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($gom_details[0][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($gom_details[0][$category.'_mhada_order_date'])):null;   ?>
+                                                                    <?php echo (isset($gom_details[0][$category.'_mhada_order_date']) && $gom_details[0][$category.'_mhada_order_date']!='0000-00-00')?date('d-m-Y',strtotime($gom_details[0][$category.'_mhada_order_date'])):null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[0][$category.'_utilization_amount'])?$gom_details[0][$category.'_utilization_amount']:null;   ?>
@@ -762,13 +762,13 @@
                                                                     <?php echo isset($gom_details[1][$category.'_gom_order_no'])?$gom_details[1][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($gom_details[1][$category.'_gom_order_date'])?date('d-m-Y',strtotime($gom_details[1][$category.'_gom_order_date'])):null;   ?>
+                                                                    <?php echo (isset($gom_details[1][$category.'_gom_order_date']) && $gom_details[1][$category.'_gom_order_date']!='0000-00-00')?date('d-m-Y',strtotime($gom_details[1][$category.'_gom_order_date'])):null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[1][$category.'_mhada_order_no'])?$gom_details[1][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($gom_details[1][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($gom_details[1][$category.'_mhada_order_date'])):null;   ?>
+                                                                    <?php echo (isset($gom_details[1][$category.'_mhada_order_date']) && $gom_details[1][$category.'_mhada_order_date']!='0000-00-00')?date('d-m-Y',strtotime($gom_details[1][$category.'_mhada_order_date'])):null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[1][$category.'_utilization_amount'])?$gom_details[1][$category.'_utilization_amount']:null;   ?>
@@ -792,13 +792,13 @@
                                                                     <?php echo isset($gom_details[2][$category.'_gom_order_no'])?$gom_details[2][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($gom_details[2][$category.'_gom_order_date'])?date('d-m-Y',strtotime($gom_details[2][$category.'_gom_order_date'])):null;   ?>
+                                                                    <?php echo (isset($gom_details[2][$category.'_gom_order_date']) && $gom_details[2][$category.'_gom_order_date']!='0000-00-00')?date('d-m-Y',strtotime($gom_details[2][$category.'_gom_order_date'])):null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[2][$category.'_mhada_order_no'])?$gom_details[2][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($gom_details[2][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($gom_details[2][$category.'_mhada_order_date'])):null;   ?>
+                                                                    <?php echo (isset($gom_details[2][$category.'_mhada_order_date']) && $gom_details[2][$category.'_mhada_order_date']!='0000-00-00')?date('d-m-Y',strtotime($gom_details[2][$category.'_mhada_order_date'])):null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[2][$category.'_utilization_amount'])?$gom_details[2][$category.'_utilization_amount']:null;   ?>

@@ -112,7 +112,7 @@
                                         </li>
                                         <li class="m-portlet__nav-item">
 
-                                            <a href="<?php echo base_url('Agencies');?>" class="btn m-btn--pill btn-dark float-right mb-3">Back</a>
+                                            <a href="<?php echo base_url('agencies');?>" class="btn m-btn--pill btn-dark float-right mb-3">Back</a>
 
                                         </li>
                                     </ul>

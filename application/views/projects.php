@@ -59,7 +59,7 @@
                            <div class="col-md-12">
                               <div class="m-input-icon m-input-icon--left">
                                  <label>
-                                 <strong>Search by Project name / Address .:</strong>
+                                 <strong>Search by Project name / Address:</strong>
                                  </label>
                                  <input type="text" class="form-control m-input m-input--solid" placeholder="Search..." id="m_form_search" name="search" value="<?php echo isset($_GET['search'])?$_GET['search']:NULL;?>">
                                  <span class="m-input-icon__icon m-input-icon__icon--left">

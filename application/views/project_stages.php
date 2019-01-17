@@ -187,7 +187,7 @@
                                                      <label for="EWS" class="form-control-label">
                                                          <strong>EWS <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input type="text" name="EWS" class="form-control total_dus" id="EWS" value="0">
+                                                     <input type="text" name="EWS" class="form-control total_dus" id="EWS" placeholder="0">
                                                  </div>
                                              </div>
                                              <div class="col-lg-6">
@@ -195,7 +195,7 @@
                                                      <label for="LIG" class="form-control-label">
                                                          <strong>LIG <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input  type="text" name="LIG" class="form-control total_dus" id="LIG" value="0">
+                                                     <input  type="text" name="LIG" class="form-control total_dus" id="LIG" placeholder="0">
                                                  </div>
                                              </div>
                                          </div>
@@ -206,7 +206,7 @@
                                                      <label for="MIG" class="form-control-label">
                                                          <strong>MIG <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input type="text" name="MIG" class="form-control total_dus" id="MIG" value="0">
+                                                     <input type="text" name="MIG" class="form-control total_dus" id="MIG" placeholder="0">
                                                  </div>
                                              </div>
                                              <div class="col-lg-6">
@@ -214,7 +214,7 @@
                                                      <label for="HIG" class="form-control-label">
                                                          <strong>HIG <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input type="text" name="HIG" class="form-control total_dus" id="HIG" value="0">
+                                                     <input type="text" name="HIG" class="form-control total_dus" id="HIG" placeholder="0">
                                                  </div>
                                              </div>
                                          </div>
@@ -531,6 +531,10 @@
                 ($(this)[0].selectionStart >= text.length - 2)) {
                 event.preventDefault();
             }
+
+            // skip for arrow keys
+            if(event.which >= 37 && event.which <= 40) return;
+
         });
 
         $(document).on("focus", ".total_dus", function () {
@@ -557,7 +561,7 @@
                 }
             }else if($(this).val() == '')
             {
-                $(this).val('0');
+             //   $(this).val('0');
             }
 
 
@@ -565,7 +569,9 @@
 
             var sum = 0;
             $(".total_dus").each(function() {
-                sum += parseInt($(this).val());
+             //   sum += parseInt($(this).val());
+                var dusVal = (!$(this).val() || isNaN($(this).val())) ? 0 : $(this).val();
+                sum += +parseFloat(dusVal);
             });
 
             $('#total_dus').attr('value',sum);

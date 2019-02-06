@@ -1013,10 +1013,23 @@ class Users_model extends CI_Model{
 
    // =========================================================================
 
-
+    function get_all_regions()
+    {
+        return $this->db->get('region_master')->result_array();
+    }
 
     function get_all_districts()
     {
+        return $this->db->get('districts_master')->result_array();
+    }
+
+    function get_districts($region)
+    {
+        if($region)
+        {
+            $this->db->where('region_id',$region);
+        }
+
         return $this->db->get('districts_master')->result_array();
     }
 
@@ -1097,8 +1110,10 @@ class Users_model extends CI_Model{
 
     function get_documents_master()
     {
-        $master_records = $this->db->get('project_documents_master')->result_array();
-        return $master_records;
+
+        $this->db->select('*');
+        $this->db->order_by('name','ASC');       
+        return $this->db->get('project_documents_master')->result_array();
     }
 
     function upload_document($project_id,$document_name,$document_id,$encrypted_url)

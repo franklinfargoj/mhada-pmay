@@ -119,7 +119,7 @@
       <!--end::Base Scripts -->
       <!--begin::Page Snippets -->
       <script src="<?php echo base_url();?>assets/snippets/pages/user/login.js" type="text/javascript"></script>
-      <script src="<?php echo base_url();?>assets/sliding.js" type="text/javascript"></script>
+      <script src="<?php echo base_url();?>public/js/sliding.js" type="text/javascript"></script>
       <!--end::Page Snippets -->
    </body>
    <!-- end::Body -->

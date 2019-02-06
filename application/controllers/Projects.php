@@ -69,13 +69,11 @@ class Projects extends CI_Controller {
         {
             //print_r($postData);exit;
 
-            $this->form_validation->set_rules('code' , 'Code', 'required');
             $this->form_validation->set_rules('title' , 'Title', 'required');
             $this->form_validation->set_rules('address' , 'Address', 'required');
 
             if ($this->form_validation->run() == TRUE)
             {
-
                 $this->users_model->add_project($postData);
                 $this->session->set_flashdata('success','Project added successfully.');
                 redirect('projects');
@@ -87,8 +85,7 @@ class Projects extends CI_Controller {
                 redirect('projects/add_project');
             }
         }
-
-        $arrData['districts'] = $this->users_model->get_all_districts();
+        $arrData['regions'] = $this->users_model->get_all_regions();
         $arrData['middle'] = 'add_project';
         $this->load->view('template_new/template',$arrData);
     }
@@ -129,7 +126,6 @@ class Projects extends CI_Controller {
             $arrData['project_id'] = $project_id = $decrypted_url[1];
 
             $arrData['documents'] = $this->users_model->get_documents_master();
-
             if($postData = $this->input->post())
             {
                 $document_name = $this->input->post('doc_name');
@@ -466,6 +462,34 @@ class Projects extends CI_Controller {
             show_error('No Information Found');
         }
     }
+
+
+
+    public function get_district()
+    {
+        if(isset($_POST["region"])){
+
+            $region = $_POST["region"];
+
+            if($region !== ''){
+
+                $districtArr = $this->users_model->get_districts($region);
+
+                    $option='  <option value="">Select District</option>';
+                    foreach($districtArr as $district)
+                    {
+                        $option .= "<option value='".$district['id']."' >".$district['name']."</option>";
+                    }
+                    echo $option;
+            }
+            else
+            {
+                $option='  <option value="">Select District</option>';
+                echo $option;
+            }
+        }
+    }
+
 
     public function get_cities()
     {

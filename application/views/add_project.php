@@ -63,9 +63,9 @@
                                       <div class="col-lg-6">
                                           <div class="form-group">
                                               <label for="code" class="form-control-label">
-                                                  <strong>Code <span style="color: red">*</span></strong>
+                                                  <strong>Project Code</strong>
                                               </label>
-                                              <input type="text" name="code" class="form-control" id="code" required>
+                                              <input type="text" name="code" class="form-control" id="code">
                                           </div>
                                       </div>
                                   </div>
@@ -73,7 +73,7 @@
                                     <div class="col-lg-6">
                                        <div class="form-group">
                                           <label for="title" class="form-control-label">
-                                             <strong>Title <span style="color: red">*</span></strong>
+                                             <strong>DPR Title <span style="color: red">*</span></strong>
                                           </label>
                                           <input type="text" name="title" class="form-control" id="title" required>
                                        </div>
@@ -89,6 +89,30 @@
                                  </div>
 
                                   <div class="row">
+
+                                    <div class="col-lg-6">
+                                          <div class="form-group m-form__group">
+                                              <label for="region_id" class="form-control-label">
+                                                  <strong>Region <span style="color: red">*</span></strong>
+                                              </label>
+                                              <select name="region_id" class="form-control" id="region_id" required>
+                                                  <option value="">Select Region</option>
+                                                  <?php
+                                                  if(is_array($regions) && array_filter($regions))
+                                                  {
+                                                      foreach($regions as $region){
+                                                          ?>
+                                                          <option value="<?php echo $region['id'];?>"><?php echo $region['region'];?></option>
+                                                          <?php
+                                                      }
+                                                  }
+                                                  ?>
+                                              </select>
+                                          </div>
+                                      </div>
+
+
+
                                       <div class="col-lg-6">
                                           <div class="form-group m-form__group">
                                               <label for="district_id" class="form-control-label">
@@ -96,16 +120,6 @@
                                               </label>
                                               <select name="district_id" class="form-control" id="district_id" required>
                                                   <option value="">Select District</option>
-                                                  <?php
-                                                  if(is_array($districts) && array_filter($districts))
-                                                  {
-                                                      foreach($districts as $district){
-                                                          ?>
-                                                          <option value="<?php echo $district['id'];?>"><?php echo $district['name'];?></option>
-                                                          <?php
-                                                      }
-                                                  }
-                                                  ?>
                                               </select>
                                           </div>
                                       </div>
@@ -191,7 +205,8 @@
                                                   <option value="">Select Vertical</option>
                                                   <option value="AHP">AHP</option>
                                                   <option value="AHP | PPP">AHP | PPP</option>
-                                                  <option value="BLC">BLC</option>
+                                                  <option value="BLC_NEW">BLC New</option>
+                                                  <option value="BLC_ENHANCEMENT">BLC Enhancement</option>
                                                   <option value="ISSR">ISSR</option>
                                                   <option value="ISSR (SRA)">ISSR (SRA)</option>
                                               </select>
@@ -203,18 +218,6 @@
                                                   <strong>Implementing Agency <span style="color: red">*</span></strong>
                                               </label>
                                               <input type="text" name="implementing_agency" class="form-control" id="implementing_agency" required>
-                                          </div>
-                                      </div>
-                                  </div>
-
-
-                                  <div class="row">
-                                      <div class="col-lg-6">
-                                          <div class="form-group">
-                                              <label for="dpr" class="form-control-label">
-                                                  <strong>DPR <span style="color: red">*</span></strong>
-                                              </label>
-                                              <input type="text" name="dpr" class="form-control" id="dpr" required>
                                           </div>
                                       </div>
                                   </div>
@@ -277,7 +280,7 @@
                                        <div class="col-lg-6">
                                            <div class="form-group">
                                                <label for="total_dus" class="form-control-label">
-                                                   <strong>Total Dus <span style="color: red">*</span></strong>
+                                                   <strong>Total Dus</strong>
                                                </label>
                                                <input readonly type="text" name="total_dus" class="form-control" id="total_dus">
                                            </div>
@@ -285,10 +288,10 @@
                                        <div class="col-lg-6">
 
                                            <div class="form-group">
-                                               <label for="probable_start_date_of_project" class="form-control-label">
-                                                   <strong>Probable Start Date Of Project <span style="color: red">*</span></strong>
+                                               <label for="project_cost_ews" class="form-control-label">
+                                                   <strong>Project cost EWS <span style="color: red">*</span></strong>
                                                </label>
-                                               <input class="form-control" type="date" name="probable_start_date_of_project" value="" id="probable_start_date_of_project">
+                                               <input type="text" name="project_cost_ews" class="form-control" id="project_cost_ews" required>
                                            </div>
 
                                        </div>
@@ -297,10 +300,10 @@
                                    <div class="row" style="margin-top: 2%">
                                        <div class="col-lg-6">
                                            <div class="form-group">
-                                               <label for="probable_date_of_completion" class="form-control-label">
-                                                   <strong>Probable Date Of Completion <span style="color: red">*</span></strong>
+                                               <label for="project_cost_total" class="form-control-label">
+                                                   <strong>Project cost total <span style="color: red">*</span></strong>
                                                </label>
-                                               <input class="form-control" type="date" name="probable_date_of_completion" value="" id="probable_date_of_completion">
+                                               <input type="text" name="project_cost_total" class="form-control" id="project_cost_total" required>
                                            </div>
                                        </div>
                                        <div class="col-lg-6">
@@ -367,7 +370,7 @@
                                        <div class="col-lg-6">
                                            <div class="form-group">
                                                <label for="agency_email" class="form-control-label">
-                                                   <strong>Agency Email <span style="color: red">*</span></strong>
+                                                   <strong>Agency Email</strong>
                                                </label>
                                                <input type="text" name="agency_email" class="form-control" id="agency_email">
                                            </div>
@@ -375,7 +378,7 @@
                                        <div class="col-lg-6">
                                            <div class="form-group">
                                                <label for="agency_mobile_no" class="form-control-label">
-                                                   <strong>Agency Mobile No <span style="color: red">*</span></strong>
+                                                   <strong>Agency Mobile No</strong>
                                                </label>
                                                <input type="text" name="agency_mobile_no" class="form-control" id="agency_mobile_no">
                                            </div>
@@ -386,7 +389,7 @@
                                        <div class="col-lg-6">
                                            <div class="form-group">
                                                <label for="agency_landline" class="form-control-label">
-                                                   <strong>Agency Landline No <span style="color: red">*</span></strong>
+                                                   <strong>Agency Landline No</strong>
                                                </label>
                                                <input type="text" name="agency_landline" class="form-control" id="agency_landline">
                                            </div>
@@ -406,7 +409,7 @@
                                        <div class="col-lg-6">
                                            <div class="form-group">
                                                <label for="consultant_name" class="form-control-label">
-                                                   <strong>Consultant Name <span style="color: red">*</span></strong>
+                                                   <strong>Consultant Name</strong>
                                                </label>
                                                <input type="text" name="consultant_name[]" class="form-control" >
                                            </div>
@@ -414,7 +417,7 @@
                                        <div class="col-lg-6">
                                            <div class="form-group">
                                                <label for="consultant_mobile_no" class="form-control-label">
-                                                   <strong>Consultant Mobile No <span style="color: red">*</span></strong>
+                                                   <strong>Consultant Mobile No </strong>
                                                </label>
                                                <input type="text" name="consultant_mobile_no[]" class="form-control">
                                            </div>
@@ -425,7 +428,7 @@
                                        <div class="col-lg-6">
                                            <div class="form-group">
                                                <label for="agency_landline" class="form-control-label">
-                                                   <strong>Consultant Landline No <span style="color: red">*</span></strong>
+                                                   <strong>Consultant Landline No</strong>
                                                </label>
                                                <input type="text" name="consultant_landline[]" class="form-control" >
                                            </div>
@@ -478,7 +481,7 @@
                 '                                       <div class="col-lg-6">\n' +
                 '                                           <div class="form-group">\n' +
                 '                                               <label for="consultant_name" class="form-control-label">\n' +
-                '                                                   <strong>Consultant Name <span style="color: red">*</span></strong>\n' +
+                '                                                   <strong>Consultant Name</strong>\n' +
                 '                                               </label>\n' +
                 '                                               <input type="text" name="consultant_name[]" class="form-control" >\n' +
                 '                                           </div>\n' +
@@ -486,7 +489,7 @@
                 '                                       <div class="col-lg-6">\n' +
                 '                                           <div class="form-group">\n' +
                 '                                               <label for="consultant_mobile_no" class="form-control-label">\n' +
-                '                                                   <strong>Consultant Mobile No <span style="color: red">*</span></strong>\n' +
+                '                                                   <strong>Consultant Mobile No</strong>\n' +
                 '                                               </label>\n' +
                 '                                               <input type="text" name="consultant_mobile_no[]" class="form-control">\n' +
                 '                                           </div>\n' +
@@ -497,12 +500,27 @@
                 '                                       <div class="col-lg-6">\n' +
                 '                                           <div class="form-group">\n' +
                 '                                               <label for="agency_landline" class="form-control-label">\n' +
-                '                                                   <strong>Consultant Landline No <span style="color: red">*</span></strong>\n' +
+                '                                                   <strong>Consultant Landline No</strong>\n' +
                 '                                               </label>\n' +
                 '                                               <input type="text" name="consultant_landline[]" class="form-control" >\n' +
                 '                                           </div>\n' +
                 '                                       </div>\n' +
                 '                                   </div>');
+        });
+
+
+
+        $("#region_id").change(function(){
+            var selectedRegion = $("#region_id option:selected").val();
+            $.ajax({
+                type: "POST",
+                url: "projects/get_district",
+                data: { region : selectedRegion }
+            }).done(function(data){
+                $("#district_id").html(data);
+                console.log(data);
+            });
+
         });
 
 

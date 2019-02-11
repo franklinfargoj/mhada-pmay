@@ -136,13 +136,13 @@
                                   </div>
 
 
-                                  <div class="row" style="margin-top: 2%">
+                                  <div id ="slac_dt_mt" class="row" style="margin-top: 2%">
                                       <div class="col-lg-6">
                                           <div class="form-group">
                                               <label for="slac_meeting_date" class="form-control-label">
                                                   <strong>SLAC Meeting Date <span style="color: red">*</span></strong>
                                               </label>
-                                              <input class="form-control" type="date" name="slac_meeting_date" value="" id="slac_meeting_date" required>
+                                              <input class="form-control" type="date" name="slac_meeting_date[]" value="" id="slac_meeting_date" required>
                                           </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -150,10 +150,17 @@
                                               <label for="slac_meeting_no" class="form-control-label">
                                                   <strong>SLAC Meeting No <span style="color: red">*</span></strong>
                                               </label>
-                                              <input type="text" name="slac_meeting_no" class="form-control" id="slac_meeting_no" required>
+                                              <input type="text" name="slac_meeting_no[]" class="form-control" id="slac_meeting_no" required>
                                           </div>
                                       </div>
                                   </div>
+
+                                  <div class="row">
+                                     <div class="col-lg-6">
+                                         <a href="javascript:void(0);" id="add_slac_d_m" name="add_slac_d_m">Add SLAC meeting & date</a>
+                                     </div>
+                                  </div>
+
 
 
                                   <div class="row" style="margin-top: 2%">
@@ -578,6 +585,30 @@
 
 
 
+
+        $("#add_slac_d_m").click(function(){
+            $('#slac_dt_mt').append('<div class="row" style="margin-top: 2%">\n' +
+                '                                       <div class="col-lg-6">\n' +
+                '                                           <div class="form-group">\n' +
+                '                                               <label for="slac_meeting_date" class="form-control-label">\n' +
+                '                                                   <strong>SLAC Meeting Date</strong>\n' +
+                '                                               </label>\n' +
+                '                                               <input type="date" name="slac_meeting_date[]" class="form-control" >\n' +
+                '                                           </div>\n' +
+                '                                       </div>\n' +
+                '                                       <div class="col-lg-6">\n' +
+                '                                           <div class="form-group">\n' +
+                '                                               <label for="slac_meeting_no" class="form-control-label">\n' +
+                '                                                   <strong>SLAC Meeting No</strong>\n' +
+                '                                               </label>\n' +
+                '                                               <input type="text" name="slac_meeting_no[]" class="form-control">\n' +
+                '                                           </div>\n' +
+                '                                       </div>\n' +
+                '                                   </div>\n' +
+                '\n' +
+                ''
+            )
+        });
 
 
     });

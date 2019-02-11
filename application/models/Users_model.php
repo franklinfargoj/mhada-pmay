@@ -1046,12 +1046,14 @@ class Users_model extends CI_Model{
     function add_project($postData)
     {
 
-
         $posted_data_arr = $postData;
 
         unset($postData['consultant_name']);
         unset($postData['consultant_mobile_no']);
         unset($postData['consultant_landline']);
+
+        unset($postData['slac_meeting_date']);
+        unset($postData['slac_meeting_no']);
 
         $postData['current_status_id'] = 3; //work not started - default
         $postData['created_at'] = date('Y-m-d H:i:s');
@@ -1069,6 +1071,18 @@ class Users_model extends CI_Model{
             $this->db->insert('project_consultant_details',$consultant_details);
         }
 
+        $slac_details = [];
+        $posted_data['slac_meeting_date'] =$posted_data_arr['slac_meeting_date'];
+        $posted_data['slac_meeting_no'] = $posted_data_arr['slac_meeting_no'];
+        foreach($posted_data['slac_meeting_date'] as $key => $val)
+        {
+            $slac_details = array(
+                'project_id'=>$inserted_id ,
+                'slac_meeting_date'=>$posted_data['slac_meeting_date'][$key],
+                'slac_meeting_no'=>$posted_data['slac_meeting_no'][$key]
+            );
+            $this->db->insert('project_slac_details',$slac_details);
+        }
 
 
     }

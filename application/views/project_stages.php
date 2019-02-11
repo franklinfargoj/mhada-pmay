@@ -233,7 +233,7 @@
 
                                                  <div class="form-group">
                                                      <label for="probable_start_date_of_project" class="form-control-label">
-                                                         <strong>Upload Beneficiary List <span style="color: red">*</span></strong>
+                                                         <strong>Upload Beneficiary List</strong>
                                                      </label>
                                                      <input type="file" class="form-control " id="beneficiary_list_path" name="beneficiary_list_path">
                                                  </div>
@@ -306,11 +306,11 @@
                                                  <th scope="col">Stage</th>
                                                  <th scope="col">No Of DUs</th>
                                                  <th scope="col">Additional Information</th>
-                                                 <th scope="col">Fund released by centre (In Rs.)</th>
-                                                 <th scope="col">Fund released by state (In Rs.)</th>
-                                                 <th scope="col">Total fund released (In Rs.)</th>
-                                                 <th scope="col">Fund released by MHADA (In Rs.)</th>
-                                                 <th scope="col">Expense by implementing agency</th>
+                                                 <!--<th scope="col">1 Fund released by centre (In Rs.)</th>
+                                                 <th scope="col">2 Fund released by state (In Rs.)</th>
+                                                 <th scope="col">3 Total fund released (In Rs.)</th>
+                                                 <th scope="col">4 Fund released by MHADA (In Rs.)</th>
+                                                 <th scope="col">5 Expense by implementing agency</th>-->
                                                  <th scope="col">Files</th>
                                              </tr>
                                              </thead>
@@ -320,28 +320,36 @@
                                                      ?>
                                                  <tr>
                                                      <td><h5><?php echo $stage['stage']; ?></h5></td>
-
                                                      <td><?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?></td>
                                                      <td><?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; }  else { echo '-';}  ?></td>
-                                                     <?php if($stage['id']!=3) {
+
+
+
+
+
+
+                                                    <!-- <?php /*if($stage['id']!=3) {
                                                          $offset = $stage['id']-1;
                                                          if($stage['id']==4) { $offset = 2; }
 
                                                          if(!isset($goi_fund_details[$offset]['total_amount'])) { $goi_amount = 0; } else { $goi_amount = $goi_fund_details[$offset]['total_amount']; }
                                                          if(!isset($gom_fund_details[$offset]['total_amount'])) { $gom_amount = 0; } else { $gom_amount = $gom_fund_details[$offset]['total_amount']; }
 
-                                                         ?>
-                                                     <td><?php if(isset($goi_fund_details[$offset]['total_amount'])) { echo $goi_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
-                                                     <td><?php if(isset($gom_fund_details[$offset]['total_amount'])) { echo $gom_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
-                                                     <td><?php echo ($goi_amount + $gom_amount); ?></td>
-                                                     <td><?php echo ($goi_amount + $gom_amount); ?></td>
-                                                     <?php } else { ?>
+                                                         */?>
+                                                     <td><?php /*if(isset($goi_fund_details[$offset]['total_amount'])) { echo $goi_fund_details[$offset]['total_amount']; } else { echo '-'; } */?></td>
+                                                     <td><?php /*if(isset($gom_fund_details[$offset]['total_amount'])) { echo $gom_fund_details[$offset]['total_amount']; } else { echo '-'; } */?></td>
+                                                     <td><?php /*echo ($goi_amount + $gom_amount); */?></td>
+                                                     <td><?php /*echo ($goi_amount + $gom_amount); */?></td>
+                                                     <?php /*} else { */?>
                                                          <td>-</td>
                                                          <td>-</td>
                                                          <td>-</td>
                                                          <td>-</td>
-                                                     <?php } ?>
-                                                     <td><?php if(isset($project_stages_dus_details[$stage['id']]['expense_by_implementing_agency'])) { echo $project_stages_dus_details[$stage['id']]['expense_by_implementing_agency']; } else { echo '0';} ?></td>
+                                                     <?php /*} */?>
+                                                     <td><?php /*if(isset($project_stages_dus_details[$stage['id']]['expense_by_implementing_agency'])) { echo $project_stages_dus_details[$stage['id']]['expense_by_implementing_agency']; } else { echo '0';} */?></td>-->
+
+
+
                                                      <?php
                                                      if($key==0)
                                                      {

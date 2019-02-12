@@ -186,7 +186,7 @@
                                                         </span>
                                                         <h4 class="main-title">
                                                             <span>
-                                                                Details Of Fund Released
+                                                                Fund Details
                                                             </span>
                                                         </h4>
                                                     </div>
@@ -274,20 +274,23 @@
                                                                     </h5>
                                                                 </td>
 
+
+
+
                                                                 <td><input type="text" class="form-control total_amount"
                                                                         name="financial_details[<?php echo $category; ?>][amount]"
                                                                         value="0" /> </td>
                                                                 <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][goi_order_no]" />
                                                                 </td>
-                                                                <td><input class="form-control" type="date" name="financial_details[<?php echo $category; ?>][goi_order_date]"
+                                                                <td><input class="form-control" type="date" max="<?php echo date("Y-m-d"); ?>" name="financial_details[<?php echo $category; ?>][goi_order_date]"
                                                                         value=""></td>
                                                                 <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][gom_order_no]" />
                                                                 </td>
-                                                                <td><input type="date" class="form-control" name="financial_details[<?php echo $category; ?>][gom_order_date]" />
+                                                                <td><input type="date" class="form-control" max="<?php echo date("Y-m-d"); ?>" name="financial_details[<?php echo $category; ?>][gom_order_date]" />
                                                                 </td>
                                                                 <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_order_no]" />
                                                                 </td>
-                                                                <td><input type="date" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_order_date]" />
+                                                                <td><input type="date" class="form-control" max="<?php echo date("Y-m-d"); ?>" name="financial_details[<?php echo $category; ?>][mhada_order_date]" />
                                                                 </td>
                                                                 <td>- </td>
                                                                 <td>-</td>
@@ -417,7 +420,7 @@
                                                         </span>
                                                         <h4 class="main-title">
                                                             <span>
-                                                                View Details Of Fund Released
+                                                                View Fund Details
                                                             </span>
                                                         </h4>
                                                     </div>

@@ -186,7 +186,7 @@
                                                         </span>
                                                         <h4 class="main-title">
                                                             <span>
-                                                                Details Of Fund Released
+                                                                Fund Details
                                                             </span>
                                                         </h4>
                                                     </div>
@@ -412,7 +412,7 @@
                                                         </span>
                                                         <h4 class="main-title">
                                                             <span>
-                                                                View Details Of Fund Released
+                                                                View Fund Details
                                                             </span>
                                                         </h4>
                                                     </div>

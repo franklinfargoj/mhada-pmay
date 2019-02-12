@@ -587,7 +587,8 @@
 
 
         $("#add_slac_d_m").click(function(){
-            $('#slac_dt_mt').append('<div class="row" style="margin-top: 2%">\n' +
+            $('#slac_dt_mt').append('<div class="col-12" style="margin-top: 2%">\n' +
+                '                                       <div class="row">\n' +
                 '                                       <div class="col-lg-6">\n' +
                 '                                           <div class="form-group">\n' +
                 '                                               <label for="slac_meeting_date" class="form-control-label">\n' +
@@ -604,6 +605,7 @@
                 '                                               <input type="text" name="slac_meeting_no[]" class="form-control">\n' +
                 '                                           </div>\n' +
                 '                                       </div>\n' +
+                '                                   </div>\n' +
                 '                                   </div>\n' +
                 '\n' +
                 ''

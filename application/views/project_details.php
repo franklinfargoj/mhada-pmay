@@ -92,36 +92,42 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                       <div class="col-lg-6">
+                                      <?php foreach($slac_details as $slac){ ?>
+                                        <div class="col-lg-6">
                                           <h5>SLAC Meeting Date</h5>
-                                          <p><?php echo !empty($project_details['slac_meeting_date'])?date('F j, Y',strtotime($project_details['slac_meeting_date'])):null;?></p>
-                                       </div>
-                                       <div class="col-lg-6">
+                                          <p><?php echo !empty($slac['slac_meeting_date'])?date('F j, Y',strtotime($slac['slac_meeting_date'])):null;?></p>
+                                        </div>
+                                        <div class="col-lg-6">
                                           <h5>SLAC Meeting No</h5>
-                                          <p><?php echo isset($project_details['slac_meeting_no'])?$project_details['slac_meeting_no']:null;?></p>
-                                       </div>
+                                          <p><?php echo isset($slac['slac_meeting_no'])?$slac['slac_meeting_no']:null;?></p>
+                                        </div>
+                                      <?php } ?>
                                     </div>
 
                                      <div class="row">
+                                      <?php foreach($slsmc_details as $slsmc){ ?>
                                          <div class="col-lg-6">
                                              <h5>SLSMC Meeting Date</h5>
-                                             <p><?php echo !empty($project_details['slsmc_meeting_date'])?date('F j, Y',strtotime($project_details['slsmc_meeting_date'])):null;?></p>
+                                             <p><?php echo !empty($slsmc['slsmc_meeting_date'])?date('F j, Y',strtotime($slsmc['slsmc_meeting_date'])):null;?></p>
                                          </div>
                                          <div class="col-lg-6">
                                              <h5>SLSMC Meeting No</h5>
-                                             <p><?php echo isset($project_details['slsmc_meeting_no'])?$project_details['slsmc_meeting_no']:null;?></p>
+                                             <p><?php echo isset($slsmc['slsmc_meeting_no'])?$slsmc['slsmc_meeting_no']:null;?></p>
                                          </div>
+                                        <?php } ?>
                                      </div>
 
                                      <div class="row">
+                                      <?php foreach($csmc_details as $csmc){ ?>
                                          <div class="col-lg-6">
                                              <h5>CSMC Meeting Date</h5>
-                                             <p><?php echo !empty($project_details['csmc_meeting_date'])?date('F j, Y',strtotime($project_details['csmc_meeting_date'])):null;?></p>
+                                             <p><?php echo !empty($csmc['csmc_meeting_date'])?date('F j, Y',strtotime($csmc['csmc_meeting_date'])):null;?></p>
                                          </div>
                                          <div class="col-lg-6">
                                              <h5>CSMC Meeting No</h5>
-                                             <p><?php echo isset($project_details['csmc_meeting_no'])?$project_details['csmc_meeting_no']:null;?></p>
+                                             <p><?php echo isset($csmc['csmc_meeting_no'])?$csmc['csmc_meeting_no']:null;?></p>
                                          </div>
+                                      <?php } ?>
                                      </div>
 
                                      <div class="row">

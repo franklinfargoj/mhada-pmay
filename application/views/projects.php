@@ -128,12 +128,12 @@
                                              <h5 class="modal-title" id="adduserLabel"><strong>Update Status Of Project - <?php echo $each_project['code']; ?></strong></h5>
                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                           </div>
-                                          <div class="modal-body" style="overflow-y: scroll; height:200px;">
+                                          <div class="modal-body">
                                              <div class="form-group">
                                                 <label for="development_status" class="form-control-label">
                                                    <strong>Status</strong>
                                                 </label>
-                                                <div class="form-group">
+                                                <div class="form-group" id="status_container">
                                                    <select name="development_status" class="form-control" id="development_status">
                                                       <option value="">Select Status</option>
                                                       <?php
@@ -149,23 +149,8 @@
                                                       ?>
                                                    </select>
                                                 </div>
-                                             </div>
-                                              <div class="form-group">
-                                                  <label for="" class="form-control-label">
-                                                      <strong>Start Date Of Project</strong>
-                                                  </label>
-                                                  <div class="form-group">
-                                                      <input type="date" name="start_date_of_project" class="form-control" >
-                                                  </div>
                                               </div>
-                                             <div class="form-group">
-                                                <label for="" class="form-control-label">
-                                                   <strong>Tentative Completion Date Of Project</strong>
-                                                </label>
-                                                <div class="form-group">
-                                                   <input type="date" name="tentative_completion_date_of_project" class="form-control" >
-                                                </div>
-                                             </div>
+                                              <div id="date_container">
                                           </div>
                                           <div class="modal-footer">
                                              <button type="submit" id="submit_update_status_form" class="btn btn-primary m-btn--pill">Submit</button>
@@ -209,4 +194,70 @@
          $('.app_both').val('0');
       }
    });
+
+  $(function(){
+    $('#development_status').change(function(){
+      if(this.value == 2){
+        $('#date_container').html('<div class="form-group">'+
+            '<label for="" class="form-control-label">'+
+               '<strong>Completion Date Of Project</strong>'+
+            '</label>'+
+            '<div class="form-group">'+
+              '<input type="date" name="completion_date_of_project" class="form-control" >'+
+            '</div>'+
+          '</div>');
+      }else if(this.value == 4){
+        $('#date_container').html('<div class="form-group">'+
+            '<label for="" class="form-control-label">'+
+              '<strong>Start Date Of Project</strong>'+
+            '</label>'+
+            '<div class="form-group">'+
+              '<input type="date" name="start_date_of_project" class="form-control" >'+
+            '</div>'+
+          '</div>'+
+          '<div class="form-group">'+
+            '<label for="" class="form-control-label">'+
+               '<strong>Tentative Completion Date Of Project</strong>'+
+            '</label>'+
+            '<div class="form-group">'+
+              '<input type="date" name="tentative_completion_date_of_project" class="form-control" >'+
+            '</div>'+
+          '</div>');                                
+      }else{
+        $('#date_container').html('');
+      }
+    });
+  });
+  // $(document).on('change', '#development_status', function(){
+  //   alert(this.val());
+    /*if(this.val() == 2){
+      $('#status_container').after('<div class="form-group">'+
+          '<label for="" class="form-control-label">'+
+             '<strong>Completion Date Of Project</strong>'+
+          '</label>'+
+          '<div class="form-group">'+
+            '<input type="date" name="completion_date_of_project" class="form-control" >'+
+          '</div>'+
+        '</div>');
+    }elseif(this.val() == 4){
+      $('#status_container').after('<div class="form-group">'+
+          '<label for="" class="form-control-label">'+
+            '<strong>Start Date Of Project</strong>'+
+          '</label>'+
+          '<div class="form-group">'+
+            '<input type="date" name="start_date_of_project" class="form-control" >'+
+          '</div>'+
+        '</div>'+
+        '<div class="form-group">'+
+          '<label for="" class="form-control-label">'+
+             '<strong>Tentative Completion Date Of Project</strong>'+
+          '</label>'+
+          '<div class="form-group">'+
+            '<input type="date" name="tentative_completion_date_of_project" class="form-control" >'+
+          '</div>'+
+        '</div>');                                
+    }else{
+      $('#status_container').after('');
+    }*/
+  // });
 </script>

@@ -67,7 +67,8 @@ class Projects extends CI_Controller {
     {
         if($postData = $this->input->post())
         {
-            //print_r($postData);exit;
+            // echo "<pre>";
+            // print_r($postData);exit;
 
             $this->form_validation->set_rules('title' , 'Title', 'required');
             $this->form_validation->set_rules('address' , 'Address', 'required');
@@ -103,6 +104,11 @@ class Projects extends CI_Controller {
             $arrData['project_id'] = $project_id = $decrypted_url[1];
 
             $arrData['project_details'] = $this->users_model->get_project_details($project_code,$project_id);
+
+            $arrData['slac_details'] = $this->users_model->get_metting_details($project_id, 'slac');
+            $arrData['slsmc_details'] = $this->users_model->get_metting_details($project_id, 'slsmc');
+            $arrData['csmc_details'] = $this->users_model->get_metting_details($project_id, 'csmc');
+
             $arrData['consultant_details'] = $this->users_model->get_consultant_details($project_id);
             $arrData['encrypted_url'] =  $encrypted_url;
             $arrData['middle'] = 'project_details';
@@ -282,17 +288,51 @@ class Projects extends CI_Controller {
             $arrData['project_code'] = $project_code = $decrypted_url[0];
             $arrData['project_id'] = $project_id = $decrypted_url[1];
 
-            $development_status = $this->input->post('development_status');
-            $start_date_of_project = $this->input->post('start_date_of_project');
-            $tentative_completion_date_of_project = $this->input->post('tentative_completion_date_of_project');
+            $project_status_array = array();
 
-            if($development_status == '' || $start_date_of_project == '' || $tentative_completion_date_of_project == '')
-            {
-                $this->session->set_flashdata('error','Please select all fields.');
-                redirect('projects');
+            $status_id = $this->input->post('development_status');
+            if($status_id == 2){
+                $completion_date_of_project = $this->input->post('completion_date_of_project');
+
+                if($status_id == '' || $completion_date_of_project == '')
+                {
+                    $this->session->set_flashdata('error','Please select all fields.');
+                    redirect('projects');
+                }
+
+                $project_status_array['project_id'] = $project_id;
+                $project_status_array['status_id'] = $status_id;
+                $project_status_array['completion_date_of_project'] = $completion_date_of_project;
+                $project_status_array['updated_by_user_id'] = $user_id;
+
+            }elseif($status_id == 4){
+                $start_date_of_project = $this->input->post('start_date_of_project');
+                $tentative_completion_date_of_project = $this->input->post('tentative_completion_date_of_project');
+
+                if($status_id == '' || $start_date_of_project == '' || $tentative_completion_date_of_project == '')
+                {
+                    $this->session->set_flashdata('error','Please select all fields.');
+                    redirect('projects');
+                }
+
+                $project_status_array['project_id'] = $project_id;
+                $project_status_array['status_id'] = $status_id;
+                $project_status_array['start_date_of_project'] = $start_date_of_project;
+                $project_status_array['tentative_completion_date_of_project'] = $tentative_completion_date_of_project;
+                $project_status_array['updated_by_user_id'] = $user_id;
+            }else{
+                if($status_id == '')
+                {
+                    $this->session->set_flashdata('error','Please select all fields.');
+                    redirect('projects');
+                }
+
+                $project_status_array['project_id'] = $project_id;
+                $project_status_array['status_id'] = $status_id;
+                $project_status_array['updated_by_user_id'] = $user_id;
             }
 
-            $response = $this->users_model->update_project_status($project_id,$development_status,$start_date_of_project,$tentative_completion_date_of_project,$user_id);
+            $response = $this->users_model->update_project_status($project_status_array);
 
             if($response)
             {
@@ -533,6 +573,11 @@ class Projects extends CI_Controller {
             $arrData['encrypted_url'] = $encrypted_url;
             $arrData['project_stages_master'] = $this->users_model->get_stages_master();
             $arrData['project_details'] = $this->users_model->get_project_details($project_code,$project_id);
+
+            $arrData['slac_details'] = $this->users_model->get_metting_details($project_id, 'slac');
+            $arrData['slsmc_details'] = $this->users_model->get_metting_details($project_id, 'slsmc');
+            $arrData['csmc_details'] = $this->users_model->get_metting_details($project_id, 'csmc');
+            
             $stage_details_data = $this->users_model->get_project_stages_dus_details($project_id);
             $arrData['dus_for_which_work_started'] =  $this->users_model->get_dus_started_count($project_id);
 
@@ -632,6 +677,10 @@ class Projects extends CI_Controller {
             $arrData['encrypted_url'] = $encrypted_url;
             $arrData['project_stages_master'] = $this->users_model->get_stages_master();
             $arrData['project_details'] = $this->users_model->get_project_details($project_code,$project_id);
+
+            $arrData['slac_details'] = $this->users_model->get_metting_details($project_id, 'slac');
+            $arrData['slsmc_details'] = $this->users_model->get_metting_details($project_id, 'slsmc');
+            $arrData['csmc_details'] = $this->users_model->get_metting_details($project_id, 'csmc');
 
             $stage_details_data = $this->users_model->get_project_stages_dus_details($project_id);
 

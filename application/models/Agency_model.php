@@ -1594,5 +1594,12 @@ class Agency_model extends CI_Model{
         return $project_count;
     }
 
+    public function get_metting_details($project_id, $type)
+    {
+      $this->db->where('project_id',$project_id);
+      $metting_details = $this->db->get('project_'.$type.'_details')->result_array();
+
+      return $metting_details;
+    }
  }
 

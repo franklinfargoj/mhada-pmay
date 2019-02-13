@@ -76,6 +76,11 @@ class Agency extends CI_Controller {
             $arrData['project_id'] = $project_id = $decrypted_url[1];
 
             $arrData['project_details'] = $this->agency_model->get_project_details($project_code,$project_id);
+
+            $arrData['slac_details'] = $this->agency_model->get_metting_details($project_id, 'slac');
+            $arrData['slsmc_details'] = $this->agency_model->get_metting_details($project_id, 'slsmc');
+            $arrData['csmc_details'] = $this->agency_model->get_metting_details($project_id, 'csmc');
+
             $arrData['consultant_details'] = $this->agency_model->get_consultant_details($project_id);
             $arrData['encrypted_url'] =  $encrypted_url;
             $arrData['middle'] = 'projects_view';
@@ -276,6 +281,11 @@ class Agency extends CI_Controller {
             $arrData['encrypted_url'] = $encrypted_url;
             $arrData['project_stages_master'] = $this->agency_model->get_stages_master();
             $arrData['project_details'] = $this->agency_model->get_project_details($project_code,$project_id);
+
+            $arrData['slac_details'] = $this->agency_model->get_metting_details($project_id, 'slac');
+            $arrData['slsmc_details'] = $this->agency_model->get_metting_details($project_id, 'slsmc');
+            $arrData['csmc_details'] = $this->agency_model->get_metting_details($project_id, 'csmc');
+            
             $stage_details_data = $this->agency_model->get_project_stages_dus_details($project_id);
             $arrData['dus_for_which_work_started'] =  $this->agency_model->get_dus_started_count($project_id);
 
@@ -377,6 +387,10 @@ class Agency extends CI_Controller {
             $arrData['encrypted_url'] = $encrypted_url;
             $arrData['project_stages_master'] = $this->agency_model->get_stages_master();
             $arrData['project_details'] = $this->agency_model->get_project_details($project_code,$project_id);
+
+            $arrData['slac_details'] = $this->agency_model->get_metting_details($project_id, 'slac');
+            $arrData['slsmc_details'] = $this->agency_model->get_metting_details($project_id, 'slsmc');
+            $arrData['csmc_details'] = $this->agency_model->get_metting_details($project_id, 'csmc');
 
             $stage_details_data = $this->agency_model->get_project_stages_dus_details($project_id);
 

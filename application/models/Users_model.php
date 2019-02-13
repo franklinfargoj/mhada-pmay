@@ -1054,6 +1054,10 @@ class Users_model extends CI_Model{
 
         unset($postData['slac_meeting_date']);
         unset($postData['slac_meeting_no']);
+        unset($postData['slsmc_meeting_date']);
+        unset($postData['slsmc_meeting_no']);
+        unset($postData['csmc_meeting_date']);
+        unset($postData['csmc_meeting_no']);
 
         $postData['current_status_id'] = 3; //work not started - default
         $postData['created_at'] = date('Y-m-d H:i:s');
@@ -1084,7 +1088,31 @@ class Users_model extends CI_Model{
             $this->db->insert('project_slac_details',$slac_details);
         }
 
+        $slsmc_details = [];
+        $posted_data['slsmc_meeting_date'] =$posted_data_arr['slsmc_meeting_date'];
+        $posted_data['slsmc_meeting_no'] = $posted_data_arr['slsmc_meeting_no'];
+        foreach($posted_data['slsmc_meeting_date'] as $key => $val)
+        {
+          $slsmc_details = array(
+            'project_id'=>$inserted_id ,
+            'slsmc_meeting_date'=>$posted_data['slsmc_meeting_date'][$key],
+            'slsmc_meeting_no'=>$posted_data['slsmc_meeting_no'][$key]
+          );
+          $this->db->insert('project_slsmc_details',$slsmc_details);
+        }
 
+        $csmc_details = [];
+        $posted_data['csmc_meeting_date'] =$posted_data_arr['csmc_meeting_date'];
+        $posted_data['csmc_meeting_no'] = $posted_data_arr['csmc_meeting_no'];
+        foreach($posted_data['csmc_meeting_date'] as $key => $val)
+        {
+          $csmc_details = array(
+            'project_id'=>$inserted_id ,
+            'csmc_meeting_date'=>$posted_data['csmc_meeting_date'][$key],
+            'csmc_meeting_no'=>$posted_data['csmc_meeting_no'][$key],
+          );
+          $this->db->insert('project_csmc_details',$csmc_details);
+        }
     }
 
 
@@ -1225,35 +1253,28 @@ class Users_model extends CI_Model{
         return $master_records;
     }
 
-    function update_project_status($project_id,$development_status,$start_date_of_project,$tentative_completion_date_of_project,$user_id)
+    function update_project_status($project_status_array)
     {
         $this->db->select('ps.current_status_id,sm.status as development_status_name');
         $this->db->join('project_statuses_master sm','sm.id = ps.current_status_id','left');
-        $this->db->where('ps.id',$project_id);
+        $this->db->where('ps.id',$project_status_array['project_id']);
         $current_status = $this->db->get('projects ps')->row_array();
 
         $this->db->select('status');
-        $this->db->where('id',$development_status);
+        $this->db->where('id',$project_status_array['status_id']);
         $new_status_name = $this->db->get('project_statuses_master')->row('name');
 
-        if($development_status == $current_status['current_status_id'])
+        if($project_status_array['status_id'] == $current_status['current_status_id'])
         {
             return false;
         }
 
-        $this->db->where('id',$project_id);
-        $this->db->update('projects',array('current_status_id' => $development_status));
+        $this->db->where('id',$project_status_array['project_id']);
+        $this->db->update('projects',array('current_status_id' => $project_status_array['status_id']));
 
-        $log_array = array(
-            'project_id' => $project_id,
-            'status_id' => $development_status,
-            'start_date_of_project' => $start_date_of_project,
-            'tentative_completion_date_of_project' => $tentative_completion_date_of_project	,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_by_user_id' => $user_id
-        );
+        $project_status_array['created_at'] = date('Y-m-d H:i:s');
 
-        $this->db->insert('project_status_log',$log_array);
+        $this->db->insert('project_status_log',$project_status_array);
 
         return true;
     }
@@ -1574,6 +1595,14 @@ class Users_model extends CI_Model{
         $project_count = $this->db->get('projects')->result_array();
 
         return $project_count;
+    }
+
+    public function get_metting_details($project_id, $type)
+    {
+      $this->db->where('project_id',$project_id);
+      $metting_details = $this->db->get('project_'.$type.'_details')->result_array();
+
+      return $metting_details;
     }
  }
 

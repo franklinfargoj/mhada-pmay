@@ -157,19 +157,17 @@
 
                                   <div class="row">
                                      <div class="col-lg-6">
-                                         <a href="javascript:void(0);" id="add_slac_d_m" name="add_slac_d_m">Add SLAC meeting & date</a>
+                                         <a href="javascript:void(0);" id="add_slac_d_m" name="add_slac_d_m" onClick="addInput('slac_meeting_date', 'SLAC Meeting Date', 'slac_meeting_no', 'SLAC Meeting No', 'slac_dt_mt');">Add SLAC meeting & date</a>
                                      </div>
                                   </div>
 
-
-
-                                  <div class="row" style="margin-top: 2%">
+                                  <div class="row" style="margin-top: 2%" id="slsmc_dt_mt">
                                       <div class="col-lg-6">
                                           <div class="form-group">
                                               <label for="slsmc_meeting_date" class="form-control-label">
                                                   <strong>SLSMC Meeting Date <span style="color: red">*</span></strong>
                                               </label>
-                                              <input class="form-control" type="date" name="slsmc_meeting_date" value="" id="slsmc_meeting_date" required>
+                                              <input class="form-control" type="date" name="slsmc_meeting_date[]" value="" id="slsmc_meeting_date" required>
                                           </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -177,19 +175,24 @@
                                               <label for="slsmc_meeting_no" class="form-control-label">
                                                   <strong>SLSMC Meeting No <span style="color: red">*</span></strong>
                                               </label>
-                                              <input type="text" name="slsmc_meeting_no" class="form-control" id="slsmc_meeting_no" required>
+                                              <input type="text" name="slsmc_meeting_no[]" class="form-control" id="slsmc_meeting_no" required>
                                           </div>
                                       </div>
                                   </div>
 
+                                  <div class="row">
+                                     <div class="col-lg-6">
+                                         <a href="javascript:void(0);" id="add_slsmc_d_m" name="add_slsmc_d_m" onClick="addInput('slsmc_meeting_date', 'SLSMC Meeting Date', 'slsmc_meeting_no', 'SLSMC Meeting No', 'slsmc_dt_mt');">Add SLSMC meeting & date</a>
+                                     </div>
+                                  </div>
 
-                                  <div class="row" style="margin-top: 2%">
+                                  <div class="row" style="margin-top: 2%" id="csmc_dt_mt">
                                       <div class="col-lg-6">
                                           <div class="form-group">
                                               <label for="csmc_meeting_date" class="form-control-label">
                                                   <strong>CSMC Meeting Date <span style="color: red">*</span></strong>
                                               </label>
-                                              <input class="form-control" type="date" name="csmc_meeting_date" value="" id="csmc_meeting_date" required>
+                                              <input class="form-control" type="date" name="csmc_meeting_date[]" value="" id="csmc_meeting_date" required>
                                           </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -197,12 +200,18 @@
                                               <label for="csmc_meeting_no" class="form-control-label">
                                                   <strong>CSMC Meeting No <span style="color: red">*</span></strong>
                                               </label>
-                                              <input type="text" name="csmc_meeting_no" class="form-control" id="csmc_meeting_no" required>
+                                              <input type="text" name="csmc_meeting_no[]" class="form-control" id="csmc_meeting_no" required>
                                           </div>
                                       </div>
                                   </div>
 
                                   <div class="row">
+                                     <div class="col-lg-6">
+                                         <a href="javascript:void(0);" id="add_csmc_d_m" name="add_csmc_d_m" onClick="addInput('csmc_meeting_date', 'CSMC Meeting Date', 'csmc_meeting_no', 'CSMC Meeting No', 'csmc_dt_mt');">Add CSMC meeting & date</a>
+                                     </div>
+                                  </div>
+
+                                  <div class="row" style="margin-top: 2%">
                                       <div class="col-lg-6">
                                           <div class="form-group m-form__group">
                                               <label for="vertical" class="form-control-label">
@@ -483,6 +492,7 @@
 <script src="<?php echo base_url();?>assets/snippets/pages/user/login.js" type="text/javascript"></script>
 <script>
     $(document).ready(function(){
+      cnt = 1;
         $("#add_consultant").click(function(){
             $('#consultant_detail').append('<div class="row" style="margin-top: 2%">\n' +
                 '                                       <div class="col-lg-6">\n' +
@@ -573,45 +583,44 @@
 
 
         $(document).on("keyup blur", ".total_dus", function () {
-
             var sum = 0;
             $(".total_dus").each(function() {
                   sum += parseInt($(this).val());
             });
 
             $('#total_dus').attr('value',sum);
-
         });
-
-
-
-
-        $("#add_slac_d_m").click(function(){
-            $('#slac_dt_mt').append('<div class="col-12" style="margin-top: 2%">\n' +
-                '                                       <div class="row">\n' +
-                '                                       <div class="col-lg-6">\n' +
-                '                                           <div class="form-group">\n' +
-                '                                               <label for="slac_meeting_date" class="form-control-label">\n' +
-                '                                                   <strong>SLAC Meeting Date</strong>\n' +
-                '                                               </label>\n' +
-                '                                               <input type="date" name="slac_meeting_date[]" class="form-control" >\n' +
-                '                                           </div>\n' +
-                '                                       </div>\n' +
-                '                                       <div class="col-lg-6">\n' +
-                '                                           <div class="form-group">\n' +
-                '                                               <label for="slac_meeting_no" class="form-control-label">\n' +
-                '                                                   <strong>SLAC Meeting No</strong>\n' +
-                '                                               </label>\n' +
-                '                                               <input type="text" name="slac_meeting_no[]" class="form-control">\n' +
-                '                                           </div>\n' +
-                '                                       </div>\n' +
-                '                                   </div>\n' +
-                '                                   </div>\n' +
-                '\n' +
-                ''
-            )
-        });
-
-
     });
+
+  function addInput(fieldName1, fieldLabel1, fieldName2, fieldLabel2, appendId){
+    $('#' + appendId).append(
+      '<div class="col-lg-6 div'+ cnt +'">\n' +
+      '<div class="form-group">\n' +
+      '<label for="' + fieldName1 + '" class="form-control-label">\n' +
+      '<strong>' + fieldLabel1 + '</strong>\n' +
+      '</label>\n' +
+      '<input type="date" name="' + fieldName1 + '[]" class="form-control" >\n' +
+      '</div>\n' +
+      '</div>\n' +
+      '<div class="col-lg-5 div'+ cnt +'">\n' +
+      '<div class="form-group">\n' +
+      '<label for="' + fieldName2 + '" class="form-control-label">\n' +
+      '<strong>' + fieldLabel2 + '</strong>\n' +
+      '</label>\n' +
+      '<input type="text" name="' + fieldName2 + '[]" class="form-control">\n' +
+      '</div>\n' +
+      '</div>\n' +
+      '<div class="col-lg-1 div'+ cnt +'">'+
+      '<label for="' + fieldName1 + '" class="form-control-label">\n' +
+      '<strong>&nbsp;</strong>\n' +
+      '</label>\n' +
+      '<a href="javascript:void(0);" id="add_slac_d_m" name="add_slac_d_m" onClick="removeField('+ cnt +');" class="btn btn-danger" style="color: #FFFFFF;">Remove</a>'+
+      '</div>');
+    cnt++;
+  }
+
+  function removeField(className)
+  {
+    $('.div' + className).remove();
+  }
 </script>

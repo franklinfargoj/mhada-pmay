@@ -403,7 +403,7 @@ class Agency extends CI_Controller {
             }
             $arrData['project_stages_dus_details'] = $stage_dus_details;
             $arrData['total_dus_under_construction'] = $total_dus_under_construction;
-            $arrData['categories'] = ['sc','st','other'];
+            $arrData['categories'] = ['sc','st','obc','other'];
 
 
             if($postData = $this->input->post())

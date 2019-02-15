@@ -215,7 +215,7 @@
                                                     <div class="col-lg-6">
                                                         <div class="form-group m-form__group">
                                                             <label for="nodel_agency" class="form-control-label">
-                                                                <strong>Select Noddel Agency <span style="color: red">*</span></strong>
+                                                                <strong>Select Nodel Agency <span style="color: red">*</span></strong>
                                                             </label>
                                                             <select required name="nodel_agency" class="form-control agency_installment"
                                                                 id="nodel_agency">

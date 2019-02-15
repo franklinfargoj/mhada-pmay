@@ -320,6 +320,42 @@ class Projects extends CI_Controller {
                 $project_status_array['start_date_of_project'] = $start_date_of_project;
                 $project_status_array['tentative_completion_date_of_project'] = $tentative_completion_date_of_project;
                 $project_status_array['updated_by_user_id'] = $user_id;
+            }elseif($status_id == 6){
+                $is_plan_approved = $this->input->post('is_plan_approved');
+                if($status_id == '' || $is_plan_approved == '')
+                {
+                    $this->session->set_flashdata('error','Please select all fields.');
+                    redirect('projects');
+                }
+
+                $project_status_array['project_id'] = $project_id;
+                $project_status_array['status_id'] = $status_id;
+                $project_status_array['is_plan_approved'] = $is_plan_approved;
+                $project_status_array['updated_by_user_id'] = $user_id;
+            }elseif($status_id == 7){
+                $is_ec_obtained = $this->input->post('is_ec_obtained');
+                if($status_id == '' || $is_ec_obtained == '')
+                {
+                    $this->session->set_flashdata('error','Please select all fields.');
+                    redirect('projects');
+                }
+
+                $project_status_array['project_id'] = $project_id;
+                $project_status_array['status_id'] = $status_id;
+                $project_status_array['is_ec_obtained'] = $is_ec_obtained;
+                $project_status_array['updated_by_user_id'] = $user_id;
+            }elseif($status_id == 8){
+                $is_tendering_completed = $this->input->post('is_tendering_completed');
+                if($status_id == '' || $is_tendering_completed == '')
+                {
+                    $this->session->set_flashdata('error','Please select all fields.');
+                    redirect('projects');
+                }
+
+                $project_status_array['project_id'] = $project_id;
+                $project_status_array['status_id'] = $status_id;
+                $project_status_array['is_tendering_completed'] = $is_tendering_completed;
+                $project_status_array['updated_by_user_id'] = $user_id;
             }else{
                 if($status_id == '')
                 {
@@ -693,7 +729,7 @@ class Projects extends CI_Controller {
             }
             $arrData['project_stages_dus_details'] = $stage_dus_details;
             $arrData['total_dus_under_construction'] = $total_dus_under_construction;
-            $arrData['categories'] = ['sc','st','other'];
+            $arrData['categories'] = ['sc','st','obc','other'];
 
 
             if($postData = $this->input->post())

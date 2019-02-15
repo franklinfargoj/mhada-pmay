@@ -1269,8 +1269,22 @@ class Users_model extends CI_Model{
             return false;
         }
 
-        $this->db->where('id',$project_status_array['project_id']);
-        $this->db->update('projects',array('current_status_id' => $project_status_array['status_id']));
+        if(array_key_exists('is_plan_approved', $project_status_array)){
+          $this->db->where('id',$project_status_array['project_id']);
+          $this->db->update('projects',array('current_status_id' => $project_status_array['status_id'], 'is_plan_approved' => $project_status_array['is_plan_approved']));
+
+        }elseif(array_key_exists('is_ec_obtained', $project_status_array)){
+          $this->db->where('id',$project_status_array['project_id']);
+          $this->db->update('projects',array('current_status_id' => $project_status_array['status_id'], 'is_ec_obtained' => $project_status_array['is_ec_obtained']));
+
+        }elseif(array_key_exists('is_tendering_completed', $project_status_array)){
+          $this->db->where('id',$project_status_array['project_id']);
+          $this->db->update('projects',array('current_status_id' => $project_status_array['status_id'], 'is_tendering_completed' => $project_status_array['is_tendering_completed']));
+          
+        }else{
+          $this->db->where('id',$project_status_array['project_id']);
+          $this->db->update('projects',array('current_status_id' => $project_status_array['status_id']));
+        }
 
         $project_status_array['created_at'] = date('Y-m-d H:i:s');
 

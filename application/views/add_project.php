@@ -331,46 +331,7 @@
                                            <input type="radio" name="is_dpr_submitted" value="0">No
                                            </div>
                                        </div>
-
                                    </div>
-
-                                   <div class="row" style="margin-top: 2%">
-                                       <div class="col-lg-6">
-                                           <div class="form-group">
-                                               <label for="is_plan_approved" class="form-control-label">
-                                                   <strong>Plan Approved <span style="color: red">*</span></strong>
-                                               </label> <span>&nbsp;</span>
-                                               <input type="radio" name="is_plan_approved" value="1">Yes  <span>&nbsp;</span>
-                                               <input type="radio" name="is_plan_approved" value="0">No
-                                           </div>
-                                       </div>
-                                       <div class="col-lg-6">
-                                           <div class="form-group">
-                                               <label for="is_ec_obtained" class="form-control-label">
-                                                   <strong>EC Obtained If Required <span style="color: red">*</span></strong>
-                                               </label> <span>&nbsp;</span>
-                                               <input type="radio" name="is_ec_obtained" value="1">Yes  <span>&nbsp;</span>
-                                               <input type="radio" name="is_ec_obtained" value="0">No
-                                           </div>
-                                       </div>
-
-                                   </div>
-                                   <div class="row" style="margin-top: 2%">
-                                       <div class="col-lg-6">
-                                           <div class="form-group">
-                                               <label for="is_tendering_completed" class="form-control-label">
-                                                   <strong>Tendering Completed <span style="color: red">*</span></strong>
-                                               </label> <span>&nbsp;</span>
-                                               <input type="radio" name="is_tendering_completed" value="1">Yes  <span>&nbsp;</span>
-                                               <input type="radio" name="is_tendering_completed" value="0">No
-                                           </div>
-                                       </div>
-
-                                   </div>
-
-                                   <!-- ============================================================================= -->
-
-
                                </div>
 
                                <div class="m-portlet__head">

@@ -223,6 +223,30 @@
               '<input type="date" name="tentative_completion_date_of_project" class="form-control" >'+
             '</div>'+
           '</div>');                                
+      }else if(this.value == 6){
+        $('#date_container').html('<div class="form-group">'+
+          '<label for="is_plan_approved" class="form-control-label">'+
+          '<strong>Plan Approved</strong>'+
+          '</label> <span>&nbsp;</span>'+
+          '<input type="radio" name="is_plan_approved" id="is_plan_approved_yes" value="1"> <label for="is_plan_approved_yes"> Yes </label><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>'+
+          '<input type="radio" name="is_plan_approved" id="is_plan_approved_no" value="0"> <label for="is_plan_approved_no"> No</label>'+
+          '</div>');
+      }else if(this.value == 7){
+        $('#date_container').html('<div class="form-group">'+
+          '<label for="is_ec_obtained" class="form-control-label">'+
+          '<strong>EC Obtained If Required</strong>'+
+          '</label> <span>&nbsp;</span>'+
+          '<input type="radio" name="is_ec_obtained" id="is_ec_obtained_yes" value="1"> <label for="is_ec_obtained_yes"> Yes </label><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>'+
+          '<input type="radio" name="is_ec_obtained" id="is_ec_obtained_no" value="0"> <label for="is_ec_obtained_no"> No</label>'+
+          '</div>');
+      }else if(this.value == 8){
+        $('#date_container').html('<div class="form-group">'+
+          '<label for="is_tendering_completed" class="form-control-label">'+
+          '<strong>Tendering Completed</strong>'+
+          '</label> <span>&nbsp;</span>'+
+          '<input type="radio" name="is_tendering_completed" id="is_tendering_completed_yes" value="1"> <label for="is_tendering_completed_yes"> Yes </label><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>'+
+          '<input type="radio" name="is_tendering_completed" id="is_tendering_completed_no" value="0"> <label for="is_tendering_completed_no"> No</label>'+
+          '</div>');
       }else{
         $('#date_container').html('');
       }

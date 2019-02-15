@@ -735,7 +735,6 @@ class Projects extends CI_Controller {
             if($postData = $this->input->post())
             {
 
-
                     $postData['project_id'] = $project_id;
 
                     if($postData['nodel_agency'] == 1)

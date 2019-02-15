@@ -111,8 +111,7 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <?php foreach($slac_details as $slac){ ?>
+                                               <div class="row"><?php foreach($slac_details as $slac){ ?>
                                                     <div class="col-lg-6">
                                                         <h5>SLAC Meeting Date</h5>
                                                         <p>
@@ -213,7 +212,7 @@
                                                 </div>
                                             </div>
                                             <div class="m-portlet__body" style="margin-top: -5%;">
-                                                <?php echo form_open('','class="class="m-form m-form--fit m-form--label-align-right" id="save_stage_form"');?>
+                                                <?php echo form_open_multipart('','class="class="m-form m-form--fit m-form--label-align-right" id="save_stage_form"');?>
 
                                                 <div class="row">
                                                     <div class="col-lg-6">
@@ -250,26 +249,36 @@
                                                         <thead class="thead-light">
                                                             <tr>
                                                                 <th scope="col">installment</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOI Order No</th>
-                                                                <th scope="col">GOI Order Date</th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
+                                                                <th scope="col" colspan="4" style="text-align: center">GOI</th>
+                                                                <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                                <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                                <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                                <th scope="col">Remark</th>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="col">Category</th>
+
                                                                 <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
+                                                                <th scope="col">Order No</th>
+                                                                <th scope="col">Order Date</th>
+                                                                <th scope="col">Upload Doc</th>
+
+                                                                <th scope="col">Amount (In Rs.) </th>
+                                                                <th scope="col">Order No</th>
+                                                                <th scope="col">Order Date</th>
+                                                                <th scope="col">Upload Doc</th>
+
+                                                                <th scope="col">Received Amount </th>
+                                                                <th scope="col">Received Date</th>
+                                                                <th scope="col">Released Amount</th>
+                                                                <th scope="col">Released Oder No</th>
+                                                                <th scope="col">Released Order Date</th>
+                                                                <th scope="col">Upload Doc</th>
+
+
+                                                                <th scope="col">No Of Transactions</th>
+                                                                <th scope="col">Expenditure - GOI</th>
+                                                                <th scope="col">Utilization Certificate</th>
                                                                 <th scope="col"></th>
                                                             </tr>
                                                         </thead>
@@ -294,16 +303,38 @@
                                                                 </td>
                                                                 <td><input class="form-control" type="date" max="<?php echo date("Y-m-d"); ?>" name="financial_details[<?php echo $category; ?>][goi_order_date]"
                                                                         value=""></td>
+                                                                <td>
+                                                                    <input type="file" name="<?php echo $category; ?>_goi_upload_doc"  class="form-control" />
+                                                                </td>
+
+                                                                <td><input type="text" class="form-control total_gom_amount"
+                                                                           name="financial_details[<?php echo $category; ?>][gom_amount]"
+                                                                           value="0" /> </td>
                                                                 <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][gom_order_no]" />
                                                                 </td>
                                                                 <td><input type="date" class="form-control" max="<?php echo date("Y-m-d"); ?>" name="financial_details[<?php echo $category; ?>][gom_order_date]" />
+                                                                </td>
+                                                                <td>
+                                                                    <input type="file" name="<?php echo $category; ?>_gom_upload_doc"  class="form-control" />
+                                                                </td>
+
+                                                                <td><input type="text" class="form-control total_mhada_received_amount" name="financial_details[<?php echo $category; ?>][mhada_received_amount]" value="0" />
+                                                                </td>
+
+                                                                <td><input type="date" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_received_date]" />
+                                                                </td>
+                                                                <td><input type="text" class="form-control total_mhada_released_amount" name="financial_details[<?php echo $category; ?>][mhada_released_amount]" value="0" />
                                                                 </td>
                                                                 <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_order_no]" />
                                                                 </td>
                                                                 <td><input type="date" class="form-control" max="<?php echo date("Y-m-d"); ?>" name="financial_details[<?php echo $category; ?>][mhada_order_date]" />
                                                                 </td>
-                                                                <td>- </td>
+                                                                <td><input type="file" name="<?php echo $category; ?>_mhada_upload_doc"  class="form-control" /></td>
+
                                                                 <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td><textarea class="form-control" name="financial_details[<?php echo $category; ?>][remark]"></textarea></td>
 
                                                             </tr>
                                                             <?php
@@ -314,14 +345,26 @@
                                                                     <h5>Total Amount</h5>
                                                                 </td>
                                                                 <td><input readonly class="form-control" type="text"
-                                                                        name="total_amount" id="total_amount" value="0" /></td>
+                                                                        name="financial_details[total_amount]" id="total_amount" value="0" /></td>
                                                                 <td> - </td>
                                                                 <td> - </td>
                                                                 <td> - </td>
+                                                                <td><input readonly class="form-control" type="text"
+                                                                           name="financial_details[total_gom_amount]" id="total_gom_amount" value="0" /></td>
+
+
                                                                 <td> - </td>
                                                                 <td> - </td>
                                                                 <td> - </td>
+
+                                                                <td><input readonly class="form-control" type="text"
+                                                                           name="financial_details[total_mhada_received_amount]" id="total_mhada_received_amount" value="0" /></td>
+
+
                                                                 <td>-</td>
+                                                                <td><input readonly class="form-control" type="text"
+                                                                           name="financial_details[total_mhada_released_amount]" id="total_mhada_released_amount" value="0" /></td>
+
                                                                 <td> - </td>
                                                             </tr>
                                                         </tbody>
@@ -333,53 +376,80 @@
                                                     <table class="table mb-0 table-hover" id="update_form_of_gom_fund"
                                                         style="display:none;">
                                                         <thead class="thead-light">
-                                                            <tr>
-                                                                <th scope="col">installment Display</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                            </tr>
+                                                        <tr>
+                                                            <th scope="col">installment</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                            <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                            <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                            <th scope="col">Remark</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="col">Category</th>
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Received Amount </th>
+                                                            <th scope="col">Received Date</th>
+                                                            <th scope="col">Released Amount</th>
+                                                            <th scope="col">Released Oder No</th>
+                                                            <th scope="col">Released Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+
+                                                            <th scope="col">No Of Transactions</th>
+                                                            <th scope="col">Expenditure - GOI</th>
+                                                            <th scope="col">Utilization Certificate</th>
+
+                                                            <th scope="col"></th>
+
+                                                        </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php
                                          foreach($categories as $category) {
                                              ?>
-                                                            <tr>
-                                                                <td>
-                                                                    <h5>
-                                                                        <?php echo strtoupper($category); ?>
-                                                                    </h5>
-                                                                </td>
+                                             <tr>
+                                                 <td>
+                                                     <h5>
+                                                         <?php echo strtoupper($category); ?>
+                                                     </h5>
+                                                 </td>
 
-                                                                <td><input type="text" class="form-control gom_total_amount"
-                                                                        name="gom_financial_details[<?php echo $category; ?>][amount]"
-                                                                        value="0" /> </td>
-                                                                <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][gom_order_no]" />
-                                                                </td>
-                                                                <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][gom_order_date]" />
-                                                                </td>
-                                                                <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_no]" />
-                                                                </td>
-                                                                <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_date]" />
-                                                                </td>
-                                                                <td> </td>
-                                                                <td></td>
+                                                 <td><input type="text" class="form-control gom_total_gom_amount"
+                                                            name="gom_financial_details[<?php echo $category; ?>][gom_amount]"
+                                                            value="0" /> </td>
+                                                 <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][gom_order_no]" />
+                                                 </td>
+                                                 <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][gom_order_date]" />
+                                                 </td>
+                                                 <td>
+                                                     <input type="file" name="<?php echo $category; ?>_gom_upload_doc_gom"  class="form-control" />
+                                                 </td>
 
-                                                            </tr>
+                                                 <td><input type="text" class="form-control gom_total_mhada_received_amount" name="gom_financial_details[<?php echo $category; ?>][mhada_received_amount]" value="0" />
+                                                 </td>
+
+                                                 <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_received_date]" />
+                                                 </td>
+                                                 <td><input type="text" class="form-control gom_total_mhada_released_amount" name="gom_financial_details[<?php echo $category; ?>][mhada_released_amount]" value="0" />
+                                                 </td>
+                                                 <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_no]" />
+                                                 </td>
+                                                 <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_date]" />
+                                                 </td>
+                                                 <td><input type="file" name="<?php echo $category; ?>_mhada_upload_doc_gom"  class="form-control" /></td>
+
+                                                 <td>-</td>
+                                                 <td>-</td>
+                                                 <td>-</td>
+
+                                                 <td><textarea class="form-control" name="gom_financial_details[<?php echo $category; ?>][remark]"></textarea></td>
+
+
+                                             </tr>
                                                             <?php
                                          }
                                          ?>
@@ -388,13 +458,21 @@
                                                                     <h5>Total Amount</h5>
                                                                 </td>
                                                                 <td><input readonly class="form-control" type="text"
-                                                                        name="gom_total_amount" id="gom_total_amount"
-                                                                        value="0" /></td>
+                                                                           name="gom_financial_details[total_gom_amount]" id="gom_total_gom_amount" value="0" /></td>
+
+
                                                                 <td> - </td>
                                                                 <td> - </td>
                                                                 <td> - </td>
-                                                                <td> - </td>
+
+                                                                <td><input readonly class="form-control" type="text"
+                                                                           name="gom_financial_details[total_mhada_received_amount]" id="gom_total_mhada_received_amount" value="0" /></td>
+
+
                                                                 <td>-</td>
+                                                                <td><input readonly class="form-control" type="text"
+                                                                           name="gom_financial_details[total_mhada_released_amount]" id="gom_total_mhada_released_amount" value="0" /></td>
+
                                                                 <td> - </td>
                                                             </tr>
                                                         </tbody>
@@ -453,67 +531,112 @@
                                                         <thead class="thead-light">
                                                             <tr>
                                                                 <th scope="col">1st installment (40%)</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOI Order No</th>
-                                                                <th scope="col">GOI Order Date</th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
+                                                                <th scope="col" colspan="4" style="text-align: center">GOI</th>
+                                                                <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                                <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                                <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                                <th scope="col">Remark</th>
+
+
                                                                 <th scope="col">2nd installment (40%)</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOI Order No</th>
-                                                                <th scope="col">GOI Order Date</th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
+                                                                <th scope="col" colspan="4" style="text-align: center">GOI</th>
+                                                                <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                                <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                                <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                                <th scope="col">Remark</th>
+
                                                                 <th scope="col">3rd installment (20%)</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOI Order No</th>
-                                                                <th scope="col">GOI Order Date</th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
+                                                                <th scope="col" colspan="4" style="text-align: center">GOI</th>
+                                                                <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                                <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                                <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                                <th scope="col">Remark</th>
+
                                                             </tr>
                                                             <tr>
                                                                 <th scope="col">Category</th>
+
                                                                 <th scope="col">Amount (In Rs.) </th>
+                                                                <th scope="col">Order No</th>
+                                                                <th scope="col">Order Date</th>
+                                                                <th scope="col">Upload Doc</th>
+
+
+                                                                <th scope="col">Amount (In Rs.) </th>
+                                                                <th scope="col">Order No</th>
+                                                                <th scope="col">Order Date</th>
+                                                                <th scope="col">Upload Doc</th>
+
+                                                                <th scope="col">Received Amount</th>
+                                                                <th scope="col">Received Date</th>
+                                                                <th scope="col">Released Amount</th>
+                                                                <th scope="col">Released Order No</th>
+                                                                <th scope="col">Released Order Date</th>
+                                                                <th scope="col">Upload Doc</th>
+
+                                                                <th scope="col">No Of Transactions</th>
+                                                                <th scope="col">Expenditure</th>
+                                                                <th scope="col">Utilization Certificate</th>
+
                                                                 <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
+
+
+
                                                                 <th scope="col">Category</th>
+
                                                                 <th scope="col">Amount (In Rs.) </th>
+                                                                <th scope="col">Order No</th>
+                                                                <th scope="col">Order Date</th>
+                                                                <th scope="col">Upload Doc</th>
+
+
+                                                                <th scope="col">Amount (In Rs.) </th>
+                                                                <th scope="col">Order No</th>
+                                                                <th scope="col">Order Date</th>
+                                                                <th scope="col">Upload Doc</th>
+
+                                                                <th scope="col">Received Amount</th>
+                                                                <th scope="col">Received Date</th>
+                                                                <th scope="col">Released Amount</th>
+                                                                <th scope="col">Released Order No</th>
+                                                                <th scope="col">Released Order Date</th>
+                                                                <th scope="col">Upload Doc</th>
+
+                                                                <th scope="col">No Of Transactions</th>
+                                                                <th scope="col">Expenditure</th>
+                                                                <th scope="col">Utilization Certificate</th>
+
                                                                 <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
+
+
+
+
                                                                 <th scope="col">Category</th>
+
                                                                 <th scope="col">Amount (In Rs.) </th>
+                                                                <th scope="col">Order No</th>
+                                                                <th scope="col">Order Date</th>
+                                                                <th scope="col">Upload Doc</th>
+
+
+                                                                <th scope="col">Amount (In Rs.) </th>
+                                                                <th scope="col">Order No</th>
+                                                                <th scope="col">Order Date</th>
+                                                                <th scope="col">Upload Doc</th>
+
+                                                                <th scope="col">Received Amount</th>
+                                                                <th scope="col">Received Date</th>
+                                                                <th scope="col">Released Amount</th>
+                                                                <th scope="col">Released Order No</th>
+                                                                <th scope="col">Released Order Date</th>
+                                                                <th scope="col">Upload Doc</th>
+
+                                                                <th scope="col">No Of Transactions</th>
+                                                                <th scope="col">Expenditure</th>
+                                                                <th scope="col">Utilization Certificate</th>
+
                                                                 <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
+
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -535,11 +658,33 @@
                                                                 <td>
                                                                     <?php echo isset($goi_details[0][$category.'_goi_order_date'])?date('d-m-Y',strtotime($goi_details[0][$category.'_goi_order_date'])):null;   ?>
                                                                 </td>
+                                                                <td>  <?php if(isset($goi_details[0][$category.'_goi_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[0][$category.'_goi_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0][$category.'_gom_amount'])?$goi_details[0][$category.'_gom_amount']:null;   ?>
+                                                                </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[0][$category.'_gom_order_no'])?$goi_details[0][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[0][$category.'_gom_order_date'])?date('d-m-Y',strtotime($goi_details[0][$category.'_gom_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($goi_details[0][$category.'_gom_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[0][$category.'_gom_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0][$category.'_mhada_received_amount'])?$goi_details[0][$category.'_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0][$category.'_mhada_received_date'])?date('d-m-Y',strtotime($goi_details[0][$category.'_mhada_received_date'])):null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0][$category.'_mhada_released_amount'])?$goi_details[0][$category.'_mhada_released_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[0][$category.'_mhada_order_no'])?$goi_details[0][$category.'_mhada_order_no']:null;   ?>
@@ -547,15 +692,27 @@
                                                                 <td>
                                                                     <?php echo isset($goi_details[0][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($goi_details[0][$category.'_mhada_order_date'])):null;   ?>
                                                                 </td>
+                                                                <td><?php if(isset($goi_details[0][$category.'_mhada_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[0][$category.'_mhada_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0][$category.'_transactions'])?$goi_details[0][$category.'_transactions']:null;   ?>
+                                                                </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[0][$category.'_utilization_amount'])?$goi_details[0][$category.'_utilization_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php  ?>
                                                                 </td>
+                                                                <td> <?php echo isset($goi_details[0][$category.'_remark'])?$goi_details[0][$category.'_remark']:null;   ?>
+                                                                </td>
 
                                                                 <td>
-                                                                    <?php echo $category; ?>
+                                                                    <h5>
+                                                                        <?php echo $category; ?>
+                                                                    </h5>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_amount'])?$goi_details[1][$category.'_amount']:null;   ?>
@@ -566,11 +723,33 @@
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_goi_order_date'])?date('d-m-Y',strtotime($goi_details[1][$category.'_goi_order_date'])):null;   ?>
                                                                 </td>
+                                                                <td>  <?php if(isset($goi_details[1][$category.'_goi_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('/public/uploads/'.$goi_details[1][$category.'_goi_upload_doc']); ?>" target="_blank" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1][$category.'_gom_amount'])?$goi_details[1][$category.'_gom_amount']:null;   ?>
+                                                                </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_gom_order_no'])?$goi_details[1][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_gom_order_date'])?date('d-m-Y',strtotime($goi_details[1][$category.'_gom_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($goi_details[1][$category.'_gom_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[1][$category.'_gom_upload_doc']); ?>" target="_blank" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1][$category.'_mhada_received_amount'])?$goi_details[1][$category.'_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1][$category.'_mhada_received_date'])?date('d-m-Y',strtotime($goi_details[1][$category.'_mhada_received_date'])):null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1][$category.'_mhada_released_amount'])?$goi_details[1][$category.'_mhada_released_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_mhada_order_no'])?$goi_details[1][$category.'_mhada_order_no']:null;   ?>
@@ -578,15 +757,28 @@
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($goi_details[1][$category.'_mhada_order_date'])):null;   ?>
                                                                 </td>
+                                                                <td><?php if(isset($goi_details[1][$category.'_mhada_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[1][$category.'_mhada_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1][$category.'_transactions'])?$goi_details[1][$category.'_transactions']:null;   ?>
+                                                                </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_utilization_amount'])?$goi_details[1][$category.'_utilization_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php  ?>
                                                                 </td>
+                                                                <td>  <?php echo isset($goi_details[1][$category.'_remark'])?$goi_details[1][$category.'_remark']:null;   ?>
+                                                                </td>
+
 
                                                                 <td>
-                                                                    <?php echo $category; ?>
+                                                                    <h5>
+                                                                        <?php echo $category; ?>
+                                                                    </h5>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_amount'])?$goi_details[2][$category.'_amount']:null;   ?>
@@ -597,11 +789,33 @@
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_goi_order_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_goi_order_date'])):null;   ?>
                                                                 </td>
+                                                                <td>  <?php if(isset($goi_details[2][$category.'_goi_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('/public/uploads/'.$goi_details[2][$category.'_goi_upload_doc']); ?>" target="_blank" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2][$category.'_gom_amount'])?$goi_details[2][$category.'_gom_amount']:null;   ?>
+                                                                </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_gom_order_no'])?$goi_details[2][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_gom_order_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_gom_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($goi_details[2][$category.'_gom_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[2][$category.'_gom_upload_doc']); ?>" target="_blank" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2][$category.'_mhada_received_amount'])?$goi_details[2][$category.'_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2][$category.'_mhada_received_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_mhada_received_date'])):null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2][$category.'_mhada_released_amount'])?$goi_details[2][$category.'_mhada_released_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_mhada_order_no'])?$goi_details[2][$category.'_mhada_order_no']:null;   ?>
@@ -609,11 +823,21 @@
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_mhada_order_date'])):null;   ?>
                                                                 </td>
+                                                                <td><?php if(isset($goi_details[2][$category.'_mhada_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[2][$category.'_mhada_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2][$category.'_transactions'])?$goi_details[2][$category.'_transactions']:null;   ?>
+                                                                </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_utilization_amount'])?$goi_details[2][$category.'_utilization_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php  ?>
+                                                                </td>
+                                                                <td>  <?php echo isset($goi_details[2][$category.'_remark'])?$goi_details[2][$category.'_remark']:null;   ?>
                                                                 </td>
 
                                                             </tr>
@@ -629,12 +853,30 @@
                                                                 <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0]['total_gom_amount'])?$goi_details[0]['total_gom_amount']:null;   ?>
+                                                                </td>
                                                                 <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
+
+
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0]['total_mhada_received_amount'])?$goi_details[0]['total_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>-</td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0]['total_mhada_released_amount'])?$goi_details[0]['total_mhada_released_amount']:null;   ?>
+                                                                </td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+
                                                                 <td>
                                                                     <?php echo isset($goi_details[0]['total_utilization_amount'])?$goi_details[0]['total_utilization_amount']:null;   ?>
                                                                 </td>
+                                                                <td>-</td>
                                                                 <td>-</td>
 
                                                                 <td>
@@ -646,13 +888,33 @@
                                                                 <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1]['total_gom_amount'])?$goi_details[1]['total_gom_amount']:null;   ?>
+                                                                </td>
                                                                 <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
+
+
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1]['total_mhada_received_amount'])?$goi_details[1]['total_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>-</td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1]['total_mhada_released_amount'])?$goi_details[1]['total_mhada_released_amount']:null;   ?>
+                                                                </td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+
                                                                 <td>
                                                                     <?php echo isset($goi_details[1]['total_utilization_amount'])?$goi_details[1]['total_utilization_amount']:null;   ?>
                                                                 </td>
                                                                 <td>-</td>
+                                                                <td>-</td>
+
+
 
                                                                 <td>
                                                                     <h5>Total Amount</h5>
@@ -663,14 +925,33 @@
                                                                 <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2]['total_gom_amount'])?$goi_details[2]['total_gom_amount']:null;   ?>
+                                                                </td>
                                                                 <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
+
+
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2]['total_mhada_received_amount'])?$goi_details[2]['total_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>-</td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2]['total_mhada_released_amount'])?$goi_details[2]['total_mhada_released_amount']:null;   ?>
+                                                                </td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+
                                                                 <td>
                                                                     <?php echo isset($goi_details[2]['total_utilization_amount'])?$goi_details[2]['total_utilization_amount']:null;   ?>
                                                                 </td>
                                                                 <td>-</td>
-
+                                                                <td>-</td>
+                                                                
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -680,63 +961,105 @@
                                                     <table class="table mb-0 table-hover" id="display_form_of_gom_fund"
                                                         style="display:none;">
                                                         <thead class="thead-light">
-                                                            <tr>
-                                                                <th scope="col">1st installment (40%)</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
-                                                                <th scope="col">2nd installment (40%)</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
-                                                                <th scope="col">3rd installment (20%)</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                            </tr>
+                                                        <tr>
+                                                            <th scope="col">1st installment (40%)</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                            <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                            <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                            <th scope="col">Remark</th>
+
+
+                                                            <th scope="col">2nd installment (40%)</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                            <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                            <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                            <th scope="col">Remark</th>
+
+                                                            <th scope="col">3rd installment (20%)</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                            <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                            <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                            <th scope="col">Remark</th>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="col">Category</th>
+
+
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Received Amount</th>
+                                                            <th scope="col">Received Date</th>
+                                                            <th scope="col">Released Amount</th>
+                                                            <th scope="col">Released Order No</th>
+                                                            <th scope="col">Released Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">No Of Transactions</th>
+                                                            <th scope="col">Expenditure</th>
+                                                            <th scope="col">Utilization Certificate</th>
+
+                                                            <th scope="col"></th>
+
+
+
+                                                            <th scope="col">Category</th>
+
+
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Received Amount</th>
+                                                            <th scope="col">Received Date</th>
+                                                            <th scope="col">Released Amount</th>
+                                                            <th scope="col">Released Order No</th>
+                                                            <th scope="col">Released Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">No Of Transactions</th>
+                                                            <th scope="col">Expenditure</th>
+                                                            <th scope="col">Utilization Certificate</th>
+
+                                                            <th scope="col"></th>
+
+
+
+
+                                                            <th scope="col">Category</th>
+
+
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Received Amount</th>
+                                                            <th scope="col">Received Date</th>
+                                                            <th scope="col">Released Amount</th>
+                                                            <th scope="col">Released Order No</th>
+                                                            <th scope="col">Released Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">No Of Transactions</th>
+                                                            <th scope="col">Expenditure</th>
+                                                            <th scope="col">Utilization Certificate</th>
+
+                                                            <th scope="col"></th>
+
+                                                        </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php
-                                             foreach($categories as $category) {
-                                                 ?>
+                                                        <?php
+                                                        foreach($categories as $category) {
+                                                            ?>
                                                             <tr>
                                                                 <td>
                                                                     <h5>
@@ -744,7 +1067,7 @@
                                                                     </h5>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($gom_details[0][$category.'_amount'])?$gom_details[0][$category.'_amount']:null;   ?>
+                                                                    <?php echo isset($gom_details[0][$category.'_gom_amount'])?$gom_details[0][$category.'_gom_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[0][$category.'_gom_order_no'])?$gom_details[0][$category.'_gom_order_no']:null;   ?>
@@ -752,11 +1075,33 @@
                                                                 <td>
                                                                     <?php echo isset($gom_details[0][$category.'_gom_order_date'])?date('d-m-Y',strtotime($gom_details[0][$category.'_gom_order_date'])):null;   ?>
                                                                 </td>
+                                                                <td><?php if(isset($gom_details[0][$category.'_gom_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$gom_details[0][$category.'_gom_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[0][$category.'_mhada_received_amount'])?$gom_details[0][$category.'_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[0][$category.'_mhada_received_date'])?date('d-m-Y',strtotime($gom_details[0][$category.'_mhada_received_date'])):null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[0][$category.'_mhada_released_amount'])?$gom_details[0][$category.'_mhada_released_amount']:null;   ?>
+                                                                </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[0][$category.'_mhada_order_no'])?$gom_details[0][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[0][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($gom_details[0][$category.'_mhada_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($gom_details[0][$category.'_mhada_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$gom_details[0][$category.'_mhada_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[0][$category.'_transactions'])?$gom_details[0][$category.'_transactions']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[0][$category.'_utilization_amount'])?$gom_details[0][$category.'_utilization_amount']:null;   ?>
@@ -764,12 +1109,16 @@
                                                                 <td>
                                                                     <?php  ?>
                                                                 </td>
+                                                                <td> <?php echo isset($gom_details[0][$category.'_remark'])?$gom_details[0][$category.'_remark']:null;   ?>
+                                                                </td>
 
                                                                 <td>
-                                                                    <?php echo $category; ?>
+                                                                    <h5>
+                                                                        <?php echo $category; ?>
+                                                                    </h5>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($gom_details[1][$category.'_amount'])?$gom_details[1][$category.'_amount']:null;   ?>
+                                                                    <?php echo isset($gom_details[1][$category.'_gom_amount'])?$gom_details[1][$category.'_gom_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[1][$category.'_gom_order_no'])?$gom_details[1][$category.'_gom_order_no']:null;   ?>
@@ -777,11 +1126,33 @@
                                                                 <td>
                                                                     <?php echo isset($gom_details[1][$category.'_gom_order_date'])?date('d-m-Y',strtotime($gom_details[1][$category.'_gom_order_date'])):null;   ?>
                                                                 </td>
+                                                                <td><?php if(isset($gom_details[1][$category.'_gom_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$gom_details[1][$category.'_gom_upload_doc']); ?>" target="_blank" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[1][$category.'_mhada_received_amount'])?$gom_details[1][$category.'_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[1][$category.'_mhada_received_date'])?date('d-m-Y',strtotime($gom_details[1][$category.'_mhada_received_date'])):null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[1][$category.'_mhada_released_amount'])?$gom_details[1][$category.'_mhada_released_amount']:null;   ?>
+                                                                </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[1][$category.'_mhada_order_no'])?$gom_details[1][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[1][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($gom_details[1][$category.'_mhada_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($gom_details[1][$category.'_mhada_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$gom_details[1][$category.'_mhada_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[1][$category.'_transactions'])?$gom_details[1][$category.'_transactions']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[1][$category.'_utilization_amount'])?$gom_details[1][$category.'_utilization_amount']:null;   ?>
@@ -789,12 +1160,17 @@
                                                                 <td>
                                                                     <?php  ?>
                                                                 </td>
+                                                                <td>  <?php echo isset($gom_details[1][$category.'_remark'])?$gom_details[1][$category.'_remark']:null;   ?>
+                                                                </td>
+
 
                                                                 <td>
-                                                                    <?php echo $category; ?>
+                                                                    <h5>
+                                                                        <?php echo $category; ?>
+                                                                    </h5>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($gom_details[2][$category.'_amount'])?$gom_details[2][$category.'_amount']:null;   ?>
+                                                                    <?php echo isset($gom_details[2][$category.'_gom_amount'])?$gom_details[2][$category.'_gom_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[2][$category.'_gom_order_no'])?$gom_details[2][$category.'_gom_order_no']:null;   ?>
@@ -802,11 +1178,33 @@
                                                                 <td>
                                                                     <?php echo isset($gom_details[2][$category.'_gom_order_date'])?date('d-m-Y',strtotime($gom_details[2][$category.'_gom_order_date'])):null;   ?>
                                                                 </td>
+                                                                <td><?php if(isset($gom_details[2][$category.'_gom_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$gom_details[2][$category.'_gom_upload_doc']); ?>" target="_blank" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[2][$category.'_mhada_received_amount'])?$gom_details[2][$category.'_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[2][$category.'_mhada_received_date'])?date('d-m-Y',strtotime($gom_details[2][$category.'_mhada_received_date'])):null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[2][$category.'_mhada_released_amount'])?$gom_details[2][$category.'_mhada_released_amount']:null;   ?>
+                                                                </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[2][$category.'_mhada_order_no'])?$gom_details[2][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[2][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($gom_details[2][$category.'_mhada_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($gom_details[2][$category.'_mhada_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$gom_details[2][$category.'_mhada_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[2][$category.'_transactions'])?$gom_details[2][$category.'_transactions']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[2][$category.'_utilization_amount'])?$gom_details[2][$category.'_utilization_amount']:null;   ?>
@@ -814,57 +1212,104 @@
                                                                 <td>
                                                                     <?php  ?>
                                                                 </td>
+                                                                <td>  <?php echo isset($gom_details[2][$category.'_remark'])?$gom_details[2][$category.'_remark']:null;   ?>
+                                                                </td>
 
                                                             </tr>
 
-                                                            <?php } ?>
-                                                            <tr>
-                                                                <td>
-                                                                    <h5>Total Amount</h5>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo isset($gom_details[0]['total_amount'])?$gom_details[0]['total_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>
-                                                                    <?php echo isset($gom_details[0]['total_utilization_amount'])?$gom_details[0]['total_utilization_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
+                                                        <?php } ?>
+                                                        <tr>
+                                                            <td>
+                                                                <h5>Total Amount</h5>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[0]['total_gom_amount'])?$gom_details[0]['total_gom_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
 
-                                                                <td>
-                                                                    <h5>Total Amount</h5>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo isset($gom_details[1]['total_amount'])?$gom_details[1]['total_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>
-                                                                    <?php echo isset($gom_details[1]['total_utilization_amount'])?$gom_details[1]['total_utilization_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
 
-                                                                <td>
-                                                                    <h5>Total Amount</h5>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo isset($gom_details[2]['total_amount'])?$gom_details[2]['total_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>
-                                                                    <?php echo isset($gom_details[2]['total_utilization_amount'])?$gom_details[2]['total_utilization_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[0]['total_mhada_received_amount'])?$gom_details[0]['total_mhada_received_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[0]['total_mhada_released_amount'])?$gom_details[0]['total_mhada_released_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
 
-                                                            </tr>
+                                                            <td>
+                                                                <?php echo isset($gom_details[0]['total_utilization_amount'])?$gom_details[0]['total_utilization_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+                                                            <td>
+                                                                <h5>Total Amount</h5>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[1]['total_gom_amount'])?$gom_details[1]['total_gom_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+                                                            <td>
+                                                                <?php echo isset($gom_details[1]['total_mhada_received_amount'])?$gom_details[1]['total_mhada_received_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[1]['total_mhada_released_amount'])?$gom_details[1]['total_mhada_released_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+                                                            <td>
+                                                                <?php echo isset($gom_details[1]['total_utilization_amount'])?$gom_details[1]['total_utilization_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+
+                                                            <td>
+                                                                <h5>Total Amount</h5>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[2]['total_gom_amount'])?$gom_details[2]['total_gom_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+                                                            <td>
+                                                                <?php echo isset($gom_details[2]['total_mhada_received_amount'])?$gom_details[2]['total_mhada_received_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[2]['total_mhada_released_amount'])?$gom_details[2]['total_mhada_released_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+                                                            <td>
+                                                                <?php echo isset($gom_details[2]['total_utilization_amount'])?$gom_details[2]['total_utilization_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -942,6 +1387,79 @@
 
 
         });
+        $(document).on("keyup", ".total_gom_amount", function () {
+
+            var sum = 0;
+            $(".total_gom_amount").each(function () {
+                sum += parseInt($(this).val());
+            });
+
+            $('#total_gom_amount').attr('value', sum);
+
+
+        });
+        $(document).on("keyup", ".total_mhada_received_amount", function () {
+
+            var sum = 0;
+            $(".total_mhada_received_amount").each(function () {
+                sum += parseInt($(this).val());
+            });
+
+            $('#total_mhada_received_amount').attr('value', sum);
+
+
+        });
+        $(document).on("keyup", ".total_mhada_released_amount", function () {
+
+            var sum = 0;
+            $(".total_mhada_released_amount").each(function () {
+                sum += parseInt($(this).val());
+            });
+
+            $('#total_mhada_released_amount').attr('value', sum);
+
+
+        });
+
+
+
+
+        $(document).on("keyup", ".gom_total_gom_amount", function () {
+
+            var sum = 0;
+            $(".gom_total_gom_amount").each(function () {
+                sum += parseInt($(this).val());
+            });
+
+            $('#gom_total_gom_amount').attr('value', sum);
+
+
+        });
+        $(document).on("keyup", ".gom_total_mhada_received_amount", function () {
+
+            var sum = 0;
+            $(".gom_total_mhada_received_amount").each(function () {
+                sum += parseInt($(this).val());
+            });
+
+            $('#gom_total_mhada_received_amount').attr('value', sum);
+
+
+        });
+        $(document).on("keyup", ".gom_total_mhada_released_amount", function () {
+
+            var sum = 0;
+            $(".gom_total_mhada_released_amount").each(function () {
+                sum += parseInt($(this).val());
+            });
+
+            $('#gom_total_mhada_released_amount').attr('value', sum);
+
+
+        });
+
+
+
 
         $(document).on("keyup", ".total_utilization_amount", function () {
 

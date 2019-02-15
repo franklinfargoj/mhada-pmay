@@ -248,30 +248,40 @@
                                                 <div class="table-responsive">
                                                     <table class="table mb-0 table-hover" id="update_form_of_goi_fund">
                                                         <thead class="thead-light">
-                                                            <tr>
-                                                                <th scope="col">installment</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOI Order No</th>
-                                                                <th scope="col">GOI Order Date</th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                            </tr>
+                                                        <tr>
+                                                            <th scope="col">installment</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOI</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                            <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                            <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                            <th scope="col">Remark</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="col">Category</th>
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Received Amount </th>
+                                                            <th scope="col">Received Date</th>
+                                                            <th scope="col">Released Amount</th>
+                                                            <th scope="col">Released Oder No</th>
+                                                            <th scope="col">Released Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+
+                                                            <th scope="col">No Of Transactions</th>
+                                                            <th scope="col">Expenditure - GOI</th>
+                                                            <th scope="col">Utilization Certificate</th>
+                                                            <th scope="col"></th>
+                                                        </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php
@@ -287,15 +297,28 @@
                                                                 <td id="<?php echo $category.'_amount'; ?>"></td>
                                                                 <td id="<?php echo $category.'_goi_order_no'; ?>"></td>
                                                                 <td id="<?php echo $category.'_goi_order_date'; ?>"></td>
+                                                                <td id="<?php echo $category.'_goi_upload_doc'; ?>"></td>
+
+                                                                <td id="<?php echo $category.'_gom_amount'; ?>"></td>
                                                                 <td id="<?php echo $category.'_gom_order_no'; ?>"></td>
                                                                 <td id="<?php echo $category.'_gom_order_date'; ?>"></td>
+                                                                <td id="<?php echo $category.'_gom_upload_doc'; ?>"></td>
+
+                                                                <td id="<?php echo $category.'_mhada_received_amount'; ?>"></td>
+                                                                <td id="<?php echo $category.'_mhada_received_date'; ?>"></td>
+                                                                <td id="<?php echo $category.'_mhada_released_amount'; ?>"></td>
                                                                 <td id="<?php echo $category.'_mhada_order_no'; ?>"></td>
                                                                 <td id="<?php echo $category.'_mhada_order_date'; ?>"></td>
+                                                                <td id="<?php echo $category.'_mhada_upload_doc'; ?>"></td>
+
+                                                                <td><input type="text" class="form-control"
+                                                                           name="financial_details[<?php echo $category; ?>][transactions]"
+                                                                           id="<?php echo $category.'_transactions'; ?>" /> </td>
                                                                 <td><input type="text" class="form-control total_utilization_amount"
                                                                         name="financial_details[<?php echo $category; ?>][utilization_amount]"
                                                                            id="<?php echo $category.'_utilization_amount'; ?>" value="0" /> </td>
                                                                 <td><input type="file" name="<?php echo $category; ?>_utilization_certificate"  class="form-control" /></td>
-
+                                                                <td id="<?php echo $category.'_remark'; ?>"></td>
                                                             </tr>
                                                             <?php
                                          }
@@ -308,12 +331,26 @@
                                                                 <td> - </td>
                                                                 <td> - </td>
                                                                 <td> - </td>
+
+                                                                <td id="<?php echo 'total_gom_amount'; ?>"></td>
                                                                 <td> - </td>
                                                                 <td> - </td>
                                                                 <td> - </td>
+
+
+                                                                <td id="<?php echo 'total_mhada_received_amount'; ?>"></td>
+                                                                <td> - </td>
+                                                                <td id="<?php echo 'total_mhada_released_amount'; ?>"></td>
+                                                                <td> - </td>
+                                                                <td> - </td>
+                                                                <td> - </td>
+
+                                                                <td> - </td>
+
                                                                 <td><input readonly class="form-control" type="text"
                                                                         name="total_utilization_amount" id="total_utilization_amount"
                                                                         value="0" /></td>
+                                                                <td> - </td>
                                                                 <td> - </td>
                                                             </tr>
                                                         </tbody>
@@ -325,66 +362,104 @@
                                                     <table class="table mb-0 table-hover" id="update_form_of_gom_fund"
                                                         style="display:none;">
                                                         <thead class="thead-light">
-                                                            <tr>
-                                                                <th scope="col">installment Display</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                            </tr>
+                                                        <tr>
+                                                            <th scope="col">installment</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                            <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                            <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                            <th scope="col">Remark</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="col">Category</th>
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Received Amount </th>
+                                                            <th scope="col">Received Date</th>
+                                                            <th scope="col">Released Amount</th>
+                                                            <th scope="col">Released Oder No</th>
+                                                            <th scope="col">Released Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+
+                                                            <th scope="col">No Of Transactions</th>
+                                                            <th scope="col">Expenditure - GOI</th>
+                                                            <th scope="col">Utilization Certificate</th>
+                                                            <th scope="col"></th>
+                                                        </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php
                                          foreach($categories as $category) {
                                              ?>
-                                                            <tr>
-                                                                <td>
-                                                                    <h5>
-                                                                        <?php echo strtoupper($category); ?>
-                                                                    </h5>
-                                                                </td>
-                                                                <td id="<?php echo $category.'_amount'; ?>"></td>
-                                                                <td id="<?php echo $category.'_gom_order_no'; ?>"></td>
-                                                                <td id="<?php echo $category.'_gom_order_date'; ?>"></td>
-                                                                <td id="<?php echo $category.'_mhada_order_no'; ?>"></td>
-                                                                <td id="<?php echo $category.'_mhada_order_date'; ?>"></td>
-                                                                <td><input type="text" class="form-control gom_total_utilization_amount"
-                                                                        name="gom_financial_details[<?php echo $category; ?>][utilization_amount]"
-                                                                           id="<?php echo $category.'_utilization_amount'?>" value="0" /> </td>
 
-                                                                <td><input type="file" name="<?php echo $category; ?>_utilization_certificate"  class="form-control" /></td>
+                                             <tr>
+                                                 <td>
+                                                     <h5>
+                                                         <?php echo strtoupper($category); ?>
+                                                     </h5>
+                                                 </td>
 
-                                                            </tr>
+
+                                                 <td id="<?php echo $category.'_gom_amount'; ?>"></td>
+                                                 <td id="<?php echo $category.'_gom_order_no'; ?>"></td>
+                                                 <td id="<?php echo $category.'_gom_order_date'; ?>"></td>
+                                                 <td id="<?php echo $category.'_gom_upload_doc'; ?>"></td>
+
+                                                 <td id="<?php echo $category.'_mhada_received_amount'; ?>"></td>
+                                                 <td id="<?php echo $category.'_mhada_received_date'; ?>"></td>
+                                                 <td id="<?php echo $category.'_mhada_released_amount'; ?>"></td>
+                                                 <td id="<?php echo $category.'_mhada_order_no'; ?>"></td>
+                                                 <td id="<?php echo $category.'_mhada_order_date'; ?>"></td>
+                                                 <td id="<?php echo $category.'_mhada_upload_doc'; ?>"></td>
+
+                                                 <td><input type="text" class="form-control"
+                                                            name="gom_financial_details[<?php echo $category; ?>][transactions]"
+                                                            id="<?php echo $category.'_transactions'; ?>" /> </td>
+                                                 <td><input type="text" class="form-control gom_total_utilization_amount"
+                                                            name="gom_financial_details[<?php echo $category; ?>][utilization_amount]"
+                                                            id="<?php echo $category.'_utilization_amount'; ?>" value="0" /> </td>
+                                                 <td><input type="file" name="<?php echo $category; ?>_utilization_certificate_gom"  class="form-control" /></td>
+                                                 <td id="<?php echo $category.'_remark'; ?>"></td>
+                                             </tr>
+
+
+
                                                             <?php
                                          }
                                          ?>
+
                                                             <tr>
                                                                 <td>
                                                                     <h5>Total Amount</h5>
                                                                 </td>
-                                                                <td id="<?php echo 'total_amount'; ?>"></td>
+
+                                                                <td id="<?php echo 'total_gom_amount'; ?>"></td>
                                                                 <td> - </td>
                                                                 <td> - </td>
                                                                 <td> - </td>
+
+
+                                                                <td id="<?php echo 'total_mhada_received_amount'; ?>"></td>
                                                                 <td> - </td>
+                                                                <td id="<?php echo 'total_mhada_released_amount'; ?>"></td>
+                                                                <td> - </td>
+                                                                <td> - </td>
+                                                                <td> - </td>
+
+                                                                <td> - </td>
+
                                                                 <td><input readonly class="form-control" type="text"
-                                                                        name="gom_total_utilization_amount" id="gom_total_utilization_amount"
-                                                                        value="0" /></td>
+                                                                           name="gom_total_utilization_amount" id="gom_total_utilization_amount"
+                                                                           value="0" /></td>
+                                                                <td> - </td>
                                                                 <td> - </td>
                                                             </tr>
+
+
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -443,75 +518,120 @@
                                                 <div class="table-responsive">
                                                     <table class="table mb-0 table-hover" id="display_form_of_goi_fund">
                                                         <thead class="thead-light">
-                                                            <tr>
-                                                                <th scope="col">1st installment (40%)</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOI Order No</th>
-                                                                <th scope="col">GOI Order Date</th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
-                                                                <th scope="col">2nd installment (40%)</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOI Order No</th>
-                                                                <th scope="col">GOI Order Date</th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
-                                                                <th scope="col">3rd installment (20%)</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOI Order No</th>
-                                                                <th scope="col">GOI Order Date</th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                            </tr>
+                                                        <tr>
+                                                            <th scope="col">1st installment (40%)</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOI</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                            <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                            <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                            <th scope="col">Remark</th>
+
+
+                                                            <th scope="col">2nd installment (40%)</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOI</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                            <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                            <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                            <th scope="col">Remark</th>
+
+                                                            <th scope="col">3rd installment (20%)</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOI</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                            <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                            <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                            <th scope="col">Remark</th>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="col">Category</th>
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Received Amount</th>
+                                                            <th scope="col">Received Date</th>
+                                                            <th scope="col">Released Amount</th>
+                                                            <th scope="col">Released Order No</th>
+                                                            <th scope="col">Released Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">No Of Transactions</th>
+                                                            <th scope="col">Expenditure</th>
+                                                            <th scope="col">Utilization Certificate</th>
+
+                                                            <th scope="col"></th>
+
+
+
+                                                            <th scope="col">Category</th>
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Received Amount</th>
+                                                            <th scope="col">Received Date</th>
+                                                            <th scope="col">Released Amount</th>
+                                                            <th scope="col">Released Order No</th>
+                                                            <th scope="col">Released Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">No Of Transactions</th>
+                                                            <th scope="col">Expenditure</th>
+                                                            <th scope="col">Utilization Certificate</th>
+
+                                                            <th scope="col"></th>
+
+
+
+
+                                                            <th scope="col">Category</th>
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Received Amount</th>
+                                                            <th scope="col">Received Date</th>
+                                                            <th scope="col">Released Amount</th>
+                                                            <th scope="col">Released Order No</th>
+                                                            <th scope="col">Released Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">No Of Transactions</th>
+                                                            <th scope="col">Expenditure</th>
+                                                            <th scope="col">Utilization Certificate</th>
+
+                                                            <th scope="col"></th>
+
+                                                        </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php
-                                             foreach($categories as $category) {
-                                             ?>
+                                                        <?php
+                                                        foreach($categories as $category) {
+                                                            ?>
                                                             <tr>
                                                                 <td>
                                                                     <h5>
@@ -525,19 +645,49 @@
                                                                     <?php echo isset($goi_details[0][$category.'_goi_order_no'])?$goi_details[0][$category.'_goi_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($goi_details[0][$category.'_goi_order_date']) && $goi_details[0][$category.'_goi_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[0][$category.'_goi_order_date'])):null;   ?>
+                                                                    <?php echo isset($goi_details[0][$category.'_goi_order_date'])?date('d-m-Y',strtotime($goi_details[0][$category.'_goi_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td>  <?php if(isset($goi_details[0][$category.'_goi_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[0][$category.'_goi_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0][$category.'_gom_amount'])?$goi_details[0][$category.'_gom_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[0][$category.'_gom_order_no'])?$goi_details[0][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($goi_details[0][$category.'_gom_order_date']) && $goi_details[0][$category.'_gom_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[0][$category.'_gom_order_date'])):null;   ?>
+                                                                    <?php echo isset($goi_details[0][$category.'_gom_order_date'])?date('d-m-Y',strtotime($goi_details[0][$category.'_gom_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($goi_details[0][$category.'_gom_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[0][$category.'_gom_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0][$category.'_mhada_received_amount'])?$goi_details[0][$category.'_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0][$category.'_mhada_received_date'])?date('d-m-Y',strtotime($goi_details[0][$category.'_mhada_received_date'])):null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0][$category.'_mhada_released_amount'])?$goi_details[0][$category.'_mhada_released_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[0][$category.'_mhada_order_no'])?$goi_details[0][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($goi_details[0][$category.'_mhada_order_date']) && $goi_details[0][$category.'_mhada_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[0][$category.'_mhada_order_date'])):null;   ?>
+                                                                    <?php echo isset($goi_details[0][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($goi_details[0][$category.'_mhada_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($goi_details[0][$category.'_mhada_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[0][$category.'_mhada_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[0][$category.'_transactions'])?$goi_details[0][$category.'_transactions']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[0][$category.'_utilization_amount'])?$goi_details[0][$category.'_utilization_amount']:null;   ?>
@@ -546,12 +696,16 @@
                                                                     <?php if(isset($goi_details[0][$category.'_utilization_certificate']))
                                                                     {
                                                                         ?>
-                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($goi_details[0][$category.'_utilization_certificate']))); ?>">Download Certificate</a>
-                                                                <?php      } else { echo '-'; } ?>
+                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($goi_details[0][$category.'_utilization_certificate']))); ?>" target="_blank">Download Certificate</a>
+                                                                    <?php      } else { echo '-'; } ?>
+                                                                </td>
+                                                                <td> <?php echo isset($goi_details[0][$category.'_remark'])?$goi_details[0][$category.'_remark']:null;   ?>
                                                                 </td>
 
                                                                 <td>
-                                                                    <?php echo $category; ?>
+                                                                    <h5>
+                                                                        <?php echo $category; ?>
+                                                                    </h5>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_amount'])?$goi_details[1][$category.'_amount']:null;   ?>
@@ -560,29 +714,68 @@
                                                                     <?php echo isset($goi_details[1][$category.'_goi_order_no'])?$goi_details[1][$category.'_goi_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($goi_details[1][$category.'_goi_order_date']) && $goi_details[1][$category.'_goi_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[1][$category.'_goi_order_date'])):null;   ?>
+                                                                    <?php echo isset($goi_details[1][$category.'_goi_order_date'])?date('d-m-Y',strtotime($goi_details[1][$category.'_goi_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td>  <?php if(isset($goi_details[1][$category.'_goi_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('/public/uploads/'.$goi_details[1][$category.'_goi_upload_doc']); ?>" target="_blank" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1][$category.'_gom_amount'])?$goi_details[1][$category.'_gom_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_gom_order_no'])?$goi_details[1][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($goi_details[1][$category.'_gom_order_date']) && $goi_details[1][$category.'_gom_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[1][$category.'_gom_order_date'])):null;   ?>
+                                                                    <?php echo isset($goi_details[1][$category.'_gom_order_date'])?date('d-m-Y',strtotime($goi_details[1][$category.'_gom_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($goi_details[1][$category.'_gom_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[1][$category.'_gom_upload_doc']); ?>" target="_blank" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1][$category.'_mhada_received_amount'])?$goi_details[1][$category.'_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1][$category.'_mhada_received_date'])?date('d-m-Y',strtotime($goi_details[1][$category.'_mhada_received_date'])):null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1][$category.'_mhada_released_amount'])?$goi_details[1][$category.'_mhada_released_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_mhada_order_no'])?$goi_details[1][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($goi_details[1][$category.'_mhada_order_date']) && $goi_details[1][$category.'_mhada_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[1][$category.'_mhada_order_date'])):null;   ?>
+                                                                    <?php echo isset($goi_details[1][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($goi_details[1][$category.'_mhada_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($goi_details[1][$category.'_mhada_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[1][$category.'_mhada_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[1][$category.'_transactions'])?$goi_details[1][$category.'_transactions']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[1][$category.'_utilization_amount'])?$goi_details[1][$category.'_utilization_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php  ?>
+                                                                    <?php if(isset($goi_details[1][$category.'_utilization_certificate']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($goi_details[1][$category.'_utilization_certificate']))); ?>" target="_blank">Download Certificate</a>
+                                                                    <?php      } else { echo '-'; } ?>
+                                                                </td>
+                                                                <td>  <?php echo isset($goi_details[1][$category.'_remark'])?$goi_details[1][$category.'_remark']:null;   ?>
                                                                 </td>
 
+
                                                                 <td>
-                                                                    <?php echo $category; ?>
+                                                                    <h5>
+                                                                        <?php echo $category; ?>
+                                                                    </h5>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_amount'])?$goi_details[2][$category.'_amount']:null;   ?>
@@ -591,148 +784,283 @@
                                                                     <?php echo isset($goi_details[2][$category.'_goi_order_no'])?$goi_details[2][$category.'_goi_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($goi_details[2][$category.'_goi_order_date']) && $goi_details[2][$category.'_goi_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[2][$category.'_goi_order_date'])):null;   ?>
+                                                                    <?php echo isset($goi_details[2][$category.'_goi_order_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_goi_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td>  <?php if(isset($goi_details[2][$category.'_goi_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('/public/uploads/'.$goi_details[2][$category.'_goi_upload_doc']); ?>" target="_blank" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2][$category.'_gom_amount'])?$goi_details[2][$category.'_gom_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_gom_order_no'])?$goi_details[2][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($goi_details[2][$category.'_gom_order_date']) && $goi_details[2][$category.'_gom_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[2][$category.'_gom_order_date'])):null;   ?>
+                                                                    <?php echo isset($goi_details[2][$category.'_gom_order_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_gom_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($goi_details[2][$category.'_gom_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[2][$category.'_gom_upload_doc']); ?>" target="_blank" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2][$category.'_mhada_received_amount'])?$goi_details[2][$category.'_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2][$category.'_mhada_received_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_mhada_received_date'])):null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2][$category.'_mhada_released_amount'])?$goi_details[2][$category.'_mhada_released_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_mhada_order_no'])?$goi_details[2][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($goi_details[2][$category.'_mhada_order_date']) && $goi_details[2][$category.'_mhada_order_date']!='0000-00-00')?date('d-m-Y',strtotime($goi_details[2][$category.'_mhada_order_date'])):null;   ?>
+                                                                    <?php echo isset($goi_details[2][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($goi_details[2][$category.'_mhada_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($goi_details[2][$category.'_mhada_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[2][$category.'_mhada_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($goi_details[2][$category.'_transactions'])?$goi_details[2][$category.'_transactions']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[2][$category.'_utilization_amount'])?$goi_details[2][$category.'_utilization_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php  ?>
+                                                                    <?php if(isset($goi_details[2][$category.'_utilization_certificate']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($goi_details[2][$category.'_utilization_certificate']))); ?>" target="_blank">Download Certificate</a>
+                                                                    <?php      } else { echo '-'; } ?>
+                                                                </td>
+                                                                <td>  <?php echo isset($goi_details[2][$category.'_remark'])?$goi_details[2][$category.'_remark']:null;   ?>
                                                                 </td>
 
                                                             </tr>
 
-                                                            <?php } ?>
-                                                            <tr>
-                                                                <td>
-                                                                    <h5>Total Amount</h5>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo isset($goi_details[0]['total_amount'])?$goi_details[0]['total_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>
-                                                                    <?php echo isset($goi_details[0]['total_utilization_amount'])?$goi_details[0]['total_utilization_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
+                                                        <?php } ?>
+                                                        <tr>
+                                                            <td>
+                                                                <h5>Total Amount</h5>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo isset($goi_details[0]['total_amount'])?$goi_details[0]['total_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($goi_details[0]['total_gom_amount'])?$goi_details[0]['total_gom_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
 
-                                                                <td>
-                                                                    <h5>Total Amount</h5>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo isset($goi_details[1]['total_amount'])?$goi_details[1]['total_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>
-                                                                    <?php echo isset($goi_details[1]['total_utilization_amount'])?$goi_details[1]['total_utilization_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
 
-                                                                <td>
-                                                                    <h5>Total Amount</h5>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo isset($goi_details[2]['total_amount'])?$goi_details[2]['total_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>
-                                                                    <?php echo isset($goi_details[2]['total_utilization_amount'])?$goi_details[2]['total_utilization_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($goi_details[0]['total_mhada_received_amount'])?$goi_details[0]['total_mhada_received_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($goi_details[0]['total_mhada_released_amount'])?$goi_details[0]['total_mhada_released_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
 
-                                                            </tr>
+                                                            <td>
+                                                                <?php echo isset($goi_details[0]['total_utilization_amount'])?$goi_details[0]['total_utilization_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+                                                            <td>
+                                                                <h5>Total Amount</h5>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo isset($goi_details[1]['total_amount'])?$goi_details[1]['total_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($goi_details[1]['total_gom_amount'])?$goi_details[1]['total_gom_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+                                                            <td>
+                                                                <?php echo isset($goi_details[1]['total_mhada_received_amount'])?$goi_details[1]['total_mhada_received_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($goi_details[1]['total_mhada_released_amount'])?$goi_details[1]['total_mhada_released_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+                                                            <td>
+                                                                <?php echo isset($goi_details[1]['total_utilization_amount'])?$goi_details[1]['total_utilization_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+
+                                                            <td>
+                                                                <h5>Total Amount</h5>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo isset($goi_details[2]['total_amount'])?$goi_details[2]['total_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($goi_details[2]['total_gom_amount'])?$goi_details[2]['total_gom_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+                                                            <td>
+                                                                <?php echo isset($goi_details[2]['total_mhada_received_amount'])?$goi_details[2]['total_mhada_received_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($goi_details[2]['total_mhada_released_amount'])?$goi_details[2]['total_mhada_released_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+                                                            <td>
+                                                                <?php echo isset($goi_details[2]['total_utilization_amount'])?$goi_details[2]['total_utilization_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
 
                                                 <div class="table-responsive">
                                                     <table class="table mb-0 table-hover" id="display_form_of_gom_fund"
-                                                        style="display:none;">
+                                                           style="display:none;">
                                                         <thead class="thead-light">
-                                                            <tr>
-                                                                <th scope="col">1st installment (40%)</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
-                                                                <th scope="col">2nd installment (40%)</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
-                                                                <th scope="col">3rd installment (20%)</th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">GOM Order No</th>
-                                                                <th scope="col">GOM Order Date</th>
-                                                                <th scope="col">MHADA Order No</th>
-                                                                <th scope="col">MHADA Order Date</th>
-                                                                <th scope="col">Utilized Amount</th>
-                                                                <th scope="col">Utilization Certificate</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">Category</th>
-                                                                <th scope="col">Amount (In Rs.) </th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                                <th scope="col"></th>
-                                                            </tr>
+                                                        <tr>
+                                                            <th scope="col">1st installment (40%)</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                            <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                            <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                            <th scope="col">Remark</th>
+
+
+                                                            <th scope="col">2nd installment (40%)</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                            <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                            <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                            <th scope="col">Remark</th>
+
+                                                            <th scope="col">3rd installment (20%)</th>
+                                                            <th scope="col" colspan="4" style="text-align: center">GOM</th>
+                                                            <th scope="col" colspan="6" style="text-align: center">MHADA</th>
+                                                            <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
+                                                            <th scope="col">Remark</th>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="col">Category</th>
+
+
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Received Amount</th>
+                                                            <th scope="col">Received Date</th>
+                                                            <th scope="col">Released Amount</th>
+                                                            <th scope="col">Released Order No</th>
+                                                            <th scope="col">Released Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">No Of Transactions</th>
+                                                            <th scope="col">Expenditure</th>
+                                                            <th scope="col">Utilization Certificate</th>
+
+                                                            <th scope="col"></th>
+
+
+
+                                                            <th scope="col">Category</th>
+
+
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Received Amount</th>
+                                                            <th scope="col">Received Date</th>
+                                                            <th scope="col">Released Amount</th>
+                                                            <th scope="col">Released Order No</th>
+                                                            <th scope="col">Released Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">No Of Transactions</th>
+                                                            <th scope="col">Expenditure</th>
+                                                            <th scope="col">Utilization Certificate</th>
+
+                                                            <th scope="col"></th>
+
+
+
+
+                                                            <th scope="col">Category</th>
+
+
+
+                                                            <th scope="col">Amount (In Rs.) </th>
+                                                            <th scope="col">Order No</th>
+                                                            <th scope="col">Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">Received Amount</th>
+                                                            <th scope="col">Received Date</th>
+                                                            <th scope="col">Released Amount</th>
+                                                            <th scope="col">Released Order No</th>
+                                                            <th scope="col">Released Order Date</th>
+                                                            <th scope="col">Upload Doc</th>
+
+                                                            <th scope="col">No Of Transactions</th>
+                                                            <th scope="col">Expenditure</th>
+                                                            <th scope="col">Utilization Certificate</th>
+
+                                                            <th scope="col"></th>
+
+                                                        </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php
-                                             foreach($categories as $category) {
-                                                 ?>
+                                                        <?php
+                                                        foreach($categories as $category) {
+                                                            ?>
                                                             <tr>
                                                                 <td>
                                                                     <h5>
@@ -740,19 +1068,41 @@
                                                                     </h5>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($gom_details[0][$category.'_amount'])?$gom_details[0][$category.'_amount']:null;   ?>
+                                                                    <?php echo isset($gom_details[0][$category.'_gom_amount'])?$gom_details[0][$category.'_gom_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[0][$category.'_gom_order_no'])?$gom_details[0][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($gom_details[0][$category.'_gom_order_date']) && $gom_details[0][$category.'_gom_order_date']!='0000-00-00')?date('d-m-Y',strtotime($gom_details[0][$category.'_gom_order_date'])):null;   ?>
+                                                                    <?php echo isset($gom_details[0][$category.'_gom_order_date'])?date('d-m-Y',strtotime($gom_details[0][$category.'_gom_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($gom_details[0][$category.'_gom_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$gom_details[0][$category.'_gom_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[0][$category.'_mhada_received_amount'])?$gom_details[0][$category.'_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[0][$category.'_mhada_received_date'])?date('d-m-Y',strtotime($gom_details[0][$category.'_mhada_received_date'])):null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[0][$category.'_mhada_released_amount'])?$gom_details[0][$category.'_mhada_released_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[0][$category.'_mhada_order_no'])?$gom_details[0][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($gom_details[0][$category.'_mhada_order_date']) && $gom_details[0][$category.'_mhada_order_date']!='0000-00-00')?date('d-m-Y',strtotime($gom_details[0][$category.'_mhada_order_date'])):null;   ?>
+                                                                    <?php echo isset($gom_details[0][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($gom_details[0][$category.'_mhada_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($gom_details[0][$category.'_mhada_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$gom_details[0][$category.'_mhada_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[0][$category.'_transactions'])?$gom_details[0][$category.'_transactions']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[0][$category.'_utilization_amount'])?$gom_details[0][$category.'_utilization_amount']:null;   ?>
@@ -761,28 +1111,53 @@
                                                                     <?php if(isset($gom_details[0][$category.'_utilization_certificate']))
                                                                     {
                                                                         ?>
-                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($gom_details[0][$category.'_utilization_certificate']))); ?>">Download Certificate</a>
+                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($gom_details[0][$category.'_utilization_certificate']))); ?>" target="_blank">Download Certificate</a>
                                                                     <?php      } else { echo '-'; } ?>
                                                                 </td>
-
+                                                                <td> <?php echo isset($gom_details[0][$category.'_remark'])?$gom_details[0][$category.'_remark']:null;   ?>
+                                                                </td>
 
                                                                 <td>
-                                                                    <?php echo $category; ?>
+                                                                    <h5>
+                                                                        <?php echo $category; ?>
+                                                                    </h5>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($gom_details[1][$category.'_amount'])?$gom_details[1][$category.'_amount']:null;   ?>
+                                                                    <?php echo isset($gom_details[1][$category.'_gom_amount'])?$gom_details[1][$category.'_gom_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[1][$category.'_gom_order_no'])?$gom_details[1][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($gom_details[1][$category.'_gom_order_date']) && $gom_details[1][$category.'_gom_order_date']!='0000-00-00')?date('d-m-Y',strtotime($gom_details[1][$category.'_gom_order_date'])):null;   ?>
+                                                                    <?php echo isset($gom_details[1][$category.'_gom_order_date'])?date('d-m-Y',strtotime($gom_details[1][$category.'_gom_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($gom_details[1][$category.'_gom_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$gom_details[1][$category.'_gom_upload_doc']); ?>" target="_blank" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[1][$category.'_mhada_received_amount'])?$gom_details[1][$category.'_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[1][$category.'_mhada_received_date'])?date('d-m-Y',strtotime($gom_details[1][$category.'_mhada_received_date'])):null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[1][$category.'_mhada_released_amount'])?$gom_details[1][$category.'_mhada_released_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[1][$category.'_mhada_order_no'])?$gom_details[1][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($gom_details[1][$category.'_mhada_order_date']) && $gom_details[1][$category.'_mhada_order_date']!='0000-00-00')?date('d-m-Y',strtotime($gom_details[1][$category.'_mhada_order_date'])):null;   ?>
+                                                                    <?php echo isset($gom_details[1][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($gom_details[1][$category.'_mhada_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($gom_details[1][$category.'_mhada_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$gom_details[1][$category.'_mhada_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[1][$category.'_transactions'])?$gom_details[1][$category.'_transactions']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[1][$category.'_utilization_amount'])?$gom_details[1][$category.'_utilization_amount']:null;   ?>
@@ -791,28 +1166,54 @@
                                                                     <?php if(isset($gom_details[1][$category.'_utilization_certificate']))
                                                                     {
                                                                         ?>
-                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($gom_details[1][$category.'_utilization_certificate']))); ?>">Download Certificate</a>
+                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($gom_details[1][$category.'_utilization_certificate']))); ?>" target="_blank">Download Certificate</a>
                                                                     <?php      } else { echo '-'; } ?>
                                                                 </td>
+                                                                <td>  <?php echo isset($gom_details[1][$category.'_remark'])?$gom_details[1][$category.'_remark']:null;   ?>
+                                                                </td>
 
 
                                                                 <td>
-                                                                    <?php echo $category; ?>
+                                                                    <h5>
+                                                                        <?php echo $category; ?>
+                                                                    </h5>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo isset($gom_details[2][$category.'_amount'])?$gom_details[2][$category.'_amount']:null;   ?>
+                                                                    <?php echo isset($gom_details[2][$category.'_gom_amount'])?$gom_details[2][$category.'_gom_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[2][$category.'_gom_order_no'])?$gom_details[2][$category.'_gom_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($gom_details[2][$category.'_gom_order_date']) && $gom_details[2][$category.'_gom_order_date']!='0000-00-00')?date('d-m-Y',strtotime($gom_details[2][$category.'_gom_order_date'])):null;   ?>
+                                                                    <?php echo isset($gom_details[2][$category.'_gom_order_date'])?date('d-m-Y',strtotime($gom_details[2][$category.'_gom_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($gom_details[2][$category.'_gom_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$gom_details[2][$category.'_gom_upload_doc']); ?>" target="_blank" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[2][$category.'_mhada_received_amount'])?$gom_details[2][$category.'_mhada_received_amount']:null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[2][$category.'_mhada_received_date'])?date('d-m-Y',strtotime($gom_details[2][$category.'_mhada_received_date'])):null;   ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[2][$category.'_mhada_released_amount'])?$gom_details[2][$category.'_mhada_released_amount']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[2][$category.'_mhada_order_no'])?$gom_details[2][$category.'_mhada_order_no']:null;   ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo (isset($gom_details[2][$category.'_mhada_order_date']) && $gom_details[2][$category.'_mhada_order_date']!='0000-00-00')?date('d-m-Y',strtotime($gom_details[2][$category.'_mhada_order_date'])):null;   ?>
+                                                                    <?php echo isset($gom_details[2][$category.'_mhada_order_date'])?date('d-m-Y',strtotime($gom_details[2][$category.'_mhada_order_date'])):null;   ?>
+                                                                </td>
+                                                                <td><?php if(isset($gom_details[2][$category.'_mhada_upload_doc']))
+                                                                    {
+                                                                        ?>
+                                                                        <a href="<?php echo base_url('public/uploads/'.$gom_details[2][$category.'_mhada_upload_doc']); ?>" target="_blank">Download Doc</a>
+                                                                    <?php      } else { echo '-'; } ?></td>
+                                                                <td>
+                                                                    <?php echo isset($gom_details[2][$category.'_transactions'])?$gom_details[2][$category.'_transactions']:null;   ?>
                                                                 </td>
                                                                 <td>
                                                                     <?php echo isset($gom_details[2][$category.'_utilization_amount'])?$gom_details[2][$category.'_utilization_amount']:null;   ?>
@@ -821,61 +1222,107 @@
                                                                     <?php if(isset($gom_details[2][$category.'_utilization_certificate']))
                                                                     {
                                                                         ?>
-                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($gom_details[2][$category.'_utilization_certificate']))); ?>">Download Certificate</a>
+                                                                        <a href="<?php echo base_url('agency/download_document/'.base64_encode($this->encryption->encrypt($gom_details[2][$category.'_utilization_certificate']))); ?>" target="_blank">Download Certificate</a>
                                                                     <?php      } else { echo '-'; } ?>
                                                                 </td>
-
-
-                                                            </tr>
-
-                                                            <?php } ?>
-                                                            <tr>
-                                                                <td>
-                                                                    <h5>Total Amount</h5>
+                                                                <td>  <?php echo isset($gom_details[2][$category.'_remark'])?$gom_details[2][$category.'_remark']:null;   ?>
                                                                 </td>
-                                                                <td>
-                                                                    <?php echo isset($gom_details[0]['total_amount'])?$gom_details[0]['total_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>
-                                                                    <?php echo isset($gom_details[0]['total_utilization_amount'])?$gom_details[0]['total_utilization_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
-
-                                                                <td>
-                                                                    <h5>Total Amount</h5>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo isset($gom_details[1]['total_amount'])?$gom_details[1]['total_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>
-                                                                    <?php echo isset($gom_details[1]['total_utilization_amount'])?$gom_details[1]['total_utilization_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
-
-                                                                <td>
-                                                                    <h5>Total Amount</h5>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo isset($gom_details[2]['total_amount'])?$gom_details[2]['total_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>
-                                                                    <?php echo isset($gom_details[2]['total_utilization_amount'])?$gom_details[2]['total_utilization_amount']:null;   ?>
-                                                                </td>
-                                                                <td>-</td>
 
                                                             </tr>
+
+                                                        <?php } ?>
+                                                        <tr>
+                                                            <td>
+                                                                <h5>Total Amount</h5>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[0]['total_gom_amount'])?$gom_details[0]['total_gom_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+                                                            <td>
+                                                                <?php echo isset($gom_details[0]['total_mhada_received_amount'])?$gom_details[0]['total_mhada_received_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[0]['total_mhada_released_amount'])?$gom_details[0]['total_mhada_released_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+                                                            <td>
+                                                                <?php echo isset($gom_details[0]['total_utilization_amount'])?$gom_details[0]['total_utilization_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+                                                            <td>
+                                                                <h5>Total Amount</h5>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[1]['total_gom_amount'])?$gom_details[1]['total_gom_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+                                                            <td>
+                                                                <?php echo isset($gom_details[1]['total_mhada_received_amount'])?$gom_details[1]['total_mhada_received_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[1]['total_mhada_released_amount'])?$gom_details[1]['total_mhada_released_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+                                                            <td>
+                                                                <?php echo isset($gom_details[1]['total_utilization_amount'])?$gom_details[1]['total_utilization_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+
+                                                            <td>
+                                                                <h5>Total Amount</h5>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[2]['total_gom_amount'])?$gom_details[2]['total_gom_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+                                                            <td>
+                                                                <?php echo isset($gom_details[2]['total_mhada_received_amount'])?$gom_details[2]['total_mhada_received_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>
+                                                                <?php echo isset($gom_details[2]['total_mhada_released_amount'])?$gom_details[2]['total_mhada_released_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+                                                            <td>
+                                                                <?php echo isset($gom_details[2]['total_utilization_amount'])?$gom_details[2]['total_utilization_amount']:null;   ?>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+
+
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -944,33 +1391,94 @@
 
                                 $('#update_form_of_goi_fund #sc_amount').html(data[0].sc_amount);
                                 $('#update_form_of_goi_fund #st_amount').html(data[0].st_amount);
+                                $('#update_form_of_goi_fund #obc_amount').html(data[0].obc_amount);
                                 $('#update_form_of_goi_fund #other_amount').html(data[0].other_amount);
 
                                 $('#update_form_of_goi_fund #sc_goi_order_no').html(data[0].sc_goi_order_no);
                                 $('#update_form_of_goi_fund #sc_goi_order_date').html(data[0].sc_goi_order_date);
-                                $('#update_form_of_goi_fund #sc_gom_order_no').html(data[0].sc_gom_order_no);
-                                $('#update_form_of_goi_fund #sc_gom_order_date').html(data[0].sc_gom_order_date);
-                                $('#update_form_of_goi_fund #sc_mhada_order_no').html(data[0].sc_mhada_order_no);
-                                $('#update_form_of_goi_fund #sc_mhada_order_date').html(data[0].sc_mhada_order_date);
-                                $('#update_form_of_goi_fund #sc_utilization_amount').attr('value', data[0].sc_utilization_amount);
-
                                 $('#update_form_of_goi_fund #st_goi_order_no').html(data[0].st_goi_order_no);
                                 $('#update_form_of_goi_fund #st_goi_order_date').html(data[0].st_goi_order_date);
-                                $('#update_form_of_goi_fund #st_gom_order_no').html(data[0].st_gom_order_no);
-                                $('#update_form_of_goi_fund #st_gom_order_date').html(data[0].st_gom_order_date);
-                                $('#update_form_of_goi_fund #st_mhada_order_no').html(data[0].st_mhada_order_no);
-                                $('#update_form_of_goi_fund #st_mhada_order_date').html(data[0].st_mhada_order_date);
-                                $('#update_form_of_goi_fund #st_utilization_amount').attr('value', data[0].st_utilization_amount);
-
+                                $('#update_form_of_goi_fund #obc_goi_order_no').html(data[0].obc_goi_order_no);
+                                $('#update_form_of_goi_fund #obc_goi_order_date').html(data[0].obc_goi_order_date);
                                 $('#update_form_of_goi_fund #other_goi_order_no').html(data[0].other_goi_order_no);
                                 $('#update_form_of_goi_fund #other_goi_order_date').html(data[0].other_goi_order_date);
+
+                                if(data[0].sc_goi_upload_doc!=''){ $('#update_form_of_goi_fund #sc_goi_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].sc_goi_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].st_goi_upload_doc!=''){ $('#update_form_of_goi_fund #st_goi_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].st_goi_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].obc_goi_upload_doc!=''){ $('#update_form_of_goi_fund #obc_goi_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].obc_goi_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].other_goi_upload_doc!=''){ $('#update_form_of_goi_fund #other_goi_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].other_goi_upload_doc+'" target="_blank">Download Doc</a>'); }
+
+                                $('#update_form_of_goi_fund #sc_gom_amount').html(data[0].sc_gom_amount);
+                                $('#update_form_of_goi_fund #st_gom_amount').html(data[0].st_gom_amount);
+                                $('#update_form_of_goi_fund #obc_gom_amount').html(data[0].obc_gom_amount);
+                                $('#update_form_of_goi_fund #other_gom_amount').html(data[0].other_gom_amount);
+
+
+                                $('#update_form_of_goi_fund #sc_gom_order_no').html(data[0].sc_gom_order_no);
+                                $('#update_form_of_goi_fund #sc_gom_order_date').html(data[0].sc_gom_order_date);
+                                $('#update_form_of_goi_fund #st_gom_order_no').html(data[0].st_gom_order_no);
+                                $('#update_form_of_goi_fund #st_gom_order_date').html(data[0].st_gom_order_date);
+                                $('#update_form_of_goi_fund #obc_gom_order_no').html(data[0].obc_gom_order_no);
+                                $('#update_form_of_goi_fund #obc_gom_order_date').html(data[0].obc_gom_order_date);
                                 $('#update_form_of_goi_fund #other_gom_order_no').html(data[0].other_gom_order_no);
                                 $('#update_form_of_goi_fund #other_gom_order_date').html(data[0].other_gom_order_date);
+
+                                if(data[0].sc_gom_upload_doc!=''){ $('#update_form_of_goi_fund #sc_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].sc_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].st_gom_upload_doc!=''){ $('#update_form_of_goi_fund #st_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].st_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].obc_gom_upload_doc!=''){ $('#update_form_of_goi_fund #obc_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].obc_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].other_gom_upload_doc!=''){ $('#update_form_of_goi_fund #other_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].other_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+
+                                $('#update_form_of_goi_fund #sc_mhada_received_amount').html(data[0].sc_mhada_received_amount);
+                                $('#update_form_of_goi_fund #sc_mhada_received_date').html(data[0].sc_mhada_received_date);
+                                $('#update_form_of_goi_fund #sc_mhada_released_amount').html(data[0].sc_mhada_released_amount);
+                                $('#update_form_of_goi_fund #sc_mhada_order_no').html(data[0].sc_mhada_order_no);
+                                $('#update_form_of_goi_fund #sc_mhada_order_date').html(data[0].sc_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #st_mhada_received_amount').html(data[0].st_mhada_received_amount);
+                                $('#update_form_of_goi_fund #st_mhada_received_date').html(data[0].st_mhada_received_date);
+                                $('#update_form_of_goi_fund #st_mhada_released_amount').html(data[0].st_mhada_released_amount);
+                                $('#update_form_of_goi_fund #st_mhada_order_no').html(data[0].st_mhada_order_no);
+                                $('#update_form_of_goi_fund #st_mhada_order_date').html(data[0].st_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #obc_mhada_received_amount').html(data[0].obc_mhada_received_amount);
+                                $('#update_form_of_goi_fund #obc_mhada_received_date').html(data[0].obc_mhada_received_date);
+                                $('#update_form_of_goi_fund #obc_mhada_released_amount').html(data[0].obc_mhada_released_amount);
+                                $('#update_form_of_goi_fund #obc_mhada_order_no').html(data[0].obc_mhada_order_no);
+                                $('#update_form_of_goi_fund #obc_mhada_order_date').html(data[0].obc_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #other_mhada_received_amount').html(data[0].other_mhada_received_amount);
+                                $('#update_form_of_goi_fund #other_mhada_received_date').html(data[0].other_mhada_received_date);
+                                $('#update_form_of_goi_fund #other_mhada_released_amount').html(data[0].other_mhada_released_amount);
                                 $('#update_form_of_goi_fund #other_mhada_order_no').html(data[0].other_mhada_order_no);
                                 $('#update_form_of_goi_fund #other_mhada_order_date').html(data[0].other_mhada_order_date);
+
+                                if(data[0].sc_mhada_upload_doc!=''){ $('#update_form_of_goi_fund #sc_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].sc_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].st_mhada_upload_doc!=''){ $('#update_form_of_goi_fund #st_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].st_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].obc_mhada_upload_doc!=''){ $('#update_form_of_goi_fund #obc_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].obc_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].other_mhada_upload_doc!=''){ $('#update_form_of_goi_fund #other_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].other_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+
+                                $('#update_form_of_goi_fund #sc_remark').html(data[0].sc_remark);
+                                $('#update_form_of_goi_fund #st_remark').html(data[0].st_remark);
+                                $('#update_form_of_goi_fund #obc_remark').html(data[0].obc_remark);
+                                $('#update_form_of_goi_fund #other_remark').html(data[0].other_remark);
+
+
+                                $('#update_form_of_goi_fund #sc_transactions').attr('value', data[0].sc_transactions);
+                                $('#update_form_of_goi_fund #st_transactions').attr('value', data[0].st_transactions);
+                                $('#update_form_of_goi_fund #obc_transactions').attr('value', data[0].obc_transactions);
+                                $('#update_form_of_goi_fund #other_transactions').attr('value', data[0].other_transactions);
+
+                                $('#update_form_of_goi_fund #sc_utilization_amount').attr('value', data[0].sc_utilization_amount);
+                                $('#update_form_of_goi_fund #st_utilization_amount').attr('value', data[0].st_utilization_amount);
+                                $('#update_form_of_goi_fund #obc_utilization_amount').attr('value', data[0].obc_utilization_amount);
                                 $('#update_form_of_goi_fund #other_utilization_amount').attr('value', data[0].other_utilization_amount);
 
+
+
                                 $('#update_form_of_goi_fund #total_amount').html(data[0].total_amount);
+                                $('#update_form_of_goi_fund #total_gom_amount').html(data[0].total_gom_amount);
+                                $('#update_form_of_goi_fund #total_mhada_received_amount').html(data[0].total_mhada_received_amount);
+                                $('#update_form_of_goi_fund #total_mhada_released_amount').html(data[0].total_mhada_released_amount);
                                 $('#update_form_of_goi_fund #total_utilization_amount').attr('value', data[0].total_utilization_amount);
 
 
@@ -985,6 +1493,11 @@
                                     $('#update_form_of_goi_fund #st_utilization_amount').attr('readonly', true);
 
                                 }
+                                if(data[0].obc_amount=='' || data[0].obc_amount==0)
+                                {
+                                    $('#update_form_of_goi_fund #obc_utilization_amount').attr('readonly', true);
+
+                                }
 
                                 if(data[0].other_amount=='' || data[0].other_amount==0)
                                 {
@@ -994,46 +1507,101 @@
                             }
                             else if (data[0].nodel_agency == 2) {
 
-                                $('#update_form_of_gom_fund #sc_amount').html(data[0].sc_amount);
-                                $('#update_form_of_gom_fund #st_amount').html(data[0].st_amount);
-                                $('#update_form_of_gom_fund #other_amount').html(data[0].other_amount);
+                                $('#update_form_of_gom_fund #sc_gom_amount').html(data[0].sc_gom_amount);
+                                $('#update_form_of_gom_fund #st_gom_amount').html(data[0].st_gom_amount);
+                                $('#update_form_of_gom_fund #obc_gom_amount').html(data[0].obc_gom_amount);
+                                $('#update_form_of_gom_fund #other_gom_amount').html(data[0].other_gom_amount);
+
 
                                 $('#update_form_of_gom_fund #sc_gom_order_no').html(data[0].sc_gom_order_no);
                                 $('#update_form_of_gom_fund #sc_gom_order_date').html(data[0].sc_gom_order_date);
-                                $('#update_form_of_gom_fund #sc_mhada_order_no').html(data[0].sc_mhada_order_no);
-                                $('#update_form_of_gom_fund #sc_mhada_order_date').html(data[0].sc_mhada_order_date);
-                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('value', data[0].sc_utilization_amount);
-
                                 $('#update_form_of_gom_fund #st_gom_order_no').html(data[0].st_gom_order_no);
                                 $('#update_form_of_gom_fund #st_gom_order_date').html(data[0].st_gom_order_date);
-                                $('#update_form_of_gom_fund #st_mhada_order_no').html(data[0].st_mhada_order_no);
-                                $('#update_form_of_gom_fund #st_mhada_order_date').html(data[0].st_mhada_order_date);
-                                $('#update_form_of_gom_fund #st_utilization_amount').attr('value', data[0].st_utilization_amount);
-
+                                $('#update_form_of_gom_fund #obc_gom_order_no').html(data[0].obc_gom_order_no);
+                                $('#update_form_of_gom_fund #obc_gom_order_date').html(data[0].obc_gom_order_date);
                                 $('#update_form_of_gom_fund #other_gom_order_no').html(data[0].other_gom_order_no);
                                 $('#update_form_of_gom_fund #other_gom_order_date').html(data[0].other_gom_order_date);
+
+                                if(data[0].sc_gom_upload_doc!=''){ $('#update_form_of_gom_fund #sc_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].sc_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].st_gom_upload_doc!=''){ $('#update_form_of_gom_fund #st_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].st_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].obc_gom_upload_doc!=''){ $('#update_form_of_gom_fund #obc_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].obc_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].other_gom_upload_doc!=''){ $('#update_form_of_gom_fund #other_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].other_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+
+                                $('#update_form_of_gom_fund #sc_mhada_received_amount').html(data[0].sc_mhada_received_amount);
+                                $('#update_form_of_gom_fund #sc_mhada_received_date').html(data[0].sc_mhada_received_date);
+                                $('#update_form_of_gom_fund #sc_mhada_released_amount').html(data[0].sc_mhada_released_amount);
+                                $('#update_form_of_gom_fund #sc_mhada_order_no').html(data[0].sc_mhada_order_no);
+                                $('#update_form_of_gom_fund #sc_mhada_order_date').html(data[0].sc_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #st_mhada_received_amount').html(data[0].st_mhada_received_amount);
+                                $('#update_form_of_gom_fund #st_mhada_received_date').html(data[0].st_mhada_received_date);
+                                $('#update_form_of_gom_fund #st_mhada_released_amount').html(data[0].st_mhada_released_amount);
+                                $('#update_form_of_gom_fund #st_mhada_order_no').html(data[0].st_mhada_order_no);
+                                $('#update_form_of_gom_fund #st_mhada_order_date').html(data[0].st_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #obc_mhada_received_amount').html(data[0].obc_mhada_received_amount);
+                                $('#update_form_of_gom_fund #obc_mhada_received_date').html(data[0].obc_mhada_received_date);
+                                $('#update_form_of_gom_fund #obc_mhada_released_amount').html(data[0].obc_mhada_released_amount);
+                                $('#update_form_of_gom_fund #obc_mhada_order_no').html(data[0].obc_mhada_order_no);
+                                $('#update_form_of_gom_fund #obc_mhada_order_date').html(data[0].obc_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #other_mhada_received_amount').html(data[0].other_mhada_received_amount);
+                                $('#update_form_of_gom_fund #other_mhada_received_date').html(data[0].other_mhada_received_date);
+                                $('#update_form_of_gom_fund #other_mhada_released_amount').html(data[0].other_mhada_released_amount);
                                 $('#update_form_of_gom_fund #other_mhada_order_no').html(data[0].other_mhada_order_no);
                                 $('#update_form_of_gom_fund #other_mhada_order_date').html(data[0].other_mhada_order_date);
+
+                                if(data[0].sc_mhada_upload_doc!=''){ $('#update_form_of_gom_fund #sc_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].sc_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].st_mhada_upload_doc!=''){ $('#update_form_of_gom_fund #st_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].st_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].obc_mhada_upload_doc!=''){ $('#update_form_of_gom_fund #obc_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].obc_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].other_mhada_upload_doc!=''){ $('#update_form_of_gom_fund #other_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].other_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+
+                                $('#update_form_of_gom_fund #sc_remark').html(data[0].sc_remark);
+                                $('#update_form_of_gom_fund #st_remark').html(data[0].st_remark);
+                                $('#update_form_of_gom_fund #obc_remark').html(data[0].obc_remark);
+                                $('#update_form_of_gom_fund #other_remark').html(data[0].other_remark);
+
+
+                                $('#update_form_of_gom_fund #sc_transactions').attr('value', data[0].sc_transactions);
+                                $('#update_form_of_gom_fund #st_transactions').attr('value', data[0].st_transactions);
+                                $('#update_form_of_gom_fund #obc_transactions').attr('value', data[0].obc_transactions);
+                                $('#update_form_of_gom_fund #other_transactions').attr('value', data[0].other_transactions);
+
+                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('value', data[0].sc_utilization_amount);
+                                $('#update_form_of_gom_fund #st_utilization_amount').attr('value', data[0].st_utilization_amount);
+                                $('#update_form_of_gom_fund #obc_utilization_amount').attr('value', data[0].obc_utilization_amount);
                                 $('#update_form_of_gom_fund #other_utilization_amount').attr('value', data[0].other_utilization_amount);
 
+
+
                                 $('#update_form_of_gom_fund #total_amount').html(data[0].total_amount);
+                                $('#update_form_of_gom_fund #total_gom_amount').html(data[0].total_gom_amount);
+                                $('#update_form_of_gom_fund #total_mhada_received_amount').html(data[0].total_mhada_received_amount);
+                                $('#update_form_of_gom_fund #total_mhada_released_amount').html(data[0].total_mhada_released_amount);
+
                                 $('#update_form_of_gom_fund #gom_total_utilization_amount').attr('value', data[0].total_utilization_amount);
 
                             }
 
-                            if(data[0].sc_amount=='' || data[0].sc_amount==0)
+                            if(data[0].sc_gom_amount=='' || data[0].sc_gom_amount==0)
                             {
                                 $('#update_form_of_gom_fund #sc_utilization_amount').attr('readonly', true);
 
                             }
 
-                            if(data[0].st_amount=='' || data[0].st_amount==0)
+                            if(data[0].st_gom_amount=='' || data[0].st_gom_amount==0)
                             {
                                 $('#update_form_of_gom_fund #st_utilization_amount').attr('readonly', true);
 
                             }
 
-                            if(data[0].other_amount=='' || data[0].other_amount==0)
+                            if(data[0].obc_gom_amount=='' || data[0].obc_gom_amount==0)
+                            {
+                                $('#update_form_of_gom_fund #obc_utilization_amount').attr('readonly', true);
+
+                            }
+
+                            if(data[0].other_gom_amount=='' || data[0].other_gom_amount==0)
                             {
                                 $('#update_form_of_gom_fund #other_utilization_amount').attr('readonly', true);
 
@@ -1049,62 +1617,194 @@
 
                                 $('#update_form_of_goi_fund #sc_amount').html('');
                                 $('#update_form_of_goi_fund #st_amount').html('');
+                                $('#update_form_of_goi_fund #obc_amount').html('');
                                 $('#update_form_of_goi_fund #other_amount').html('');
 
                                 $('#update_form_of_goi_fund #sc_goi_order_no').html('');
                                 $('#update_form_of_goi_fund #sc_goi_order_date').html('');
-                                $('#update_form_of_goi_fund #sc_gom_order_no').html('');
-                                $('#update_form_of_goi_fund #sc_gom_order_date').html('');
-                                $('#update_form_of_goi_fund #sc_mhada_order_no').html('');
-                                $('#update_form_of_goi_fund #sc_mhada_order_date').html('');
-                                $('#update_form_of_goi_fund #sc_utilization_amount').attr('value',0);
-
                                 $('#update_form_of_goi_fund #st_goi_order_no').html('');
                                 $('#update_form_of_goi_fund #st_goi_order_date').html('');
-                                $('#update_form_of_goi_fund #st_gom_order_no').html('');
-                                $('#update_form_of_goi_fund #st_gom_order_date').html('');
-                                $('#update_form_of_goi_fund #st_mhada_order_no').html('');
-                                $('#update_form_of_goi_fund #st_mhada_order_date').html('');
-                                $('#update_form_of_goi_fund #st_utilization_amount').attr('value', 0);
-
+                                $('#update_form_of_goi_fund #obc_goi_order_no').html('');
+                                $('#update_form_of_goi_fund #obc_goi_order_date').html('');
                                 $('#update_form_of_goi_fund #other_goi_order_no').html('');
                                 $('#update_form_of_goi_fund #other_goi_order_date').html('');
+
+                                $('#update_form_of_goi_fund #sc_goi_upload_doc').html('');
+                                 $('#update_form_of_goi_fund #st_goi_upload_doc').html('');
+                                 $('#update_form_of_goi_fund #obc_goi_upload_doc').html('');
+                                 $('#update_form_of_goi_fund #other_goi_upload_doc').html('');
+
+                                $('#update_form_of_goi_fund #sc_gom_amount').html('');
+                                $('#update_form_of_goi_fund #st_gom_amount').html('');
+                                $('#update_form_of_goi_fund #obc_gom_amount').html('');
+                                $('#update_form_of_goi_fund #other_gom_amount').html('');
+
+
+                                $('#update_form_of_goi_fund #sc_gom_order_no').html('');
+                                $('#update_form_of_goi_fund #sc_gom_order_date').html('');
+                                $('#update_form_of_goi_fund #st_gom_order_no').html('');
+                                $('#update_form_of_goi_fund #st_gom_order_date').html('');
+                                $('#update_form_of_goi_fund #obc_gom_order_no').html('');
+                                $('#update_form_of_goi_fund #obc_gom_order_date').html('');
                                 $('#update_form_of_goi_fund #other_gom_order_no').html('');
                                 $('#update_form_of_goi_fund #other_gom_order_date').html('');
+
+                                $('#update_form_of_goi_fund #sc_gom_upload_doc').html('');
+                                 $('#update_form_of_goi_fund #st_gom_upload_doc').html('');
+                                 $('#update_form_of_goi_fund #obc_gom_upload_doc').html('');
+                                $('#update_form_of_goi_fund #other_gom_upload_doc').html('');
+
+                                $('#update_form_of_goi_fund #sc_mhada_received_amount').html('');
+                                $('#update_form_of_goi_fund #sc_mhada_received_date').html('');
+                                $('#update_form_of_goi_fund #sc_mhada_released_amount').html('');
+                                $('#update_form_of_goi_fund #sc_mhada_order_no').html('');
+                                $('#update_form_of_goi_fund #sc_mhada_order_date').html('');
+
+                                $('#update_form_of_goi_fund #st_mhada_received_amount').html('');
+                                $('#update_form_of_goi_fund #st_mhada_received_date').html('');
+                                $('#update_form_of_goi_fund #st_mhada_released_amount').html('');
+                                $('#update_form_of_goi_fund #st_mhada_order_no').html('');
+                                $('#update_form_of_goi_fund #st_mhada_order_date').html('');
+
+                                $('#update_form_of_goi_fund #obc_mhada_received_amount').html('');
+                                $('#update_form_of_goi_fund #obc_mhada_received_date').html('');
+                                $('#update_form_of_goi_fund #obc_mhada_released_amount').html('');
+                                $('#update_form_of_goi_fund #obc_mhada_order_no').html('');
+                                $('#update_form_of_goi_fund #obc_mhada_order_date').html('');
+
+                                $('#update_form_of_goi_fund #other_mhada_received_amount').html('');
+                                $('#update_form_of_goi_fund #other_mhada_received_date').html('');
+                                $('#update_form_of_goi_fund #other_mhada_released_amount').html('');
                                 $('#update_form_of_goi_fund #other_mhada_order_no').html('');
                                 $('#update_form_of_goi_fund #other_mhada_order_date').html('');
+
+                                $('#update_form_of_goi_fund #sc_mhada_upload_doc').html('');
+                                 $('#update_form_of_goi_fund #st_mhada_upload_doc').html('');
+                                $('#update_form_of_goi_fund #obc_mhada_upload_doc').html('');
+                                 $('#update_form_of_goi_fund #other_mhada_upload_doc').html('');
+
+                                $('#update_form_of_goi_fund #sc_remark').html('');
+                                $('#update_form_of_goi_fund #st_remark').html('');
+                                $('#update_form_of_goi_fund #obc_remark').html('');
+                                $('#update_form_of_goi_fund #other_remark').html('');
+
+
+                                $('#update_form_of_goi_fund #sc_transactions').html('');
+                                $('#update_form_of_goi_fund #st_transactions').html('');
+                                $('#update_form_of_goi_fund #obc_transactions').html('');
+                                $('#update_form_of_goi_fund #other_transactions').html('');
+
+                                $('#update_form_of_goi_fund #sc_utilization_amount').attr('value', 0);
+                                $('#update_form_of_goi_fund #st_utilization_amount').attr('value', 0);
+                                $('#update_form_of_goi_fund #obc_utilization_amount').attr('value', 0);
                                 $('#update_form_of_goi_fund #other_utilization_amount').attr('value', 0);
 
+
+
                                 $('#update_form_of_goi_fund #total_amount').html('');
+                                $('#update_form_of_goi_fund #total_gom_amount').html('');
+                                $('#update_form_of_goi_fund #total_mhada_received_amount').html('');
+                                $('#update_form_of_goi_fund #total_mhada_released_amount').html('');
                                 $('#update_form_of_goi_fund #total_utilization_amount').attr('value', 0);
+
+
 
                             }
                             else if (nodel_agency == 2) {
 
+
                                 $('#update_form_of_gom_fund #sc_amount').html('');
                                 $('#update_form_of_gom_fund #st_amount').html('');
+                                $('#update_form_of_gom_fund #obc_amount').html('');
                                 $('#update_form_of_gom_fund #other_amount').html('');
+
+                                $('#update_form_of_gom_fund #sc_goi_order_no').html('');
+                                $('#update_form_of_gom_fund #sc_goi_order_date').html('');
+                                $('#update_form_of_gom_fund #st_goi_order_no').html('');
+                                $('#update_form_of_gom_fund #st_goi_order_date').html('');
+                                $('#update_form_of_gom_fund #obc_goi_order_no').html('');
+                                $('#update_form_of_gom_fund #obc_goi_order_date').html('');
+                                $('#update_form_of_gom_fund #other_goi_order_no').html('');
+                                $('#update_form_of_gom_fund #other_goi_order_date').html('');
+
+                                $('#update_form_of_gom_fund #sc_goi_upload_doc').html('');
+                                $('#update_form_of_gom_fund #st_goi_upload_doc').html('');
+                                $('#update_form_of_gom_fund #obc_goi_upload_doc').html('');
+                                $('#update_form_of_gom_fund #other_goi_upload_doc').html('');
+
+                                $('#update_form_of_gom_fund #sc_gom_amount').html('');
+                                $('#update_form_of_gom_fund #st_gom_amount').html('');
+                                $('#update_form_of_gom_fund #obc_gom_amount').html('');
+                                $('#update_form_of_gom_fund #other_gom_amount').html('');
+
 
                                 $('#update_form_of_gom_fund #sc_gom_order_no').html('');
                                 $('#update_form_of_gom_fund #sc_gom_order_date').html('');
-                                $('#update_form_of_gom_fund #sc_mhada_order_no').html('');
-                                $('#update_form_of_gom_fund #sc_mhada_order_date').html('');
-                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('value', 0);
-
                                 $('#update_form_of_gom_fund #st_gom_order_no').html('');
                                 $('#update_form_of_gom_fund #st_gom_order_date').html('');
-                                $('#update_form_of_gom_fund #st_mhada_order_no').html('');
-                                $('#update_form_of_gom_fund #st_mhada_order_date').html('');
-                                $('#update_form_of_gom_fund #st_utilization_amount').attr('value', 0);
-
+                                $('#update_form_of_gom_fund #obc_gom_order_no').html('');
+                                $('#update_form_of_gom_fund #obc_gom_order_date').html('');
                                 $('#update_form_of_gom_fund #other_gom_order_no').html('');
                                 $('#update_form_of_gom_fund #other_gom_order_date').html('');
+
+                                $('#update_form_of_gom_fund #sc_gom_upload_doc').html('');
+                                $('#update_form_of_gom_fund #st_gom_upload_doc').html('');
+                                $('#update_form_of_gom_fund #obc_gom_upload_doc').html('');
+                                $('#update_form_of_gom_fund #other_gom_upload_doc').html('');
+
+                                $('#update_form_of_gom_fund #sc_mhada_received_amount').html('');
+                                $('#update_form_of_gom_fund #sc_mhada_received_date').html('');
+                                $('#update_form_of_gom_fund #sc_mhada_released_amount').html('');
+                                $('#update_form_of_gom_fund #sc_mhada_order_no').html('');
+                                $('#update_form_of_gom_fund #sc_mhada_order_date').html('');
+
+                                $('#update_form_of_gom_fund #st_mhada_received_amount').html('');
+                                $('#update_form_of_gom_fund #st_mhada_received_date').html('');
+                                $('#update_form_of_gom_fund #st_mhada_released_amount').html('');
+                                $('#update_form_of_gom_fund #st_mhada_order_no').html('');
+                                $('#update_form_of_gom_fund #st_mhada_order_date').html('');
+
+                                $('#update_form_of_gom_fund #obc_mhada_received_amount').html('');
+                                $('#update_form_of_gom_fund #obc_mhada_received_date').html('');
+                                $('#update_form_of_gom_fund #obc_mhada_released_amount').html('');
+                                $('#update_form_of_gom_fund #obc_mhada_order_no').html('');
+                                $('#update_form_of_gom_fund #obc_mhada_order_date').html('');
+
+                                $('#update_form_of_gom_fund #other_mhada_received_amount').html('');
+                                $('#update_form_of_gom_fund #other_mhada_received_date').html('');
+                                $('#update_form_of_gom_fund #other_mhada_released_amount').html('');
                                 $('#update_form_of_gom_fund #other_mhada_order_no').html('');
                                 $('#update_form_of_gom_fund #other_mhada_order_date').html('');
-                                $('#update_form_of_gom_fund #other_utilization_amount').attr('value',0);
+
+                                $('#update_form_of_gom_fund #sc_mhada_upload_doc').html('');
+                                $('#update_form_of_gom_fund #st_mhada_upload_doc').html('');
+                                $('#update_form_of_gom_fund #obc_mhada_upload_doc').html('');
+                                $('#update_form_of_gom_fund #other_mhada_upload_doc').html('');
+
+                                $('#update_form_of_gom_fund #sc_remark').html('');
+                                $('#update_form_of_gom_fund #st_remark').html('');
+                                $('#update_form_of_gom_fund #obc_remark').html('');
+                                $('#update_form_of_gom_fund #other_remark').html('');
+
+
+                                $('#update_form_of_gom_fund #sc_transactions').html('');
+                                $('#update_form_of_gom_fund #st_transactions').html('');
+                                $('#update_form_of_gom_fund #obc_transactions').html('');
+                                $('#update_form_of_gom_fund #other_transactions').html('');
+
+                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('value', 0);
+                                $('#update_form_of_gom_fund #st_utilization_amount').attr('value', 0);
+                                $('#update_form_of_gom_fund #obc_utilization_amount').attr('value', 0);
+                                $('#update_form_of_gom_fund #other_utilization_amount').attr('value', 0);
+
+
 
                                 $('#update_form_of_gom_fund #total_amount').html('');
+                                $('#update_form_of_gom_fund #total_gom_amount').html('');
+                                $('#update_form_of_gom_fund #total_mhada_received_amount').html('');
+                                $('#update_form_of_gom_fund #total_mhada_released_amount').html('');
                                 $('#update_form_of_gom_fund #gom_total_utilization_amount').attr('value', 0);
+
 
                             }
 
@@ -1149,33 +1849,94 @@
 
                                 $('#update_form_of_goi_fund #sc_amount').html(data[0].sc_amount);
                                 $('#update_form_of_goi_fund #st_amount').html(data[0].st_amount);
+                                $('#update_form_of_goi_fund #obc_amount').html(data[0].obc_amount);
                                 $('#update_form_of_goi_fund #other_amount').html(data[0].other_amount);
 
                                 $('#update_form_of_goi_fund #sc_goi_order_no').html(data[0].sc_goi_order_no);
                                 $('#update_form_of_goi_fund #sc_goi_order_date').html(data[0].sc_goi_order_date);
-                                $('#update_form_of_goi_fund #sc_gom_order_no').html(data[0].sc_gom_order_no);
-                                $('#update_form_of_goi_fund #sc_gom_order_date').html(data[0].sc_gom_order_date);
-                                $('#update_form_of_goi_fund #sc_mhada_order_no').html(data[0].sc_mhada_order_no);
-                                $('#update_form_of_goi_fund #sc_mhada_order_date').html(data[0].sc_mhada_order_date);
-                                $('#update_form_of_goi_fund #sc_utilization_amount').attr('value', data[0].sc_utilization_amount);
-
                                 $('#update_form_of_goi_fund #st_goi_order_no').html(data[0].st_goi_order_no);
                                 $('#update_form_of_goi_fund #st_goi_order_date').html(data[0].st_goi_order_date);
-                                $('#update_form_of_goi_fund #st_gom_order_no').html(data[0].st_gom_order_no);
-                                $('#update_form_of_goi_fund #st_gom_order_date').html(data[0].st_gom_order_date);
-                                $('#update_form_of_goi_fund #st_mhada_order_no').html(data[0].st_mhada_order_no);
-                                $('#update_form_of_goi_fund #st_mhada_order_date').html(data[0].st_mhada_order_date);
-                                $('#update_form_of_goi_fund #st_utilization_amount').attr('value', data[0].st_utilization_amount);
-
+                                $('#update_form_of_goi_fund #obc_goi_order_no').html(data[0].obc_goi_order_no);
+                                $('#update_form_of_goi_fund #obc_goi_order_date').html(data[0].obc_goi_order_date);
                                 $('#update_form_of_goi_fund #other_goi_order_no').html(data[0].other_goi_order_no);
                                 $('#update_form_of_goi_fund #other_goi_order_date').html(data[0].other_goi_order_date);
+
+                                if(data[0].sc_goi_upload_doc!=''){ $('#update_form_of_goi_fund #sc_goi_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].sc_goi_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].st_goi_upload_doc!=''){ $('#update_form_of_goi_fund #st_goi_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].st_goi_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].obc_goi_upload_doc!=''){ $('#update_form_of_goi_fund #obc_goi_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].obc_goi_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].other_goi_upload_doc!=''){ $('#update_form_of_goi_fund #other_goi_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].other_goi_upload_doc+'" target="_blank">Download Doc</a>'); }
+
+                                $('#update_form_of_goi_fund #sc_gom_amount').html(data[0].sc_gom_amount);
+                                $('#update_form_of_goi_fund #st_gom_amount').html(data[0].st_gom_amount);
+                                $('#update_form_of_goi_fund #obc_gom_amount').html(data[0].obc_gom_amount);
+                                $('#update_form_of_goi_fund #other_gom_amount').html(data[0].other_gom_amount);
+
+
+                                $('#update_form_of_goi_fund #sc_gom_order_no').html(data[0].sc_gom_order_no);
+                                $('#update_form_of_goi_fund #sc_gom_order_date').html(data[0].sc_gom_order_date);
+                                $('#update_form_of_goi_fund #st_gom_order_no').html(data[0].st_gom_order_no);
+                                $('#update_form_of_goi_fund #st_gom_order_date').html(data[0].st_gom_order_date);
+                                $('#update_form_of_goi_fund #obc_gom_order_no').html(data[0].obc_gom_order_no);
+                                $('#update_form_of_goi_fund #obc_gom_order_date').html(data[0].obc_gom_order_date);
                                 $('#update_form_of_goi_fund #other_gom_order_no').html(data[0].other_gom_order_no);
                                 $('#update_form_of_goi_fund #other_gom_order_date').html(data[0].other_gom_order_date);
+
+                                if(data[0].sc_gom_upload_doc!=''){ $('#update_form_of_goi_fund #sc_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].sc_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].st_gom_upload_doc!=''){ $('#update_form_of_goi_fund #st_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].st_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].obc_gom_upload_doc!=''){ $('#update_form_of_goi_fund #obc_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].obc_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].other_gom_upload_doc!=''){ $('#update_form_of_goi_fund #other_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].other_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+
+                                $('#update_form_of_goi_fund #sc_mhada_received_amount').html(data[0].sc_mhada_received_amount);
+                                $('#update_form_of_goi_fund #sc_mhada_received_date').html(data[0].sc_mhada_received_date);
+                                $('#update_form_of_goi_fund #sc_mhada_released_amount').html(data[0].sc_mhada_released_amount);
+                                $('#update_form_of_goi_fund #sc_mhada_order_no').html(data[0].sc_mhada_order_no);
+                                $('#update_form_of_goi_fund #sc_mhada_order_date').html(data[0].sc_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #st_mhada_received_amount').html(data[0].st_mhada_received_amount);
+                                $('#update_form_of_goi_fund #st_mhada_received_date').html(data[0].st_mhada_received_date);
+                                $('#update_form_of_goi_fund #st_mhada_released_amount').html(data[0].st_mhada_released_amount);
+                                $('#update_form_of_goi_fund #st_mhada_order_no').html(data[0].st_mhada_order_no);
+                                $('#update_form_of_goi_fund #st_mhada_order_date').html(data[0].st_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #obc_mhada_received_amount').html(data[0].obc_mhada_received_amount);
+                                $('#update_form_of_goi_fund #obc_mhada_received_date').html(data[0].obc_mhada_received_date);
+                                $('#update_form_of_goi_fund #obc_mhada_released_amount').html(data[0].obc_mhada_released_amount);
+                                $('#update_form_of_goi_fund #obc_mhada_order_no').html(data[0].obc_mhada_order_no);
+                                $('#update_form_of_goi_fund #obc_mhada_order_date').html(data[0].obc_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #other_mhada_received_amount').html(data[0].other_mhada_received_amount);
+                                $('#update_form_of_goi_fund #other_mhada_received_date').html(data[0].other_mhada_received_date);
+                                $('#update_form_of_goi_fund #other_mhada_released_amount').html(data[0].other_mhada_released_amount);
                                 $('#update_form_of_goi_fund #other_mhada_order_no').html(data[0].other_mhada_order_no);
                                 $('#update_form_of_goi_fund #other_mhada_order_date').html(data[0].other_mhada_order_date);
+
+                                if(data[0].sc_mhada_upload_doc!=''){ $('#update_form_of_goi_fund #sc_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].sc_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].st_mhada_upload_doc!=''){ $('#update_form_of_goi_fund #st_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].st_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].obc_mhada_upload_doc!=''){ $('#update_form_of_goi_fund #obc_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].obc_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].other_mhada_upload_doc!=''){ $('#update_form_of_goi_fund #other_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].other_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+
+                                $('#update_form_of_goi_fund #sc_remark').html(data[0].sc_remark);
+                                $('#update_form_of_goi_fund #st_remark').html(data[0].st_remark);
+                                $('#update_form_of_goi_fund #obc_remark').html(data[0].obc_remark);
+                                $('#update_form_of_goi_fund #other_remark').html(data[0].other_remark);
+
+
+                                $('#update_form_of_goi_fund #sc_transactions').attr('value', data[0].sc_transactions);
+                                $('#update_form_of_goi_fund #st_transactions').attr('value', data[0].st_transactions);
+                                $('#update_form_of_goi_fund #obc_transactions').attr('value', data[0].obc_transactions);
+                                $('#update_form_of_goi_fund #other_transactions').attr('value', data[0].other_transactions);
+
+                                $('#update_form_of_goi_fund #sc_utilization_amount').attr('value', data[0].sc_utilization_amount);
+                                $('#update_form_of_goi_fund #st_utilization_amount').attr('value', data[0].st_utilization_amount);
+                                $('#update_form_of_goi_fund #obc_utilization_amount').attr('value', data[0].obc_utilization_amount);
                                 $('#update_form_of_goi_fund #other_utilization_amount').attr('value', data[0].other_utilization_amount);
 
+
+
                                 $('#update_form_of_goi_fund #total_amount').html(data[0].total_amount);
+                                $('#update_form_of_goi_fund #total_gom_amount').html(data[0].total_gom_amount);
+                                $('#update_form_of_goi_fund #total_mhada_received_amount').html(data[0].total_mhada_received_amount);
+                                $('#update_form_of_goi_fund #total_mhada_released_amount').html(data[0].total_mhada_released_amount);
                                 $('#update_form_of_goi_fund #total_utilization_amount').attr('value', data[0].total_utilization_amount);
 
 
@@ -1190,6 +1951,11 @@
                                     $('#update_form_of_goi_fund #st_utilization_amount').attr('readonly', true);
 
                                 }
+                                if(data[0].obc_amount=='' || data[0].obc_amount==0)
+                                {
+                                    $('#update_form_of_goi_fund #obc_utilization_amount').attr('readonly', true);
+
+                                }
 
                                 if(data[0].other_amount=='' || data[0].other_amount==0)
                                 {
@@ -1199,46 +1965,101 @@
                             }
                             else if (data[0].nodel_agency == 2) {
 
-                                $('#update_form_of_gom_fund #sc_amount').html(data[0].sc_amount);
-                                $('#update_form_of_gom_fund #st_amount').html(data[0].st_amount);
-                                $('#update_form_of_gom_fund #other_amount').html(data[0].other_amount);
+                                $('#update_form_of_gom_fund #sc_gom_amount').html(data[0].sc_gom_amount);
+                                $('#update_form_of_gom_fund #st_gom_amount').html(data[0].st_gom_amount);
+                                $('#update_form_of_gom_fund #obc_gom_amount').html(data[0].obc_gom_amount);
+                                $('#update_form_of_gom_fund #other_gom_amount').html(data[0].other_gom_amount);
+
 
                                 $('#update_form_of_gom_fund #sc_gom_order_no').html(data[0].sc_gom_order_no);
                                 $('#update_form_of_gom_fund #sc_gom_order_date').html(data[0].sc_gom_order_date);
-                                $('#update_form_of_gom_fund #sc_mhada_order_no').html(data[0].sc_mhada_order_no);
-                                $('#update_form_of_gom_fund #sc_mhada_order_date').html(data[0].sc_mhada_order_date);
-                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('value', data[0].sc_utilization_amount);
-
                                 $('#update_form_of_gom_fund #st_gom_order_no').html(data[0].st_gom_order_no);
                                 $('#update_form_of_gom_fund #st_gom_order_date').html(data[0].st_gom_order_date);
-                                $('#update_form_of_gom_fund #st_mhada_order_no').html(data[0].st_mhada_order_no);
-                                $('#update_form_of_gom_fund #st_mhada_order_date').html(data[0].st_mhada_order_date);
-                                $('#update_form_of_gom_fund #st_utilization_amount').attr('value', data[0].st_utilization_amount);
-
+                                $('#update_form_of_gom_fund #obc_gom_order_no').html(data[0].obc_gom_order_no);
+                                $('#update_form_of_gom_fund #obc_gom_order_date').html(data[0].obc_gom_order_date);
                                 $('#update_form_of_gom_fund #other_gom_order_no').html(data[0].other_gom_order_no);
                                 $('#update_form_of_gom_fund #other_gom_order_date').html(data[0].other_gom_order_date);
+
+                                if(data[0].sc_gom_upload_doc!=''){ $('#update_form_of_gom_fund #sc_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].sc_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].st_gom_upload_doc!=''){ $('#update_form_of_gom_fund #st_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].st_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].obc_gom_upload_doc!=''){ $('#update_form_of_gom_fund #obc_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].obc_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].other_gom_upload_doc!=''){ $('#update_form_of_gom_fund #other_gom_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].other_gom_upload_doc+'" target="_blank">Download Doc</a>'); }
+
+                                $('#update_form_of_gom_fund #sc_mhada_received_amount').html(data[0].sc_mhada_received_amount);
+                                $('#update_form_of_gom_fund #sc_mhada_received_date').html(data[0].sc_mhada_received_date);
+                                $('#update_form_of_gom_fund #sc_mhada_released_amount').html(data[0].sc_mhada_released_amount);
+                                $('#update_form_of_gom_fund #sc_mhada_order_no').html(data[0].sc_mhada_order_no);
+                                $('#update_form_of_gom_fund #sc_mhada_order_date').html(data[0].sc_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #st_mhada_received_amount').html(data[0].st_mhada_received_amount);
+                                $('#update_form_of_gom_fund #st_mhada_received_date').html(data[0].st_mhada_received_date);
+                                $('#update_form_of_gom_fund #st_mhada_released_amount').html(data[0].st_mhada_released_amount);
+                                $('#update_form_of_gom_fund #st_mhada_order_no').html(data[0].st_mhada_order_no);
+                                $('#update_form_of_gom_fund #st_mhada_order_date').html(data[0].st_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #obc_mhada_received_amount').html(data[0].obc_mhada_received_amount);
+                                $('#update_form_of_gom_fund #obc_mhada_received_date').html(data[0].obc_mhada_received_date);
+                                $('#update_form_of_gom_fund #obc_mhada_released_amount').html(data[0].obc_mhada_released_amount);
+                                $('#update_form_of_gom_fund #obc_mhada_order_no').html(data[0].obc_mhada_order_no);
+                                $('#update_form_of_gom_fund #obc_mhada_order_date').html(data[0].obc_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #other_mhada_received_amount').html(data[0].other_mhada_received_amount);
+                                $('#update_form_of_gom_fund #other_mhada_received_date').html(data[0].other_mhada_received_date);
+                                $('#update_form_of_gom_fund #other_mhada_released_amount').html(data[0].other_mhada_released_amount);
                                 $('#update_form_of_gom_fund #other_mhada_order_no').html(data[0].other_mhada_order_no);
                                 $('#update_form_of_gom_fund #other_mhada_order_date').html(data[0].other_mhada_order_date);
+
+                                if(data[0].sc_mhada_upload_doc!=''){ $('#update_form_of_gom_fund #sc_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].sc_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].st_mhada_upload_doc!=''){ $('#update_form_of_gom_fund #st_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].st_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].obc_mhada_upload_doc!=''){ $('#update_form_of_gom_fund #obc_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].obc_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+                                if(data[0].other_mhada_upload_doc!=''){ $('#update_form_of_gom_fund #other_mhada_upload_doc').html('<a href="<?php echo base_url();?>public/uploads/'+data[0].other_mhada_upload_doc+'" target="_blank">Download Doc</a>'); }
+
+                                $('#update_form_of_gom_fund #sc_remark').html(data[0].sc_remark);
+                                $('#update_form_of_gom_fund #st_remark').html(data[0].st_remark);
+                                $('#update_form_of_gom_fund #obc_remark').html(data[0].obc_remark);
+                                $('#update_form_of_gom_fund #other_remark').html(data[0].other_remark);
+
+
+                                $('#update_form_of_gom_fund #sc_transactions').attr('value', data[0].sc_transactions);
+                                $('#update_form_of_gom_fund #st_transactions').attr('value', data[0].st_transactions);
+                                $('#update_form_of_gom_fund #obc_transactions').attr('value', data[0].obc_transactions);
+                                $('#update_form_of_gom_fund #other_transactions').attr('value', data[0].other_transactions);
+
+                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('value', data[0].sc_utilization_amount);
+                                $('#update_form_of_gom_fund #st_utilization_amount').attr('value', data[0].st_utilization_amount);
+                                $('#update_form_of_gom_fund #obc_utilization_amount').attr('value', data[0].obc_utilization_amount);
                                 $('#update_form_of_gom_fund #other_utilization_amount').attr('value', data[0].other_utilization_amount);
 
+
+
                                 $('#update_form_of_gom_fund #total_amount').html(data[0].total_amount);
+                                $('#update_form_of_gom_fund #total_gom_amount').html(data[0].total_gom_amount);
+                                $('#update_form_of_gom_fund #total_mhada_received_amount').html(data[0].total_mhada_received_amount);
+                                $('#update_form_of_gom_fund #total_mhada_released_amount').html(data[0].total_mhada_released_amount);
+
                                 $('#update_form_of_gom_fund #gom_total_utilization_amount').attr('value', data[0].total_utilization_amount);
 
                             }
 
-                            if(data[0].sc_amount=='' || data[0].sc_amount==0)
+                            if(data[0].sc_gom_amount=='' || data[0].sc_gom_amount==0)
                             {
                                 $('#update_form_of_gom_fund #sc_utilization_amount').attr('readonly', true);
 
                             }
 
-                            if(data[0].st_amount=='' || data[0].st_amount==0)
+                            if(data[0].st_gom_amount=='' || data[0].st_gom_amount==0)
                             {
                                 $('#update_form_of_gom_fund #st_utilization_amount').attr('readonly', true);
 
                             }
 
-                            if(data[0].other_amount=='' || data[0].other_amount==0)
+                            if(data[0].obc_gom_amount=='' || data[0].obc_gom_amount==0)
+                            {
+                                $('#update_form_of_gom_fund #obc_utilization_amount').attr('readonly', true);
+
+                            }
+
+                            if(data[0].other_gom_amount=='' || data[0].other_gom_amount==0)
                             {
                                 $('#update_form_of_gom_fund #other_utilization_amount').attr('readonly', true);
 
@@ -1254,67 +2075,200 @@
 
                                 $('#update_form_of_goi_fund #sc_amount').html('');
                                 $('#update_form_of_goi_fund #st_amount').html('');
+                                $('#update_form_of_goi_fund #obc_amount').html('');
                                 $('#update_form_of_goi_fund #other_amount').html('');
 
                                 $('#update_form_of_goi_fund #sc_goi_order_no').html('');
                                 $('#update_form_of_goi_fund #sc_goi_order_date').html('');
-                                $('#update_form_of_goi_fund #sc_gom_order_no').html('');
-                                $('#update_form_of_goi_fund #sc_gom_order_date').html('');
-                                $('#update_form_of_goi_fund #sc_mhada_order_no').html('');
-                                $('#update_form_of_goi_fund #sc_mhada_order_date').html('');
-                                $('#update_form_of_goi_fund #sc_utilization_amount').attr('value',0);
-
                                 $('#update_form_of_goi_fund #st_goi_order_no').html('');
                                 $('#update_form_of_goi_fund #st_goi_order_date').html('');
-                                $('#update_form_of_goi_fund #st_gom_order_no').html('');
-                                $('#update_form_of_goi_fund #st_gom_order_date').html('');
-                                $('#update_form_of_goi_fund #st_mhada_order_no').html('');
-                                $('#update_form_of_goi_fund #st_mhada_order_date').html('');
-                                $('#update_form_of_goi_fund #st_utilization_amount').attr('value', 0);
-
+                                $('#update_form_of_goi_fund #obc_goi_order_no').html('');
+                                $('#update_form_of_goi_fund #obc_goi_order_date').html('');
                                 $('#update_form_of_goi_fund #other_goi_order_no').html('');
                                 $('#update_form_of_goi_fund #other_goi_order_date').html('');
+
+                                $('#update_form_of_goi_fund #sc_goi_upload_doc').html('');
+                                $('#update_form_of_goi_fund #st_goi_upload_doc').html('');
+                                $('#update_form_of_goi_fund #obc_goi_upload_doc').html('');
+                                $('#update_form_of_goi_fund #other_goi_upload_doc').html('');
+
+                                $('#update_form_of_goi_fund #sc_gom_amount').html('');
+                                $('#update_form_of_goi_fund #st_gom_amount').html('');
+                                $('#update_form_of_goi_fund #obc_gom_amount').html('');
+                                $('#update_form_of_goi_fund #other_gom_amount').html('');
+
+
+                                $('#update_form_of_goi_fund #sc_gom_order_no').html('');
+                                $('#update_form_of_goi_fund #sc_gom_order_date').html('');
+                                $('#update_form_of_goi_fund #st_gom_order_no').html('');
+                                $('#update_form_of_goi_fund #st_gom_order_date').html('');
+                                $('#update_form_of_goi_fund #obc_gom_order_no').html('');
+                                $('#update_form_of_goi_fund #obc_gom_order_date').html('');
                                 $('#update_form_of_goi_fund #other_gom_order_no').html('');
                                 $('#update_form_of_goi_fund #other_gom_order_date').html('');
+
+                                $('#update_form_of_goi_fund #sc_gom_upload_doc').html('');
+                                $('#update_form_of_goi_fund #st_gom_upload_doc').html('');
+                                $('#update_form_of_goi_fund #obc_gom_upload_doc').html('');
+                                $('#update_form_of_goi_fund #other_gom_upload_doc').html('');
+
+                                $('#update_form_of_goi_fund #sc_mhada_received_amount').html('');
+                                $('#update_form_of_goi_fund #sc_mhada_received_date').html('');
+                                $('#update_form_of_goi_fund #sc_mhada_released_amount').html('');
+                                $('#update_form_of_goi_fund #sc_mhada_order_no').html('');
+                                $('#update_form_of_goi_fund #sc_mhada_order_date').html('');
+
+                                $('#update_form_of_goi_fund #st_mhada_received_amount').html('');
+                                $('#update_form_of_goi_fund #st_mhada_received_date').html('');
+                                $('#update_form_of_goi_fund #st_mhada_released_amount').html('');
+                                $('#update_form_of_goi_fund #st_mhada_order_no').html('');
+                                $('#update_form_of_goi_fund #st_mhada_order_date').html('');
+
+                                $('#update_form_of_goi_fund #obc_mhada_received_amount').html('');
+                                $('#update_form_of_goi_fund #obc_mhada_received_date').html('');
+                                $('#update_form_of_goi_fund #obc_mhada_released_amount').html('');
+                                $('#update_form_of_goi_fund #obc_mhada_order_no').html('');
+                                $('#update_form_of_goi_fund #obc_mhada_order_date').html('');
+
+                                $('#update_form_of_goi_fund #other_mhada_received_amount').html('');
+                                $('#update_form_of_goi_fund #other_mhada_received_date').html('');
+                                $('#update_form_of_goi_fund #other_mhada_released_amount').html('');
                                 $('#update_form_of_goi_fund #other_mhada_order_no').html('');
                                 $('#update_form_of_goi_fund #other_mhada_order_date').html('');
+
+                                $('#update_form_of_goi_fund #sc_mhada_upload_doc').html('');
+                                $('#update_form_of_goi_fund #st_mhada_upload_doc').html('');
+                                $('#update_form_of_goi_fund #obc_mhada_upload_doc').html('');
+                                $('#update_form_of_goi_fund #other_mhada_upload_doc').html('');
+
+                                $('#update_form_of_goi_fund #sc_remark').html('');
+                                $('#update_form_of_goi_fund #st_remark').html('');
+                                $('#update_form_of_goi_fund #obc_remark').html('');
+                                $('#update_form_of_goi_fund #other_remark').html('');
+
+
+                                $('#update_form_of_goi_fund #sc_transactions').html('');
+                                $('#update_form_of_goi_fund #st_transactions').html('');
+                                $('#update_form_of_goi_fund #obc_transactions').html('');
+                                $('#update_form_of_goi_fund #other_transactions').html('');
+
+                                $('#update_form_of_goi_fund #sc_utilization_amount').attr('value', 0);
+                                $('#update_form_of_goi_fund #st_utilization_amount').attr('value', 0);
+                                $('#update_form_of_goi_fund #obc_utilization_amount').attr('value', 0);
                                 $('#update_form_of_goi_fund #other_utilization_amount').attr('value', 0);
 
+
+
                                 $('#update_form_of_goi_fund #total_amount').html('');
+                                $('#update_form_of_goi_fund #total_gom_amount').html('');
+                                $('#update_form_of_goi_fund #total_mhada_received_amount').html('');
+                                $('#update_form_of_goi_fund #total_mhada_released_amount').html('');
                                 $('#update_form_of_goi_fund #total_utilization_amount').attr('value', 0);
+
+
 
                             }
                             else if (nodel_agency == 2) {
 
+
                                 $('#update_form_of_gom_fund #sc_amount').html('');
                                 $('#update_form_of_gom_fund #st_amount').html('');
+                                $('#update_form_of_gom_fund #obc_amount').html('');
                                 $('#update_form_of_gom_fund #other_amount').html('');
+
+                                $('#update_form_of_gom_fund #sc_goi_order_no').html('');
+                                $('#update_form_of_gom_fund #sc_goi_order_date').html('');
+                                $('#update_form_of_gom_fund #st_goi_order_no').html('');
+                                $('#update_form_of_gom_fund #st_goi_order_date').html('');
+                                $('#update_form_of_gom_fund #obc_goi_order_no').html('');
+                                $('#update_form_of_gom_fund #obc_goi_order_date').html('');
+                                $('#update_form_of_gom_fund #other_goi_order_no').html('');
+                                $('#update_form_of_gom_fund #other_goi_order_date').html('');
+
+                                $('#update_form_of_gom_fund #sc_goi_upload_doc').html('');
+                                $('#update_form_of_gom_fund #st_goi_upload_doc').html('');
+                                $('#update_form_of_gom_fund #obc_goi_upload_doc').html('');
+                                $('#update_form_of_gom_fund #other_goi_upload_doc').html('');
+
+                                $('#update_form_of_gom_fund #sc_gom_amount').html('');
+                                $('#update_form_of_gom_fund #st_gom_amount').html('');
+                                $('#update_form_of_gom_fund #obc_gom_amount').html('');
+                                $('#update_form_of_gom_fund #other_gom_amount').html('');
+
 
                                 $('#update_form_of_gom_fund #sc_gom_order_no').html('');
                                 $('#update_form_of_gom_fund #sc_gom_order_date').html('');
-                                $('#update_form_of_gom_fund #sc_mhada_order_no').html('');
-                                $('#update_form_of_gom_fund #sc_mhada_order_date').html('');
-                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('value', 0);
-
                                 $('#update_form_of_gom_fund #st_gom_order_no').html('');
                                 $('#update_form_of_gom_fund #st_gom_order_date').html('');
-                                $('#update_form_of_gom_fund #st_mhada_order_no').html('');
-                                $('#update_form_of_gom_fund #st_mhada_order_date').html('');
-                                $('#update_form_of_gom_fund #st_utilization_amount').attr('value', 0);
-
+                                $('#update_form_of_gom_fund #obc_gom_order_no').html('');
+                                $('#update_form_of_gom_fund #obc_gom_order_date').html('');
                                 $('#update_form_of_gom_fund #other_gom_order_no').html('');
                                 $('#update_form_of_gom_fund #other_gom_order_date').html('');
+
+                                $('#update_form_of_gom_fund #sc_gom_upload_doc').html('');
+                                $('#update_form_of_gom_fund #st_gom_upload_doc').html('');
+                                $('#update_form_of_gom_fund #obc_gom_upload_doc').html('');
+                                $('#update_form_of_gom_fund #other_gom_upload_doc').html('');
+
+                                $('#update_form_of_gom_fund #sc_mhada_received_amount').html('');
+                                $('#update_form_of_gom_fund #sc_mhada_received_date').html('');
+                                $('#update_form_of_gom_fund #sc_mhada_released_amount').html('');
+                                $('#update_form_of_gom_fund #sc_mhada_order_no').html('');
+                                $('#update_form_of_gom_fund #sc_mhada_order_date').html('');
+
+                                $('#update_form_of_gom_fund #st_mhada_received_amount').html('');
+                                $('#update_form_of_gom_fund #st_mhada_received_date').html('');
+                                $('#update_form_of_gom_fund #st_mhada_released_amount').html('');
+                                $('#update_form_of_gom_fund #st_mhada_order_no').html('');
+                                $('#update_form_of_gom_fund #st_mhada_order_date').html('');
+
+                                $('#update_form_of_gom_fund #obc_mhada_received_amount').html('');
+                                $('#update_form_of_gom_fund #obc_mhada_received_date').html('');
+                                $('#update_form_of_gom_fund #obc_mhada_released_amount').html('');
+                                $('#update_form_of_gom_fund #obc_mhada_order_no').html('');
+                                $('#update_form_of_gom_fund #obc_mhada_order_date').html('');
+
+                                $('#update_form_of_gom_fund #other_mhada_received_amount').html('');
+                                $('#update_form_of_gom_fund #other_mhada_received_date').html('');
+                                $('#update_form_of_gom_fund #other_mhada_released_amount').html('');
                                 $('#update_form_of_gom_fund #other_mhada_order_no').html('');
                                 $('#update_form_of_gom_fund #other_mhada_order_date').html('');
-                                $('#update_form_of_gom_fund #other_utilization_amount').attr('value',0);
+
+                                $('#update_form_of_gom_fund #sc_mhada_upload_doc').html('');
+                                $('#update_form_of_gom_fund #st_mhada_upload_doc').html('');
+                                $('#update_form_of_gom_fund #obc_mhada_upload_doc').html('');
+                                $('#update_form_of_gom_fund #other_mhada_upload_doc').html('');
+
+                                $('#update_form_of_gom_fund #sc_remark').html('');
+                                $('#update_form_of_gom_fund #st_remark').html('');
+                                $('#update_form_of_gom_fund #obc_remark').html('');
+                                $('#update_form_of_gom_fund #other_remark').html('');
+
+
+                                $('#update_form_of_gom_fund #sc_transactions').html('');
+                                $('#update_form_of_gom_fund #st_transactions').html('');
+                                $('#update_form_of_gom_fund #obc_transactions').html('');
+                                $('#update_form_of_gom_fund #other_transactions').html('');
+
+                                $('#update_form_of_gom_fund #sc_utilization_amount').attr('value', 0);
+                                $('#update_form_of_gom_fund #st_utilization_amount').attr('value', 0);
+                                $('#update_form_of_gom_fund #obc_utilization_amount').attr('value', 0);
+                                $('#update_form_of_gom_fund #other_utilization_amount').attr('value', 0);
+
+
 
                                 $('#update_form_of_gom_fund #total_amount').html('');
+                                $('#update_form_of_gom_fund #total_gom_amount').html('');
+                                $('#update_form_of_gom_fund #total_mhada_received_amount').html('');
+                                $('#update_form_of_gom_fund #total_mhada_released_amount').html('');
                                 $('#update_form_of_gom_fund #gom_total_utilization_amount').attr('value', 0);
+
 
                             }
 
                             $('#save_financial_details').attr('disabled','disabled');
                             $('#save_note').html('Note: As MHADA has not added fund details in the system, you are not allowed to add utilization amount');
+
                         }
                     },
                     error: function() { alert("Error posting form."); }

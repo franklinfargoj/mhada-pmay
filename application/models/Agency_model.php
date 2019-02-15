@@ -1356,6 +1356,7 @@ class Agency_model extends CI_Model{
         foreach($categoryArr as $category)
         {
             $postData[$category.'_utilization_amount'] = $postData['financial_details'][$category]['utilization_amount'];
+            $postData[$category.'_transactions'] = $postData['financial_details'][$category]['transactions'];
 
             if(!empty($_FILES[$category.'_utilization_certificate']['name']))
             {
@@ -1416,10 +1417,11 @@ class Agency_model extends CI_Model{
         foreach($categoryArr as $category)
         {
               $postData[$category.'_utilization_amount'] = $postData['gom_financial_details'][$category]['utilization_amount'];
+            $postData[$category.'_transactions'] = $postData['gom_financial_details'][$category]['transactions'];
 
-            if(!empty($_FILES[$category.'_utilization_certificate']['name']))
+            if(!empty($_FILES[$category.'_utilization_certificate_gom']['name']))
             {
-                if($this->upload->do_upload($category.'_utilization_certificate')) {
+                if($this->upload->do_upload($category.'_utilization_certificate_gom')) {
                     $uploaded = $this->upload->data();
 
                     $postData[$category.'_utilization_certificate'] =  $uploaded['file_name'];
@@ -1597,9 +1599,9 @@ class Agency_model extends CI_Model{
     public function get_metting_details($project_id, $type)
     {
       $this->db->where('project_id',$project_id);
-      $metting_details = $this->db->get('project_'.$type.'_details')->result_array();
+     $metting_details = $this->db->get('project_'.$type.'_details')->result_array();
 
-      return $metting_details;
+    return $metting_details;
     }
  }
 

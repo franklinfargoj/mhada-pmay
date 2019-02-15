@@ -1396,23 +1396,74 @@ class Users_model extends CI_Model{
 
     public function add_financial_details($postData,$categoryArr,$encrypted_url)
     {
+
+        $config['upload_path'] = FCPATH.'public/uploads';
+        $config['allowed_types'] = '*';
+        $config['file_name'] = generate_unique_id();
+        $this->load->library('upload', $config);
+
         foreach($categoryArr as $category)
         {
             $postData[$category.'_amount'] = $postData['financial_details'][$category]['amount'];
             $postData[$category.'_goi_order_no'] = $postData['financial_details'][$category]['goi_order_no'];
             $postData[$category.'_goi_order_date'] = $postData['financial_details'][$category]['goi_order_date'];
 
+            $postData[$category.'_gom_amount'] = $postData['financial_details'][$category]['gom_amount'];
             $postData[$category.'_gom_order_no'] = $postData['financial_details'][$category]['gom_order_no'];
             $postData[$category.'_gom_order_date'] = $postData['financial_details'][$category]['gom_order_date'];
+
             $postData[$category.'_mhada_order_no'] = $postData['financial_details'][$category]['mhada_order_no'];
             $postData[$category.'_mhada_order_date'] = $postData['financial_details'][$category]['mhada_order_date'];
-            $postData[$category.'_utilization_amount'] = $postData['financial_details'][$category]['utilization_amount'];
+            $postData[$category.'_mhada_received_amount'] = $postData['financial_details'][$category]['mhada_received_amount'];
+            $postData[$category.'_mhada_received_date'] = $postData['financial_details'][$category]['mhada_received_date'];
+            $postData[$category.'_mhada_released_amount'] = $postData['financial_details'][$category]['mhada_released_amount'];
+
+            // $postData[$category.'_utilization_amount'] = $postData['financial_details'][$category]['utilization_amount'];
+
+            if(!empty($_FILES[$category.'_goi_upload_doc']['name']))
+            {
+                if($this->upload->do_upload($category.'_goi_upload_doc')) {
+                    $uploaded = $this->upload->data();
+
+                    $postData[$category.'_goi_upload_doc'] =  $uploaded['file_name'];
+
+                }
+            }
+
+            if(!empty($_FILES[$category.'_gom_upload_doc']['name']))
+            {
+                if($this->upload->do_upload($category.'_gom_upload_doc')) {
+                    $uploaded = $this->upload->data();
+
+                    $postData[$category.'_gom_upload_doc'] =  $uploaded['file_name'];
+
+                }
+            }
+
+            if(!empty($_FILES[$category.'_mhada_upload_doc']['name']))
+            {
+                if($this->upload->do_upload($category.'_mhada_upload_doc')) {
+                    $uploaded = $this->upload->data();
+
+                    $postData[$category.'_mhada_upload_doc'] =  $uploaded['file_name'];
+
+                }
+            }
+
+            $postData[$category.'_remark'] = $postData['financial_details'][$category]['remark'];
 
         }
 
+        $postData['total_amount'] = $postData['financial_details']['total_amount'];
+        $postData['total_gom_amount'] = $postData['financial_details']['total_gom_amount'];
+        $postData['total_mhada_received_amount'] = $postData['financial_details']['total_mhada_received_amount'];
+        $postData['total_mhada_released_amount'] = $postData['financial_details']['total_mhada_released_amount'];
+
+
+
             unset($postData['gom_financial_details']);
             unset($postData['gom_total_amount']);
-            unset($postData['gom_total_utilization_amount']);
+           // unset($postData['gom_total_utilization_amount']);
 
             unset($postData['financial_details']);
             unset($postData['save_financial_details']);
@@ -1437,8 +1488,6 @@ class Users_model extends CI_Model{
                 $this->db->insert('project_financial_details', $postData);
             }
 
-
-
     }
 
     public function add_gom_financial_details($postData,$categoryArr,$encrypted_url)
@@ -1447,28 +1496,79 @@ class Users_model extends CI_Model{
         unset($postData['total_utilization_amount']);
         unset($postData['financial_details']);
 
+
+        $config['upload_path'] = FCPATH.'public/uploads';
+        $config['allowed_types'] = '*';
+        $config['file_name'] = generate_unique_id();
+        $this->load->library('upload', $config);
+
+
         foreach($categoryArr as $category)
         {
-            $postData[$category.'_amount'] = $postData['gom_financial_details'][$category]['amount'];
+            $postData[$category.'_gom_amount'] = $postData['gom_financial_details'][$category]['gom_amount'];
             $postData[$category.'_gom_order_no'] = $postData['gom_financial_details'][$category]['gom_order_no'];
             $postData[$category.'_gom_order_date'] = $postData['gom_financial_details'][$category]['gom_order_date'];
+
             $postData[$category.'_mhada_order_no'] = $postData['gom_financial_details'][$category]['mhada_order_no'];
             $postData[$category.'_mhada_order_date'] = $postData['gom_financial_details'][$category]['mhada_order_date'];
-            $postData[$category.'_utilization_amount'] = $postData['gom_financial_details'][$category]['utilization_amount'];
+
+            //$postData[$category.'_utilization_amount'] = $postData['gom_financial_details'][$category]['utilization_amount'];
+
+            $postData[$category.'_mhada_received_amount'] = $postData['gom_financial_details'][$category]['mhada_received_amount'];
+            $postData[$category.'_mhada_received_date'] = $postData['gom_financial_details'][$category]['mhada_received_date'];
+            $postData[$category.'_mhada_released_amount'] = $postData['gom_financial_details'][$category]['mhada_released_amount'];
+
+
+
+            if(!empty($_FILES[$category.'_gom_upload_doc_gom']['name']))
+            {
+                if($this->upload->do_upload($category.'_gom_upload_doc_gom')) {
+                    $uploaded = $this->upload->data();
+
+                    $postData[$category.'_gom_upload_doc'] =  $uploaded['file_name'];
+
+                }
+            }
+
+            if(!empty($_FILES[$category.'_mhada_upload_doc_gom']['name']))
+            {
+                if($this->upload->do_upload($category.'_mhada_upload_doc_gom')) {
+                    $uploaded = $this->upload->data();
+
+                    $postData[$category.'_mhada_upload_doc'] =  $uploaded['file_name'];
+
+                }
+            }
+
+            $postData[$category.'_remark'] = $postData['gom_financial_details'][$category]['remark'];
+
 
         }
 
-            $postData['total_amount'] = $postData['gom_total_amount'];
-            $postData['total_utilization_amount'] = $postData['gom_total_utilization_amount'];
+            //$postData['total_amount'] = $postData['gom_total_amount'];
+            //$postData['total_utilization_amount'] = $postData['gom_total_utilization_amount'];
 
 
 
 
-        unset($postData['gom_total_amount']);
-        unset($postData['gom_total_utilization_amount']);
+       // unset($postData['gom_total_amount']);
+        //unset($postData['gom_total_utilization_amount']);
+
+
+
+        //$postData['total_amount'] = $postData['gom_financial_details']['total_amount'];
+        $postData['total_gom_amount'] = $postData['gom_financial_details']['total_gom_amount'];
+        $postData['total_mhada_received_amount'] = $postData['gom_financial_details']['total_mhada_received_amount'];
+        $postData['total_mhada_released_amount'] = $postData['gom_financial_details']['total_mhada_released_amount'];
+
+
 
         unset($postData['gom_financial_details']);
+        // unset($postData['gom_total_utilization_amount']);
+
+        unset($postData['financial_details']);
         unset($postData['save_financial_details']);
+
 
         $this->db->where('project_id', $postData['project_id']);
         $this->db->where('nodel_agency', $postData['nodel_agency']);
@@ -1614,7 +1714,7 @@ class Users_model extends CI_Model{
     public function get_metting_details($project_id, $type)
     {
       $this->db->where('project_id',$project_id);
-      $metting_details = $this->db->get('project_'.$type.'_details')->result_array();
+     $metting_details = $this->db->get('project_'.$type.'_details')->result_array();
 
       return $metting_details;
     }

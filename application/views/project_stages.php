@@ -104,19 +104,17 @@
 
                                              <input type="hidden" name="approved_HIG_dus" id="approved_HIG_dus" value="<?php echo isset($project_details['HIG'])?$project_details['HIG']:0;?>" />
                                              <input type="hidden" name="HIG_work_started" id="HIG_work_started" value="<?php echo isset($started_work_dus[0]['HIG'])?$started_work_dus[0]['HIG']:0;?>" />
-
-
                                          </div>
                                          <div class="col-lg-6">
-                                             <h5>Probable Start Date Of Project</h5>
-                                             <p><?php echo isset($project_details['probable_start_date_of_project'])?date('F j, Y',strtotime($project_details['probable_start_date_of_project'])):null;?></p>
+                                             <h5>Project cost EWS</h5>
+                                             <p><?php echo isset($project_details['project_cost_ews'])?$project_details['project_cost_ews']:null;?></p>
                                          </div>
                                      </div>
 
                                      <div class="row">
                                          <div class="col-lg-6">
-                                             <h5>Probable Date Of Completion</h5>
-                                             <p><?php echo isset($project_details['probable_date_of_completion'])?date('F j, Y',strtotime($project_details['probable_date_of_completion'])):null;?></p>
+                                             <h5>Project cost total</h5>
+                                             <p><?php echo isset($project_details['project_cost_total'])?$project_details['project_cost_total']:null;?></p>
                                          </div>
 
                                          <div class="col-lg-6">
@@ -124,28 +122,6 @@
                                              <p><?php echo ($project_details['is_dpr_submitted']==1)?'Yes':'No';?></p>
                                          </div>
                                      </div>
-
-                                     <div class="row">
-                                         <div class="col-lg-6">
-                                             <h5>Plan Approved</h5>
-                                             <p><?php echo ($project_details['is_plan_approved']==1)?'Yes':'No';?></p>
-                                         </div>
-
-                                         <div class="col-lg-6">
-                                             <h5>EC Obtained If Required</h5>
-                                             <p><?php echo ($project_details['is_ec_obtained']==1)?'Yes':'No';?></p>
-                                         </div>
-                                     </div>
-
-                                     <div class="row">
-                                         <div class="col-lg-6">
-                                             <h5>Tendering Completed</h5>
-                                             <p><?php echo ($project_details['is_tendering_completed']==1)?'Yes':'No';?></p>
-                                         </div>
-
-                                     </div>
-
-
                                  </div>
                             </div>
                           </div>

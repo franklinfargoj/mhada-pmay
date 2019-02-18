@@ -248,7 +248,7 @@
                                                     <table class="table mb-0 table-hover" id="update_form_of_goi_fund">
                                                         <thead class="thead-light">
                                                             <tr>
-                                                                <th scope="col">installment</th>
+                                                                <th scope="col">Installment</th>
                                                                 <th scope="col" colspan="4" style="text-align: center">GOI</th>
                                                                 <th scope="col" colspan="4" style="text-align: center">GOM</th>
                                                                 <th scope="col" colspan="6" style="text-align: center">MHADA</th>
@@ -377,7 +377,7 @@
                                                         style="display:none;">
                                                         <thead class="thead-light">
                                                         <tr>
-                                                            <th scope="col">installment</th>
+                                                            <th scope="col">Installment</th>
                                                             <th scope="col" colspan="4" style="text-align: center">GOM</th>
                                                             <th scope="col" colspan="6" style="text-align: center">MHADA</th>
                                                             <th scope="col" colspan="3" style="text-align: center">Agency Utilization</th>
@@ -400,7 +400,7 @@
 
 
                                                             <th scope="col">No Of Transactions</th>
-                                                            <th scope="col">Expenditure - GOI</th>
+                                                            <th scope="col">Expenditure - GOM</th>
                                                             <th scope="col">Utilization Certificate</th>
 
                                                             <th scope="col"></th>
@@ -646,7 +646,9 @@
                                                             <tr>
                                                                 <td>
                                                                     <h5>
-                                                                        <?php echo $category; ?>
+                                                                        <?php echo $category; 
+                                                                            $category = strtolower($category);
+                                                                        ?>
                                                                     </h5>
                                                                 </td>
                                                                 <td>
@@ -711,7 +713,11 @@
 
                                                                 <td>
                                                                     <h5>
-                                                                        <?php echo $category; ?>
+                                                                        <?php
+                                                                        $category = strtoupper($category);
+                                                                         echo $category;
+                                                                         $category = strtolower($category);   
+                                                                          ?>
                                                                     </h5>
                                                                 </td>
                                                                 <td>
@@ -777,7 +783,11 @@
 
                                                                 <td>
                                                                     <h5>
-                                                                        <?php echo $category; ?>
+                                                                        <?php
+                                                                        $category = strtoupper($category);
+                                                                         echo $category;
+                                                                         $category = strtolower($category);
+                                                                          ?>
                                                                     </h5>
                                                                 </td>
                                                                 <td>

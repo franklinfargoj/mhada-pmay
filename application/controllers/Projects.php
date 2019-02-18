@@ -729,7 +729,7 @@ class Projects extends CI_Controller {
             }
             $arrData['project_stages_dus_details'] = $stage_dus_details;
             $arrData['total_dus_under_construction'] = $total_dus_under_construction;
-            $arrData['categories'] = ['sc','st','obc','other'];
+            $arrData['categories'] = ['SC','ST','OBC','OTHER'];
 
 
             if($postData = $this->input->post())
@@ -754,7 +754,7 @@ class Projects extends CI_Controller {
 
             $arrData['goi_details'] = $this->users_model->get_financial_details($project_id,1);
             $arrData['gom_details'] = $this->users_model->get_financial_details($project_id,2);
-
+            
             /* $arrData['gom_financial_details'] = $this->users_model->get_financial_details($project_id,2);
 
              echo "<pre>";print_r($arrData['goi_financial_details']);

@@ -117,7 +117,11 @@
                                      <a href="<?php echo base_url('projects/update_project_stage/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>"  class="mb-1 btn m-btn--pill btn-primary" style="color: white">Update Stage</a>
 
                                      <a href="<?php echo base_url('projects/financial_details/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" class="mb-1 btn m-btn--pill btn-primary" style="color: white">Financial Details</a>
-                                     </div>
+
+                                     <a href="<?php echo base_url('projects/edit_project/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>"  class="mb-1 btn m-btn--pill btn-primary" style="color: white">Edit</a>
+
+
+                                 </div>
                                 <!--  <a href="<?php //echo base_url('projects/add_building_details/'.base64_encode($this->encryption->encrypt($each_project['code'].'|'.$each_project['id'])));?>" target="_blank" class="btn m-btn--pill btn-primary" style="color: white">Add Details</a> -->
 
                                  <div class="modal fade" id="update_status_<?php echo $each_project['id'];?>" tabindex="-1" role="dialog" aria-labelledby="updateStatuslabel" aria-hidden="true">

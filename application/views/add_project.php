@@ -453,10 +453,10 @@
 <script src="<?php echo base_url();?>assets/snippets/pages/user/login.js" type="text/javascript"></script>
 <script>
     $(document).ready(function(){
-      cnt = 1;
+      cnt = 1; // '<div class="col-lg-6 div'+ cnt +'">\n' +
         $("#add_consultant").click(function(){
             $('#consultant_detail').append('<div class="row" style="margin-top: 2%">\n' +
-                '                                       <div class="col-lg-6">\n' +
+                '                                       <div class="col-lg-6 div'+ cnt +'">\n' +
                 '                                           <div class="form-group">\n' +
                 '                                               <label for="consultant_name" class="form-control-label">\n' +
                 '                                                   <strong>Consultant Name</strong>\n' +
@@ -464,7 +464,7 @@
                 '                                               <input type="text" name="consultant_name[]" class="form-control" >\n' +
                 '                                           </div>\n' +
                 '                                       </div>\n' +
-                '                                       <div class="col-lg-6">\n' +
+                '                                       <div class="col-lg-6 div'+ cnt +'">\n' +
                 '                                           <div class="form-group">\n' +
                 '                                               <label for="consultant_mobile_no" class="form-control-label">\n' +
                 '                                                   <strong>Consultant Mobile No</strong>\n' +
@@ -475,7 +475,7 @@
                 '                                   </div>\n' +
                 '\n' +
                 '                                   <div class="row">\n' +
-                '                                       <div class="col-lg-6">\n' +
+                '                                       <div class="col-lg-6 div'+ cnt +'">\n' +
                 '                                           <div class="form-group">\n' +
                 '                                               <label for="agency_landline" class="form-control-label">\n' +
                 '                                                   <strong>Consultant Landline No</strong>\n' +
@@ -483,7 +483,12 @@
                 '                                               <input type="text" name="consultant_landline[]" class="form-control" >\n' +
                 '                                           </div>\n' +
                 '                                       </div>\n' +
-                '                                   </div>');
+                '<div class="remove-btn col-lg-6 div'+ cnt +'">\n' +
+                '                                   <a href="javascript:void(0);" id="add_consultant" name="add_consultant" onClick="removeField('+ cnt +');" class="btn btn-danger" style="color: #FFFFFF;">Remove</a>\n'+
+                '<div>\n'+
+                '                                   </div>'
+
+            );cnt++;
         });
 
 

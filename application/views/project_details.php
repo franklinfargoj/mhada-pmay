@@ -60,6 +60,8 @@
                                              <i class="la la-angle-down"></i>
                                              </a>
                                           </li>
+
+                                           <a href=""> Edit</a>
                                        </ul>
                                     </div>
                                  </div>
@@ -94,8 +96,9 @@
                                             <p><?php echo isset($project_details['city_name'])?$project_details['city_name']:null;?></p>
                                         </div>
                                     </div>
+
                                     <div class="row">
-                                      <?php foreach($slac_details as $slac){ ?>
+                                      <?php foreach($slac_details as $slac){  ?>
                                         <div class="col-lg-6">
                                           <h5>SLAC Meeting Date</h5>
                                           <p><?php echo !empty($slac['slac_meeting_date'])?date('F j, Y',strtotime($slac['slac_meeting_date'])):null;?></p>
@@ -119,6 +122,8 @@
                                          </div>
                                         <?php } ?>
                                      </div>
+
+
 
                                      <div class="row">
                                       <?php foreach($csmc_details as $csmc){ ?>
@@ -147,7 +152,9 @@
                                      <div class="row">
                                          <div class="col-lg-6">
                                              <h5>DPR</h5>
-                                             <p><?php echo !empty($project_details['dpr'])?$project_details['dpr']:null;?></p>
+                                         </div>
+                                         <div class="col-lg-6">
+                                             <p><?php echo !empty($project_details['dpr'])?$project_details['dpr']:'N';?></p>
                                          </div>
                                      </div>
 

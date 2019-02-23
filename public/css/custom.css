@@ -719,3 +719,12 @@ a.btn-outline-dark:hover,
 .modal-body .form-group.row {
   text-align: left;
 }
+
+.remove-btn{
+  text-align: right;
+}
+
+.remove-btn a{
+  display: inline-block;
+  margin-top: 30px;
+}

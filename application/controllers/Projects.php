@@ -91,6 +91,47 @@ class Projects extends CI_Controller {
         $this->load->view('template_new/template',$arrData);
     }
 
+    function edit_project($encrypted_url = ''){
+
+        url_manupulation();
+        if($encrypted_url != NULL)
+        {
+            $decrypted_url = base64_decode($encrypted_url);
+            $decrypted_url = $this->encryption->decrypt($decrypted_url);
+            $decrypted_url = explode('|', $decrypted_url);
+
+            $arrData['project_code'] = $project_code = $decrypted_url[0];
+            $arrData['project_id'] = $project_id = $decrypted_url[1];
+
+            $arrData['project_details'] = $this->users_model->get_project_details($project_code,$project_id);
+            $arrData['slac_details'] = $this->users_model->get_metting_details($project_id, 'slac');
+            $arrData['slsmc_details'] = $this->users_model->get_metting_details($project_id, 'slsmc');
+            $arrData['csmc_details'] = $this->users_model->get_metting_details($project_id, 'csmc');
+
+            $arrData['consultant_details'] = $this->users_model->get_consultant_details($project_id);
+            $arrData['regions'] = $this->users_model->get_all_regions();
+            $arrData['encrypted_url'] =  $encrypted_url;
+            $arrData['middle'] = 'edit_project';
+
+
+          //  echo "<pre>";print_r($arrData);die;
+
+            $this->load->view('template_new/template',$arrData);
+        }
+    }
+
+    function edit_projectdata($encrypted_url = ''){
+        if($encrypted_url != NULL){
+            $decrypted_url = base64_decode($encrypted_url);
+            $decrypted_url = $this->encryption->decrypt($decrypted_url);
+            $decrypted_url = explode('|', $decrypted_url);
+            $arrData['project_code'] = $project_code = $decrypted_url[0];
+            $arrData['project_id'] = $project_id = $decrypted_url[1];
+           // echo "<pre>";print_r($project_id);die;
+        }
+        redirect('projects');
+    }
+
     function view($encrypted_url = '')
     {
         url_manupulation();

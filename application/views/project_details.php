@@ -61,7 +61,9 @@
                                              </a>
                                           </li>
 
-                                           <a href=""> Edit</a>
+
+                                           <a href="<?php echo base_url('projects/edit_project/'.base64_encode($this->encryption->encrypt($project_details['code'].'|'.$project_details['id'])));?>"  class="mb-1 btn m-btn--pill btn-primary" style="color: white">Edit</a>
+
                                        </ul>
                                     </div>
                                  </div>

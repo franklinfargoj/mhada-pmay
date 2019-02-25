@@ -152,7 +152,7 @@
                                                             <?php }elseif($project_details['city_id'] == 2){ ?>
                                                                 <option value="2"><?php echo "Mumbai"; ?></option>
                                                             <?php }elseif($project_details['city_id'] == 3){ ?>
-                                                                <option value="2"><?php echo "Navi Mumbai"; ?></option>
+                                                                <option value="3"><?php echo "Navi Mumbai"; ?></option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>
@@ -167,7 +167,7 @@
                                                         <label for="slac_meeting_date" class="form-control-label">
                                                             <strong>SLAC Meeting Date <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input class="form-control" type="date" name="slac_meeting_date[]" value="<?php echo $slac_details[$key]['slac_meeting_date'] ?>" id="slac_meeting_date" required>
+                                                        <input class="form-control" type="date" name="slac_meeting_date[]" value="<?php echo $slac_details[$key]['slac_meeting_date'] ?>" id="slac_meeting_date" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -175,17 +175,17 @@
                                                         <label for="slac_meeting_no" class="form-control-label">
                                                             <strong>SLAC Meeting No <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input type="text" name="slac_meeting_no[]" class="form-control" id="slac_meeting_no" value="<?php echo $slac_details[$key]['slac_meeting_no'] ?>">
+                                                        <input type="text" name="slac_meeting_no[]" class="form-control" id="slac_meeting_no" value="<?php echo $slac_details[$key]['slac_meeting_no'] ?>" readonly>
                                                     </div>
                                                 </div>
                                             </div>
                                             <?php } ?>
 
-                                            <div class="row">
+                                           <!-- <div class="row">
                                                 <div class="col-lg-6">
                                                     <a href="javascript:void(0);" id="add_slac_d_m" name="add_slac_d_m" onClick="addInput('slac_meeting_date', 'SLAC Meeting Date', 'slac_meeting_no', 'SLAC Meeting No', 'slac_dt_mt');">Add SLAC meeting & date</a>
                                                 </div>
-                                            </div>
+                                            </div>-->
 
 
 
@@ -197,7 +197,7 @@
                                                         <label for="slsmc_meeting_date" class="form-control-label">
                                                             <strong>SLSMC Meeting Date <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input class="form-control" type="date" name="slsmc_meeting_date[]" id="slsmc_meeting_date" value="<?php echo $slsmc_details[$key]['slsmc_meeting_date'] ?>" required>
+                                                        <input class="form-control" type="date" name="slsmc_meeting_date[]" id="slsmc_meeting_date" value="<?php echo $slsmc_details[$key]['slsmc_meeting_date'] ?>" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -205,17 +205,17 @@
                                                         <label for="slsmc_meeting_no" class="form-control-label">
                                                             <strong>SLSMC Meeting No <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input type="text" name="slsmc_meeting_no[]" class="form-control" id="slsmc_meeting_no" value="<?php echo $slsmc_details[$key]['slsmc_meeting_no'] ?>" required>
+                                                        <input type="text" name="slsmc_meeting_no[]" class="form-control" id="slsmc_meeting_no" value="<?php echo $slsmc_details[$key]['slsmc_meeting_no'] ?>" readonly>
                                                     </div>
                                                 </div>
                                             </div>
                                             <?php } ?>
 
-                                            <div class="row">
+                                            <!--<div class="row">
                                                 <div class="col-lg-6">
                                                     <a href="javascript:void(0);" id="add_slsmc_d_m" name="add_slsmc_d_m" onClick="addInput('slsmc_meeting_date', 'SLSMC Meeting Date', 'slsmc_meeting_no', 'SLSMC Meeting No', 'slsmc_dt_mt');">Add SLSMC meeting & date</a>
                                                 </div>
-                                            </div>
+                                            </div>-->
 
 
 
@@ -226,7 +226,7 @@
                                                         <label for="csmc_meeting_date" class="form-control-label">
                                                             <strong>CSMC Meeting Date <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input class="form-control" type="date" name="csmc_meeting_date[]" value="<?php echo $csmc_details[$key]['csmc_meeting_date'] ?>" id="csmc_meeting_date" required>
+                                                        <input class="form-control" type="date" name="csmc_meeting_date[]" value="<?php echo $csmc_details[$key]['csmc_meeting_date'] ?>" id="csmc_meeting_date" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -234,17 +234,17 @@
                                                         <label for="csmc_meeting_no" class="form-control-label">
                                                             <strong>CSMC Meeting No <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input type="text" name="csmc_meeting_no[]" class="form-control" id="csmc_meeting_no" value="<?php echo $csmc_details[$key]['csmc_meeting_no'] ?>" required>
+                                                        <input type="text" name="csmc_meeting_no[]" class="form-control" id="csmc_meeting_no" value="<?php echo $csmc_details[$key]['csmc_meeting_no'] ?>" readonly>
                                                     </div>
                                                 </div>
                                             </div>
                                             <?php } ?>
 
-                                            <div class="row">
+                                            <!--<div class="row">
                                                 <div class="col-lg-6">
                                                     <a href="javascript:void(0);" id="add_csmc_d_m" name="add_csmc_d_m" onClick="addInput('csmc_meeting_date', 'CSMC Meeting Date', 'csmc_meeting_no', 'CSMC Meeting No', 'csmc_dt_mt');">Add CSMC meeting & date</a>
                                                 </div>
-                                            </div>
+                                            </div>-->
 
 
 
@@ -438,7 +438,7 @@
                                                             <label for="consultant_name" class="form-control-label">
                                                                 <strong>Consultant Name</strong>
                                                             </label>
-                                                            <input type="text" name="consultant_name[]" class="form-control" value="<?php echo $v['consultant_name']?>">
+                                                            <input type="text" name="consultant_name[]" class="form-control" value="<?php echo $v['consultant_name']?>" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
@@ -446,7 +446,7 @@
                                                             <label for="consultant_mobile_no" class="form-control-label">
                                                                 <strong>Consultant Mobile No </strong>
                                                             </label>
-                                                            <input type="text" name="consultant_mobile_no[]" class="form-control" value="<?php echo $v['consultant_mobile_no']?>">
+                                                            <input type="text" name="consultant_mobile_no[]" class="form-control" value="<?php echo $v['consultant_mobile_no']?>" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -457,7 +457,7 @@
                                                             <label for="agency_landline" class="form-control-label">
                                                                 <strong>Consultant Landline No</strong>
                                                             </label>
-                                                            <input type="text" name="consultant_landline[]" class="form-control" value="<?php echo $v['consultant_landline']?>">
+                                                            <input type="text" name="consultant_landline[]" class="form-control" value="<?php echo $v['consultant_landline']?>" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -466,11 +466,11 @@
 
 
 
-                                            <div class="row">
+                                            <!--<div class="row">
                                                 <div class="col-lg-6">
                                                     <a href="javascript:void(0);" id="add_consultant" name="add_consultant">Add Consultant</a>
                                                 </div>
-                                            </div>
+                                            </div>-->
 
                                             <div class="m-form__actions">
                                                 <br>

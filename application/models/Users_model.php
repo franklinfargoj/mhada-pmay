@@ -1115,6 +1115,32 @@ class Users_model extends CI_Model{
         }
     }
 
+    function edit_project($postEditedData,$project_id){
+
+        $this->db->where('id', $project_id);
+        $this->db->update('projects', array(
+            'code' =>$postEditedData['code'],
+            'title'=>$postEditedData['title'],
+            'address'=>$postEditedData['address'],
+            'region_id'=>$postEditedData['region_id'],
+            'district_id'=>$postEditedData['district_id'],
+            'city_id'=>$postEditedData['city_id'],
+            'vertical'=>$postEditedData['vertical'],
+            'implementing_agency'=>$postEditedData['implementing_agency'],
+            'EWS'=>$postEditedData['EWS'],
+            'LIG'=>$postEditedData['LIG'],
+            'MIG'=>$postEditedData['MIG'],
+            'HIG'=>$postEditedData['HIG'],
+            'total_dus'=>$postEditedData['total_dus'],
+            'project_cost_ews'=>$postEditedData['project_cost_ews'],
+            'project_cost_total'=>$postEditedData['project_cost_total'],
+            'agency_email'=>$postEditedData['agency_email'],
+            'agency_mobile_no'=>$postEditedData['agency_email'],
+            'agency_landline'=>$postEditedData['agency_email'],
+            'updated_at'=> date('Y-m-d H:i:s')
+            ));
+    }
+
 
     function get_project_details($project_code,$project_id)
     {

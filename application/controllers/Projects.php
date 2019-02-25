@@ -67,8 +67,6 @@ class Projects extends CI_Controller {
     {
         if($postData = $this->input->post())
         {
-            // echo "<pre>";
-            // print_r($postData);exit;
 
             $this->form_validation->set_rules('title' , 'Title', 'required');
             $this->form_validation->set_rules('address' , 'Address', 'required');
@@ -92,7 +90,6 @@ class Projects extends CI_Controller {
     }
 
     function edit_project($encrypted_url = ''){
-
         url_manupulation();
         if($encrypted_url != NULL)
         {
@@ -113,9 +110,6 @@ class Projects extends CI_Controller {
             $arrData['encrypted_url'] =  $encrypted_url;
             $arrData['middle'] = 'edit_project';
 
-
-          //  echo "<pre>";print_r($arrData);die;
-
             $this->load->view('template_new/template',$arrData);
         }
     }
@@ -127,9 +121,16 @@ class Projects extends CI_Controller {
             $decrypted_url = explode('|', $decrypted_url);
             $arrData['project_code'] = $project_code = $decrypted_url[0];
             $arrData['project_id'] = $project_id = $decrypted_url[1];
-           // echo "<pre>";print_r($project_id);die;
+
+         if($postEditedData = $this->input->post()){
+
+             $this->form_validation->set_rules('title' , 'Title', 'required');
+             $this->form_validation->set_rules('address' , 'Address', 'required');
+
+             $this->users_model->edit_project($postEditedData,$project_id);
+         }
+         redirect('projects');
         }
-        redirect('projects');
     }
 
     function view($encrypted_url = '')

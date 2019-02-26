@@ -183,6 +183,26 @@
 <script src="<?php echo base_url();?>assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>assets/snippets/pages/user/login.js" type="text/javascript"></script>
 <script>
+  $(document).on('focusout',"#tentative_completion_date_of_project", function(){
+    var startDate = new Date($('#start_date_of_project').val());
+    var endDate = new Date($('#tentative_completion_date_of_project').val());
+
+    if (startDate > endDate){
+      alert('Please enter completion date greator than start date.');
+      $('#tentative_completion_date_of_project').val('');
+    }
+  });
+
+  $("#update_status_form").submit(function(){
+    if($('#start_date_of_project').length && $('#tentative_completion_date_of_project').length){
+      if (startDate > endDate){
+        alert('Please enter completion date greator than start date.');
+        $('#tentative_completion_date_of_project').val('');
+        return false;
+      }
+    }
+  });
+
    $(document).on('change','#ownership',function(){
       var value = $(this).val();
 
@@ -214,7 +234,7 @@
               '<strong>Start Date Of Project</strong>'+
             '</label>'+
             '<div class="form-group">'+
-              '<input type="date" name="start_date_of_project" class="form-control" >'+
+              '<input type="date" name="start_date_of_project" id="start_date_of_project" class="form-control" >'+
             '</div>'+
           '</div>'+
           '<div class="form-group">'+
@@ -222,7 +242,7 @@
                '<strong>Tentative Completion Date Of Project</strong>'+
             '</label>'+
             '<div class="form-group">'+
-              '<input type="date" name="tentative_completion_date_of_project" class="form-control" >'+
+              '<input type="date" name="tentative_completion_date_of_project" id="tentative_completion_date_of_project" class="form-control" >'+
             '</div>'+
           '</div>');                                
       }else if(this.value == 6){
@@ -236,7 +256,7 @@
       }else if(this.value == 7){
         $('#date_container').html('<div class="form-group">'+
           '<label for="is_ec_obtained" class="form-control-label">'+
-          '<strong>EC Obtained If Required</strong>'+
+          '<strong>EC Obtained</strong>'+
           '</label> <span>&nbsp;</span>'+
           '<input type="radio" name="is_ec_obtained" id="is_ec_obtained_yes" value="1"> <label for="is_ec_obtained_yes"> Yes </label><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>'+
           '<input type="radio" name="is_ec_obtained" id="is_ec_obtained_no" value="0"> <label for="is_ec_obtained_no"> No</label>'+

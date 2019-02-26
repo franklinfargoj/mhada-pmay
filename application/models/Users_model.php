@@ -1138,7 +1138,58 @@ class Users_model extends CI_Model{
             'agency_mobile_no'=>$postEditedData['agency_email'],
             'agency_landline'=>$postEditedData['agency_email'],
             'updated_at'=> date('Y-m-d H:i:s')
-            ));
+          ));
+
+        # Delete existing meeting date & no from tables
+        $meetingArray = array('slac', 'slsmc', 'csmc');
+        foreach($meetingArray as $table_nm){
+          $this->db->delete('project_' . $table_nm . '_details', array('project_id' => $project_id));
+        }
+
+        # Assign collected data
+        $posted_data_arr = $postEditedData;
+
+        # Insert SLAC details in [project_slac_details] table
+        $slac_details = [];
+        $posted_data['slac_meeting_date'] =$posted_data_arr['slac_meeting_date'];
+        $posted_data['slac_meeting_no'] = $posted_data_arr['slac_meeting_no'];
+        foreach($posted_data['slac_meeting_date'] as $key => $val)
+        {
+            $slac_details = array(
+                'project_id'=>$project_id,
+                'slac_meeting_date'=>$posted_data['slac_meeting_date'][$key],
+                'slac_meeting_no'=>$posted_data['slac_meeting_no'][$key]
+            );
+            $this->db->insert('project_slac_details',$slac_details);
+        }
+
+        # Insert SLSMC details in [project_slsmc_details] table
+        $slsmc_details = [];
+        $posted_data['slsmc_meeting_date'] =$posted_data_arr['slsmc_meeting_date'];
+        $posted_data['slsmc_meeting_no'] = $posted_data_arr['slsmc_meeting_no'];
+        foreach($posted_data['slsmc_meeting_date'] as $key => $val)
+        {
+          $slsmc_details = array(
+            'project_id'=>$project_id,
+            'slsmc_meeting_date'=>$posted_data['slsmc_meeting_date'][$key],
+            'slsmc_meeting_no'=>$posted_data['slsmc_meeting_no'][$key]
+          );
+          $this->db->insert('project_slsmc_details',$slsmc_details);
+        }
+
+        # Insert CSMC details in [project_csmc_details] table
+        $csmc_details = [];
+        $posted_data['csmc_meeting_date'] =$posted_data_arr['csmc_meeting_date'];
+        $posted_data['csmc_meeting_no'] = $posted_data_arr['csmc_meeting_no'];
+        foreach($posted_data['csmc_meeting_date'] as $key => $val)
+        {
+          $csmc_details = array(
+            'project_id'=>$project_id,
+            'csmc_meeting_date'=>$posted_data['csmc_meeting_date'][$key],
+            'csmc_meeting_no'=>$posted_data['csmc_meeting_no'][$key],
+          );
+          $this->db->insert('project_csmc_details',$csmc_details);
+        }
     }
 
 
@@ -1627,6 +1678,16 @@ class Users_model extends CI_Model{
         $this->db->order_by('installment','ASC');
         $q = $this->db->get('project_financial_details')->result_array();
 
+        return $q;
+    }
+
+    public function get_financial_details_data($project_id,$nodel_agency_id,$installment_id)
+    {
+        $this->db->where('project_id', $project_id);
+        $this->db->where('nodel_agency', $nodel_agency_id);
+        $this->db->where('installment',$installment_id);
+        $q = $this->db->get('project_financial_details')->result_array();
+        
         return $q;
     }
 

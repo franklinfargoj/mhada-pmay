@@ -556,6 +556,12 @@
 
             $('#total_dus').attr('value',sum);
         });
+
+        $('#EWS, #LIG, #MIG, #HIG').on('focus', function(){
+          if($(this).val() == 0){
+            $(this).val('');
+          }
+        });
     });
 
   function addInput(fieldName1, fieldLabel1, fieldName2, fieldLabel2, appendId){

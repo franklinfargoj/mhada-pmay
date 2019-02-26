@@ -355,11 +355,11 @@
                                                  <th scope="col">Stage</th>
                                                  <th scope="col">No Of DUs</th>
                                                  <th scope="col">Additional Information</th>
-                                                 <th scope="col">Fund released by centre (In Rs.)</th>
+                                                 <!-- <th scope="col">Fund released by centre (In Rs.)</th>
                                                  <th scope="col">Fund released by state (In Rs.)</th>
                                                  <th scope="col">Total fund released (In Rs.)</th>
                                                  <th scope="col">Fund released by MHADA (In Rs.)</th>
-                                                 <th scope="col">Expense by implementing agency</th>
+                                                 <th scope="col">Expense by implementing agency</th> -->
                                                  <th scope="col">Files</th>
                                              </tr>
                                              </thead>
@@ -372,8 +372,8 @@
                                                          <h5><?php echo $stage['stage']; ?></h5></td>
 
                                                      <td><input type="text" class="total_dus_to_update form-control" name="stage_dus[<?php echo $stage['id']; ?>][no_of_dus]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?>" /> </td>
-                                                     <td><input type="text" class="form-control" name="stage_dus[<?php echo $stage['id']; ?>][additional_information]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; } ?>" /> </td>
-                                                     <?php if($stage['id']!=3) {
+                                                      <td><input type="text" class="form-control" name="stage_dus[<?php echo $stage['id']; ?>][additional_information]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; } ?>" /> </td>
+                                                     <!--<?php if($stage['id']!=3) {
                                                          $offset = $stage['id']-1;
                                                          if($stage['id']==4) { $offset = 2; }
 
@@ -381,17 +381,13 @@
                                                          if(!isset($gom_fund_details[$offset]['total_amount'])) { $gom_amount = 0; } else { $gom_amount = $gom_fund_details[$offset]['total_amount']; }
 
                                                          ?>
-                                                         <td><?php if(isset($goi_fund_details[$offset]['total_amount'])) { echo $goi_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
-                                                         <td><?php if(isset($gom_fund_details[$offset]['total_amount'])) { echo $gom_fund_details[$offset]['total_amount']; } else { echo '-'; } ?></td>
-                                                         <td><?php echo ($goi_amount + $gom_amount); ?></td>
-                                                         <td><?php echo ($goi_amount + $gom_amount); ?></td>
                                                      <?php } else { ?>
                                                          <td>-</td>
                                                          <td>-</td>
                                                          <td>-</td>
                                                          <td>-</td>
                                                      <?php } ?>
-                                                     <td><input type="text" class="form-control" name="stage_dus[<?php echo $stage['id']; ?>][expense_by_implementing_agency]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['expense_by_implementing_agency'])) { echo $project_stages_dus_details[$stage['id']]['expense_by_implementing_agency']; } else { echo '0';} ?>" /> </td>
+                                                     <td><input type="text" class="form-control" name="stage_dus[<?php echo $stage['id']; ?>][expense_by_implementing_agency]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['expense_by_implementing_agency'])) { echo $project_stages_dus_details[$stage['id']]['expense_by_implementing_agency']; } else { echo '0';} ?>" /> </td> -->
                                                      <?php
                                                      if($key==0)
                                                      {

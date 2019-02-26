@@ -74,7 +74,7 @@
                                                     <div class="col-lg-6">
 
                                                         <h5>Project Code</h5>
-                                                        <p>
+                                                        <p><input type="hidden" name="project_id" id="project_id" value="<?php echo $project_details['id']; ?>" />
                                                             <?php echo isset($project_details['code'])?$project_details['code']:null;?>
                                                         </p>
                                                     </div>
@@ -298,43 +298,43 @@
 
                                                                 <td><input type="text" class="form-control total_amount"
                                                                         name="financial_details[<?php echo $category; ?>][amount]"
-                                                                        value="0" /> </td>
-                                                                <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][goi_order_no]" />
+                                                                        value="0" id="<?php echo $category; ?>_goi_total_amount"/> </td>
+                                                                <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][goi_order_no]" id="<?php echo $category; ?>_goi_order_no"/>
                                                                 </td>
                                                                 <td><input class="form-control" type="date" max="<?php echo date("Y-m-d"); ?>" name="financial_details[<?php echo $category; ?>][goi_order_date]"
-                                                                        value=""></td>
+                                                                        value="" id="<?php echo $category; ?>_goi_order_date"></td>
                                                                 <td>
-                                                                    <input type="file" name="<?php echo $category; ?>_goi_upload_doc"  class="form-control" />
+                                                                    <input type="file" name="<?php echo $category; ?>_goi_upload_doc"  class="form-control" id="<?php echo $category; ?>_goi_upload_doc"/>
                                                                 </td>
 
                                                                 <td><input type="text" class="form-control total_gom_amount"
                                                                            name="financial_details[<?php echo $category; ?>][gom_amount]"
-                                                                           value="0" /> </td>
-                                                                <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][gom_order_no]" />
+                                                                           value="0" id="<?php echo $category; ?>_gom_amount"/> </td>
+                                                                <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][gom_order_no]" id="<?php echo $category; ?>_gom_order_no"/>
                                                                 </td>
-                                                                <td><input type="date" class="form-control" max="<?php echo date("Y-m-d"); ?>" name="financial_details[<?php echo $category; ?>][gom_order_date]" />
+                                                                <td><input type="date" class="form-control" max="<?php echo date("Y-m-d"); ?>" name="financial_details[<?php echo $category; ?>][gom_order_date]" id="<?php echo $category; ?>_gom_order_date" />
                                                                 </td>
                                                                 <td>
-                                                                    <input type="file" name="<?php echo $category; ?>_gom_upload_doc"  class="form-control" />
+                                                                    <input type="file" name="<?php echo $category; ?>_gom_upload_doc"  class="form-control" id="<?php echo $category; ?>_gom_upload_doc"/>
                                                                 </td>
 
-                                                                <td><input type="text" class="form-control total_mhada_received_amount" name="financial_details[<?php echo $category; ?>][mhada_received_amount]" value="0" />
+                                                                <td><input type="text" class="form-control total_mhada_received_amount" name="financial_details[<?php echo $category; ?>][mhada_received_amount]" value="0" id="<?php echo $category; ?>_mhada_received_amount" />
                                                                 </td>
 
-                                                                <td><input type="date" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_received_date]" />
+                                                                <td><input type="date" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_received_date]" id="<?php echo $category; ?>_mhada_received_date"/>
                                                                 </td>
-                                                                <td><input type="text" class="form-control total_mhada_released_amount" name="financial_details[<?php echo $category; ?>][mhada_released_amount]" value="0" />
+                                                                <td><input type="text" class="form-control total_mhada_released_amount" name="financial_details[<?php echo $category; ?>][mhada_released_amount]" value="0" id="<?php echo $category; ?>_mhada_released_amount"/>
                                                                 </td>
-                                                                <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_order_no]" />
+                                                                <td><input type="text" class="form-control" name="financial_details[<?php echo $category; ?>][mhada_order_no]"id="<?php echo $category; ?>_mhada_release_no" />
                                                                 </td>
-                                                                <td><input type="date" class="form-control" max="<?php echo date("Y-m-d"); ?>" name="financial_details[<?php echo $category; ?>][mhada_order_date]" />
+                                                                <td><input type="date" class="form-control" max="<?php echo date("Y-m-d"); ?>" name="financial_details[<?php echo $category; ?>][mhada_order_date]" id="<?php echo $category; ?>_mhada_release_date"/>
                                                                 </td>
-                                                                <td><input type="file" name="<?php echo $category; ?>_mhada_upload_doc"  class="form-control" /></td>
+                                                                <td><input type="file" name="<?php echo $category; ?>_mhada_upload_doc"  class="form-control" id="<?php echo $category; ?>_mhada_upload_doc" /></td>
 
                                                                 <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
-                                                                <td><textarea class="form-control" name="financial_details[<?php echo $category; ?>][remark]"></textarea></td>
+                                                                <td><textarea class="form-control" name="financial_details[<?php echo $category; ?>][remark]" id="<?php echo $category; ?>_remark"></textarea></td>
 
                                                             </tr>
                                                             <?php
@@ -420,33 +420,33 @@
 
                                                  <td><input type="text" class="form-control gom_total_gom_amount"
                                                             name="gom_financial_details[<?php echo $category; ?>][gom_amount]"
-                                                            value="0" /> </td>
-                                                 <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][gom_order_no]" />
+                                                            value="0" id="<?php echo $category; ?>_gom_amount"/> </td>
+                                                 <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][gom_order_no]" id="<?php echo $category; ?>_gom_order_no"/>
                                                  </td>
-                                                 <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][gom_order_date]" />
+                                                 <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][gom_order_date]" id="<?php echo $category; ?>_gom_order_date"/>
                                                  </td>
                                                  <td>
-                                                     <input type="file" name="<?php echo $category; ?>_gom_upload_doc_gom"  class="form-control" />
+                                                     <input type="file" name="<?php echo $category; ?>_gom_upload_doc_gom"  class="form-control" id="<?php echo $category; ?>_gom_upload_doc"/>
                                                  </td>
 
-                                                 <td><input type="text" class="form-control gom_total_mhada_received_amount" name="gom_financial_details[<?php echo $category; ?>][mhada_received_amount]" value="0" />
+                                                 <td><input type="text" class="form-control gom_total_mhada_received_amount" name="gom_financial_details[<?php echo $category; ?>][mhada_received_amount]" value="0" id="<?php echo $category; ?>_mhada_received_amount"/>
                                                  </td>
 
                                                  <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_received_date]" />
                                                  </td>
-                                                 <td><input type="text" class="form-control gom_total_mhada_released_amount" name="gom_financial_details[<?php echo $category; ?>][mhada_released_amount]" value="0" />
+                                                 <td><input type="text" class="form-control gom_total_mhada_released_amount" name="gom_financial_details[<?php echo $category; ?>][mhada_released_amount]" value="0" id="<?php echo $category; ?>_mhada_released_amount"/>
                                                  </td>
-                                                 <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_no]" />
+                                                 <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_no]" id="<?php echo $category; ?>_mhada_released_no"/>
                                                  </td>
-                                                 <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_date]" />
+                                                 <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][mhada_order_date]" id="<?php echo $category; ?>_mhada_released_date"/>
                                                  </td>
-                                                 <td><input type="file" name="<?php echo $category; ?>_mhada_upload_doc_gom"  class="form-control" /></td>
+                                                 <td><input type="file" name="<?php echo $category; ?>_mhada_upload_doc_gom"  class="form-control" id="<?php echo $category; ?>_mhada_upload_doc"/></td>
 
                                                  <td>-</td>
                                                  <td>-</td>
                                                  <td>-</td>
 
-                                                 <td><textarea class="form-control" name="gom_financial_details[<?php echo $category; ?>][remark]"></textarea></td>
+                                                 <td><textarea class="form-control" name="gom_financial_details[<?php echo $category; ?>][remark]" id="<?php echo $category; ?>_remark"></textarea></td>
 
 
                                              </tr>
@@ -1351,6 +1351,7 @@
         $('#nodel_agency').change(function () {
 
             var nodel_agency = $('#nodel_agency').val();
+            var installment = $('#installment').val();
 
             if (nodel_agency != '') {
                 if (nodel_agency == 1) {
@@ -1369,7 +1370,317 @@
                 }
             }
 
+            if(nodel_agency!='' && installment!='')
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "Projects/get_financial_details_data",
+                    data: {'nodel_agency': nodel_agency, 'installment': installment , 'project_id': $('#project_id').val() },
+                    dataType: "html",
+                    success: function(data){
+                        console.log(data);
 
+                        var data = JSON.parse(data);
+
+                        if ($.trim(data)) {
+                            if (data[0].nodel_agency == 1) {
+
+                                $('#update_form_of_goi_fund #SC_goi_total_amount').val(data[0].sc_amount);
+                                $('#update_form_of_goi_fund #ST_goi_total_amount').val(data[0].st_amount);
+                                $('#update_form_of_goi_fund #OBC_goi_total_amount').val(data[0].obc_amount);
+                                $('#update_form_of_goi_fund #OTHER_goi_total_amount').val(data[0].other_amount);
+
+                                $('#update_form_of_goi_fund #SC_goi_order_no').val(data[0].sc_goi_order_no);
+                                $('#update_form_of_goi_fund #SC_goi_order_date').val(data[0].sc_goi_order_date);
+                                $('#update_form_of_goi_fund #ST_goi_order_no').val(data[0].st_goi_order_no);
+                                $('#update_form_of_goi_fund #ST_goi_order_date').val(data[0].st_goi_order_date);
+                                $('#update_form_of_goi_fund #OBC_goi_order_no').val(data[0].obc_goi_order_no);
+                                $('#update_form_of_goi_fund #OBC_goi_order_date').val(data[0].obc_goi_order_date);
+                                $('#update_form_of_goi_fund #OTHER_goi_order_no').val(data[0].other_goi_order_no);
+                                $('#update_form_of_goi_fund #OHTER_goi_order_date').val(data[0].other_goi_order_date);
+
+                                $('#update_form_of_goi_fund #SC_gom_amount').val(data[0].sc_gom_amount);
+                                $('#update_form_of_goi_fund #ST_gom_amount').val(data[0].st_gom_amount);
+                                $('#update_form_of_goi_fund #OBC_gom_amount').val(data[0].obc_gom_amount);
+                                $('#update_form_of_goi_fund #OTHER_gom_amount').val(data[0].other_gom_amount);
+
+
+                                $('#update_form_of_goi_fund #SC_gom_order_no').val(data[0].sc_gom_order_no);
+                                $('#update_form_of_goi_fund #SC_gom_order_date').val(data[0].sc_gom_order_date);
+                                $('#update_form_of_goi_fund #ST_gom_order_no').val(data[0].st_gom_order_no);
+                                $('#update_form_of_goi_fund #ST_gom_order_date').val(data[0].st_gom_order_date);
+                                $('#update_form_of_goi_fund #OBC_gom_order_no').val(data[0].obc_gom_order_no);
+                                $('#update_form_of_goi_fund #OBC_gom_order_date').val(data[0].obc_gom_order_date);
+                                $('#update_form_of_goi_fund #OTHER_gom_order_no').val(data[0].other_gom_order_no);
+                                $('#update_form_of_goi_fund #OTHER_gom_order_date').val(data[0].other_gom_order_date);
+
+                                $('#update_form_of_goi_fund #SC_mhada_received_amount').val(data[0].sc_mhada_received_amount);
+                                $('#update_form_of_goi_fund #SC_mhada_received_date').val(data[0].sc_mhada_received_date);
+                                $('#update_form_of_goi_fund #SC_mhada_released_amount').val(data[0].sc_mhada_released_amount);
+                                $('#update_form_of_goi_fund #SC_mhada_released_no').val(data[0].sc_mhada_order_no);
+                                $('#update_form_of_goi_fund #SC_mhada_released_date').val(data[0].sc_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #ST_mhada_received_amount').val(data[0].st_mhada_received_amount);
+                                $('#update_form_of_goi_fund #ST_mhada_received_date').val(data[0].st_mhada_received_date);
+                                $('#update_form_of_goi_fund #ST_mhada_released_amount').val(data[0].st_mhada_released_amount);
+                                $('#update_form_of_goi_fund #ST_mhada_released_no').val(data[0].st_mhada_order_no);
+                                $('#update_form_of_goi_fund #ST_mhada_released_date').val(data[0].st_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #OBC_mhada_received_amount').val(data[0].obc_mhada_received_amount);
+                                $('#update_form_of_goi_fund #OBC_mhada_received_date').val(data[0].obc_mhada_received_date);
+                                $('#update_form_of_goi_fund #OBC_mhada_released_amount').val(data[0].obc_mhada_released_amount);
+                                $('#update_form_of_goi_fund #OBC_mhada_released_no').val(data[0].obc_mhada_order_no);
+                                $('#update_form_of_goi_fund #OBC_mhada_released_date').val(data[0].obc_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #OTHER_mhada_received_amount').val(data[0].other_mhada_received_amount);
+                                $('#update_form_of_goi_fund #OTHER_mhada_received_date').val(data[0].other_mhada_received_date);
+                                $('#update_form_of_goi_fund #OTHER_mhada_released_amount').val(data[0].other_mhada_released_amount);
+                                $('#update_form_of_goi_fund #OTHER_mhada_released_no').val(data[0].other_mhada_order_no);
+                                $('#update_form_of_goi_fund #OTHER_mhada_released_date').val(data[0].other_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #SC_remark').val(data[0].sc_remark);
+                                $('#update_form_of_goi_fund #ST_remark').val(data[0].st_remark);
+                                $('#update_form_of_goi_fund #OBC_remark').val(data[0].obc_remark);
+                                $('#update_form_of_goi_fund #OTHER_remark').val(data[0].other_remark);
+
+
+                                $('#update_form_of_goi_fund #total_amount').val(data[0].total_amount);
+                                $('#update_form_of_goi_fund #total_gom_amount').val(data[0].total_gom_amount);
+                                $('#update_form_of_goi_fund #total_mhada_received_amount').val(data[0].total_mhada_received_amount);
+                                $('#update_form_of_goi_fund #total_mhada_released_amount').val(data[0].total_mhada_released_amount);
+                            }
+                            else if (data[0].nodel_agency == 2) {
+
+                                $('#update_form_of_gom_fund #SC_gom_amount').val(data[0].sc_gom_amount);
+                                $('#update_form_of_gom_fund #ST_gom_amount').val(data[0].st_gom_amount);
+                                $('#update_form_of_gom_fund #OBC_gom_amount').val(data[0].obc_gom_amount);
+                                $('#update_form_of_gom_fund #OTHER_gom_amount').val(data[0].other_gom_amount);
+
+
+                                $('#update_form_of_gom_fund #SC_gom_order_no').val(data[0].sc_gom_order_no);
+                                $('#update_form_of_gom_fund #SC_gom_order_date').val(data[0].sc_gom_order_date);
+                                $('#update_form_of_gom_fund #ST_gom_order_no').val(data[0].st_gom_order_no);
+                                $('#update_form_of_gom_fund #ST_gom_order_date').val(data[0].st_gom_order_date);
+                                $('#update_form_of_gom_fund #OBC_gom_order_no').val(data[0].obc_gom_order_no);
+                                $('#update_form_of_gom_fund #OBC_gom_order_date').val(data[0].obc_gom_order_date);
+                                $('#update_form_of_gom_fund #OTHER_gom_order_no').val(data[0].other_gom_order_no);
+                                $('#update_form_of_gom_fund #OTHER_gom_order_date').val(data[0].other_gom_order_date);
+
+                                $('#update_form_of_gom_fund #SC_mhada_received_amount').val(data[0].sc_mhada_received_amount);
+                                $('#update_form_of_gom_fund #SC_mhada_received_date').val(data[0].sc_mhada_received_date);
+                                $('#update_form_of_gom_fund #SC_mhada_released_amount').val(data[0].sc_mhada_released_amount);
+                                $('#update_form_of_gom_fund #SC_mhada_released_no').val(data[0].sc_mhada_order_no);
+                                $('#update_form_of_gom_fund #SC_mhada_released_date').val(data[0].sc_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #ST_mhada_received_amount').val(data[0].st_mhada_received_amount);
+                                $('#update_form_of_gom_fund #ST_mhada_received_date').val(data[0].st_mhada_received_date);
+                                $('#update_form_of_gom_fund #ST_mhada_released_amount').val(data[0].st_mhada_released_amount);
+                                $('#update_form_of_gom_fund #ST_mhada_released_no').val(data[0].st_mhada_order_no);
+                                $('#update_form_of_gom_fund #ST_mhada_released_date').val(data[0].st_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #OBC_mhada_received_amount').val(data[0].obc_mhada_received_amount);
+                                $('#update_form_of_gom_fund #OBC_mhada_received_date').val(data[0].obc_mhada_received_date);
+                                $('#update_form_of_gom_fund #OBC_mhada_released_amount').val(data[0].obc_mhada_released_amount);
+                                $('#update_form_of_gom_fund #OBC_mhada_released_no').val(data[0].obc_mhada_order_no);
+                                $('#update_form_of_gom_fund #OBC_mhada_released_date').val(data[0].obc_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #OTHER_mhada_received_amount').val(data[0].other_mhada_received_amount);
+                                $('#update_form_of_gom_fund #OTHER_mhada_received_date').val(data[0].other_mhada_received_date);
+                                $('#update_form_of_gom_fund #OTHER_mhada_released_amount').val(data[0].other_mhada_released_amount);
+                                $('#update_form_of_gom_fund #OTHER_mhada_released_no').val(data[0].other_mhada_order_no);
+                                $('#update_form_of_gom_fund #OTHER_mhada_released_date').val(data[0].other_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #SC_remark').val(data[0].sc_remark);
+                                $('#update_form_of_gom_fund #ST_remark').val(data[0].st_remark);
+                                $('#update_form_of_gom_fund #OBC_remark').val(data[0].obc_remark);
+                                $('#update_form_of_gom_fund #OTHER_remark').val(data[0].other_remark);
+
+                                $('#update_form_of_gom_fund #total_amount').val(data[0].total_amount);
+                                $('#update_form_of_gom_fund #total_gom_amount').val(data[0].total_gom_amount);
+                                $('#update_form_of_gom_fund #total_mhada_received_amount').val(data[0].total_mhada_received_amount);
+                                $('#update_form_of_gom_fund #total_mhada_released_amount').val(data[0].total_mhada_released_amount);
+                            }
+
+                            $('#save_note').val('');
+                        }
+                        else
+                        {
+                            if (nodel_agency == 1) {
+
+
+                                $('#update_form_of_goi_fund #SC_goi_amount').val('');
+                                $('#update_form_of_goi_fund #ST_goi_amount').val('');
+                                $('#update_form_of_goi_fund #OBC_goi_amount').val('');
+                                $('#update_form_of_goi_fund #OTHER_goi_amount').val('');
+
+                                $('#update_form_of_goi_fund #SC_goi_order_no').val('');
+                                $('#update_form_of_goi_fund #SC_goi_order_date').val('');
+                                $('#update_form_of_goi_fund #ST_goi_order_no').val('');
+                                $('#update_form_of_goi_fund #ST_goi_order_date').val('');
+                                $('#update_form_of_goi_fund #OBC_goi_order_no').val('');
+                                $('#update_form_of_goi_fund #OBC_goi_order_date').val('');
+                                $('#update_form_of_goi_fund #OTHER_goi_order_no').val('');
+                                $('#update_form_of_goi_fund #other_goi_order_date').val('');
+
+                                $('#update_form_of_goi_fund #SC_goi_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #ST_goi_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #OBC_goi_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #OTHER_goi_upload_doc').val('');
+
+                                $('#update_form_of_goi_fund #SC_gom_amount').val('');
+                                $('#update_form_of_goi_fund #ST_gom_amount').val('');
+                                $('#update_form_of_goi_fund #OBC_gom_amount').val('');
+                                $('#update_form_of_goi_fund #OTHER_gom_amount').val('');
+
+
+                                $('#update_form_of_goi_fund #SC_gom_order_no').val('');
+                                $('#update_form_of_goi_fund #SC_gom_order_date').val('');
+                                $('#update_form_of_goi_fund #ST_gom_order_no').val('');
+                                $('#update_form_of_goi_fund #ST_gom_order_date').val('');
+                                $('#update_form_of_goi_fund #OBC_gom_order_no').val('');
+                                $('#update_form_of_goi_fund #OBC_gom_order_date').val('');
+                                $('#update_form_of_goi_fund #OTHER_gom_order_no').val('');
+                                $('#update_form_of_goi_fund #OTHER_gom_order_date').val('');
+
+                                $('#update_form_of_goi_fund #SC_gom_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #ST_gom_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #OBC_gom_upload_doc').val('');
+                                $('#update_form_of_goi_fund #OTHER_gom_upload_doc').val('');
+
+                                $('#update_form_of_goi_fund #SC_mhada_received_amount').val('');
+                                $('#update_form_of_goi_fund #SC_mhada_received_date').val('');
+                                $('#update_form_of_goi_fund #SC_mhada_released_amount').val('');
+                                $('#update_form_of_goi_fund #SC_mhada_released_no').val('');
+                                $('#update_form_of_goi_fund #SC_mhada_released_date').val('');
+
+                                $('#update_form_of_goi_fund #ST_mhada_received_amount').val('');
+                                $('#update_form_of_goi_fund #ST_mhada_received_date').val('');
+                                $('#update_form_of_goi_fund #ST_mhada_released_amount').val('');
+                                $('#update_form_of_goi_fund #ST_mhada_released_no').val('');
+                                $('#update_form_of_goi_fund #ST_mhada_released_date').val('');
+
+                                $('#update_form_of_goi_fund #OBC_mhada_received_amount').val('');
+                                $('#update_form_of_goi_fund #OBC_mhada_received_date').val('');
+                                $('#update_form_of_goi_fund #OBC_mhada_released_amount').val('');
+                                $('#update_form_of_goi_fund #OBC_mhada_released_no').val('');
+                                $('#update_form_of_goi_fund #OBC_mhada_released_date').val('');
+
+                                $('#update_form_of_goi_fund #OTHER_mhada_received_amount').val('');
+                                $('#update_form_of_goi_fund #OTHER_mhada_received_date').val('');
+                                $('#update_form_of_goi_fund #OTHER_mhada_released_amount').val('');
+                                $('#update_form_of_goi_fund #OTHER_mhada_released_no').val('');
+                                $('#update_form_of_goi_fund #OTHER_mhada_released_date').val('');
+
+                                $('#update_form_of_goi_fund #SC_mhada_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #ST_mhada_upload_doc').val('');
+                                $('#update_form_of_goi_fund #OBC_mhada_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #OTHER_mhada_upload_doc').val('');
+
+                                $('#update_form_of_goi_fund #SC_remark').val('');
+                                $('#update_form_of_goi_fund #ST_remark').val('');
+                                $('#update_form_of_goi_fund #OBC_remark').val('');
+                                $('#update_form_of_goi_fund #OTHER_remark').val('');
+
+
+                                $('#update_form_of_goi_fund #total_amount').val('');
+                                $('#update_form_of_goi_fund #total_gom_amount').val('');
+                                $('#update_form_of_goi_fund #total_mhada_received_amount').val('');
+                                $('#update_form_of_goi_fund #total_mhada_released_amount').val('');
+                                $('#update_form_of_goi_fund #total_utilization_amount').attr('value', 0);
+
+
+
+                            }
+                            else if (nodel_agency == 2) {
+
+
+                                $('#update_form_of_gom_fund #SC_goi_amount').val('');
+                                $('#update_form_of_gom_fund #ST_goi_amount').val('');
+                                $('#update_form_of_gom_fund #OBC_goi_amount').val('');
+                                $('#update_form_of_gom_fund #OTHER_goi_amount').val('');
+
+                                $('#update_form_of_gom_fund #SC_goi_order_no').val('');
+                                $('#update_form_of_gom_fund #SC_goi_order_date').val('');
+                                $('#update_form_of_gom_fund #ST_goi_order_no').val('');
+                                $('#update_form_of_gom_fund #ST_goi_order_date').val('');
+                                $('#update_form_of_gom_fund #OBC_goi_order_no').val('');
+                                $('#update_form_of_gom_fund #OBC_goi_order_date').val('');
+                                $('#update_form_of_gom_fund #OTHER_goi_order_no').val('');
+                                $('#update_form_of_gom_fund #OTHER_goi_order_date').val('');
+
+                                $('#update_form_of_gom_fund #SC_goi_upload_doc').val('');
+                                $('#update_form_of_gom_fund #ST_goi_upload_doc').val('');
+                                $('#update_form_of_gom_fund #OBC_goi_upload_doc').val('');
+                                $('#update_form_of_gom_fund #OTHER_goi_upload_doc').val('');
+
+                                $('#update_form_of_gom_fund #SC_gom_amount').val('');
+                                $('#update_form_of_gom_fund #ST_gom_amount').val('');
+                                $('#update_form_of_gom_fund #OBC_gom_amount').val('');
+                                $('#update_form_of_gom_fund #OTHER_gom_amount').val('');
+
+
+                                $('#update_form_of_gom_fund #SC_gom_order_no').val('');
+                                $('#update_form_of_gom_fund #SC_gom_order_date').val('');
+                                $('#update_form_of_gom_fund #ST_gom_order_no').val('');
+                                $('#update_form_of_gom_fund #ST_gom_order_date').val('');
+                                $('#update_form_of_gom_fund #OBC_gom_order_no').val('');
+                                $('#update_form_of_gom_fund #OBC_gom_order_date').val('');
+                                $('#update_form_of_gom_fund #OTHER_gom_order_no').val('');
+                                $('#update_form_of_gom_fund #OTHER_gom_order_date').val('');
+
+                                $('#update_form_of_gom_fund #SC_gom_upload_doc').val('');
+                                $('#update_form_of_gom_fund #ST_gom_upload_doc').val('');
+                                $('#update_form_of_gom_fund #OBC_gom_upload_doc').val('');
+                                $('#update_form_of_gom_fund #OTHER_gom_upload_doc').val('');
+
+                                $('#update_form_of_gom_fund #SC_mhada_received_amount').val('');
+                                $('#update_form_of_gom_fund #SC_mhada_received_date').val('');
+                                $('#update_form_of_gom_fund #SC_mhada_released_amount').val('');
+                                $('#update_form_of_gom_fund #SC_mhada_released_no').val('');
+                                $('#update_form_of_gom_fund #SC_mhada_released_date').val('');
+
+                                $('#update_form_of_gom_fund #ST_mhada_received_amount').val('');
+                                $('#update_form_of_gom_fund #ST_mhada_received_date').val('');
+                                $('#update_form_of_gom_fund #ST_mhada_released_amount').val('');
+                                $('#update_form_of_gom_fund #ST_mhada_released_no').val('');
+                                $('#update_form_of_gom_fund #ST_mhada_released_date').val('');
+
+                                $('#update_form_of_gom_fund #OBC_mhada_received_amount').val('');
+                                $('#update_form_of_gom_fund #OBC_mhada_received_date').val('');
+                                $('#update_form_of_gom_fund #OBC_mhada_released_amount').val('');
+                                $('#update_form_of_gom_fund #OBC_mhada_released_no').val('');
+                                $('#update_form_of_gom_fund #OBC_mhada_released_date').val('');
+
+                                $('#update_form_of_gom_fund #OTHER_mhada_received_amount').val('');
+                                $('#update_form_of_gom_fund #OTHER_mhada_received_date').val('');
+                                $('#update_form_of_gom_fund #OTHER_mhada_released_amount').val('');
+                                $('#update_form_of_gom_fund #OTHER_mhada_released_no').val('');
+                                $('#update_form_of_gom_fund #OTHER_mhada_released_date').val('');
+
+                                $('#update_form_of_gom_fund #SC_mhada_upload_doc').val('');
+                                $('#update_form_of_gom_fund #ST_mhada_upload_doc').val('');
+                                $('#update_form_of_gom_fund #OBC_mhada_upload_doc').val('');
+                                $('#update_form_of_gom_fund #OTHER_mhada_upload_doc').val('');
+
+                                $('#update_form_of_gom_fund #SC_remark').val('');
+                                $('#update_form_of_gom_fund #ST_remark').val('');
+                                $('#update_form_of_gom_fund #OBC_remark').val('');
+                                $('#update_form_of_gom_fund #OTHER_remark').val('');
+
+
+                                $('#update_form_of_gom_fund #total_amount').val('');
+                                $('#update_form_of_gom_fund #total_gom_amount').val('');
+                                $('#update_form_of_gom_fund #total_mhada_received_amount').val('');
+                                $('#update_form_of_gom_fund #total_mhada_released_amount').html('');
+                                $('#update_form_of_gom_fund #gom_total_utilization_amount').attr('value', 0);
+
+
+                            }
+                        }
+                    },
+                    error: function() { alert("Error posting form."); }
+                });
+            }
         });
 
 
@@ -1383,7 +1694,317 @@
                 return false;
             }
 
+            if(nodel_agency!='' && installment!='')
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "Projects/get_financial_details_data",
+                    data: {'nodel_agency': nodel_agency, 'installment': installment , 'project_id': $('#project_id').val() },
+                    dataType: "html",
+                    success: function(data){
+                        console.log(data);
 
+                        var data = JSON.parse(data);
+
+                        if ($.trim(data)) {
+                            if (data[0].nodel_agency == 1) {
+
+                                $('#update_form_of_goi_fund #SC_goi_total_amount').val(data[0].sc_amount);
+                                $('#update_form_of_goi_fund #ST_goi_total_amount').val(data[0].st_amount);
+                                $('#update_form_of_goi_fund #OBC_goi_total_amount').val(data[0].obc_amount);
+                                $('#update_form_of_goi_fund #OTHER_goi_total_amount').val(data[0].other_amount);
+
+                                $('#update_form_of_goi_fund #SC_goi_order_no').val(data[0].sc_goi_order_no);
+                                $('#update_form_of_goi_fund #SC_goi_order_date').val(data[0].sc_goi_order_date);
+                                $('#update_form_of_goi_fund #ST_goi_order_no').val(data[0].st_goi_order_no);
+                                $('#update_form_of_goi_fund #ST_goi_order_date').val(data[0].st_goi_order_date);
+                                $('#update_form_of_goi_fund #OBC_goi_order_no').val(data[0].obc_goi_order_no);
+                                $('#update_form_of_goi_fund #OBC_goi_order_date').val(data[0].obc_goi_order_date);
+                                $('#update_form_of_goi_fund #OTHER_goi_order_no').val(data[0].other_goi_order_no);
+                                $('#update_form_of_goi_fund #OHTER_goi_order_date').val(data[0].other_goi_order_date);
+
+                                $('#update_form_of_goi_fund #SC_gom_amount').val(data[0].sc_gom_amount);
+                                $('#update_form_of_goi_fund #ST_gom_amount').val(data[0].st_gom_amount);
+                                $('#update_form_of_goi_fund #OBC_gom_amount').val(data[0].obc_gom_amount);
+                                $('#update_form_of_goi_fund #OTHER_gom_amount').val(data[0].other_gom_amount);
+
+
+                                $('#update_form_of_goi_fund #SC_gom_order_no').val(data[0].sc_gom_order_no);
+                                $('#update_form_of_goi_fund #SC_gom_order_date').val(data[0].sc_gom_order_date);
+                                $('#update_form_of_goi_fund #ST_gom_order_no').val(data[0].st_gom_order_no);
+                                $('#update_form_of_goi_fund #ST_gom_order_date').val(data[0].st_gom_order_date);
+                                $('#update_form_of_goi_fund #OBC_gom_order_no').val(data[0].obc_gom_order_no);
+                                $('#update_form_of_goi_fund #OBC_gom_order_date').val(data[0].obc_gom_order_date);
+                                $('#update_form_of_goi_fund #OTHER_gom_order_no').val(data[0].other_gom_order_no);
+                                $('#update_form_of_goi_fund #OTHER_gom_order_date').val(data[0].other_gom_order_date);
+
+                                $('#update_form_of_goi_fund #SC_mhada_received_amount').val(data[0].sc_mhada_received_amount);
+                                $('#update_form_of_goi_fund #SC_mhada_received_date').val(data[0].sc_mhada_received_date);
+                                $('#update_form_of_goi_fund #SC_mhada_released_amount').val(data[0].sc_mhada_released_amount);
+                                $('#update_form_of_goi_fund #SC_mhada_released_no').val(data[0].sc_mhada_order_no);
+                                $('#update_form_of_goi_fund #SC_mhada_released_date').val(data[0].sc_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #ST_mhada_received_amount').val(data[0].st_mhada_received_amount);
+                                $('#update_form_of_goi_fund #ST_mhada_received_date').val(data[0].st_mhada_received_date);
+                                $('#update_form_of_goi_fund #ST_mhada_released_amount').val(data[0].st_mhada_released_amount);
+                                $('#update_form_of_goi_fund #ST_mhada_released_no').val(data[0].st_mhada_order_no);
+                                $('#update_form_of_goi_fund #ST_mhada_released_date').val(data[0].st_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #OBC_mhada_received_amount').val(data[0].obc_mhada_received_amount);
+                                $('#update_form_of_goi_fund #OBC_mhada_received_date').val(data[0].obc_mhada_received_date);
+                                $('#update_form_of_goi_fund #OBC_mhada_released_amount').val(data[0].obc_mhada_released_amount);
+                                $('#update_form_of_goi_fund #OBC_mhada_released_no').val(data[0].obc_mhada_order_no);
+                                $('#update_form_of_goi_fund #OBC_mhada_released_date').val(data[0].obc_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #OTHER_mhada_received_amount').val(data[0].other_mhada_received_amount);
+                                $('#update_form_of_goi_fund #OTHER_mhada_received_date').val(data[0].other_mhada_received_date);
+                                $('#update_form_of_goi_fund #OTHER_mhada_released_amount').val(data[0].other_mhada_released_amount);
+                                $('#update_form_of_goi_fund #OTHER_mhada_released_no').val(data[0].other_mhada_order_no);
+                                $('#update_form_of_goi_fund #OTHER_mhada_released_date').val(data[0].other_mhada_order_date);
+
+                                $('#update_form_of_goi_fund #SC_remark').val(data[0].sc_remark);
+                                $('#update_form_of_goi_fund #ST_remark').val(data[0].st_remark);
+                                $('#update_form_of_goi_fund #OBC_remark').val(data[0].obc_remark);
+                                $('#update_form_of_goi_fund #OTHER_remark').val(data[0].other_remark);
+
+
+                                $('#update_form_of_goi_fund #total_amount').val(data[0].total_amount);
+                                $('#update_form_of_goi_fund #total_gom_amount').val(data[0].total_gom_amount);
+                                $('#update_form_of_goi_fund #total_mhada_received_amount').val(data[0].total_mhada_received_amount);
+                                $('#update_form_of_goi_fund #total_mhada_released_amount').val(data[0].total_mhada_released_amount);
+                            }
+                            else if (data[0].nodel_agency == 2) {
+
+                                $('#update_form_of_gom_fund #SC_gom_amount').val(data[0].sc_gom_amount);
+                                $('#update_form_of_gom_fund #ST_gom_amount').val(data[0].st_gom_amount);
+                                $('#update_form_of_gom_fund #OBC_gom_amount').val(data[0].obc_gom_amount);
+                                $('#update_form_of_gom_fund #OTHER_gom_amount').val(data[0].other_gom_amount);
+
+
+                                $('#update_form_of_gom_fund #SC_gom_order_no').val(data[0].sc_gom_order_no);
+                                $('#update_form_of_gom_fund #SC_gom_order_date').val(data[0].sc_gom_order_date);
+                                $('#update_form_of_gom_fund #ST_gom_order_no').val(data[0].st_gom_order_no);
+                                $('#update_form_of_gom_fund #ST_gom_order_date').val(data[0].st_gom_order_date);
+                                $('#update_form_of_gom_fund #OBC_gom_order_no').val(data[0].obc_gom_order_no);
+                                $('#update_form_of_gom_fund #OBC_gom_order_date').val(data[0].obc_gom_order_date);
+                                $('#update_form_of_gom_fund #OTHER_gom_order_no').val(data[0].other_gom_order_no);
+                                $('#update_form_of_gom_fund #OTHER_gom_order_date').val(data[0].other_gom_order_date);
+
+                                $('#update_form_of_gom_fund #SC_mhada_received_amount').val(data[0].sc_mhada_received_amount);
+                                $('#update_form_of_gom_fund #SC_mhada_received_date').val(data[0].sc_mhada_received_date);
+                                $('#update_form_of_gom_fund #SC_mhada_released_amount').val(data[0].sc_mhada_released_amount);
+                                $('#update_form_of_gom_fund #SC_mhada_released_no').val(data[0].sc_mhada_order_no);
+                                $('#update_form_of_gom_fund #SC_mhada_released_date').val(data[0].sc_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #ST_mhada_received_amount').val(data[0].st_mhada_received_amount);
+                                $('#update_form_of_gom_fund #ST_mhada_received_date').val(data[0].st_mhada_received_date);
+                                $('#update_form_of_gom_fund #ST_mhada_released_amount').val(data[0].st_mhada_released_amount);
+                                $('#update_form_of_gom_fund #ST_mhada_released_no').val(data[0].st_mhada_order_no);
+                                $('#update_form_of_gom_fund #ST_mhada_released_date').val(data[0].st_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #OBC_mhada_received_amount').val(data[0].obc_mhada_received_amount);
+                                $('#update_form_of_gom_fund #OBC_mhada_received_date').val(data[0].obc_mhada_received_date);
+                                $('#update_form_of_gom_fund #OBC_mhada_released_amount').val(data[0].obc_mhada_released_amount);
+                                $('#update_form_of_gom_fund #OBC_mhada_released_no').val(data[0].obc_mhada_order_no);
+                                $('#update_form_of_gom_fund #OBC_mhada_released_date').val(data[0].obc_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #OTHER_mhada_received_amount').val(data[0].other_mhada_received_amount);
+                                $('#update_form_of_gom_fund #OTHER_mhada_received_date').val(data[0].other_mhada_received_date);
+                                $('#update_form_of_gom_fund #OTHER_mhada_released_amount').val(data[0].other_mhada_released_amount);
+                                $('#update_form_of_gom_fund #OTHER_mhada_released_no').val(data[0].other_mhada_order_no);
+                                $('#update_form_of_gom_fund #OTHER_mhada_released_date').val(data[0].other_mhada_order_date);
+
+                                $('#update_form_of_gom_fund #SC_remark').val(data[0].sc_remark);
+                                $('#update_form_of_gom_fund #ST_remark').val(data[0].st_remark);
+                                $('#update_form_of_gom_fund #OBC_remark').val(data[0].obc_remark);
+                                $('#update_form_of_gom_fund #OTHER_remark').val(data[0].other_remark);
+
+                                $('#update_form_of_gom_fund #total_amount').val(data[0].total_amount);
+                                $('#update_form_of_gom_fund #total_gom_amount').val(data[0].total_gom_amount);
+                                $('#update_form_of_gom_fund #total_mhada_received_amount').val(data[0].total_mhada_received_amount);
+                                $('#update_form_of_gom_fund #total_mhada_released_amount').val(data[0].total_mhada_released_amount);
+                            }
+
+                            $('#save_note').val('');
+                        }
+                        else
+                        {
+                            if (nodel_agency == 1) {
+
+
+                                $('#update_form_of_goi_fund #SC_goi_amount').val('');
+                                $('#update_form_of_goi_fund #ST_goi_amount').val('');
+                                $('#update_form_of_goi_fund #OBC_goi_amount').val('');
+                                $('#update_form_of_goi_fund #OTHER_goi_amount').val('');
+
+                                $('#update_form_of_goi_fund #SC_goi_order_no').val('');
+                                $('#update_form_of_goi_fund #SC_goi_order_date').val('');
+                                $('#update_form_of_goi_fund #ST_goi_order_no').val('');
+                                $('#update_form_of_goi_fund #ST_goi_order_date').val('');
+                                $('#update_form_of_goi_fund #OBC_goi_order_no').val('');
+                                $('#update_form_of_goi_fund #OBC_goi_order_date').val('');
+                                $('#update_form_of_goi_fund #OTHER_goi_order_no').val('');
+                                $('#update_form_of_goi_fund #other_goi_order_date').val('');
+
+                                $('#update_form_of_goi_fund #SC_goi_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #ST_goi_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #OBC_goi_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #OTHER_goi_upload_doc').val('');
+
+                                $('#update_form_of_goi_fund #SC_gom_amount').val('');
+                                $('#update_form_of_goi_fund #ST_gom_amount').val('');
+                                $('#update_form_of_goi_fund #OBC_gom_amount').val('');
+                                $('#update_form_of_goi_fund #OTHER_gom_amount').val('');
+
+
+                                $('#update_form_of_goi_fund #SC_gom_order_no').val('');
+                                $('#update_form_of_goi_fund #SC_gom_order_date').val('');
+                                $('#update_form_of_goi_fund #ST_gom_order_no').val('');
+                                $('#update_form_of_goi_fund #ST_gom_order_date').val('');
+                                $('#update_form_of_goi_fund #OBC_gom_order_no').val('');
+                                $('#update_form_of_goi_fund #OBC_gom_order_date').val('');
+                                $('#update_form_of_goi_fund #OTHER_gom_order_no').val('');
+                                $('#update_form_of_goi_fund #OTHER_gom_order_date').val('');
+
+                                $('#update_form_of_goi_fund #SC_gom_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #ST_gom_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #OBC_gom_upload_doc').val('');
+                                $('#update_form_of_goi_fund #OTHER_gom_upload_doc').val('');
+
+                                $('#update_form_of_goi_fund #SC_mhada_received_amount').val('');
+                                $('#update_form_of_goi_fund #SC_mhada_received_date').val('');
+                                $('#update_form_of_goi_fund #SC_mhada_released_amount').val('');
+                                $('#update_form_of_goi_fund #SC_mhada_released_no').val('');
+                                $('#update_form_of_goi_fund #SC_mhada_released_date').val('');
+
+                                $('#update_form_of_goi_fund #ST_mhada_received_amount').val('');
+                                $('#update_form_of_goi_fund #ST_mhada_received_date').val('');
+                                $('#update_form_of_goi_fund #ST_mhada_released_amount').val('');
+                                $('#update_form_of_goi_fund #ST_mhada_released_no').val('');
+                                $('#update_form_of_goi_fund #ST_mhada_released_date').val('');
+
+                                $('#update_form_of_goi_fund #OBC_mhada_received_amount').val('');
+                                $('#update_form_of_goi_fund #OBC_mhada_received_date').val('');
+                                $('#update_form_of_goi_fund #OBC_mhada_released_amount').val('');
+                                $('#update_form_of_goi_fund #OBC_mhada_released_no').val('');
+                                $('#update_form_of_goi_fund #OBC_mhada_released_date').val('');
+
+                                $('#update_form_of_goi_fund #OTHER_mhada_received_amount').val('');
+                                $('#update_form_of_goi_fund #OTHER_mhada_received_date').val('');
+                                $('#update_form_of_goi_fund #OTHER_mhada_released_amount').val('');
+                                $('#update_form_of_goi_fund #OTHER_mhada_released_no').val('');
+                                $('#update_form_of_goi_fund #OTHER_mhada_released_date').val('');
+
+                                $('#update_form_of_goi_fund #SC_mhada_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #ST_mhada_upload_doc').val('');
+                                $('#update_form_of_goi_fund #OBC_mhada_upload_doc').val('');
+                                 $('#update_form_of_goi_fund #OTHER_mhada_upload_doc').val('');
+
+                                $('#update_form_of_goi_fund #SC_remark').val('');
+                                $('#update_form_of_goi_fund #ST_remark').val('');
+                                $('#update_form_of_goi_fund #OBC_remark').val('');
+                                $('#update_form_of_goi_fund #OTHER_remark').val('');
+
+
+                                $('#update_form_of_goi_fund #total_amount').val('');
+                                $('#update_form_of_goi_fund #total_gom_amount').val('');
+                                $('#update_form_of_goi_fund #total_mhada_received_amount').val('');
+                                $('#update_form_of_goi_fund #total_mhada_released_amount').val('');
+                                $('#update_form_of_goi_fund #total_utilization_amount').attr('value', 0);
+
+
+
+                            }
+                            else if (nodel_agency == 2) {
+
+
+                                $('#update_form_of_gom_fund #SC_goi_amount').val('');
+                                $('#update_form_of_gom_fund #ST_goi_amount').val('');
+                                $('#update_form_of_gom_fund #OBC_goi_amount').val('');
+                                $('#update_form_of_gom_fund #OTHER_goi_amount').val('');
+
+                                $('#update_form_of_gom_fund #SC_goi_order_no').val('');
+                                $('#update_form_of_gom_fund #SC_goi_order_date').val('');
+                                $('#update_form_of_gom_fund #ST_goi_order_no').val('');
+                                $('#update_form_of_gom_fund #ST_goi_order_date').val('');
+                                $('#update_form_of_gom_fund #OBC_goi_order_no').val('');
+                                $('#update_form_of_gom_fund #OBC_goi_order_date').val('');
+                                $('#update_form_of_gom_fund #OTHER_goi_order_no').val('');
+                                $('#update_form_of_gom_fund #OTHER_goi_order_date').val('');
+
+                                $('#update_form_of_gom_fund #SC_goi_upload_doc').val('');
+                                $('#update_form_of_gom_fund #ST_goi_upload_doc').val('');
+                                $('#update_form_of_gom_fund #OBC_goi_upload_doc').val('');
+                                $('#update_form_of_gom_fund #OTHER_goi_upload_doc').val('');
+
+                                $('#update_form_of_gom_fund #SC_gom_amount').val('');
+                                $('#update_form_of_gom_fund #ST_gom_amount').val('');
+                                $('#update_form_of_gom_fund #OBC_gom_amount').val('');
+                                $('#update_form_of_gom_fund #OTHER_gom_amount').val('');
+
+
+                                $('#update_form_of_gom_fund #SC_gom_order_no').val('');
+                                $('#update_form_of_gom_fund #SC_gom_order_date').val('');
+                                $('#update_form_of_gom_fund #ST_gom_order_no').val('');
+                                $('#update_form_of_gom_fund #ST_gom_order_date').val('');
+                                $('#update_form_of_gom_fund #OBC_gom_order_no').val('');
+                                $('#update_form_of_gom_fund #OBC_gom_order_date').val('');
+                                $('#update_form_of_gom_fund #OTHER_gom_order_no').val('');
+                                $('#update_form_of_gom_fund #OTHER_gom_order_date').val('');
+
+                                $('#update_form_of_gom_fund #SC_gom_upload_doc').val('');
+                                $('#update_form_of_gom_fund #ST_gom_upload_doc').val('');
+                                $('#update_form_of_gom_fund #OBC_gom_upload_doc').val('');
+                                $('#update_form_of_gom_fund #OTHER_gom_upload_doc').val('');
+
+                                $('#update_form_of_gom_fund #SC_mhada_received_amount').val('');
+                                $('#update_form_of_gom_fund #SC_mhada_received_date').val('');
+                                $('#update_form_of_gom_fund #SC_mhada_released_amount').val('');
+                                $('#update_form_of_gom_fund #SC_mhada_released_no').val('');
+                                $('#update_form_of_gom_fund #SC_mhada_released_date').val('');
+
+                                $('#update_form_of_gom_fund #ST_mhada_received_amount').val('');
+                                $('#update_form_of_gom_fund #ST_mhada_received_date').val('');
+                                $('#update_form_of_gom_fund #ST_mhada_released_amount').val('');
+                                $('#update_form_of_gom_fund #ST_mhada_released_no').val('');
+                                $('#update_form_of_gom_fund #ST_mhada_released_date').val('');
+
+                                $('#update_form_of_gom_fund #OBC_mhada_received_amount').val('');
+                                $('#update_form_of_gom_fund #OBC_mhada_received_date').val('');
+                                $('#update_form_of_gom_fund #OBC_mhada_released_amount').val('');
+                                $('#update_form_of_gom_fund #OBC_mhada_released_no').val('');
+                                $('#update_form_of_gom_fund #OBC_mhada_released_date').val('');
+
+                                $('#update_form_of_gom_fund #OTHER_mhada_received_amount').val('');
+                                $('#update_form_of_gom_fund #OTHER_mhada_received_date').val('');
+                                $('#update_form_of_gom_fund #OTHER_mhada_released_amount').val('');
+                                $('#update_form_of_gom_fund #OTHER_mhada_released_no').val('');
+                                $('#update_form_of_gom_fund #OTHER_mhada_released_date').val('');
+
+                                $('#update_form_of_gom_fund #SC_mhada_upload_doc').val('');
+                                $('#update_form_of_gom_fund #ST_mhada_upload_doc').val('');
+                                $('#update_form_of_gom_fund #OBC_mhada_upload_doc').val('');
+                                $('#update_form_of_gom_fund #OTHER_mhada_upload_doc').val('');
+
+                                $('#update_form_of_gom_fund #SC_remark').val('');
+                                $('#update_form_of_gom_fund #ST_remark').val('');
+                                $('#update_form_of_gom_fund #OBC_remark').val('');
+                                $('#update_form_of_gom_fund #OTHER_remark').val('');
+
+
+                                $('#update_form_of_gom_fund #total_amount').val('');
+                                $('#update_form_of_gom_fund #total_gom_amount').val('');
+                                $('#update_form_of_gom_fund #total_mhada_received_amount').val('');
+                                $('#update_form_of_gom_fund #total_mhada_released_amount').html('');
+                                $('#update_form_of_gom_fund #gom_total_utilization_amount').attr('value', 0);
+
+
+                            }
+                        }
+                    },
+                    error: function() { alert("Error posting form."); }
+                });
+            }
         });
 
         $(document).on("keyup", ".total_amount", function () {

@@ -1141,13 +1141,24 @@ class Users_model extends CI_Model{
           ));
 
         # Delete existing meeting date & no from tables
-        $meetingArray = array('slac', 'slsmc', 'csmc');
+        $meetingArray = array('slac', 'slsmc', 'csmc', 'consultant');
         foreach($meetingArray as $table_nm){
           $this->db->delete('project_' . $table_nm . '_details', array('project_id' => $project_id));
         }
 
         # Assign collected data
         $posted_data_arr = $postEditedData;
+
+        $consultant_details=[];
+        $posted_data['consultant_name'] = $posted_data_arr['consultant_name'];
+        $posted_data['consultant_mobile_no'] = $posted_data_arr['consultant_mobile_no'];
+        $posted_data['consultant_landline'] = $posted_data_arr['consultant_landline'];
+
+        foreach($posted_data['consultant_name'] as $key => $val)
+        {
+            $consultant_details = array('project_id'=> $project_id ,'consultant_name' => $val,'consultant_mobile_no'=>$posted_data['consultant_mobile_no'][$key],'consultant_landline'=>$posted_data['consultant_landline'][$key]);
+            $this->db->insert('project_consultant_details',$consultant_details);
+        }
 
         # Insert SLAC details in [project_slac_details] table
         $slac_details = [];

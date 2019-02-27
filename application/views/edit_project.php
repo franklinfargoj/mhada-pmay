@@ -438,7 +438,7 @@
                                                             <label for="consultant_name" class="form-control-label">
                                                                 <strong>Consultant Name</strong>
                                                             </label>
-                                                            <input type="text" name="consultant_name[]" class="form-control" value="<?php echo $v['consultant_name']?>" readonly>
+                                                            <input type="text" name="consultant_name[]" class="form-control" value="<?php echo $v['consultant_name']?>" >
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
@@ -446,7 +446,7 @@
                                                             <label for="consultant_mobile_no" class="form-control-label">
                                                                 <strong>Consultant Mobile No </strong>
                                                             </label>
-                                                            <input type="text" name="consultant_mobile_no[]" class="form-control" value="<?php echo $v['consultant_mobile_no']?>" readonly>
+                                                            <input type="text" name="consultant_mobile_no[]" class="form-control" value="<?php echo $v['consultant_mobile_no']?>" >
                                                         </div>
                                                     </div>
                                                 </div>
@@ -457,7 +457,7 @@
                                                             <label for="agency_landline" class="form-control-label">
                                                                 <strong>Consultant Landline No</strong>
                                                             </label>
-                                                            <input type="text" name="consultant_landline[]" class="form-control" value="<?php echo $v['consultant_landline']?>" readonly>
+                                                            <input type="text" name="consultant_landline[]" class="form-control" value="<?php echo $v['consultant_landline']?>" >
                                                         </div>
                                                     </div>
                                                 </div>
@@ -466,11 +466,11 @@
 
 
 
-                                            <!--<div class="row">
+                                            <div class="row">
                                                 <div class="col-lg-6">
                                                     <a href="javascript:void(0);" id="add_consultant" name="add_consultant">Add Consultant</a>
                                                 </div>
-                                            </div>-->
+                                            </div>
 
                                             <div class="m-form__actions">
                                                 <br>

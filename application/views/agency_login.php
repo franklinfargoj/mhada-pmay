@@ -50,7 +50,7 @@
                   <div class="m-login__signin">
                      <div class="m-login__head">
                         <h3 class="m-login__title">
-                           PRADHAN MANTRI AWAAS YOJNA
+                           Project Management Tracking Tool (PMAY Projects)
                         </h3>
                      </div>
                      <?php

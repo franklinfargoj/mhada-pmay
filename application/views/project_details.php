@@ -103,7 +103,12 @@
                                       <?php foreach($slac_details as $slac){  ?>
                                         <div class="col-lg-6">
                                           <h5>SLAC Meeting Date</h5>
-                                          <p><?php echo !empty($slac['slac_meeting_date'])?date('F j, Y',strtotime($slac['slac_meeting_date'])):null;?></p>
+                                          <p>
+                                          <?php if($slac['slac_meeting_date'] != '0000-00-00'){
+                                          echo !empty($slac['slac_meeting_date'])?date('F j, Y',strtotime($slac['slac_meeting_date'])):null;
+                                          }
+                                          ?>
+                                          </p>
                                         </div>
                                         <div class="col-lg-6">
                                           <h5>SLAC Meeting No</h5>

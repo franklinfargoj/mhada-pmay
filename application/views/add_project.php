@@ -135,8 +135,7 @@
                                       </div>
                                   </div>
 
-
-                                  <div id ="slac_dt_mt" class="row" style="margin-top: 2%">
+                                 <div id ="slac_dt_mt" class="row" style="margin-top: 2%">
                                       <div class="col-lg-6">
                                           <div class="form-group">
                                               <label for="slac_meeting_date" class="form-control-label">
@@ -157,7 +156,7 @@
 
                                   <div class="row">
                                      <div class="col-lg-6">
-                                         <a href="javascript:void(0);" id="add_slac_d_m" name="add_slac_d_m" onClick="addInput('slac_meeting_date', 'SLAC Meeting Date', 'slac_meeting_no', 'SLAC Meeting No', 'slac_dt_mt');">Add SLAC meeting & date</a>
+                                         <a href="javascript:void(0);" onClick="addInput('slac_meeting_date', 'SLAC Meeting Date', 'slac_meeting_no', 'SLAC Meeting No', 'slac_dt_mt');">Add SLAC meeting & date</a>
                                      </div>
                                   </div>
 
@@ -182,7 +181,7 @@
 
                                   <div class="row">
                                      <div class="col-lg-6">
-                                         <a href="javascript:void(0);" id="add_slsmc_d_m" name="add_slsmc_d_m" onClick="addInput('slsmc_meeting_date', 'SLSMC Meeting Date', 'slsmc_meeting_no', 'SLSMC Meeting No', 'slsmc_dt_mt');">Add SLSMC meeting & date</a>
+                                         <a href="javascript:void(0);"  onClick="addInput('slsmc_meeting_date', 'SLSMC Meeting Date', 'slsmc_meeting_no', 'SLSMC Meeting No', 'slsmc_dt_mt');">Add SLSMC meeting & date</a>
                                      </div>
                                   </div>
 
@@ -207,7 +206,7 @@
 
                                   <div class="row">
                                      <div class="col-lg-6">
-                                         <a href="javascript:void(0);" id="add_csmc_d_m" name="add_csmc_d_m" onClick="addInput('csmc_meeting_date', 'CSMC Meeting Date', 'csmc_meeting_no', 'CSMC Meeting No', 'csmc_dt_mt');">Add CSMC meeting & date</a>
+                                         <a href="javascript:void(0);" onClick="addInput('csmc_meeting_date', 'CSMC Meeting Date', 'csmc_meeting_no', 'CSMC Meeting No', 'csmc_dt_mt');">Add CSMC meeting & date</a>
                                      </div>
                                   </div>
 
@@ -571,22 +570,24 @@
       '<label for="' + fieldName1 + '" class="form-control-label">\n' +
       '<strong>' + fieldLabel1 + '</strong>\n' +
       '</label>\n' +
-      '<input type="date" name="' + fieldName1 + '[]" class="form-control" >\n' +
+      '<input type="date" name="' + fieldName1 + '[]" class="form-control" />\n ' +
       '</div>\n' +
       '</div>\n' +
+
       '<div class="col-lg-5 div'+ cnt +'">\n' +
       '<div class="form-group">\n' +
       '<label for="' + fieldName2 + '" class="form-control-label">\n' +
       '<strong>' + fieldLabel2 + '</strong>\n' +
       '</label>\n' +
-      '<input type="text" name="' + fieldName2 + '[]" class="form-control">\n' +
+      '<input type="text" name="' + fieldName2 + '[]" class="form-control"/>\n' +
       '</div>\n' +
       '</div>\n' +
+
       '<div class="col-lg-1 div'+ cnt +'">'+
       '<label for="' + fieldName1 + '" class="form-control-label">\n' +
       '<strong>&nbsp;</strong>\n' +
       '</label>\n' +
-      '<a href="javascript:void(0);" id="add_slac_d_m" name="add_slac_d_m" onClick="removeField('+ cnt +');" class="btn btn-danger" style="color: #FFFFFF;">Remove</a>'+
+      '<a href="javascript:void(0);" onClick="removeField('+ cnt +');" class="btn btn-danger" style="color: #FFFFFF;">Remove</a>'+
       '</div>');
     cnt++;
   }

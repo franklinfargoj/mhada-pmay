@@ -121,7 +121,10 @@
                                       <?php foreach($slsmc_details as $slsmc){ ?>
                                          <div class="col-lg-6">
                                              <h5>SLSMC Meeting Date</h5>
-                                             <p><?php echo !empty($slsmc['slsmc_meeting_date'])?date('F j, Y',strtotime($slsmc['slsmc_meeting_date'])):null;?></p>
+                                             <p><?php if($slsmc['slsmc_meeting_date'] != '0000-00-00'){
+                                                 echo !empty($slsmc['slsmc_meeting_date']) ? date('F j, Y', strtotime($slsmc['slsmc_meeting_date'])) : null;
+                                                 }?>
+                                             </p>
                                          </div>
                                          <div class="col-lg-6">
                                              <h5>SLSMC Meeting No</h5>
@@ -136,7 +139,9 @@
                                       <?php foreach($csmc_details as $csmc){ ?>
                                          <div class="col-lg-6">
                                              <h5>CSMC Meeting Date</h5>
-                                             <p><?php echo !empty($csmc['csmc_meeting_date'])?date('F j, Y',strtotime($csmc['csmc_meeting_date'])):null;?></p>
+                                             <p><?php if($csmc['csmc_meeting_date'] != '0000-00-00'){
+                                                 echo !empty($csmc['csmc_meeting_date']) ? date('F j, Y', strtotime($csmc['csmc_meeting_date'])) : null;
+                                                 }?></p>
                                          </div>
                                          <div class="col-lg-6">
                                              <h5>CSMC Meeting No</h5>

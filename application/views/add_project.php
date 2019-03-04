@@ -141,7 +141,7 @@
                                               <label for="slac_meeting_date" class="form-control-label">
                                                   <strong>SLAC Meeting Date <span style="color: red">*</span></strong>
                                               </label>
-                                              <input class="form-control" type="date" name="slac_meeting_date[]" value="" id="slac_meeting_date" required>
+                                              <input class="form-control" type="date" name="slac_meeting_date[]" id="slac_meeting_date" value="" required>
                                           </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -149,7 +149,7 @@
                                               <label for="slac_meeting_no" class="form-control-label">
                                                   <strong>SLAC Meeting No <span style="color: red">*</span></strong>
                                               </label>
-                                              <input type="text" name="slac_meeting_no[]" class="form-control" id="slac_meeting_no" required>
+                                              <input type="text" name="slac_meeting_no[]" id="slac_meeting_no" class="form-control" required>
                                           </div>
                                       </div>
                                   </div>
@@ -166,7 +166,7 @@
                                               <label for="slsmc_meeting_date" class="form-control-label">
                                                   <strong>SLSMC Meeting Date <span style="color: red">*</span></strong>
                                               </label>
-                                              <input class="form-control" type="date" name="slsmc_meeting_date[]" value="" id="slsmc_meeting_date" required>
+                                              <input class="form-control" type="date" name="slsmc_meeting_date[]" id="slsmc_meeting_date" value="" required>
                                           </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -174,7 +174,7 @@
                                               <label for="slsmc_meeting_no" class="form-control-label">
                                                   <strong>SLSMC Meeting No <span style="color: red">*</span></strong>
                                               </label>
-                                              <input type="text" name="slsmc_meeting_no[]" class="form-control" id="slsmc_meeting_no" required>
+                                              <input type="text" name="slsmc_meeting_no[]" id="slsmc_meeting_no" class="form-control"  required>
                                           </div>
                                       </div>
                                   </div>
@@ -191,7 +191,7 @@
                                               <label for="csmc_meeting_date" class="form-control-label">
                                                   <strong>CSMC Meeting Date <span style="color: red">*</span></strong>
                                               </label>
-                                              <input class="form-control" type="date" name="csmc_meeting_date[]" value="" id="csmc_meeting_date" required>
+                                              <input class="form-control" type="date" name="csmc_meeting_date[]" id="csmc_meeting_date" value=""  required>
                                           </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -199,7 +199,7 @@
                                               <label for="csmc_meeting_no" class="form-control-label">
                                                   <strong>CSMC Meeting No <span style="color: red">*</span></strong>
                                               </label>
-                                              <input type="text" name="csmc_meeting_no[]" class="form-control" id="csmc_meeting_no" required>
+                                              <input type="text" name="csmc_meeting_no[]" id="csmc_meeting_no"  class="form-control" required>
                                           </div>
                                       </div>
                                   </div>
@@ -570,7 +570,7 @@
       '<label for="' + fieldName1 + '" class="form-control-label">\n' +
       '<strong>' + fieldLabel1 + '</strong>\n' +
       '</label>\n' +
-      '<input type="date" name="' + fieldName1 + '[]" class="form-control" />\n ' +
+      '<input type="date" name="' + fieldName1 + '[]" class="form-control"/>\n ' +
       '</div>\n' +
       '</div>\n' +
 

@@ -37,7 +37,7 @@
 
 
                            <div class="">
-                               <?php echo form_open('','class="class="m-form m-form--fit m-form--label-align-right" id="scheme_form"');?>
+                               <?php echo form_open('','class="class="m-form m-form--fit m-form--label-align-right" id="scheme_form"'); ?>
 
                                <div class="m-portlet__head">
                                  <div class="m-portlet__head-caption">
@@ -570,16 +570,17 @@
       '<label for="' + fieldName1 + '" class="form-control-label">\n' +
       '<strong>' + fieldLabel1 + '</strong>\n' +
       '</label>\n' +
-      '<input type="date" name="' + fieldName1 + '[]" class="form-control"/>\n ' +
+      '<input type="date" name="' + fieldName1 + '[]" class="form-control datereqd" id="' + fieldName1 +cnt+'"  />\n ' +
+      '<span class="' + fieldName1 +cnt+'"></span>\n'+
       '</div>\n' +
       '</div>\n' +
-
       '<div class="col-lg-5 div'+ cnt +'">\n' +
       '<div class="form-group">\n' +
       '<label for="' + fieldName2 + '" class="form-control-label">\n' +
       '<strong>' + fieldLabel2 + '</strong>\n' +
       '</label>\n' +
-      '<input type="text" name="' + fieldName2 + '[]" class="form-control"/>\n' +
+      '<input type="text" name="' + fieldName2 +'[]" class="form-control meetnoreqd" id="' + fieldName2 +cnt+'" />\n' +
+      '<span class="' + fieldName2 +cnt+'"></span>\n'+
       '</div>\n' +
       '</div>\n' +
 
@@ -596,4 +597,21 @@
   {
     $('.div' + className).remove();
   }
+
+  $('#submit_scheme_form').click(function() {
+        $('.meetnoreqd').each(function () {
+            if (this.value == ""){
+                $("."+this.id).text("This field is required");
+                $("."+this.id).css("color", "red");
+            }
+        });
+
+      $('.datereqd').each(function () {
+          if (this.value == ""){
+              $("."+this.id).text("Plase select date");
+              $("."+this.id).css("color", "red");
+          }
+      });
+  });
+
 </script>

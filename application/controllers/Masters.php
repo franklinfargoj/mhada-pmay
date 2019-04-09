@@ -38,7 +38,6 @@ class Masters extends CI_Controller {
             $config['upload_path'] = $path;
             $config['allowed_types'] = 'xlsx|xls';
             $config['remove_spaces'] = TRUE;
-            
             $this->load->library('upload', $config);
             $this->upload->initialize($config);   
 
@@ -47,7 +46,6 @@ class Masters extends CI_Controller {
             } else {
                 $data = array('project_file' => $this->upload->data());
             }
-            
             if(empty($error)){
               	if (!empty($data['project_file']['file_name'])) {
                 	$import_xls_file = $data['project_file']['file_name'];
@@ -56,7 +54,7 @@ class Masters extends CI_Controller {
 	            }
 
 	            $inputFileName = $path . $import_xls_file;
-	            
+
 	            try {
 	                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
 	                $objReader = PHPExcel_IOFactory::createReader($inputFileType);
@@ -64,57 +62,142 @@ class Masters extends CI_Controller {
 	                $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true, true);
 	                $flag = true;
 	                $i=0;
-	                foreach ($allDataInSheet as $value) {
-		                if($flag){
-		                	$flag =false;
-		                    continue;
-		                }
-	                  
-	                  	# Project array
-		                $inserdata[$i]['district_id'] = $this->users_model->get_id($value['B'], 'name', 'districts_master');
-		                $inserdata[$i]['city_id'] = $this->users_model->get_id($value['C'], 'name', 'cities_master');
-		                
-		                $csmc_date = explode("/",$value['D']);
-		                $var_day = $csmc_date[0]; //day seqment
-						$var_month = $csmc_date[1]; //month segment
-						$var_year = $csmc_date[2]; //year segment
-						$new_date_format = date('Y-m-d', strtotime("$var_year-$var_month-$var_day")); 
+                   // echo "<pre>";print_r(array_filter($allDataInSheet));die;
+	                foreach ($allDataInSheet as $key => $value) {
+                        if ($key > 3) {
+                           // echo "<pre>";print_r($allDataInSheet    );die;
+/*                        if ($flag) {
+                            $flag = false;
+                            continue;
+                        }*/
 
-						$inserdata[$i]['csmc_meeting_date'] = $new_date_format;
-		                $inserdata[$i]['implementing_agency'] = $value['E'];
-		                $inserdata[$i]['vertical'] = $value['F'];
-		                $inserdata[$i]['dpr'] = $value['G'];
-		                $inserdata[$i]['EWS'] = $value['H'];
-		                $inserdata[$i]['LIG'] = $value['I'];
-		                $inserdata[$i]['MIG'] = $value['J'];
-		                $inserdata[$i]['HIG'] = $value['K'];
-		                $inserdata[$i]['total_dus'] = $value['L'];
-		                if(!empty($value['M']))
-		                	$inserdata[$i]['probable_date_of_completion'] = $value['M'];
-		                $inserdata[$i]['is_dpr_submitted'] = ($value['N'] == 'Yes')? 1 : 0;
-		                $inserdata[$i]['is_plan_approved'] = ($value['O'] == 'Yes')? 1 : 0;
-		                $inserdata[$i]['is_ec_obtained'] = ($value['P'] == 'Yes')? 1 : 0;
-		                $inserdata[$i]['is_tendering_completed'] = ($value['Q'] == 'Yes')? 1 : 0;
-		                $inserdata[$i]['current_status_id'] = $this->users_model->get_id($value['R'], 'status', 'project_statuses_master');
+                        # Project array
+                        /*
+                        $inserdata[$i]['district_id'] = $this->users_model->get_id($value['C'], 'name', 'districts_master');
+		                $inserdata[$i]['city_id'] = $this->users_model->get_id($value['D'], 'name', 'cities_master');*/
+                        //echo "<pre>"; print_r($allDataInSheet);die;
 
-		                # Insert project details
-		                $result = $this->users_model->upload_project_data($inserdata[$i]);
+                        $inserdata[$i]['district_id'] = $this->users_model->get_id('Thane', 'name', 'districts_master');
+                        $inserdata[$i]['city_id'] = $this->users_model->get_id('Mumbai', 'name', 'cities_master');
 
-		                # Check values are not empty
-		                if(!empty($value['S']) && !empty($value['T']) && !empty($value['U']) && !empty($value['V']) && !empty($value['W'])){
-		                	# Project stages log array
-			                $stages_data[$i]['project_id'] = $this->users_model->last_project_id();
-			                $stages_data[$i]['EWS'] = $value['S'];
-			                $stages_data[$i]['LIG'] = $value['T'];
-			                $stages_data[$i]['MIG'] = $value['U'];
-			                $stages_data[$i]['HIG'] = $value['V'];
-			                $stages_data[$i]['total_dus_work_started'] = $value['W'];
-			                $stages_data[$i]['created_at'] = date('Y-m-d H:i:s');
+//                        $csmc_dt =    preg_split('/\s+/',$value['G']);
+//                        echo "<pre>"; print_r($csmc_dt);die;
+//                        $csmc_date = explode(",", $csmc_dt[1]);
+//                        $var_day = $csmc_date[0]; //day seqment
+//                        $var_month = $csmc_date[1]; //month segment
+//                        $var_year = $csmc_date[2]; //year segment
+//                        $new_date_format = date('Y-m-d', strtotime("$var_year-$var_month-$var_day"));
+//                        $inserdata[$i]['csmc_meeting_date'] = $new_date_format;
+//                        $inserdata[$i]['csmc_meeting_no'] = $csmc_dt[0];
 
-			                # Insert project stages log
-							$this->users_model->add_project_status_log($stages_data[$i]);
-						}
-						$i++;
+                        if(!empty($value['G'])){
+                            $csmc_no_dt =    explode('/',$value['G']);
+                            $inserdata[$i]['csmc_meeting_no'] = explode(",",$csmc_no_dt[0]);
+                            $inserdata[$i]['csmc_meeting_date'] = explode(",",$csmc_no_dt[1]);
+                        }
+
+                        if(!empty($value['E'])){
+                                $slac_no_dt = explode('/', $value['E']);
+                                $inserdata[$i]['slac_meeting_no'] = explode(",", $slac_no_dt[0]);
+                                $inserdata[$i]['slac_meeting_date'] = explode(",", $slac_no_dt[1]);
+                        }
+
+                        if(!empty($value['F'])) {
+                                $slsmc_no_dt = explode('/', $value['F']);
+                                $inserdata[$i]['slsmc_meeting_no'] = explode(",", $slsmc_no_dt[0]);
+                                $inserdata[$i]['slsmc_meeting_date'] = explode(",", $slsmc_no_dt[1]);
+                        }
+
+                        /*                        $slac_dt = preg_split('/\s+/',$value['E']);
+                        $slac_date = explode("-", $slac_dt[1]);
+                        $slac_day = $slac_date[0]; //day seqment
+                        $slac_month = $slac_date[1]; //month segment
+                        $slac_year = $slac_date[2]; //year segment
+                        $slac_date_format = date('Y-m-d', strtotime("$slac_year-$slac_month-$slac_day"));
+                        $inserdata[$i]['slac_meeting_date'] = $slac_date_format;
+                        $inserdata[$i]['slac_meeting_no'] = $slac_dt[0];
+
+                        $slsmc_dt = preg_split('/\s+/',$value['F']);
+                        $slsmc_date = explode("-", $slsmc_dt[1]);
+                        $slsmc_day = $slsmc_date[0]; //day seqment
+                        $slsmc_month = $slsmc_date[1]; //month segment
+                        $slsmc_year = $slsmc_date[2]; //year segment
+                        $slsmc_date_format = date('Y-m-d', strtotime("$slsmc_year-$slsmc_month-$slsmc_day"));
+                        $inserdata[$i]['slsmc_meeting_date'] = $slsmc_date_format;
+                        $inserdata[$i]['slsmc_meeting_no'] = $slsmc_dt[0];*/
+
+                        //$inserdata[$i]['implementing_agency'] = $value['E'];
+                        $inserdata[$i]['implementing_agency'] = $value['H'];
+
+/*                      $inserdata[$i]['vertical'] = $value['F'];
+                        $inserdata[$i]['dpr'] = $value['G'];
+                        $inserdata[$i]['EWS'] = $value['H'];
+                        $inserdata[$i]['LIG'] = $value['I'];
+                        $inserdata[$i]['MIG'] = $value['J'];
+                        $inserdata[$i]['HIG'] = $value['K'];
+                        $inserdata[$i]['total_dus'] = $value['L'];*/
+
+                            $inserdata[$i]['vertical'] = $value['I'];
+                            $inserdata[$i]['dpr'] = $value['J'];
+                            $inserdata[$i]['EWS'] = $value['K'];
+                            $inserdata[$i]['LIG'] = $value['L'];
+                            $inserdata[$i]['MIG'] = $value['M'];
+                            $inserdata[$i]['HIG'] = $value['N'];
+                            $inserdata[$i]['total_dus'] = $value['O'];
+
+                        if (!empty($value['M']))
+//                        $inserdata[$i]['probable_date_of_completion'] = $value['M'];
+//                        $inserdata[$i]['is_dpr_submitted'] = ($value['N'] == 'Yes') ? 1 : 0;
+//                        $inserdata[$i]['is_plan_approved'] = ($value['O'] == 'Yes') ? 1 : 0;
+//                        $inserdata[$i]['is_ec_obtained'] = ($value['P'] == 'Yes') ? 1 : 0;
+//                        $inserdata[$i]['is_tendering_completed'] = ($value['Q'] == 'Yes') ? 1 : 0;
+//                        $inserdata[$i]['current_status_id'] = $this->users_model->get_id($value['R'], 'status', 'project_statuses_master');
+
+                            $inserdata[$i]['probable_date_of_completion'] = $value['Q'];
+                            $inserdata[$i]['is_dpr_submitted'] = ($value['R'] == 'Yes') ? 1 : 0;
+                            $inserdata[$i]['is_plan_approved'] = ($value['S'] == 'Yes') ? 1 : 0;
+                            $inserdata[$i]['is_ec_obtained'] = ($value['T'] == 'Yes') ? 1 : 0;
+                            $inserdata[$i]['is_tendering_completed'] = ($value['U'] == 'Yes') ? 1 : 0;
+                            $inserdata[$i]['current_status_id'] = $this->users_model->get_id($value['V'], 'status', 'project_statuses_master');
+
+                            # Insert project details
+
+                           // echo "<pre>";print_r($inserdata[$i]);die;
+
+                        $result = $this->users_model->upload_project_data($inserdata[$i]);
+
+                        # Check values are not empty
+                      /*  if (!empty($value['S']) && !empty($value['T']) && !empty($value['U']) && !empty($value['V']) && !empty($value['W'])) {
+                            # Project stages log array
+                            $stages_data[$i]['project_id'] = $this->users_model->last_project_id();
+                            $stages_data[$i]['EWS'] = $value['S'];
+                            $stages_data[$i]['LIG'] = $value['T'];
+                            $stages_data[$i]['MIG'] = $value['U'];
+                            $stages_data[$i]['HIG'] = $value['V'];
+                            $stages_data[$i]['total_dus_work_started'] = $value['W'];
+                            $stages_data[$i]['created_at'] = date('Y-m-d H:i:s');
+
+                            # Insert project stages log
+                            $this->users_model->add_project_status_log($stages_data[$i]);
+                        }*/
+
+
+                            if (!empty($value['W']) && !empty($value['X']) && !empty($value['Y']) && !empty($value['Z']) && !empty($value['AA'])) {
+                                # Project stages log array
+                                $stages_data[$i]['project_id'] = $this->users_model->last_project_id();
+                                $stages_data[$i]['EWS'] = $value['W'];
+                                $stages_data[$i]['LIG'] = $value['X'];
+                                $stages_data[$i]['MIG'] = $value['Y'];
+                                $stages_data[$i]['HIG'] = $value['Z'];
+                                $stages_data[$i]['total_dus_work_started'] = $value['AA'];
+                                $stages_data[$i]['created_at'] = date('Y-m-d H:i:s');
+
+                                # Insert project stages log
+                                $this->users_model->add_project_status_log($stages_data[$i]);
+                            }
+
+                        $i++;
+                    }
 		            }  
 		            
 		            if($result){

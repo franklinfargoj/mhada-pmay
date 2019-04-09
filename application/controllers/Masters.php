@@ -92,20 +92,20 @@ class Masters extends CI_Controller {
 
                         if(!empty($value['G'])){
                             $csmc_no_dt =    explode('/',$value['G']);
-                            $inserdata[$i]['csmc_meeting_no'] = explode(",",$csmc_no_dt[0]);
-                            $inserdata[$i]['csmc_meeting_date'] = explode(",",$csmc_no_dt[1]);
+                            $inserdata[$i]['csmc_meeting_no'] = isset($csmc_no_dt[0])? explode(",",$csmc_no_dt[0]):'--';
+                            $inserdata[$i]['csmc_meeting_date'] =  isset($csmc_no_dt[1]) ?explode(",",$csmc_no_dt[1]) :0000-00-00;
                         }
 
                         if(!empty($value['E'])){
                                 $slac_no_dt = explode('/', $value['E']);
-                                $inserdata[$i]['slac_meeting_no'] = explode(",", $slac_no_dt[0]);
-                                $inserdata[$i]['slac_meeting_date'] = explode(",", $slac_no_dt[1]);
+                                $inserdata[$i]['slac_meeting_no'] = isset($slac_no_dt[0]) ?  explode(",", $slac_no_dt[0]):'---';
+                                $inserdata[$i]['slac_meeting_date'] = isset($slac_no_dt[1]) ? explode(",", $slac_no_dt[1]):0000-00-00;
                         }
 
                         if(!empty($value['F'])) {
                                 $slsmc_no_dt = explode('/', $value['F']);
-                                $inserdata[$i]['slsmc_meeting_no'] = explode(",", $slsmc_no_dt[0]);
-                                $inserdata[$i]['slsmc_meeting_date'] = explode(",", $slsmc_no_dt[1]);
+                                $inserdata[$i]['slsmc_meeting_no'] = isset($slsmc_no_dt[0]) ? explode(",", $slsmc_no_dt[0]):'---';
+                                $inserdata[$i]['slsmc_meeting_date'] =isset($slsmc_no_dt[1]) ? explode(",", $slsmc_no_dt[1]):0000-00-00;
                         }
 
                         /*                        $slac_dt = preg_split('/\s+/',$value['E']);
@@ -145,7 +145,7 @@ class Masters extends CI_Controller {
                             $inserdata[$i]['HIG'] = $value['N'];
                             $inserdata[$i]['total_dus'] = $value['O'];
 
-                        if (!empty($value['M']))
+                        //if (!empty($value['M']))
 //                        $inserdata[$i]['probable_date_of_completion'] = $value['M'];
 //                        $inserdata[$i]['is_dpr_submitted'] = ($value['N'] == 'Yes') ? 1 : 0;
 //                        $inserdata[$i]['is_plan_approved'] = ($value['O'] == 'Yes') ? 1 : 0;
@@ -158,7 +158,9 @@ class Masters extends CI_Controller {
                             $inserdata[$i]['is_plan_approved'] = ($value['S'] == 'Yes') ? 1 : 0;
                             $inserdata[$i]['is_ec_obtained'] = ($value['T'] == 'Yes') ? 1 : 0;
                             $inserdata[$i]['is_tendering_completed'] = ($value['U'] == 'Yes') ? 1 : 0;
-                            $inserdata[$i]['current_status_id'] = $this->users_model->get_id($value['V'], 'status', 'project_statuses_master');
+                            //$inserdata[$i]['current_status_id'] =   $value['V']!="" ? $this->users_model->get_id($value['V'], 'status', 'project_statuses_master'): '0';
+                            $inserdata[$i]['current_status_id'] =   $value['V']!="" ? $this->users_model->get_id(preg_replace('/\s+/', ' ', $value['V']), 'status', 'project_statuses_master'): '0';
+
 
                             # Insert project details
 

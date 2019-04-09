@@ -1830,6 +1830,12 @@ class Users_model extends CI_Model{
       return $this->db->where($column_name, $value)->get($table_name)->row()->id;
     }
 
+    public function get_id_district_city($value, $column_name, $table_name)
+    {
+        return $this->db->where($column_name, $value)->get($table_name)->row();
+    }
+
+
     public function last_project_id()
     {
       return $this->db->from('projects')->order_by("id", "desc")->limit(1)->get()->row()->id;

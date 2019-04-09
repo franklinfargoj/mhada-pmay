@@ -1900,7 +1900,7 @@ class Users_model extends CI_Model{
 //        echo "<pre>";print_r($postData);die;
 //      $csmc_result = $this->db->insert('project_csmc_details',$posted_data);
 
-        if ($project_result && $csmc_result)
+        if ($project_result)
             return true;
         else
             return false;

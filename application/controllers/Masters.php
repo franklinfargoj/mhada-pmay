@@ -62,9 +62,13 @@ class Masters extends CI_Controller {
 	                $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true, true);
 	                $flag = true;
 	                $i=0;
-                   // echo "<pre>";print_r(array_filter($allDataInSheet));die;
+//                    echo "<pre>";print_r(array_filter($allDataInSheet));die;
 	                foreach ($allDataInSheet as $key => $value) {
                         if ($key > 3) {
+                            if(strlen(implode($value)) == 0)
+                            {
+                                continue;
+                            }
                            // echo "<pre>";print_r($allDataInSheet    );die;
 /*                        if ($flag) {
                             $flag = false;
@@ -127,7 +131,7 @@ class Masters extends CI_Controller {
                         $inserdata[$i]['slsmc_meeting_no'] = $slsmc_dt[0];*/
 
                         //$inserdata[$i]['implementing_agency'] = $value['E'];
-                        $inserdata[$i]['implementing_agency'] = $value['H'];
+                        $inserdata[$i]['implementing_agency'] =  preg_replace('/\s+/', ' ', $value['H']);
 
 /*                      $inserdata[$i]['vertical'] = $value['F'];
                         $inserdata[$i]['dpr'] = $value['G'];
@@ -137,13 +141,13 @@ class Masters extends CI_Controller {
                         $inserdata[$i]['HIG'] = $value['K'];
                         $inserdata[$i]['total_dus'] = $value['L'];*/
 
-                            $inserdata[$i]['vertical'] = $value['I'];
-                            $inserdata[$i]['dpr'] = $value['J'];
-                            $inserdata[$i]['EWS'] = $value['K'];
-                            $inserdata[$i]['LIG'] = $value['L'];
-                            $inserdata[$i]['MIG'] = $value['M'];
-                            $inserdata[$i]['HIG'] = $value['N'];
-                            $inserdata[$i]['total_dus'] = $value['O'];
+                            $inserdata[$i]['vertical'] = preg_replace('/\s+/', ' ',$value['I'] );
+                            $inserdata[$i]['dpr'] =  preg_replace('/\s+/', ' ',$value['J'] );
+                            $inserdata[$i]['EWS'] = preg_replace('/\s+/', ' ',$value['K'] );
+                            $inserdata[$i]['LIG'] = preg_replace('/\s+/', ' ',$value['L'] );
+                            $inserdata[$i]['MIG'] = preg_replace('/\s+/', ' ',$value['M'] );
+                            $inserdata[$i]['HIG'] = preg_replace('/\s+/', ' ',$value['N'] );
+                            $inserdata[$i]['total_dus'] = preg_replace('/\s+/', ' ',$value['O'] );
 
                         //if (!empty($value['M']))
 //                        $inserdata[$i]['probable_date_of_completion'] = $value['M'];
@@ -153,7 +157,7 @@ class Masters extends CI_Controller {
 //                        $inserdata[$i]['is_tendering_completed'] = ($value['Q'] == 'Yes') ? 1 : 0;
 //                        $inserdata[$i]['current_status_id'] = $this->users_model->get_id($value['R'], 'status', 'project_statuses_master');
 
-                            $inserdata[$i]['probable_date_of_completion'] = $value['Q'];
+                            $inserdata[$i]['probable_date_of_completion'] = $value['Q'] !="" ? $value['Q'] : 'Empty';
                             $inserdata[$i]['is_dpr_submitted'] = ($value['R'] == 'Yes') ? 1 : 0;
                             $inserdata[$i]['is_plan_approved'] = ($value['S'] == 'Yes') ? 1 : 0;
                             $inserdata[$i]['is_ec_obtained'] = ($value['T'] == 'Yes') ? 1 : 0;

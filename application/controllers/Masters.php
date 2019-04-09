@@ -77,13 +77,11 @@ class Masters extends CI_Controller {
 
                         # Project array
 
-                        $inserdata[$i]['district_id'] = $this->users_model->get_id_district_city($value['C'], 'name', 'districts_master');
+                        $inserdata[$i]['district_id'] = $this->users_model->get_id_district_city( preg_replace('/\s+/', ' ',$value['C']), 'name', 'districts_master');
                         $inserdata[$i]['district_id'] =  $inserdata[$i]['district_id'] ? $inserdata[$i]['district_id']->id: '';
-                            
-		                $inserdata[$i]['city_id'] = $this->users_model->get_id_district_city($value['D'], 'name', 'cities_master');
-                        $inserdata[$i]['city_id'] =  $inserdata[$i]['city_id'] ? $inserdata[$i]['city_id']->id: '';
 
-		                //echo "<pre>"; print_r($allDataInSheet);die;
+		                $inserdata[$i]['city_id'] = $this->users_model->get_id_district_city(preg_replace('/\s+/', ' ',$value['D']), 'name', 'cities_master');
+                        $inserdata[$i]['city_id'] =  $inserdata[$i]['city_id'] ? $inserdata[$i]['city_id']->id: '';
 
 /*                        $inserdata[$i]['district_id'] = $this->users_model->get_id('Thane', 'name', 'districts_master');
                         $inserdata[$i]['city_id'] = $this->users_model->get_id('Mumbai', 'name', 'cities_master');*/

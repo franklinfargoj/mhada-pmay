@@ -62,29 +62,21 @@ class Masters extends CI_Controller {
 	                $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true, true);
 	                $flag = true;
 	                $i=0;
-//                    echo "<pre>";print_r(array_filter($allDataInSheet));die;
+
 	                foreach ($allDataInSheet as $key => $value) {
                         if ($key > 3) {
-                            if(strlen(implode($value)) == 0)
+                            if(strlen($value['C']) == 0)
                             {
                                 continue;
                             }
-                           // echo "<pre>";print_r($allDataInSheet    );die;
-/*                        if ($flag) {
-                            $flag = false;
-                            continue;
-                        }*/
 
                         # Project array
-
-                        $inserdata[$i]['district_id'] = $this->users_model->get_id_district_city( preg_replace('/\s+/', ' ',$value['C']), 'name', 'districts_master');
+                        $inserdata[$i]['district_id'] = $this->users_model->get_id_district_city(preg_replace('/\s+/', ' ',$value['C']), 'name', 'districts_master');
                         $inserdata[$i]['district_id'] =  $inserdata[$i]['district_id'] ? $inserdata[$i]['district_id']->id: '';
 
 		                $inserdata[$i]['city_id'] = $this->users_model->get_id_district_city(preg_replace('/\s+/', ' ',$value['D']), 'name', 'cities_master');
                         $inserdata[$i]['city_id'] =  $inserdata[$i]['city_id'] ? $inserdata[$i]['city_id']->id: '';
 
-/*                        $inserdata[$i]['district_id'] = $this->users_model->get_id('Thane', 'name', 'districts_master');
-                        $inserdata[$i]['city_id'] = $this->users_model->get_id('Mumbai', 'name', 'cities_master');*/
 
 //                        $csmc_dt =    preg_split('/\s+/',$value['G']);
 //                        echo "<pre>"; print_r($csmc_dt);die;
@@ -99,19 +91,19 @@ class Masters extends CI_Controller {
                         if(!empty($value['G'])){
                             $csmc_no_dt =    explode('/',$value['G']);
                             $inserdata[$i]['csmc_meeting_no'] = isset($csmc_no_dt[0])? explode(",",$csmc_no_dt[0]):'--';
-                            $inserdata[$i]['csmc_meeting_date'] =  isset($csmc_no_dt[1]) ?explode(",",$csmc_no_dt[1]) :0000-00-00;
+                            $inserdata[$i]['csmc_meeting_date'] =  isset($csmc_no_dt[1]) ?explode(",",$csmc_no_dt[1]) :'0000-00-00';
                         }
 
                         if(!empty($value['E'])){
                                 $slac_no_dt = explode('/', $value['E']);
                                 $inserdata[$i]['slac_meeting_no'] = isset($slac_no_dt[0]) ?  explode(",", $slac_no_dt[0]):'---';
-                                $inserdata[$i]['slac_meeting_date'] = isset($slac_no_dt[1]) ? explode(",", $slac_no_dt[1]):0000-00-00;
+                                $inserdata[$i]['slac_meeting_date'] = isset($slac_no_dt[1]) ? explode(",", $slac_no_dt[1]):'0000-00-00';
                         }
 
                         if(!empty($value['F'])) {
                                 $slsmc_no_dt = explode('/', $value['F']);
                                 $inserdata[$i]['slsmc_meeting_no'] = isset($slsmc_no_dt[0]) ? explode(",", $slsmc_no_dt[0]):'---';
-                                $inserdata[$i]['slsmc_meeting_date'] =isset($slsmc_no_dt[1]) ? explode(",", $slsmc_no_dt[1]):0000-00-00;
+                                $inserdata[$i]['slsmc_meeting_date'] =isset($slsmc_no_dt[1]) ? explode(",", $slsmc_no_dt[1]):'0000-00-00';
                         }
 
                         /*                        $slac_dt = preg_split('/\s+/',$value['E']);
@@ -159,14 +151,14 @@ class Masters extends CI_Controller {
 //                        $inserdata[$i]['is_tendering_completed'] = ($value['Q'] == 'Yes') ? 1 : 0;
 //                        $inserdata[$i]['current_status_id'] = $this->users_model->get_id($value['R'], 'status', 'project_statuses_master');
 
-                            $inserdata[$i]['probable_date_of_completion'] = $value['Q'] !="" ? $value['Q'] : 'Empty';
+                            $inserdata[$i]['probable_date_of_completion'] = $value['Q'] !="" ? $value['Q'] : '0000-00-00';
                             $inserdata[$i]['is_dpr_submitted'] = ($value['R'] == 'Yes') ? 1 : 0;
                             $inserdata[$i]['is_plan_approved'] = ($value['S'] == 'Yes') ? 1 : 0;
                             $inserdata[$i]['is_ec_obtained'] = ($value['T'] == 'Yes') ? 1 : 0;
                             $inserdata[$i]['is_tendering_completed'] = ($value['U'] == 'Yes') ? 1 : 0;
                             //$inserdata[$i]['current_status_id'] =   $value['V']!="" ? $this->users_model->get_id($value['V'], 'status', 'project_statuses_master'): '0';
-                            $inserdata[$i]['current_status_id'] =   $value['V']!="" ? $this->users_model->get_id(preg_replace('/\s+/', ' ', $value['V']), 'status', 'project_statuses_master'): '0';
-
+                            $inserdata[$i]['current_status_id'] =   $value['V']!="" ? $this->users_model->get_id_district_city(preg_replace('/\s+/', ' ', $value['V']), 'status', 'project_statuses_master'): '0';
+                            $inserdata[$i]['current_status_id'] =  $inserdata[$i]['current_status_id'] ? $inserdata[$i]['current_status_id']->id: '';
 
                             # Insert project details
 

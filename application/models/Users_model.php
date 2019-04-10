@@ -1866,13 +1866,15 @@ class Users_model extends CI_Model{
             $csmc_details = [];
             $posted_data['csmc_meeting_date'] = $posted_data_arr['csmc_meeting_date'];
             $posted_data['csmc_meeting_no'] = $posted_data_arr['csmc_meeting_no'];
-            foreach ($posted_data['csmc_meeting_date'] as $key => $val) {
-                $csmc_details = array(
-                    'project_id' => $inserted_id,
-                    'csmc_meeting_date' => $posted_data['csmc_meeting_date'][$key],
-                    'csmc_meeting_no' => $posted_data['csmc_meeting_no'][$key],
-                );
-                $csmc_result = $this->db->insert('project_csmc_details', $csmc_details);
+            if(is_array($posted_data['csmc_meeting_date'])) {
+                foreach ($posted_data['csmc_meeting_date'] as $key => $val) {
+                    $csmc_details = array(
+                        'project_id' => $inserted_id,
+                        'csmc_meeting_date' => $posted_data['csmc_meeting_date'][$key],
+                        'csmc_meeting_no' => $posted_data['csmc_meeting_no'][$key],
+                    );
+                    $csmc_result = $this->db->insert('project_csmc_details', $csmc_details);
+                }
             }
         }
 
@@ -1880,6 +1882,8 @@ class Users_model extends CI_Model{
             $slac_details = [];
             $posted_data['slac_meeting_date'] = $posted_data_arr['slac_meeting_date'];
             $posted_data['slac_meeting_no'] = $posted_data_arr['slac_meeting_no'];
+
+            if(is_array($posted_data['slac_meeting_date'])){
             foreach ($posted_data['slac_meeting_date'] as $key => $val) {
                 $slac_details = array(
                     'project_id' => $inserted_id,
@@ -1888,12 +1892,14 @@ class Users_model extends CI_Model{
                 );
                 $slac_result = $this->db->insert('project_slac_details', $slac_details);
             }
+            }
         }
 
         if (isset($posted_data_arr['slsmc_meeting_date'])) {
             $slsmc_details = [];
             $posted_data['slsmc_meeting_date'] = $posted_data_arr['slsmc_meeting_date'];
             $posted_data['slsmc_meeting_no'] = $posted_data_arr['slsmc_meeting_no'];
+            if(is_array($posted_data['slsmc_meeting_date'])){
             foreach ($posted_data['slsmc_meeting_date'] as $key => $val) {
                 $slsmc_details = array(
                     'project_id' => $inserted_id,
@@ -1902,9 +1908,9 @@ class Users_model extends CI_Model{
                 );
                 $slsmc_result = $this->db->insert('project_slsmc_details', $slsmc_details);
             }
+            }
+
         }
-//        echo "<pre>";print_r($postData);die;
-//      $csmc_result = $this->db->insert('project_csmc_details',$posted_data);
 
         if ($project_result)
             return true;

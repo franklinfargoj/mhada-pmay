@@ -51,7 +51,7 @@ class Users_model extends CI_Model{
       $this->db->insert('mhada_schemes',$postData);
    }
 
-   function get_all_projects($search_param,$status_param)
+   function get_all_projects($search_param,$status_param,$limit, $start)
    {
       $today = date('Y-m-d H:i:s');
 
@@ -73,6 +73,7 @@ class Users_model extends CI_Model{
 
 
       $this->db->order_by('created_at','DESC');
+      $this->db->limit($limit,$start);
       $project_details = $this->db->get('projects ps')->result_array();
 
        return array(
@@ -1919,5 +1920,8 @@ class Users_model extends CI_Model{
     }
 
 
+        public function get_count() {
+            return $this->db->count_all('projects');
+        }
 
  }

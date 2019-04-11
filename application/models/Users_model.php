@@ -1218,7 +1218,7 @@ class Users_model extends CI_Model{
         $this->db->join('project_statuses_master stauses','stauses.id = ps.current_status_id','left');
         $this->db->join('districts_master districts','districts.id = ps.district_id','left');
         $this->db->join('cities_master cities','cities.id = ps.city_id','left');
-        $this->db->where('code',$project_code);
+       // $this->db->where('code',$project_code);  //because $project_code is not given in excel
         $this->db->where('ps.id',$project_id);
         $project_details = $this->db->get('projects ps')->row_array();
 

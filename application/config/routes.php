@@ -54,3 +54,6 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['admin'] = 'Admin/Login';
 $route['agency'] = 'Login/agency_login';
+
+
+$route['projects/(:num)'] = 'projects';

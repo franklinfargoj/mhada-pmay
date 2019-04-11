@@ -17,11 +17,22 @@ class Projects extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->model('Users_model','users_model');
         check_login();
+         $this->load->library('pagination');
+         $this->load->helper('url');
     }
 
     function index()
     {
-    	$user_id = $this->session->userdata('id_of_user');
+        $config = array();
+        $config["base_url"] = base_url() . "projects";
+        $config["total_rows"] = $this->users_model->get_count();
+        $config["per_page"] = 20;
+        $config["uri_segment"] = 2;
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
+        $arrData["links"] = $this->pagination->create_links();
+
+        $user_id = $this->session->userdata('id_of_user');
 
         $arrData['user_details'] = get_user_details($user_id);
 
@@ -37,7 +48,7 @@ class Projects extends CI_Controller {
         }
 
         $arrData['statuses_master'] = $this->users_model->get_statuses_master();
-        $arrData['projects_data'] = $this->users_model->get_all_projects($search_param,$status_param);
+        $arrData['projects_data'] = $this->users_model->get_all_projects($search_param,$status_param,$config["per_page"],$page);
     	$arrData['middle'] = 'projects';
         $this->load->view('template_new/template',$arrData);
     }

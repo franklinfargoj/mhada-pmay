@@ -30,6 +30,8 @@ class Projects extends CI_Controller {
         $config["uri_segment"] = 2;
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
+        $arrData["sr_no_start"] = (($page / $config["per_page"]) * $config["per_page"]) + 1;
+        
         $arrData["links"] = $this->pagination->create_links();
 
         $user_id = $this->session->userdata('id_of_user');

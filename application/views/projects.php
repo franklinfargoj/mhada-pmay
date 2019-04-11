@@ -99,7 +99,7 @@
                                  $style_tr = null;
                         ?>
                            <tr <?php echo $style_tr;?>>
-                              <th scope="row"><?php echo $count_scheme_serial+1;?></th>
+                              <th scope="row"><?php echo $sr_no_start++;?></th>
                               <td><?php echo $each_project['code'];?></td>
                               <td><?php echo $each_project['title'];?></td>
                               <td><?php echo $each_project['address'];?></td>

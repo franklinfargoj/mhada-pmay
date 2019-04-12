@@ -28,10 +28,11 @@ class Projects extends CI_Controller {
         $config["total_rows"] = $this->users_model->get_count();
         $config["per_page"] = 20;
         $config["uri_segment"] = 2;
+
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
         $arrData["sr_no_start"] = (($page / $config["per_page"]) * $config["per_page"]) + 1;
-        
+
         $arrData["links"] = $this->pagination->create_links();
 
         $user_id = $this->session->userdata('id_of_user');
@@ -42,6 +43,7 @@ class Projects extends CI_Controller {
         if($this->input->get('search'))
         {
             $search_param = $this->input->get('search');
+            $page = 0;
         }
 
         if($this->input->get('status'))
@@ -550,7 +552,7 @@ class Projects extends CI_Controller {
     {
         url_manupulation();
         if($encrypted_url != NULL)
-        {
+        {   
             $user_id = $this->session->userdata('id_of_user');
 
             $decrypted_url = base64_decode($encrypted_url);
@@ -716,7 +718,6 @@ class Projects extends CI_Controller {
             $arrData['encrypted_url'] =  $encrypted_url;
             $arrData['middle'] = 'project_stages';
             $this->load->view('template_new/template',$arrData);
-
 
         }
         else{

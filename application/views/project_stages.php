@@ -163,7 +163,7 @@
                                                      <label for="EWS" class="form-control-label">
                                                          <strong>EWS<span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input type="text" name="EWS" class="form-control total_dus" id="EWS">
+                                                     <input type="text" name="EWS" class="form-control total_dus" id="EWS" value="<?php echo $started_work_dus[0]['EWS']; ?>">
                                                  </div>
                                              </div>
                                              <div class="col-lg-6">
@@ -171,7 +171,7 @@
                                                      <label for="LIG" class="form-control-label">
                                                          <strong>LIG <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input  type="text" name="LIG" class="form-control total_dus" id="LIG" >
+                                                     <input  type="text" name="LIG" class="form-control total_dus" id="LIG" value="<?php echo $started_work_dus[0]['LIG']; ?>">
                                                  </div>
                                              </div>
                                          </div>
@@ -182,7 +182,7 @@
                                                      <label for="MIG" class="form-control-label">
                                                          <strong>MIG <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input type="text" name="MIG" class="form-control total_dus" id="MIG">
+                                                     <input type="text" name="MIG" class="form-control total_dus" id="MIG" value="<?php echo $started_work_dus[0]['MIG']; ?>">
                                                  </div>
                                              </div>
                                              <div class="col-lg-6">
@@ -190,7 +190,7 @@
                                                      <label for="HIG" class="form-control-label">
                                                          <strong>HIG <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input type="text" name="HIG" class="form-control total_dus" id="HIG">
+                                                     <input type="text" name="HIG" class="form-control total_dus" id="HIG" value="<?php echo $started_work_dus[0]['HIG']; ?>">
                                                  </div>
                                              </div>
                                          </div>
@@ -202,7 +202,7 @@
                                                      <label for="total_dus" class="form-control-label">
                                                          <strong>Total Dus <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input readonly type="text" name="total_dus_work_started" class="form-control" id="total_dus">
+                                                     <input readonly type="text" name="total_dus_work_started" class="form-control" id="total_dus" value="<?php echo $started_work_dus[0]['total_dus_work_started']; ?>">
                                                  </div>
                                              </div>
                                              <div class="col-lg-6">
@@ -282,63 +282,36 @@
                                                  <th scope="col">Stage</th>
                                                  <th scope="col">No Of DUs</th>
                                                  <th scope="col">Additional Information</th>
-                                                 <!--<th scope="col">1 Fund released by centre (In Rs.)</th>
-                                                 <th scope="col">2 Fund released by state (In Rs.)</th>
-                                                 <th scope="col">3 Total fund released (In Rs.)</th>
-                                                 <th scope="col">4 Fund released by MHADA (In Rs.)</th>
-                                                 <th scope="col">5 Expense by implementing agency</th>-->
                                                  <th scope="col">Files</th>
                                              </tr>
                                              </thead>
                                              <tbody>
+
                                              <?php
                                              foreach($project_stages_master as $key=>$stage) {
-                                                     ?>
+                                             ?>
                                                  <tr>
-                                                     <td><h5><?php echo $stage['stage']; ?></h5></td>
-                                                     <td><?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?></td>
-                                                     <td><?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; }  else { echo '-';}  ?></td>
+                                                     <td>
+                                                         <h5><?php echo $stage['stage']; ?></h5>
+                                                     </td>
 
+                                                     <td>
+                                                         <?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?>
+                                                     </td>
 
+                                                     <td>
+                                                         <?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; }  else { echo '-';}  ?>
+                                                     </td>
 
-
-
-
-                                                    <!-- <?php /*if($stage['id']!=3) {
-                                                         $offset = $stage['id']-1;
-                                                         if($stage['id']==4) { $offset = 2; }
-
-                                                         if(!isset($goi_fund_details[$offset]['total_amount'])) { $goi_amount = 0; } else { $goi_amount = $goi_fund_details[$offset]['total_amount']; }
-                                                         if(!isset($gom_fund_details[$offset]['total_amount'])) { $gom_amount = 0; } else { $gom_amount = $gom_fund_details[$offset]['total_amount']; }
-
-                                                         */?>
-                                                     <td><?php /*if(isset($goi_fund_details[$offset]['total_amount'])) { echo $goi_fund_details[$offset]['total_amount']; } else { echo '-'; } */?></td>
-                                                     <td><?php /*if(isset($gom_fund_details[$offset]['total_amount'])) { echo $gom_fund_details[$offset]['total_amount']; } else { echo '-'; } */?></td>
-                                                     <td><?php /*echo ($goi_amount + $gom_amount); */?></td>
-                                                     <td><?php /*echo ($goi_amount + $gom_amount); */?></td>
-                                                     <?php /*} else { */?>
-                                                         <td>-</td>
-                                                         <td>-</td>
-                                                         <td>-</td>
-                                                         <td>-</td>
-                                                     <?php /*} */?>
-                                                     <td><?php /*if(isset($project_stages_dus_details[$stage['id']]['expense_by_implementing_agency'])) { echo $project_stages_dus_details[$stage['id']]['expense_by_implementing_agency']; } else { echo '0';} */?></td>-->
-
-
-
-                                                     <?php
-                                                     if($key==0)
-                                                     {
-                                                     ?>
+                                                     <?php  if($key==0) { ?>
                                                          <td rowspan="4"><a href="<?php echo base_url('projects/documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('projects/photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
                                                      <?php } ?>
                                                  </tr>
-                                                 <?php
-                                             }
+                                             <?php
+                                                }
                                              ?>
 
                                                  <!--<tr>
-                                                     <td><h5>Total</h5></td>
                                                      <td><?php if(isset($total_dus_under_construction)) { echo $total_dus_under_construction; } ?></td>
                                                     <td colspan="9"></td>
                                                  </tr>-->

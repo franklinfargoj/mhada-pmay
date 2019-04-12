@@ -63,14 +63,8 @@ class Users_model extends CI_Model{
 
       if($search_param != '')
       {
-        $this->db->where("(ps.title like '%".$search_param."%' OR ps.address like '%".$search_param."%' )");
+        $this->db->where("(ps.dpr like '%".$search_param."%' OR ps.implementing_agency like '%".$search_param."%' )");
       }
-
-       if($status_param != '')
-       {
-           $this->db->where("ps.current_status_id",$status_param);
-       }
-
 
       $this->db->order_by('created_at','DESC');
       $this->db->limit($limit,$start);

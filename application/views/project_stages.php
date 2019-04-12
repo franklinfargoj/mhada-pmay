@@ -161,9 +161,9 @@
                                              <div class="col-lg-6">
                                                  <div class="form-group">
                                                      <label for="EWS" class="form-control-label">
-                                                         <strong>EWS <span style="color: red">*</span></strong>
+                                                         <strong>EWS<span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input type="text" name="EWS" class="form-control total_dus" id="EWS" placeholder="0">
+                                                     <input type="text" name="EWS" class="form-control total_dus" id="EWS">
                                                  </div>
                                              </div>
                                              <div class="col-lg-6">
@@ -171,7 +171,7 @@
                                                      <label for="LIG" class="form-control-label">
                                                          <strong>LIG <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input  type="text" name="LIG" class="form-control total_dus" id="LIG" placeholder="0">
+                                                     <input  type="text" name="LIG" class="form-control total_dus" id="LIG" >
                                                  </div>
                                              </div>
                                          </div>
@@ -182,7 +182,7 @@
                                                      <label for="MIG" class="form-control-label">
                                                          <strong>MIG <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input type="text" name="MIG" class="form-control total_dus" id="MIG" placeholder="0">
+                                                     <input type="text" name="MIG" class="form-control total_dus" id="MIG">
                                                  </div>
                                              </div>
                                              <div class="col-lg-6">
@@ -190,7 +190,7 @@
                                                      <label for="HIG" class="form-control-label">
                                                          <strong>HIG <span style="color: red">*</span></strong>
                                                      </label>
-                                                     <input type="text" name="HIG" class="form-control total_dus" id="HIG" placeholder="0">
+                                                     <input type="text" name="HIG" class="form-control total_dus" id="HIG">
                                                  </div>
                                              </div>
                                          </div>
@@ -439,7 +439,7 @@
                                                          <td>-</td>
                                                          <td>-</td>
                                                          <td>-</td>
-                                                     <?php } ?> 
+                                                     <?php } ?>
                                                      <td><?php if(isset($project_stages_dus_details[$stage['id']]['expense_by_implementing_agency'])) { echo $project_stages_dus_details[$stage['id']]['expense_by_implementing_agency']; } else { echo '0';} ?></td> -->
                                                      <?php
                                                      if($key==0)

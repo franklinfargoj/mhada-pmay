@@ -250,25 +250,9 @@
                                          </div>
                                      </div>
 
-                                     <div class="row">
-                                         <div class="col-lg-6">
-                                             <h5>Plan Approved</h5>
-                                             <p><?php echo ($project_details['is_plan_approved']==1)?'Yes':'No';?></p>
-                                         </div>
 
-                                         <div class="col-lg-6">
-                                             <h5>EC Obtained If Required</h5>
-                                             <p><?php echo ($project_details['is_ec_obtained']==1)?'Yes':'No';?></p>
-                                         </div>
-                                     </div>
 
-                                     <div class="row">
-                                         <div class="col-lg-6">
-                                             <h5>Tendering Completed</h5>
-                                             <p><?php echo ($project_details['is_tendering_completed']==1)?'Yes':'No';?></p>
-                                         </div>
 
-                                     </div>
 
 
                                  </div>

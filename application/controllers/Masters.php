@@ -190,6 +190,10 @@ class Masters extends CI_Controller {
                                 $stages_data[$i]['MIG'] = $value['Y'];
                                 $stages_data[$i]['HIG'] = $value['Z'];
                                 $stages_data[$i]['total_dus_work_started'] = $value['AA'];
+                                $stages_data[$i]['plint_level'] = $value['AB'];
+                                $stages_data[$i]['floor_level'] = $value['AC'];
+                                $stages_data[$i]['project_completion'] = $value['AD'];
+
                                 $stages_data[$i]['created_at'] = date('Y-m-d H:i:s');
 
                                 # Insert project stages log

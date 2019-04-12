@@ -296,7 +296,15 @@
                                                      </td>
 
                                                      <td>
-                                                         <?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?>
+                                                        <!-- --><?php /*if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} */?>
+                                                         <?php
+                                                         if($key == 1){
+                                                             echo $project_details['plint_level'];
+                                                         }elseif($key == 2){
+                                                             echo $project_details['floor_level'];
+                                                         }elseif($key == 3){
+                                                             echo $project_details['project_completion'];
+                                                         }?>
                                                      </td>
 
                                                      <td>
@@ -391,7 +399,7 @@
                                                  ?>
                                                  <tr>
                                                      <td><input type="hidden" name="project_id" id="project_id" value="<?php echo $project_id;?>"/>
-                                                         <h5><?php echo $stage['stage']; ?></h5></td>
+
 
                                                      <td><input type="text" class="total_dus_to_update form-control" name="stage_dus[<?php echo $stage['id']; ?>][no_of_dus]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?>" /> </td>
                                                      <td><input type="text" class="form-control" name="stage_dus[<?php echo $stage['id']; ?>][additional_information]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; } ?>" /> </td>

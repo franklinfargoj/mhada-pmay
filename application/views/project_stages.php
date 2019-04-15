@@ -114,7 +114,7 @@
                                      <div class="row">
                                          <div class="col-lg-6">
                                              <h5>Project cost total</h5>
-                                             <p><?php echo isset($project_details['project_cost_total'])?$project_details['project_cost_total']:null;?></p>
+                                             <p><?php echo isset($project_details['project_cost_total'])?$project_details['project_cost_total']:null;?> (Rs. in Cr.)</p>
                                          </div>
 
                                          <div class="col-lg-6">
@@ -385,11 +385,6 @@
                                                  <th scope="col">Stage</th>
                                                  <th scope="col">No Of DUs</th>
                                                  <th scope="col">Additional Information</th>
-                                                 <!-- <th scope="col">Fund released by centre (In Rs.)</th>
-                                                 <th scope="col">Fund released by state (In Rs.)</th>
-                                                 <th scope="col">Total fund released (In Rs.)</th>
-                                                 <th scope="col">Fund released by MHADA (In Rs.)</th>
-                                                 <th scope="col">Expense by implementing agency</th> -->
                                                  <th scope="col">Files</th>
                                              </tr>
                                              </thead>
@@ -418,9 +413,6 @@
                                                          <td><?php echo ($goi_amount + $gom_amount); ?></td>
                                                          <td><?php echo ($goi_amount + $gom_amount); ?></td>
                                                      <?php } else { ?>
-                                                         <td>-</td>
-                                                         <td>-</td>
-                                                         <td>-</td>
                                                          <td>-</td>
                                                      <?php } ?>
                                                      <td><?php if(isset($project_stages_dus_details[$stage['id']]['expense_by_implementing_agency'])) { echo $project_stages_dus_details[$stage['id']]['expense_by_implementing_agency']; } else { echo '0';} ?></td> -->
@@ -576,7 +568,6 @@
 
         $("#save_stage").click(function(){
 
-
             var sum = 0;
             $(".total_dus_to_update").each(function() {
                 sum += parseInt($(this).val());
@@ -596,6 +587,8 @@
                 $(this).val('0');
                 return false;
             }
+
+
 
 
 

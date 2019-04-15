@@ -142,6 +142,7 @@ class Masters extends CI_Controller {
                             $inserdata[$i]['MIG'] = preg_replace('/\s+/', ' ',$value['M'] );
                             $inserdata[$i]['HIG'] = preg_replace('/\s+/', ' ',$value['N'] );
                             $inserdata[$i]['total_dus'] = preg_replace('/\s+/', ' ',$value['O'] );
+                            $inserdata[$i]['project_cost_total'] = preg_replace('/\s+/', ' ',$value['P'] );
 
                         //if (!empty($value['M']))
 //                        $inserdata[$i]['probable_date_of_completion'] = $value['M'];
@@ -161,10 +162,12 @@ class Masters extends CI_Controller {
                             $inserdata[$i]['current_status_id'] =  $inserdata[$i]['current_status_id'] ? $inserdata[$i]['current_status_id']->id: '';
 
                             # Insert project details
-
                            // echo "<pre>";print_r($inserdata[$i]);die;
+                            $inserdata[$i]['plint_level'] = $value['AB'];
+                            $inserdata[$i]['floor_level'] = $value['AC'];
+                            $inserdata[$i]['project_completion'] = $value['AD'];
 
-                        $result = $this->users_model->upload_project_data($inserdata[$i]);
+                            $result = $this->users_model->upload_project_data($inserdata[$i]);
 
                         # Check values are not empty
                       /*  if (!empty($value['S']) && !empty($value['T']) && !empty($value['U']) && !empty($value['V']) && !empty($value['W'])) {
@@ -190,9 +193,6 @@ class Masters extends CI_Controller {
                                 $stages_data[$i]['MIG'] = $value['Y'];
                                 $stages_data[$i]['HIG'] = $value['Z'];
                                 $stages_data[$i]['total_dus_work_started'] = $value['AA'];
-                                $stages_data[$i]['plint_level'] = $value['AB'];
-                                $stages_data[$i]['floor_level'] = $value['AC'];
-                                $stages_data[$i]['project_completion'] = $value['AD'];
 
                                 $stages_data[$i]['created_at'] = date('Y-m-d H:i:s');
 

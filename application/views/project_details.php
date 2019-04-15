@@ -249,7 +249,9 @@
                                          </div>-->
                                          <div class="col-lg-6">
                                              <h5>Project cost total</h5>
-                                             <p><?php echo isset($project_details['project_cost_total'])?$project_details['project_cost_total']:null;?></p>
+                                             <p><?php echo isset($project_details['project_cost_total'])?$project_details['project_cost_total']:null;?> (Rs. in Cr.)</p>
+
+
                                          </div>
 
                                          <div class="col-lg-6">

@@ -184,15 +184,15 @@ class Masters extends CI_Controller {
                             $this->users_model->add_project_status_log($stages_data[$i]);
                         }*/
 
+                            if (!empty($value['W']) || !empty($value['X']) || !empty($value['Y']) || !empty($value['Z']) || !empty($value['AA'])) {
 
-                            if (!empty($value['W']) && !empty($value['X']) && !empty($value['Y']) && !empty($value['Z']) && !empty($value['AA'])) {
                                 # Project stages log array
                                 $stages_data[$i]['project_id'] = $this->users_model->last_project_id();
-                                $stages_data[$i]['EWS'] = $value['W'];
-                                $stages_data[$i]['LIG'] = $value['X'];
-                                $stages_data[$i]['MIG'] = $value['Y'];
-                                $stages_data[$i]['HIG'] = $value['Z'];
-                                $stages_data[$i]['total_dus_work_started'] = $value['AA'];
+                                $stages_data[$i]['EWS'] = preg_replace('/\s+/', ' ',$value['W'] );
+                                $stages_data[$i]['LIG'] = preg_replace('/\s+/', ' ',$value['X'] );
+                                $stages_data[$i]['MIG'] = preg_replace('/\s+/', ' ',$value['Y'] );
+                                $stages_data[$i]['HIG'] = preg_replace('/\s+/', ' ',$value['Z'] );
+                                $stages_data[$i]['total_dus_work_started'] = preg_replace('/\s+/', ' ',$value['AA'] );
 
                                 $stages_data[$i]['created_at'] = date('Y-m-d H:i:s');
 

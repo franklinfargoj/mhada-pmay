@@ -19,7 +19,7 @@
         <div class="alert alert-danger alert-dismissable" role="alert"><button type="button" class="close" data-dismiss="alert"
                 aria-label="Close">
             </button>
-            <?php echo $this->session->flashdata('error');?>
+            <?php print_r($this->session->flashdata('error'));?>
         </div>
         <?php
          }

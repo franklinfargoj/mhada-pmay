@@ -271,12 +271,17 @@
                                              </div>
                                              <div class="col-lg-6">
                                                  <h5>Last Update Date</h5>
-                                                 <p><?php echo isset($last_updated_date) && $last_updated_date!='' ?date('d-m-Y',strtotime($last_updated_date)):' - ';?></p>
+                                               <!--  <p><?php /*echo isset($last_updated_date) && $last_updated_date!='' ?date('d-m-Y',strtotime($last_updated_date)):' - ';*/?></p>-->
+
+
+                                                 <p><?php echo isset($project_details['updated_at']) && $project_details['updated_at'] != '0000-00-00 00:00:00'  ?date('d-m-Y',strtotime($project_details['updated_at'])):' - ';?></p>
+
                                              </div>
                                          </div>
 
                                         <div class="table-responsive">
                                          <table class="table mb-0 table-hover" id="display_table">
+
                                              <thead class="thead-light">
                                              <tr>
                                                  <th scope="col">Stage</th>
@@ -285,8 +290,9 @@
                                                  <th scope="col">Files</th>
                                              </tr>
                                              </thead>
-                                             <tbody>
 
+
+                                             <tbody>
                                              <?php
                                              foreach($project_stages_master as $key=>$stage) {
                                              ?>
@@ -312,7 +318,9 @@
                                                      </td>
 
                                                      <?php  if($key==0) { ?>
-                                                         <td rowspan="4"><a href="<?php echo base_url('projects/documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('projects/photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
+                                                         <td rowspan="4">
+                                                             <a href="<?php echo base_url('projects/documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('projects/photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a>
+                                                         </td>
                                                      <?php } ?>
                                                  </tr>
                                              <?php
@@ -371,6 +379,7 @@
                                          <div class="row">
                                              <div class="col-lg-6">
                                                  <h5>No Of DUs Under Construction</h5> <input type="hidden" name="dus_for_which_work_started" id="dus_for_which_work_started" value="<?php echo $dus_for_which_work_started; ?>"/>
+                                                 <input type="hidden" name="project_id" value="<?php echo $project_id; ?>">
                                                  <p><?php echo isset($dus_for_which_work_started)?$dus_for_which_work_started:'-';?></p>
                                              </div>
                                              <div class="col-lg-6">
@@ -398,8 +407,21 @@
                                                          <h5><?php echo $stage['stage']; ?></h5>
                                                      </td>
 
-                                                     <td><input type="text" class="total_dus_to_update form-control" name="stage_dus[<?php echo $stage['id']; ?>][no_of_dus]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?>" /> </td>
-                                                     <td><input type="text" class="form-control" name="stage_dus[<?php echo $stage['id']; ?>][additional_information]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; } ?>" /> </td>
+                                                   <!--<td><input type="text" class="total_dus_to_update form-control" name="stage_dus[<?php /*echo $stage['id']; */?>][no_of_dus]" value="<?php /*if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} */?>" /> </td>-->
+
+                                                   <td>
+                                                         <?php
+                                                         if($key == 1){ ?>
+                                                            <input type="text" class="total_dus_to_update form-control" name="plint_level" value="<?php  echo $project_details['plint_level']; ?>" />
+                                                         <?php }elseif ($key == 2){ ?>
+                                                            <input type="text" class="total_dus_to_update form-control" name="floor_level" value="<?php echo $project_details['floor_level']; ?>" />
+                                                         <?php }elseif ($key == 3){ ?>
+                                                            <input type="text" class="total_dus_to_update form-control" name="project_completion" value="<?php  echo $project_details['project_completion']; ?>" />
+                                                         <?php } ?>
+                                                   </td>
+
+                                                   <td><input type="text" class="form-control" name="stage_dus[<?php echo $stage['id']; ?>][additional_information]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; } ?>" /> </td>
+
                                                      <!-- <?php if($stage['id']!=3) {
                                                          $offset = $stage['id']-1;
                                                          if($stage['id']==4) { $offset = 2; }
@@ -416,12 +438,12 @@
                                                          <td>-</td>
                                                      <?php } ?>
                                                      <td><?php if(isset($project_stages_dus_details[$stage['id']]['expense_by_implementing_agency'])) { echo $project_stages_dus_details[$stage['id']]['expense_by_implementing_agency']; } else { echo '0';} ?></td> -->
-                                                     <?php
-                                                     if($key==0)
-                                                     {
-                                                         ?>
+
+
+                                                   <?php  if($key==0) { ?>
                                                          <td rowspan="4"><a href="<?php echo base_url('projects/documents/'.$encrypted_url);?>" target="_blank" >Documents </a> | <a href="<?php echo base_url('projects/photos/'.$encrypted_url);?>" target="_blank">Photos-videos</a></td>
-                                                     <?php } ?>
+                                                   <?php } ?>
+
                                                  </tr>
                                                  <?php
                                              }
@@ -587,10 +609,6 @@
                 $(this).val('0');
                 return false;
             }
-
-
-
-
 
             $.ajax({
                 type: "POST",

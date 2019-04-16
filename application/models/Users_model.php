@@ -1914,8 +1914,19 @@ class Users_model extends CI_Model{
     }
 
 
-        public function get_count() {
+    public function get_count() {
             return $this->db->count_all('projects');
-        }
+    }
+
+    public function update_stage_of_project($data,$project_id){
+        $this->db->where('id', $project_id);
+        $result =  $this->db->update('projects', $data);
+        return $result;
+    }
+
+    public function insert_excel_goi_fund($postData){
+        return $this->db->insert('project_financial_details', $postData);
+    }
+
 
  }

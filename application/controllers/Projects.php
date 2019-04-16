@@ -728,9 +728,21 @@ class Projects extends CI_Controller {
 
     public function save_stage_dus_details()
     {
-            $postData = $this->input->post();
-            $stages_master = $this->users_model->get_stages_master();
+        $postData = $this->input->post();
 
+        $data = array(
+            'plint_level' => $postData['plint_level'],
+            'floor_level' => $postData['floor_level'],
+            'project_completion' => $postData['project_completion'],
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+        $project_id = $postData['project_id'];
+
+        $this->users_model->update_stage_of_project($data,$project_id);
+
+
+
+       /* $stages_master = $this->users_model->get_stages_master();
 
         if(isset($postData["stage_dus"])){
 
@@ -748,7 +760,7 @@ class Projects extends CI_Controller {
             }
 
             echo json_encode($stage_dus_details);
-        }
+        }*/
 
     }
 
@@ -791,7 +803,7 @@ class Projects extends CI_Controller {
             if($postData = $this->input->post())
             {
 
-                    $postData['project_id'] = $project_id;
+                $postData['project_id'] = $project_id;
 
                     if($postData['nodel_agency'] == 1)
                     {
@@ -802,7 +814,6 @@ class Projects extends CI_Controller {
                         $this->users_model->add_gom_financial_details($postData,$arrData['categories'],$encrypted_url);
                     }
 
-
                     $this->session->set_flashdata('success','Fund added successfully.');
                     redirect('projects/financial_details/'.$encrypted_url);
 
@@ -812,21 +823,17 @@ class Projects extends CI_Controller {
             $arrData['gom_details'] = $this->users_model->get_financial_details($project_id,2);
             
             /* $arrData['gom_financial_details'] = $this->users_model->get_financial_details($project_id,2);
-
              echo "<pre>";print_r($arrData['goi_financial_details']);
-
              foreach($arrData['goi_financial_details'] as $goi)
              {
                  $goi_details[$goi->installment] = $goi->installment;
                  $goi_details[$goi->installment] = $goi->installment;
              }
-
              exit;*/
 
             $arrData['encrypted_url'] =  $encrypted_url;
             $arrData['middle'] = 'financial_details';
             $this->load->view('template_new/template',$arrData);
-
 
         }
         else{

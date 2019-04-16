@@ -200,6 +200,59 @@ class Masters extends CI_Controller {
                                 $this->users_model->add_project_status_log($stages_data[$i]);
                             }
 
+                            if( !empty($value['AG']) || !empty($value['AH']) || !empty($value['AI'])|| !empty($value['AJ']) ){
+                                $goifirst[$i]['nodel_agency'] = 1;
+                                $goifirst[$i]['installment'] = 1;
+                                $goifirst[$i]['project_id'] = $this->users_model->last_project_id();
+                                $goifirst[$i]['sc_amount '] = $value['AG'];
+                                $goifirst[$i]['st_amount'] = $value['AH'];
+                                $goifirst[$i]['other_amount'] = $value['AI'];
+                                $goifirst[$i]['total_amount'] = $value['AJ'];
+                                $this->users_model->insert_excel_goi_fund($goifirst[$i]);
+                            }
+                            if( !empty($value['AL']) || !empty($value['AM']) || !empty($value['AN'])|| !empty($value['AO']) ) {
+                                $goisecond[$i]['nodel_agency'] = 1;
+                                $goisecond[$i]['installment'] = 2;
+                                $goisecond[$i]['project_id'] = $this->users_model->last_project_id();
+                                $goisecond[$i]['sc_amount '] = $value['AL'];
+                                $goisecond[$i]['st_amount'] = $value['AM'];
+                                $goisecond[$i]['other_amount'] = $value['AN'];
+                                $goisecond[$i]['total_amount'] = $value['AO'];
+                                $this->users_model->insert_excel_goi_fund($goisecond[$i]);
+                            }
+                            if( !empty($value['AQ']) || !empty($value['AR']) || !empty($value['AS'])|| !empty($value['AT']) ) {
+                                $goithird[$i]['nodel_agency'] = 1;
+                                $goithird[$i]['installment'] = 3;
+                                $goithird[$i]['project_id'] = $this->users_model->last_project_id();
+                                $goithird[$i]['sc_amount '] = $value['AQ'];
+                                $goithird[$i]['st_amount'] = $value['AR'];
+                                $goithird[$i]['other_amount'] = $value['AS'];
+                                $goithird[$i]['total_amount'] = $value['AT'];
+                                $this->users_model->insert_excel_goi_fund($goithird[$i]);
+                            }
+                            if( !empty($value['AV'])){
+                                $gomfirst[$i]['nodel_agency'] = 2;
+                                $gomfirst[$i]['installment'] = 1;
+                                $gomfirst[$i]['project_id'] = $this->users_model->last_project_id();
+                                $gomfirst[$i]['total_gom_amount'] = $value['AV'];
+                                $this->users_model->insert_excel_goi_fund($gomfirst[$i]);
+                            }
+                            if( !empty($value['AX'])) {
+                                $gomsecond[$i]['nodel_agency'] = 2;
+                                $gomsecond[$i]['installment'] = 2;
+                                $gomsecond[$i]['project_id'] = $this->users_model->last_project_id();
+                                $gomsecond[$i]['total_gom_amount'] = $value['AX'];
+                                $this->users_model->insert_excel_goi_fund($gomsecond[$i]);
+                            }
+                            if( !empty($value['AZ'])){
+                                $gomthird[$i]['nodel_agency'] = 2;
+                                $gomthird[$i]['installment'] = 3;
+                                $gomthird[$i]['project_id'] = $this->users_model->last_project_id();
+                                $gomthird[$i]['total_gom_amount'] = $value['AZ'];
+                                $this->users_model->insert_excel_goi_fund($gomthird[$i]);
+                            }
+
+
                         $i++;
                     }
 		            }  

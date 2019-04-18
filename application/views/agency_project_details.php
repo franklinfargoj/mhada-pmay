@@ -76,6 +76,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+
                                                             <div class="form-group row">
                                                                 <div class="col-sm-4">
                                                                     <label for="" class="form-control-label">
@@ -85,18 +86,21 @@
                                                                 <div class="col-sm-8">
                                                                     <div class="form-group">
                                                                         <select id="project_ids" name="project_ids[]"
-                                                                            multiple="multiple" style="width: 150px;" required>
+                                                                            multiple="multiple" style="width: 1500px;" required>
                                                                             <?php  foreach($projects_to_assign as $project) {  ?>
+
                                                                             <option value="<?php echo $project['id']; ?>"
                                                                                 <?php if($project['agency_id']==$agency_details[0]['id']){
                                                                                 echo 'selected' ; } ?> >
-                                                                                <?php echo $project['title']; ?>
+                                                                                <?php echo $project['dpr']; ?>
                                                                             </option>
+
                                                                             <?php } ?>
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="submit" id="submit_add_agency_form" class="btn btn-primary m-btn--pill">Submit</button>
@@ -133,7 +137,8 @@
                                                     <thead class="thead-light">
                                                         <tr>
                                                             <th scope="col">#</th>
-                                                            <th scope="col">Project Code</th>
+                                                            <!--<th scope="col">Project Code</th>-->
+                                                            <th scope="col">DPR</th>
                                                             <th scope="col">Project Title</th>
                                                             <th scope="col">District</th>
                                                             <th scope="col">City</th>
@@ -154,7 +159,8 @@
                                                                 <?php echo $count_scheme_serial+1;?>
                                                             </th>
                                                             <td>
-                                                                <?php echo $agency_project['code'];?>
+                                                                <?php //echo $agency_project['code'];?>
+                                                                <?php echo $agency_project['dpr'];?>
                                                             </td>
                                                             <td>
                                                                 <?php echo $agency_project['title'];?>

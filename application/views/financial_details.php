@@ -418,9 +418,11 @@
                                                      </h5>
                                                  </td>
 
-                                                 <td><input type="text" class="form-control gom_total_gom_amount"
-                                                            name="gom_financial_details[<?php echo $category; ?>][gom_amount]"
-                                                            value="0" id="<?php echo $category; ?>_gom_amount"/> </td>
+                                                <td><input type="text" class="form-control gom_total_gom_amount"
+                                                           name="gom_financial_details[<?php echo $category; ?>][gom_amount]"
+                                                           value="0" id="<?php echo $category; ?>_gom_amount" />
+                                                </td>
+
                                                  <td><input type="text" class="form-control" name="gom_financial_details[<?php echo $category; ?>][gom_order_no]" id="<?php echo $category; ?>_gom_order_no"/>
                                                  </td>
                                                  <td><input type="date" class="form-control" name="gom_financial_details[<?php echo $category; ?>][gom_order_date]" id="<?php echo $category; ?>_gom_order_date"/>
@@ -2013,22 +2015,30 @@
             $(".total_amount").each(function () {
                 sum += parseInt($(this).val());
             });
-
-            $('#total_amount').attr('value', sum);
-
-
+            $('#total_amount').val(sum);
         });
-        $(document).on("keyup", ".total_gom_amount", function () {
 
+
+
+        $(document).on("keyup", ".gom_total_gom_amount", function () {
+
+            var sum = 0;
+            $(".gom_total_gom_amount").each(function () {
+
+                sum += parseInt($(this).val());
+            });
+            $('#gom_total_gom_amount').val(sum);
+        });
+
+
+        $(document).on("keyup", ".total_gom_amount", function () {
             var sum = 0;
             $(".total_gom_amount").each(function () {
                 sum += parseInt($(this).val());
             });
-
-            $('#total_gom_amount').attr('value', sum);
-
-
+            $('#total_gom_amount').val(sum);
         });
+
         $(document).on("keyup", ".total_mhada_received_amount", function () {
 
             var sum = 0;
@@ -2038,8 +2048,8 @@
 
             $('#total_mhada_received_amount').attr('value', sum);
 
-
         });
+
         $(document).on("keyup", ".total_mhada_released_amount", function () {
 
             var sum = 0;
@@ -2049,23 +2059,8 @@
 
             $('#total_mhada_released_amount').attr('value', sum);
 
-
         });
 
-
-
-
-        $(document).on("keyup", ".gom_total_gom_amount", function () {
-
-            var sum = 0;
-            $(".gom_total_gom_amount").each(function () {
-                sum += parseInt($(this).val());
-            });
-
-            $('#gom_total_gom_amount').attr('value', sum);
-
-
-        });
         $(document).on("keyup", ".gom_total_mhada_received_amount", function () {
 
             var sum = 0;
@@ -2075,8 +2070,8 @@
 
             $('#gom_total_mhada_received_amount').attr('value', sum);
 
-
         });
+
         $(document).on("keyup", ".gom_total_mhada_released_amount", function () {
 
             var sum = 0;
@@ -2086,11 +2081,7 @@
 
             $('#gom_total_mhada_released_amount').attr('value', sum);
 
-
         });
-
-
-
 
         $(document).on("keyup", ".total_utilization_amount", function () {
 
@@ -2101,9 +2092,7 @@
 
             $('#total_utilization_amount').attr('value', sum);
 
-
         });
-
 
         $(document).on("keyup", ".gom_total_amount", function () {
 
@@ -2113,7 +2102,6 @@
             });
 
             $('#gom_total_amount').attr('value', sum);
-
 
         });
 
@@ -2125,7 +2113,6 @@
             });
 
             $('#gom_total_utilization_amount').attr('value', sum);
-
 
         });
 

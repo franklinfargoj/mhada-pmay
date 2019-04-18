@@ -819,8 +819,8 @@ class Projects extends CI_Controller {
 
             }
 
-            $arrData['goi_details'] = $this->users_model->get_financial_details($project_id,1);
-            $arrData['gom_details'] = $this->users_model->get_financial_details($project_id,2);
+            $arrData['goi_details'] = $this->users_model->get_financial_details($project_id,1); // 1 is for goi
+            $arrData['gom_details'] = $this->users_model->get_financial_details($project_id,2); // 2 is for gom
             
             /* $arrData['gom_financial_details'] = $this->users_model->get_financial_details($project_id,2);
              echo "<pre>";print_r($arrData['goi_financial_details']);

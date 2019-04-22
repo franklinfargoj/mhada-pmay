@@ -333,7 +333,8 @@
 
                                                                 <td>-</td>
 
-                                                                <td><input readonly type="text" class="form-control" id="<?php echo strtolower($category); ?>_utilization_certificate" /></td>
+                                                               <!-- <td><input readonly type="text" class="form-control" id="<?php /*echo strtolower($category); */?>_utilization_certificate" /></td>-->
+                                                                <td><textarea readonly class="form-control" id="<?php echo strtolower($category); ?>_utilization_certificate" /></textarea></td>
 
                                                                 <td>-</td>
 
@@ -1511,7 +1512,7 @@
                         }
                         else
                         {
-                            if (nodel_agency == 1) {
+                            if (nodel_agency == 1) { 
 
 
                                 $('#update_form_of_goi_fund #SC_goi_amount').val('');
@@ -1768,10 +1769,10 @@
                                 $('#update_form_of_goi_fund #OTHER_mhada_released_no').val(data[0].other_mhada_order_no);
                                 $('#update_form_of_goi_fund #OTHER_mhada_released_date').val(data[0].other_mhada_order_date);
 
-                                $('#update_form_of_goi_fund #SC_remark').val(data[0].sc_remark);
+                                /*$('#update_form_of_goi_fund #OTHER_remark').val(data[0].sc_remark);*/
                                 $('#update_form_of_goi_fund #ST_remark').val(data[0].st_remark);
                                 $('#update_form_of_goi_fund #OBC_remark').val(data[0].obc_remark);
-                                $('#update_form_of_goi_fund #OTHER_remark').val(data[0].other_remark);
+                                $('#update_form_of_goi_fund #SC_remark').val(data[0].other_remark);
 
                                 $('#update_form_of_goi_fund #total_amount').val(data[0].total_amount);  //displaying total amount
                                 $('#update_form_of_goi_fund #total_gom_amount').val(data[0].total_gom_amount);

@@ -208,6 +208,7 @@ class Masters extends CI_Controller {
                                 $goifirst[$i]['st_amount'] = $value['AH'];
                                 $goifirst[$i]['other_amount'] = $value['AI'];
                                 $goifirst[$i]['total_amount'] = $value['AJ'];
+                                $goifirst[$i]['sc_utilization_certificate'] = $value['BC'];
                                 $this->users_model->insert_excel_goi_fund($goifirst[$i]);
                             }
                             if( !empty($value['AL']) || !empty($value['AM']) || !empty($value['AN'])|| !empty($value['AO']) ) {
@@ -218,6 +219,7 @@ class Masters extends CI_Controller {
                                 $goisecond[$i]['st_amount'] = $value['AM'];
                                 $goisecond[$i]['other_amount'] = $value['AN'];
                                 $goisecond[$i]['total_amount'] = $value['AO'];
+                                $goisecond[$i]['st_utilization_certificate'] = $value['BD'];
                                 $this->users_model->insert_excel_goi_fund($goisecond[$i]);
                             }
                             if( !empty($value['AQ']) || !empty($value['AR']) || !empty($value['AS'])|| !empty($value['AT']) ) {
@@ -228,6 +230,8 @@ class Masters extends CI_Controller {
                                 $goithird[$i]['st_amount'] = $value['AR'];
                                 $goithird[$i]['other_amount'] = $value['AS'];
                                 $goithird[$i]['total_amount'] = $value['AT'];
+
+                                $goithird[$i]['obc_utilization_certificate'] = $value['BE'];
                                 $this->users_model->insert_excel_goi_fund($goithird[$i]);
                             }
                             if( !empty($value['AV'])){
@@ -235,6 +239,7 @@ class Masters extends CI_Controller {
                                 $gomfirst[$i]['installment'] = 1;
                                 $gomfirst[$i]['project_id'] = $this->users_model->last_project_id();
                                 $gomfirst[$i]['total_gom_amount'] = $value['AV'];
+                                $gomfirst[$i]['sc_utilization_certificate'] = $value['BF'];
                                 $this->users_model->insert_excel_goi_fund($gomfirst[$i]);
                             }
                             if( !empty($value['AX'])) {
@@ -242,6 +247,7 @@ class Masters extends CI_Controller {
                                 $gomsecond[$i]['installment'] = 2;
                                 $gomsecond[$i]['project_id'] = $this->users_model->last_project_id();
                                 $gomsecond[$i]['total_gom_amount'] = $value['AX'];
+                                $gomsecond[$i]['st_utilization_certificate'] = $value['BG'];
                                 $this->users_model->insert_excel_goi_fund($gomsecond[$i]);
                             }
                             if( !empty($value['AZ'])){
@@ -249,9 +255,9 @@ class Masters extends CI_Controller {
                                 $gomthird[$i]['installment'] = 3;
                                 $gomthird[$i]['project_id'] = $this->users_model->last_project_id();
                                 $gomthird[$i]['total_gom_amount'] = $value['AZ'];
+                                $gomthird[$i]['obc_utilization_certificate'] = $value['BH'];
                                 $this->users_model->insert_excel_goi_fund($gomthird[$i]);
                             }
-
 
                         $i++;
                     }

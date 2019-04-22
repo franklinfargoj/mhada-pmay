@@ -332,8 +332,11 @@
                                                                 <td><input type="file" name="<?php echo $category; ?>_mhada_upload_doc"  class="form-control" id="<?php echo $category; ?>_mhada_upload_doc" /></td>
 
                                                                 <td>-</td>
+
+                                                                <td><input readonly type="text" class="form-control" id="<?php echo strtolower($category); ?>_utilization_certificate" /></td>
+
                                                                 <td>-</td>
-                                                                <td>-</td>
+
                                                                 <td><textarea class="form-control" name="financial_details[<?php echo $category; ?>][remark]" id="<?php echo $category; ?>_remark"></textarea></td>
 
                                                             </tr>
@@ -445,7 +448,9 @@
                                                  <td><input type="file" name="<?php echo $category; ?>_mhada_upload_doc_gom"  class="form-control" id="<?php echo $category; ?>_mhada_upload_doc"/></td>
 
                                                  <td>-</td>
-                                                 <td>-</td>
+                                                 <td><input readonly type="text" class="form-control" id="<?php echo strtolower($category); ?>_utilization" ></td>
+
+
                                                  <td>-</td>
 
                                                  <td><textarea class="form-control" name="gom_financial_details[<?php echo $category; ?>][remark]" id="<?php echo $category; ?>_remark"></textarea></td>
@@ -1381,7 +1386,6 @@
                     dataType: "html",
                     success: function(data){
                         console.log(data);
-
                         var data = JSON.parse(data);
 
                         if ($.trim(data)) {
@@ -1769,11 +1773,16 @@
                                 $('#update_form_of_goi_fund #OBC_remark').val(data[0].obc_remark);
                                 $('#update_form_of_goi_fund #OTHER_remark').val(data[0].other_remark);
 
-
-                                $('#update_form_of_goi_fund #total_amount').val(data[0].total_amount);
+                                $('#update_form_of_goi_fund #total_amount').val(data[0].total_amount);  //displaying total amount
                                 $('#update_form_of_goi_fund #total_gom_amount').val(data[0].total_gom_amount);
                                 $('#update_form_of_goi_fund #total_mhada_received_amount').val(data[0].total_mhada_received_amount);
                                 $('#update_form_of_goi_fund #total_mhada_released_amount').val(data[0].total_mhada_released_amount);
+
+
+                                $('#update_form_of_goi_fund #sc_utilization_certificate').val(data[0].sc_utilization_certificate);
+                                $('#update_form_of_goi_fund #st_utilization_certificate').val(data[0].st_utilization_certificate);
+                                $('#update_form_of_goi_fund #obc_utilization_certificate').val(data[0].obc_utilization_certificate);
+
                             }
                             else if (data[0].nodel_agency == 2) {
 
@@ -1825,6 +1834,11 @@
                                 $('#update_form_of_gom_fund #total_gom_amount').val(data[0].total_gom_amount);
                                 $('#update_form_of_gom_fund #total_mhada_received_amount').val(data[0].total_mhada_received_amount);
                                 $('#update_form_of_gom_fund #total_mhada_released_amount').val(data[0].total_mhada_released_amount);
+
+                                $('#update_form_of_gom_fund #sc_utilization').val(data[0].sc_utilization_certificate);
+                                $('#update_form_of_gom_fund #st_utilization').val(data[0].st_utilization_certificate);
+                                $('#update_form_of_gom_fund #obc_utilization').val(data[0].obc_utilization_certificate);
+
                             }
 
                             $('#save_note').val('');
@@ -1913,8 +1927,6 @@
                                 $('#update_form_of_goi_fund #total_mhada_received_amount').val('');
                                 $('#update_form_of_goi_fund #total_mhada_released_amount').val('');
                                 $('#update_form_of_goi_fund #total_utilization_amount').attr('value', 0);
-
-
 
                             }
                             else if (nodel_agency == 2) {

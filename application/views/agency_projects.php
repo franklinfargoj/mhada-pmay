@@ -78,7 +78,7 @@
                               <th scope="col">#</th>
                               <th scope="col">Code</th>
                               <th scope="col">Title</th>
-                              <th scope="col">Address</th>
+                              <!--<th scope="col">Address</th>-->
                               <th scope="col">Implementing Agency</th>
                               <th scope="col">Status</th>
                               <th scope="col">Submitted On</th>
@@ -96,8 +96,8 @@
                            <tr <?php echo $style_tr;?>>
                               <th scope="row"><?php echo $count_scheme_serial+1;?></th>
                               <td><?php echo $each_project['code'];?></td>
-                              <td><?php echo $each_project['title'];?></td>
-                              <td><?php echo $each_project['address'];?></td>
+                              <td><?php echo $each_project['dpr'];?></td>
+                             <!-- <td><?php /*echo $each_project['address'];*/?></td>-->
                               <td><?php echo $each_project['implementing_agency'];?></td>
                               <td><?php echo $each_project['current_status'];?></td>
                               <td><?php echo date('F j, Y',strtotime($each_project['created_at']));?></td>

@@ -334,7 +334,7 @@
                                                                 <td>-</td>
 
                                                                <!-- <td><input readonly type="text" class="form-control" id="<?php /*echo strtolower($category); */?>_utilization_certificate" /></td>-->
-                                                                <td><textarea readonly class="form-control" id="<?php echo strtolower($category); ?>_utilization_certificate" /></textarea></td>
+                                                                <td><textarea readonly class="form-control" id="<?php echo strtolower($category); ?>_utilization_certificate"  name="financial_details[<?php echo $category; ?>][utilization_certificate]"/></textarea></td>
 
                                                                 <td>-</td>
 
@@ -449,7 +449,7 @@
                                                  <td><input type="file" name="<?php echo $category; ?>_mhada_upload_doc_gom"  class="form-control" id="<?php echo $category; ?>_mhada_upload_doc"/></td>
 
                                                  <td>-</td>
-                                                 <td><input readonly type="text" class="form-control" id="<?php echo strtolower($category); ?>_utilization" ></td>
+                                                 <td><input readonly type="text" class="form-control" id="<?php echo strtolower($category); ?>_utilization" name="gom_financial_details[<?php echo $category; ?>][utilization]"></td>
 
 
                                                  <td>-</td>

@@ -16,6 +16,7 @@ class Agency extends CI_Controller {
         parent::__construct();
         $this->load->library('form_validation');
          $this->load->model('Agency_model','agency_model');
+         $this->load->model('Users_model','users_model');
         check_agency_login();
     }
 
@@ -334,8 +335,6 @@ class Agency extends CI_Controller {
             $arrData['encrypted_url'] =  $encrypted_url;
             $arrData['middle'] = 'agency_project_stages';
             $this->load->view('template_new/template',$arrData);
-
-
         }
         else{
             show_error('No Information found.');
@@ -346,9 +345,16 @@ class Agency extends CI_Controller {
     public function save_stage_dus_details()
     {
         $postData = $this->input->post();
-        $stages_master = $this->agency_model->get_stages_master();
+        $data = array(
+            'plint_level' => $postData['plint_level'],
+            'floor_level' => $postData['floor_level'],
+            'project_completion' => $postData['project_completion'],
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+        $project_id = $postData['project_id'];
+        $this->users_model->update_stage_of_project($data,$project_id);
 
-
+/*        $stages_master = $this->agency_model->get_stages_master();
         if(isset($postData["stage_dus"])){
 
             $stages_master = $this->agency_model->get_stages_master();
@@ -365,7 +371,7 @@ class Agency extends CI_Controller {
             }
 
             echo json_encode($stage_dus_details);
-        }
+        }*/
 
     }
 

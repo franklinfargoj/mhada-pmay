@@ -352,7 +352,8 @@
                                              </div>
                                              <div class="col-lg-6">
                                                  <h5>Last Update Date</h5>
-                                                 <p><?php echo isset($last_updated_date) && $last_updated_date!='' ?date('d-m-Y',strtotime($last_updated_date)):' - ';?></p>
+                                               <!--  <p><?php /*echo isset($last_updated_date) && $last_updated_date!='' ?date('d-m-Y',strtotime($last_updated_date)):' - ';*/?></p>-->
+                                                 <p><?php echo isset($project_details['updated_at']) && $project_details['updated_at'] != '0000-00-00 00:00:00'  ?date('d-m-Y',strtotime($project_details['updated_at'])):' - ';?></p>
                                              </div>
                                          </div>
 

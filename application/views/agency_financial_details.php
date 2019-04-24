@@ -77,11 +77,12 @@
                                                         <p> <input type="hidden" name="project_id" id="project_id" value="<?php echo $project_details['id']; ?>" />
                                                             <?php echo isset($project_details['code'])?$project_details['code']:null;?>
                                                         </p>
+                                                    </div>
                                                         <div class="col-lg-6" >
                                                              <h5>DPR Title</h5>
-                                                             <p><?php echo isset($project_details['title'])?$project_details['title']:null;?></p>
+                                                             <p><?php echo isset($project_details['dpr'])?$project_details['dpr']:null;?></p>
                                                          </div>
-                                                    </div>
+
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6">
@@ -97,6 +98,7 @@
                                                         </p>
                                                     </div>
                                                 </div>
+
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <h5>District</h5>

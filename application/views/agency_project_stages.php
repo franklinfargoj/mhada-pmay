@@ -253,8 +253,19 @@
                                                      ?>
                                                  <tr>
                                                      <td><h5><?php echo $stage['stage']; ?></h5></td>
+                                                     <!--<td><?php /*if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} */?></td>-->
+                                                     <td>
+                                                         <?php
+                                                         if($key == 1){
+                                                             echo $project_details['plint_level'];
+                                                         }elseif($key == 2){
+                                                             echo $project_details['floor_level'];
+                                                         }elseif($key == 3){
+                                                             echo $project_details['project_completion'];
+                                                         }?>
+                                                     </td>
 
-                                                     <td><?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?></td>
+
                                                      <td><?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; }  else { echo '-';}  ?></td>
                                                      <?php if($stage['id']!=3) {
                                                          $offset = $stage['id']-1;
@@ -270,11 +281,7 @@
                                                      <td><?php /*if(isset($gom_fund_details[$offset]['total_amount'])) { echo $gom_fund_details[$offset]['total_amount']; } else { echo '-'; } */?></td>
                                                      <td><?php /*echo ($goi_amount + $gom_amount); */?></td>
                                                      <td><?php /*echo ($goi_amount + $gom_amount); */?></td>
-                                                     <?php /*} else { */?>
-                                                         <td>-</td>
-                                                         <td>-</td>
-                                                         <td>-</td>
-                                                         <td>-</td>-->
+                                                     <?php /*} else { */?>                                                         -->
                                                      <?php } ?>
                                                      <!--<td><?php /*if(isset($project_stages_dus_details[$stage['id']]['expense_by_implementing_agency'])) { echo $project_stages_dus_details[$stage['id']]['expense_by_implementing_agency']; } else { echo '0';} */?></td>-->
                                                      <?php
@@ -289,9 +296,9 @@
                                              ?>
 
                                                  <!--<tr>
-                                                     <td><h5>Total</h5></td>
+
                                                      <td><?php if(isset($total_dus_under_construction)) { echo $total_dus_under_construction; } ?></td>
-                                                    <td colspan="9"></td>
+
                                                  </tr>-->
                                              </tbody>
                                          </table>
@@ -355,11 +362,6 @@
                                                  <th scope="col">Stage</th>
                                                  <th scope="col">No Of DUs</th>
                                                  <th scope="col">Additional Information</th>
-                                                 <!-- <th scope="col">Fund released by centre (In Rs.)</th>
-                                                 <th scope="col">Fund released by state (In Rs.)</th>
-                                                 <th scope="col">Total fund released (In Rs.)</th>
-                                                 <th scope="col">Fund released by MHADA (In Rs.)</th>
-                                                 <th scope="col">Expense by implementing agency</th> -->
                                                  <th scope="col">Files</th>
                                              </tr>
                                              </thead>
@@ -369,10 +371,23 @@
                                                  ?>
                                                  <tr>
                                                      <td><input type="hidden" name="project_id" id="project_id" value="<?php echo $project_id;?>"/>
-                                                         <h5><?php echo $stage['stage']; ?></h5></td>
+                                                         <h5><?php echo $stage['stage']; ?></h5>
+                                                     </td>
 
-                                                     <td><input type="text" class="total_dus_to_update form-control" name="stage_dus[<?php echo $stage['id']; ?>][no_of_dus]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?>" /> </td>
-                                                      <td><input type="text" class="form-control" name="stage_dus[<?php echo $stage['id']; ?>][additional_information]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; } ?>" /> </td>
+                                                    <!-- <td><input type="text" class="total_dus_to_update form-control" name="stage_dus[<?php /*echo $stage['id']; */?>][no_of_dus]" value="<?php /*if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} */?>" /> </td>-->
+
+                                                     <td>
+                                                         <?php
+                                                         if($key == 1){ ?>
+                                                             <input type="text" class="total_dus_to_update form-control" name="plint_level" value="<?php  echo $project_details['plint_level']; ?>" />
+                                                         <?php }elseif ($key == 2){ ?>
+                                                             <input type="text" class="total_dus_to_update form-control" name="floor_level" value="<?php echo $project_details['floor_level']; ?>" />
+                                                         <?php }elseif ($key == 3){ ?>
+                                                             <input type="text" class="total_dus_to_update form-control" name="project_completion" value="<?php  echo $project_details['project_completion']; ?>" />
+                                                         <?php } ?>
+                                                     </td>
+
+                                                     <td><input type="text" class="form-control" name="stage_dus[<?php echo $stage['id']; ?>][additional_information]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; } ?>" /> </td>
                                                      <!--<?php if($stage['id']!=3) {
                                                          $offset = $stage['id']-1;
                                                          if($stage['id']==4) { $offset = 2; }
@@ -523,7 +538,6 @@
                 $(this).val('0');
                 return false;
             }
-
 
 
             $.ajax({

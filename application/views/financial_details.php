@@ -80,7 +80,7 @@
                                                     </div>
                                                     <div class="col-lg-6" >
                                                          <h5>DPR Title</h5>
-                                                         <p><?php echo isset($project_details['title'])?$project_details['title']:null;?></p>
+                                                         <p><?php echo isset($project_details['dpr'])?$project_details['dpr']:null;?></p>
                                                      </div>
                                                 </div>
                                                 <div class="row">
@@ -1832,6 +1832,7 @@
                                 $('#update_form_of_gom_fund #OTHER_remark').val(data[0].other_remark);
 
                                 $('#update_form_of_gom_fund #total_amount').val(data[0].total_amount);
+                            /*    $('#update_form_of_gom_fund #total_gom_amount').val(data[0].total_gom_amount);*/
                                 $('#update_form_of_gom_fund #total_gom_amount').val(data[0].total_gom_amount);
                                 $('#update_form_of_gom_fund #total_mhada_received_amount').val(data[0].total_mhada_received_amount);
                                 $('#update_form_of_gom_fund #total_mhada_released_amount').val(data[0].total_mhada_released_amount);
@@ -1839,6 +1840,7 @@
                                 $('#update_form_of_gom_fund #sc_utilization').val(data[0].sc_utilization_certificate);
                                 $('#update_form_of_gom_fund #st_utilization').val(data[0].st_utilization_certificate);
                                 $('#update_form_of_gom_fund #obc_utilization').val(data[0].obc_utilization_certificate);
+                                $('#update_form_of_gom_fund #gom_total_gom_amount').val(data[0].total_gom_amount);
 
                             }
 

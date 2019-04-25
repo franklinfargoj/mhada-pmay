@@ -2010,7 +2010,7 @@
 
 
                                 $('#update_form_of_gom_fund #total_amount').val('');
-                                $('#update_form_of_gom_fund #total_gom_amount').val('');
+                                $('#update_form_of_gom_fund #gom_total_gom_amount').val('');
                                 $('#update_form_of_gom_fund #total_mhada_received_amount').val('');
                                 $('#update_form_of_gom_fund #total_mhada_released_amount').html('');
                                 $('#update_form_of_gom_fund #gom_total_utilization_amount').attr('value', 0);

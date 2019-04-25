@@ -173,14 +173,14 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
+                                               <!-- <div class="row">
                                                     <div class="col-lg-6">
                                                         <h5>Total DUs</h5>
                                                         <p>
-                                                            <?php echo !empty($total_dus_under_construction)?$total_dus_under_construction:null;?>
+                                                            <?php /*echo !empty($total_dus_under_construction)?$total_dus_under_construction:null;*/?>
                                                         </p>
                                                     </div>
-                                                </div>
+                                                </div>-->
 
 
                                             </div>

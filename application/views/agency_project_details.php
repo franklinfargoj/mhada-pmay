@@ -1,3 +1,4 @@
+<link href="<?php echo base_url();?>public/css/component-chosen.min.css" rel="stylesheet" type="text/css">
 <style type="text/css">
     .m--font-primary {
         display: contents;
@@ -43,6 +44,9 @@
                                 </div>
 
 
+
+
+
                                 <div class="m-portlet__head-tools">
                                     <ul class="m-portlet__nav">
                                         <li class="m-portlet__nav-item">
@@ -85,13 +89,17 @@
                                                                 </div>
                                                                 <div class="col-sm-8">
                                                                     <div class="form-group">
-                                                                        <select id="project_ids" name="project_ids[]"
-                                                                            multiple="multiple" style="width: 1500px;" required>
+                                                                        <!--<select id="project_ids" name="project_ids[]"
+                                                                            multiple="multiple" style="width: 1500px;" required>-->
+
+                                                                        <select id="project_ids" name="project_ids[]" class="form-control form-control-chosen" style="width: 1500px;" data-placeholder="Please select..." multiple>
+                                                                            <option></option>
+
                                                                             <?php  foreach($projects_to_assign as $project) {  ?>
 
                                                                             <option value="<?php echo $project['id']; ?>"
-                                                                                <?php if($project['agency_id']==$agency_details[0]['id']){
-                                                                                echo 'selected' ; } ?> >
+                                                                                <?php //if($project['agency_id']==$agency_details[0]['id']){
+                                                                                //echo 'selected' ; } ?> >
                                                                                 <?php echo $project['dpr']; ?>
                                                                             </option>
 
@@ -211,3 +219,12 @@
 <script src="<?php echo base_url();?>assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>assets/snippets/pages/user/login.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
+<script>
+    jQuery(document).ready(function(){
+        $('.form-control-chosen').chosen({
+        });
+    });
+</script>

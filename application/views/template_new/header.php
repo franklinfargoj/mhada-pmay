@@ -19,11 +19,12 @@
       <!--end::Page Vendors -->
       <link href="<?php echo base_url();?>assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
       <link href="<?php echo base_url();?>assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
-      <script src="<?php echo base_url();?>public/js/sweetalert.min.js"></script>
+
       <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert.css">
       <base href="<?php echo base_url();?>">
       <link href="<?php echo base_url();?>public/css/custom.css" rel="stylesheet" type="text/css" />
       <link href="<?php echo base_url();?>public/css/style-new.css" rel="stylesheet" type="text/css" />
+
    </head>
    <body class="app">
       <div id="loader">

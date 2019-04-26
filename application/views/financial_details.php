@@ -168,9 +168,7 @@
                                                             <?php echo isset($project_details['implementing_agency'])?$project_details['implementing_agency']:null;?>
                                                         </p>
                                                     </div>
-                                                </div>
 
-                                                <div class="row">
                                                     <div class="col-lg-6">
                                                         <h5>Total DUs</h5>
                                                         <p>

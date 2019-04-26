@@ -65,7 +65,7 @@
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                         </div>
-                                                        <div class="modal-body" style="overflow-y: scroll; height:200px;">
+                                                        <div class="modal-body" style="overflow-y: scroll; height:375px;">
                                                             <div class="form-group row">
                                                                 <div class="col-sm-4">
                                                                     <label for="agency_name" class="form-control-label">
@@ -89,17 +89,13 @@
                                                                 </div>
                                                                 <div class="col-sm-8">
                                                                     <div class="form-group">
-                                                                        <!--<select id="project_ids" name="project_ids[]"
-                                                                            multiple="multiple" style="width: 1500px;" required>-->
-
                                                                         <select id="project_ids" name="project_ids[]" class="form-control form-control-chosen" style="width: 1500px;" data-placeholder="Please select..." multiple>
                                                                             <option></option>
-
                                                                             <?php  foreach($projects_to_assign as $project) {  ?>
 
                                                                             <option value="<?php echo $project['id']; ?>"
-                                                                                <?php //if($project['agency_id']==$agency_details[0]['id']){
-                                                                                //echo 'selected' ; } ?> >
+                                                                                <?php if($project['agency_id']==$agency_details[0]['id']){
+                                                                                echo 'selected' ; } ?> >
                                                                                 <?php echo $project['dpr']; ?>
                                                                             </option>
 

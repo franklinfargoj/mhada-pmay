@@ -23,7 +23,6 @@
       <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert.css">
       <base href="<?php echo base_url();?>">
       <link href="<?php echo base_url();?>public/css/custom.css" rel="stylesheet" type="text/css" />
-      <link href="<?php echo base_url();?>public/css/style-new.css" rel="stylesheet" type="text/css" />
 
    </head>
    <body class="app">

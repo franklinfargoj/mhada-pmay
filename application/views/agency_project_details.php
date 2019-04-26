@@ -219,9 +219,9 @@
 <script src="<?php echo base_url();?>assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>assets/snippets/pages/user/login.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/chosen.jquery.min.js"></script>
 
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script>
 <script>
     jQuery(document).ready(function(){
         $('.form-control-chosen').chosen({

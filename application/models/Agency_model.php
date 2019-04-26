@@ -61,10 +61,10 @@ class Agency_model extends CI_Model{
        $this->db->join('project_statuses_master statuses','statuses.id = ps.current_status_id','left');
        $this->db->where('ps.agency_id',$user_id);
 
-      if($search_param != '')
-      {
-        $this->db->where("(ps.title like '%".$search_param."%' OR ps.address like '%".$search_param."%' )");
-      }
+       if($search_param != '')
+       {
+           $this->db->where("(ps.dpr like '%".$search_param."%' OR ps.implementing_agency like '%".$search_param."%' )");
+       }
        if($status_param != '')
        {
            $this->db->where("ps.current_status_id",$status_param);

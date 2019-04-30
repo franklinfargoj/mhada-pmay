@@ -1827,7 +1827,8 @@ class Users_model extends CI_Model{
 
     public function get_id_district_city($value, $column_name, $table_name)
     {
-        return $this->db->where($column_name, $value)->get($table_name)->row();
+        return $this->db->from($table_name)->like($column_name,trim($value))->get()->row();
+
     }
 
 

@@ -256,6 +256,11 @@
                                                      <!--<td><?php /*if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} */?></td>-->
                                                      <td>
                                                          <?php
+
+
+                                                         if($key != 1 && $key != 2 && $key != 3 ){
+                                                             echo '------';
+                                                         }
                                                          if($key == 1){
                                                              echo $project_details['plint_level'];
                                                          }elseif($key == 2){

@@ -304,6 +304,12 @@
                                                      <td>
                                                         <!-- --><?php /*if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} */?>
                                                          <?php
+
+                                                         if($key != 1 && $key != 2 && $key != 3 ){
+                                                             echo '------';
+                                                         }
+
+
                                                          if($key == 1){
                                                              echo $project_details['plint_level'];
                                                          }elseif($key == 2){
@@ -411,6 +417,11 @@
 
                                                    <td>
                                                          <?php
+
+                                                         if($key != 1 && $key != 2 && $key != 3 ){ ?>
+                                                             <input type="text" class="total_dus_to_update form-control" value="------">
+                                                         <?php }
+
                                                          if($key == 1){ ?>
                                                             <input type="text" class="total_dus_to_update form-control" name="plint_level" value="<?php  echo $project_details['plint_level']; ?>" />
                                                          <?php }elseif ($key == 2){ ?>

@@ -379,6 +379,11 @@
 
                                                      <td>
                                                          <?php
+
+                                                        if($key != 1 && $key != 2 && $key != 3 ){ ?>
+                                                            <input type="text" class="total_dus_to_update form-control" value="------">
+                                                        <?php }
+
                                                          if($key == 1){ ?>
                                                              <input type="text" class="total_dus_to_update form-control" name="plint_level" value="<?php  echo $project_details['plint_level']; ?>" />
                                                          <?php }elseif ($key == 2){ ?>

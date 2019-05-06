@@ -259,19 +259,19 @@
                                                                 <th scope="col">Amount (In Rs.) </th>
                                                                 <th scope="col">Order No</th>
                                                                 <th scope="col">Order Date</th>
-                                                                <th scope="col">Upload Doc</th>
+                                                                <th scope="col">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Upload Doc</th>
 
                                                                 <th scope="col">Amount (In Rs.) </th>
                                                                 <th scope="col">Order No</th>
                                                                 <th scope="col">Order Date</th>
-                                                                <th scope="col">Upload Doc</th>
+                                                                <th scope="col">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Upload Doc</th>
 
                                                                 <th scope="col">Received Amount </th>
                                                                 <th scope="col">Received Date</th>
                                                                 <th scope="col">Released Amount</th>
                                                                 <th scope="col">Released Oder No</th>
                                                                 <th scope="col">Released Order Date</th>
-                                                                <th scope="col">Upload Doc</th>
+                                                                <th scope="col">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Upload Doc</th>
 
 
                                                                 <th scope="col">No Of Transactions</th>
@@ -391,14 +391,14 @@
                                                             <th scope="col">Amount (In Rs.) </th>
                                                             <th scope="col">Order No</th>
                                                             <th scope="col">Order Date</th>
-                                                            <th scope="col">Upload Doc</th>
+                                                            <th scope="col">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Upload Doc</th>
 
                                                             <th scope="col">Received Amount </th>
                                                             <th scope="col">Received Date</th>
                                                             <th scope="col">Released Amount</th>
                                                             <th scope="col">Released Oder No</th>
                                                             <th scope="col">Released Order Date</th>
-                                                            <th scope="col">Upload Doc</th>
+                                                            <th scope="col">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Upload Doc</th>
 
 
                                                             <th scope="col">No Of Transactions</th>

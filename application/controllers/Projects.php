@@ -83,7 +83,7 @@ class Projects extends CI_Controller {
         if($postData = $this->input->post())
         {
 
-            $this->form_validation->set_rules('title' , 'Title', 'required');
+            $this->form_validation->set_rules('dpr' , 'DPR Title', 'required');
             $this->form_validation->set_rules('address' , 'Address', 'required');
 
             if ($this->form_validation->run() == TRUE)
@@ -124,7 +124,6 @@ class Projects extends CI_Controller {
             $arrData['regions'] = $this->users_model->get_all_regions();
             $arrData['encrypted_url'] =  $encrypted_url;
             $arrData['middle'] = 'edit_project';
-
             $this->load->view('template_new/template',$arrData);
         }
     }
@@ -139,7 +138,7 @@ class Projects extends CI_Controller {
 
          if($postEditedData = $this->input->post()){
 
-             $this->form_validation->set_rules('title' , 'Title', 'required');
+             $this->form_validation->set_rules('dpr' , 'DPR Title', 'required');
              $this->form_validation->set_rules('address' , 'Address', 'required');
 
              $this->users_model->edit_project($postEditedData,$project_id);

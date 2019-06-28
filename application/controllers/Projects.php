@@ -121,7 +121,11 @@ class Projects extends CI_Controller {
             $arrData['csmc_details'] = $this->users_model->get_metting_details($project_id, 'csmc');
 
             $arrData['consultant_details'] = $this->users_model->get_consultant_details($project_id);
+
             $arrData['regions'] = $this->users_model->get_all_regions();
+            $arrData['districts'] = $this->users_model->get_districts($arrData['project_details']['region_id']);
+            $arrData['cities'] = $this->users_model->get_cities($arrData['project_details']['district_id']);
+
             $arrData['encrypted_url'] =  $encrypted_url;
             $arrData['middle'] = 'edit_project';
             $this->load->view('template_new/template',$arrData);

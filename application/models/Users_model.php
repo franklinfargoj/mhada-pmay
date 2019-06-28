@@ -1123,7 +1123,7 @@ class Users_model extends CI_Model{
         $this->db->where('id', $project_id);
         $this->db->update('projects', array(
             'code' =>$postEditedData['code'],
-            'title'=>$postEditedData['title'],
+            'dpr'=>$postEditedData['dpr'],
             'address'=>$postEditedData['address'],
             'region_id'=>$postEditedData['region_id'],
             'district_id'=>$postEditedData['district_id'],
@@ -1210,8 +1210,9 @@ class Users_model extends CI_Model{
 
     function get_project_details($project_code,$project_id)
     {
-        $this->db->select('ps.*,stauses.status as project_status,districts.name as district_name,cities.name as city_name');
+        $this->db->select('ps.*,stauses.status as project_status,districts.name as district_name,cities.name as city_name,regions.region as region_name');
         $this->db->join('project_statuses_master stauses','stauses.id = ps.current_status_id','left');
+        $this->db->join('region_master regions','regions.id = ps.region_id','left');
         $this->db->join('districts_master districts','districts.id = ps.district_id','left');
         $this->db->join('cities_master cities','cities.id = ps.city_id','left');
        // $this->db->where('code',$project_code);  //because $project_code is not given in excel

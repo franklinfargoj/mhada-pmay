@@ -1138,8 +1138,8 @@ class Users_model extends CI_Model{
             'project_cost_ews'=>$postEditedData['project_cost_ews'],
             'project_cost_total'=>$postEditedData['project_cost_total'],
             'agency_email'=>$postEditedData['agency_email'],
-            'agency_mobile_no'=>$postEditedData['agency_email'],
-            'agency_landline'=>$postEditedData['agency_email'],
+            'agency_mobile_no'=>$postEditedData['agency_mobile_no'],
+            'agency_landline'=>$postEditedData['agency_landline'],
             'updated_at'=> date('Y-m-d H:i:s')
           ));
 

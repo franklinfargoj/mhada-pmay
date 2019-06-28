@@ -75,7 +75,7 @@
                                                         <label for="title" class="form-control-label">
                                                             <strong>DPR Title <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input type="text" name="title" class="form-control" id="title" value="<?php echo $project_details['title'] ?>">
+                                                        <input type="text" name="dpr" class="form-control" id="dpr" value="<?php echo $project_details['dpr'] ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -368,12 +368,14 @@
                                                             <strong>DPR Submitted <span style="color: red">*</span></strong>
                                                         </label> <span>&nbsp;</span>
 
+                                                        <?php if($project_details['is_dpr_submitted'] == 1){ ?>
+                                                            <input checked="checked" type="radio" name="is_dpr_submitted" value="1">Yes  <span>&nbsp;</span>
+                                                            <input type="radio" name="is_dpr_submitted" value="0">No  <span>&nbsp;</span>
+                                                        <?php }else{ ?>
+                                                            <input type="radio" name="is_dpr_submitted" value="1">Yes  <span>&nbsp;</span>
+                                                            <input checked="checked" type="radio" name="is_dpr_submitted" value="0">No  <span>&nbsp;</span>
+                                                        <?php }?>
 
-
-
-
-                                                        <input type="radio" name="is_dpr_submitted" value="1">Yes  <span>&nbsp;</span>
-                                                        <input type="radio" name="is_dpr_submitted" value="0">No
                                                     </div>
                                                 </div>
                                             </div>

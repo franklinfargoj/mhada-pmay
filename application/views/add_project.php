@@ -75,7 +75,7 @@
                                           <label for="title" class="form-control-label">
                                              <strong>DPR Title <span style="color: red">*</span></strong>
                                           </label>
-                                          <input type="text" name="title" class="form-control" id="title" required>
+                                          <input type="text" name="dpr" class="form-control" id="dpr" required>
                                        </div>
                                     </div>
                                     <div class="col-lg-6">

@@ -1140,6 +1140,7 @@ class Users_model extends CI_Model{
             'agency_email'=>$postEditedData['agency_email'],
             'agency_mobile_no'=>$postEditedData['agency_mobile_no'],
             'agency_landline'=>$postEditedData['agency_landline'],
+            'is_dpr_submitted'=>$postEditedData['is_dpr_submitted'],
             'updated_at'=> date('Y-m-d H:i:s')
           ));
 

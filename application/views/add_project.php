@@ -356,7 +356,7 @@
                                                <label for="agency_mobile_no" class="form-control-label">
                                                    <strong>Agency Mobile No</strong>
                                                </label>
-                                               <input type="text" name="agency_mobile_no" class="form-control" id="agency_mobile_no">
+                                               <input type="number" name="agency_mobile_no" class="form-control" id="agency_mobile_no">
                                            </div>
                                        </div>
                                    </div>
@@ -367,7 +367,7 @@
                                                <label for="agency_landline" class="form-control-label">
                                                    <strong>Agency Landline No</strong>
                                                </label>
-                                               <input type="text" name="agency_landline" class="form-control" id="agency_landline">
+                                               <input type="number" name="agency_landline" class="form-control" id="agency_landline">
                                            </div>
                                        </div>
                                    </div>
@@ -395,7 +395,7 @@
                                                <label for="consultant_mobile_no" class="form-control-label">
                                                    <strong>Consultant Mobile No </strong>
                                                </label>
-                                               <input type="text" name="consultant_mobile_no[]" class="form-control">
+                                               <input type="number" name="consultant_mobile_no[]" class="form-control">
                                            </div>
                                        </div>
                                    </div>
@@ -406,7 +406,7 @@
                                                <label for="agency_landline" class="form-control-label">
                                                    <strong>Consultant Landline No</strong>
                                                </label>
-                                               <input type="text" name="consultant_landline[]" class="form-control" >
+                                               <input type="number" name="consultant_landline[]" class="form-control" >
                                            </div>
                                        </div>
                                    </div>
@@ -425,20 +425,11 @@
                                    </button>
                                </div>
 
-
-
                            </div>
 
                             <?php echo form_close();?>
 
-
-
-
-
-
-
-
-                        </div>
+                   </div>
                      </div>
                   </div>
                </div>
@@ -468,7 +459,7 @@
                 '                                               <label for="consultant_mobile_no" class="form-control-label">\n' +
                 '                                                   <strong>Consultant Mobile No</strong>\n' +
                 '                                               </label>\n' +
-                '                                               <input type="text" name="consultant_mobile_no[]" class="form-control">\n' +
+                '                                               <input type="number" name="consultant_mobile_no[]" class="form-control">\n' +
                 '                                           </div>\n' +
                 '                                       </div>\n' +
                 '                                   </div>\n' +
@@ -479,7 +470,7 @@
                 '                                               <label for="agency_landline" class="form-control-label">\n' +
                 '                                                   <strong>Consultant Landline No</strong>\n' +
                 '                                               </label>\n' +
-                '                                               <input type="text" name="consultant_landline[]" class="form-control" >\n' +
+                '                                               <input type="number" name="consultant_landline[]" class="form-control" >\n' +
                 '                                           </div>\n' +
                 '                                       </div>\n' +
                 '<div class="remove-btn col-lg-6 div'+ cnt +'">\n' +

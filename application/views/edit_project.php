@@ -281,8 +281,6 @@
                                             </div>
 
 
-                                            <!-- ============================================================================= -->
-
 
                                         </div>
 
@@ -301,7 +299,7 @@
                                                         <label for="EWS" class="form-control-label">
                                                             <strong>EWS <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input type="text" name="EWS" class="form-control total_dus" id="EWS" value="<?php echo $project_details['EWS'];?>">
+                                                        <input type="number" name="EWS" class="form-control total_dus" id="EWS" value="<?php echo $project_details['EWS'];?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -309,7 +307,7 @@
                                                         <label for="LIG" class="form-control-label">
                                                             <strong>LIG <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input  type="text" name="LIG" class="form-control total_dus" id="LIG" value="<?php echo $project_details['LIG'];?>">
+                                                        <input  type="number" name="LIG" class="form-control total_dus" id="LIG" value="<?php echo $project_details['LIG'];?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -320,7 +318,7 @@
                                                         <label for="MIG" class="form-control-label">
                                                             <strong>MIG <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input type="text" name="MIG" class="form-control total_dus" id="MIG" value="<?php echo $project_details['MIG'];?>">
+                                                        <input type="number" name="MIG" class="form-control total_dus" id="MIG" value="<?php echo $project_details['MIG'];?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -328,7 +326,7 @@
                                                         <label for="HIG" class="form-control-label">
                                                             <strong>HIG <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input type="text" name="HIG" class="form-control total_dus" id="HIG" value="<?php echo $project_details['HIG'];?>">
+                                                        <input type="number" name="HIG" class="form-control total_dus" id="HIG" value="<?php echo $project_details['HIG'];?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -349,7 +347,7 @@
                                                         <label for="project_cost_ews" class="form-control-label">
                                                             <strong>Project cost EWS <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input type="text" name="project_cost_ews" class="form-control" id="project_cost_ews" value="<?php echo $project_details['project_cost_ews'];?>" required>
+                                                        <input type="number" name="project_cost_ews" class="form-control" id="project_cost_ews" value="<?php echo $project_details['project_cost_ews'];?>" required>
                                                     </div>
 
                                                 </div>
@@ -361,7 +359,7 @@
                                                         <label for="project_cost_total" class="form-control-label">
                                                             <strong>Project cost total <span style="color: red">*</span></strong>
                                                         </label>
-                                                        <input type="text" name="project_cost_total" class="form-control" id="project_cost_total" value="<?php echo $project_details['project_cost_total'];?>" required>
+                                                        <input type="number" name="project_cost_total" class="form-control" id="project_cost_total" value="<?php echo $project_details['project_cost_total'];?>" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">

@@ -97,20 +97,10 @@
                                                         </label>
                                                         <select name="region_id" class="form-control" id="region_id" required>
 
-                                                            <?php if( $project_details['region_id'] == 1 ){ ?>
-                                                                <option value="1"><?php echo "Mumbai"; ?></option>
-                                                            <?php }elseif($project_details['region_id'] == 2){ ?>
-                                                                <option value="2"><?php echo "Mumbai Suburban"; ?></option>
-                                                            <?php } ?>
-
-
+                                                            <?php if(is_array($regions) && array_filter($regions)) {
+                                                                foreach($regions as $region){ ?>
+                                                                    <option value="<?php echo $region['id'];?>" <?php echo $region['id'] == $project_details['region_id'] ? "selected" : "";?>><?php echo $region['region'];?></option>
                                                             <?php
-                                                            if(is_array($regions) && array_filter($regions))
-                                                            {
-                                                                foreach($regions as $region){
-                                                                    ?>
-                                                                    <option value="<?php echo $region['id'];?>"><?php echo $region['region'];?></option>
-                                                                    <?php
                                                                 }
                                                             }
                                                             ?>
@@ -126,19 +116,12 @@
                                                             <strong>District <span style="color: red">*</span></strong>
                                                         </label>
                                                         <select name="district_id" class="form-control" id="district_id" required>
-
-
-
-                                                            <?php if( $project_details['district_id'] == 1 ){ ?>
-                                                                <option value="1"><?php echo "Mumbai"; ?></option>
-                                                            <?php }elseif($project_details['district_id'] == 2){ ?>
-                                                                <option value="2"><?php echo "Thane"; ?></option>
-                                                            <?php } ?>
-
-
-
-
+                                                            <?php if(is_array($districts) && array_filter($districts)) {
+                                                                foreach($districts as $di){ ?>
+                                                                    <option value="<?php echo $di['id'];?>"  <?php echo $di['id'] == $project_details['district_id'] ? "selected" : "";?>><?php echo $di['name'];?></option>
+                                                            <?php }  } ?>
                                                         </select>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -147,13 +130,13 @@
                                                             <strong>City <span style="color: red">*</span></strong>
                                                         </label>
                                                         <select name="city_id" class="form-control" id="city_id" required>
-                                                            <?php if( $project_details['city_id'] == 1 ){ ?>
-                                                                <option value="1"><?php echo "Borivali"; ?></option>
-                                                            <?php }elseif($project_details['city_id'] == 2){ ?>
-                                                                <option value="2"><?php echo "Mumbai"; ?></option>
-                                                            <?php }elseif($project_details['city_id'] == 3){ ?>
-                                                                <option value="3"><?php echo "Navi Mumbai"; ?></option>
-                                                            <?php } ?>
+
+                                                            <?php if(is_array($cities) && array_filter($cities)) {
+                                                                foreach($cities as $ci){ ?>
+                                                                    <option value="<?php echo $ci['id'];?>" <?php echo $ci['id'] == $project_details['city_id'] ? "selected" : "";?>><?php echo $ci['name'];?></option>
+
+                                                                <?php }  } ?>
+
                                                         </select>
                                                     </div>
                                                 </div>

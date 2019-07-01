@@ -333,7 +333,9 @@
 
                                                                 <td><input readonly type="text" class="form-control" id="goi_<?php echo $category; ?>_utilization_amount"</td>
 
-                                                                <td><textarea readonly class="form-control" id="<?php echo strtolower($category); ?>_utilization_certificate"  name="financial_details[<?php echo $category; ?>][utilization_certificate]"/></textarea></td>
+                                                                <td>
+                                                                <a id="<?php echo strtolower($category);?>_utilization_certificate" name="financial_details[<?php echo $category;?>][utilization_certificate]" target="_blank">Download</a>
+                                                                </td>
 
                                                                 <td><textarea class="form-control" name="financial_details[<?php echo $category; ?>][remark]" id="<?php echo $category; ?>_remark"></textarea></td>
 
@@ -682,7 +684,7 @@
                                                                 <td><?php if(isset($goi_details[0][$category.'_gom_upload_doc']))
                                                                     {
                                                                         ?>
-                                                                        <a href="<?php echo base_url('public/uploads/'.$goi_details[0][$category.'_gom_upload_doc']); ?>" target="_blank">Download Doc</a>
+
                                                                     <?php      } else { echo '-'; } ?></td>
                                                                 <td>
                                                                     <?php echo isset($goi_details[0][$category.'_mhada_received_amount'])?$goi_details[0][$category.'_mhada_received_amount']:null;   ?>
@@ -1776,9 +1778,10 @@
                                 $('#update_form_of_goi_fund #total_mhada_released_amount').val(data[0].total_mhada_released_amount);
 
 
-                                $('#update_form_of_goi_fund #sc_utilization_certificate').val(data[0].sc_utilization_certificate);
-                                $('#update_form_of_goi_fund #st_utilization_certificate').val(data[0].st_utilization_certificate);
-                                $('#update_form_of_goi_fund #obc_utilization_certificate').val(data[0].obc_utilization_certificate);
+                                $("#update_form_of_goi_fund #sc_utilization_certificate").attr("href",'public/uploads/' +data[0].sc_utilization_certificate);    //Download SC Utilization Certificate
+                                $("#update_form_of_goi_fund #st_utilization_certificate").attr("href",'public/uploads/' +data[0].st_utilization_certificate);    //Download ST Utilization Certificate
+                                $("#update_form_of_goi_fund #obc_utilization_certificate").attr("href",'public/uploads/' +data[0].obc_utilization_certificate);   //Download OBC Utilization Certificate
+                                $("#update_form_of_goi_fund #other_utilization_certificate").attr("href",'public/uploads/' +data[0].other_utilization_certificate);  //Download Other Utilization Certificate
 
                                 $('#update_form_of_goi_fund #goi_SC_transactions').val(data[0].sc_transactions);
                                 $('#update_form_of_goi_fund #goi_ST_transactions').val(data[0].st_transactions);
@@ -1938,7 +1941,6 @@
 
                             }
                             else if (nodel_agency == 2) {
-
 
                                 $('#update_form_of_gom_fund #SC_goi_amount').val('');
                                 $('#update_form_of_gom_fund #ST_goi_amount').val('');

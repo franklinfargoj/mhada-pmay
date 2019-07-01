@@ -270,11 +270,9 @@
                                                  <p><?php echo isset($dus_for_which_work_started)?$dus_for_which_work_started:'-';?></p>
                                              </div>
                                              <div class="col-lg-6">
-                                                 <h5>Last Update Date</h5>
-                                               <!--  <p><?php /*echo isset($last_updated_date) && $last_updated_date!='' ?date('d-m-Y',strtotime($last_updated_date)):' - ';*/?></p>-->
-
-
-                                                 <p><?php echo isset($project_details['updated_at']) && $project_details['updated_at'] != '0000-00-00 00:00:00'  ?date('d-m-Y',strtotime($project_details['updated_at'])):' - ';?></p>
+                                                 <h5>Last Update Date55</h5>
+                                                <p><?php echo isset($last_updated_date) && $last_updated_date!='' ?date('d-m-Y',strtotime($last_updated_date)):' - ';?></p>
+                                                 <p><?php //echo isset($project_details['updated_at']) && $project_details['updated_at'] != '0000-00-00 00:00:00'  ?date('d-m-Y',strtotime($project_details['updated_at'])):' - ';?></p>
 
                                              </div>
                                          </div>
@@ -302,21 +300,7 @@
                                                      </td>
 
                                                      <td>
-                                                        <!-- --><?php /*if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} */?>
-                                                         <?php
-
-                                                         if($key != 1 && $key != 2 && $key != 3 ){
-                                                             echo '------';
-                                                         }
-
-
-                                                         if($key == 1){
-                                                             echo $project_details['plint_level'];
-                                                         }elseif($key == 2){
-                                                             echo $project_details['floor_level'];
-                                                         }elseif($key == 3){
-                                                             echo $project_details['project_completion'];
-                                                         }?>
+                                                         <?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?>
                                                      </td>
 
                                                      <td>
@@ -399,7 +383,7 @@
                                              <tr>
                                                  <th scope="col">Stage</th>
                                                  <th scope="col">No Of DUs</th>
-                                                 <th scope="col">Additional Information</th>
+                                                 <th scope="col">Additional InformationADD</th>
                                                  <th scope="col">Files</th>
                                              </tr>
                                              </thead>
@@ -413,23 +397,10 @@
                                                          <h5><?php echo $stage['stage']; ?></h5>
                                                      </td>
 
-                                                   <!--<td><input type="text" class="total_dus_to_update form-control" name="stage_dus[<?php /*echo $stage['id']; */?>][no_of_dus]" value="<?php /*if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} */?>" /> </td>-->
+                                                   <td><input type="text" class="total_dus_to_update form-control" name="stage_dus[<?php echo $stage['id']; ?>][no_of_dus]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['no_of_dus'])) { echo $project_stages_dus_details[$stage['id']]['no_of_dus']; } else { echo '0';} ?>" /> </td>
 
-                                                   <td>
-                                                         <?php
 
-                                                         if($key != 1 && $key != 2 && $key != 3 ){ ?>
-                                                             <input type="text" class="total_dus_to_update form-control" value="------">
-                                                         <?php }
 
-                                                         if($key == 1){ ?>
-                                                            <input type="text" class="total_dus_to_update form-control" name="plint_level" value="<?php  echo $project_details['plint_level']; ?>" />
-                                                         <?php }elseif ($key == 2){ ?>
-                                                            <input type="text" class="total_dus_to_update form-control" name="floor_level" value="<?php echo $project_details['floor_level']; ?>" />
-                                                         <?php }elseif ($key == 3){ ?>
-                                                            <input type="text" class="total_dus_to_update form-control" name="project_completion" value="<?php  echo $project_details['project_completion']; ?>" />
-                                                         <?php } ?>
-                                                   </td>
 
                                                    <td><input type="text" class="form-control" name="stage_dus[<?php echo $stage['id']; ?>][additional_information]" value="<?php if(isset($project_stages_dus_details[$stage['id']]['additional_information'])) { echo $project_stages_dus_details[$stage['id']]['additional_information']; } ?>" /> </td>
 

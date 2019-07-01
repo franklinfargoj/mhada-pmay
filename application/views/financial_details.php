@@ -329,12 +329,11 @@
                                                                 </td>
                                                                 <td><input type="file" name="<?php echo $category; ?>_mhada_upload_doc"  class="form-control" id="<?php echo $category; ?>_mhada_upload_doc" /></td>
 
-                                                                <td>-</td>
+                                                                <td><input readonly type="text" class="form-control" id="goi_<?php echo $category; ?>_transactions"</td>
 
-                                                               <!-- <td><input readonly type="text" class="form-control" id="<?php /*echo strtolower($category); */?>_utilization_certificate" /></td>-->
+                                                                <td><input readonly type="text" class="form-control" id="goi_<?php echo $category; ?>_utilization_amount"</td>
+
                                                                 <td><textarea readonly class="form-control" id="<?php echo strtolower($category); ?>_utilization_certificate"  name="financial_details[<?php echo $category; ?>][utilization_certificate]"/></textarea></td>
-
-                                                                <td>-</td>
 
                                                                 <td><textarea class="form-control" name="financial_details[<?php echo $category; ?>][remark]" id="<?php echo $category; ?>_remark"></textarea></td>
 
@@ -1510,8 +1509,7 @@
                         }
                         else
                         {
-                            if (nodel_agency == 1) { 
-
+                            if (nodel_agency == 1) {
 
                                 $('#update_form_of_goi_fund #SC_goi_amount').val('');
                                 $('#update_form_of_goi_fund #ST_goi_amount').val('');
@@ -1782,6 +1780,16 @@
                                 $('#update_form_of_goi_fund #st_utilization_certificate').val(data[0].st_utilization_certificate);
                                 $('#update_form_of_goi_fund #obc_utilization_certificate').val(data[0].obc_utilization_certificate);
 
+                                $('#update_form_of_goi_fund #goi_SC_transactions').val(data[0].sc_transactions);
+                                $('#update_form_of_goi_fund #goi_ST_transactions').val(data[0].st_transactions);
+                                $('#update_form_of_goi_fund #goi_OBC_transactions').val(data[0].obc_transactions);
+                                $('#update_form_of_goi_fund #goi_OTHER_transactions').val(data[0].other_transactions);
+
+                                $('#update_form_of_goi_fund #goi_SC_utilization_amount').val(data[0].sc_utilization_amount);
+                                $('#update_form_of_goi_fund #goi_ST_utilization_amount').val(data[0].st_utilization_amount);
+                                $('#update_form_of_goi_fund #goi_OBC_utilization_amount').val(data[0].obc_utilization_amount);
+                                $('#update_form_of_goi_fund #goi_OTHER_utilization_amount').val(data[0]. other_utilization_amount);
+
                             }
                             else if (data[0].nodel_agency == 2) {
 
@@ -1847,7 +1855,6 @@
                         else
                         {
                             if (nodel_agency == 1) {
-
 
                                 $('#update_form_of_goi_fund #SC_goi_amount').val('');
                                 $('#update_form_of_goi_fund #ST_goi_amount').val('');

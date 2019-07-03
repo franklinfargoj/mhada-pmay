@@ -334,7 +334,7 @@
                                                                 <td><input readonly type="text" class="form-control" id="goi_<?php echo $category; ?>_utilization_amount"</td>
 
                                                                 <td>
-                                                                <a id="<?php echo strtolower($category);?>_utilization_certificate" name="financial_details[<?php echo $category;?>][utilization_certificate]" target="_blank">Download</a>
+                                                                <a id="<?php echo strtolower($category);?>_utilization_certificate" name="financial_details[<?php echo $category;?>][utilization_certificate]" target="_blank"></a>
                                                                 </td>
 
                                                                 <td><textarea class="form-control" name="financial_details[<?php echo $category; ?>][remark]" id="<?php echo $category; ?>_remark"></textarea></td>
@@ -1777,11 +1777,29 @@
                                 $('#update_form_of_goi_fund #total_mhada_received_amount').val(data[0].total_mhada_received_amount);
                                 $('#update_form_of_goi_fund #total_mhada_released_amount').val(data[0].total_mhada_released_amount);
 
+                                if((data[0].sc_utilization_certificate) != null){
+                                    $("#update_form_of_goi_fund #sc_utilization_certificate").attr("href",'public/uploads/' +data[0].sc_utilization_certificate).append('Download');    //Download SC Utilization Certificate
+                                }else{
+                                    $("#update_form_of_goi_fund #sc_utilization_certificate").append('---');
+                                }
 
-                                $("#update_form_of_goi_fund #sc_utilization_certificate").attr("href",'public/uploads/' +data[0].sc_utilization_certificate);    //Download SC Utilization Certificate
-                                $("#update_form_of_goi_fund #st_utilization_certificate").attr("href",'public/uploads/' +data[0].st_utilization_certificate);    //Download ST Utilization Certificate
-                                $("#update_form_of_goi_fund #obc_utilization_certificate").attr("href",'public/uploads/' +data[0].obc_utilization_certificate);   //Download OBC Utilization Certificate
-                                $("#update_form_of_goi_fund #other_utilization_certificate").attr("href",'public/uploads/' +data[0].other_utilization_certificate);  //Download Other Utilization Certificate
+                                if((data[0].st_utilization_certificate) != null){
+                                    $("#update_form_of_goi_fund #st_utilization_certificate").attr("href", 'public/uploads/' + data[0].st_utilization_certificate).append('Download');    //Download ST Utilization Certificate
+                                }else{
+                                    $("#update_form_of_goi_fund #st_utilization_certificate").append('---');
+                                }
+
+                                if((data[0].obc_utilization_certificate) != null){
+                                    $("#update_form_of_goi_fund #obc_utilization_certificate").attr("href", 'public/uploads/' + data[0].obc_utilization_certificate).append('Download');   //Download OBC Utilization Certificate
+                                }else{
+                                    $("#update_form_of_goi_fund #obc_utilization_certificate").append('---');
+                                }
+
+                                if((data[0].other_utilization_certificate) != null){
+                                    $("#update_form_of_goi_fund #other_utilization_certificate").attr("href", 'public/uploads/' + data[0].other_utilization_certificate).append('Download');  //Download Other Utilization Certificate
+                                }else{
+                                    $("#update_form_of_goi_fund #other_utilization_certificate").append('---');
+                                }
 
                                 $('#update_form_of_goi_fund #goi_SC_transactions').val(data[0].sc_transactions);
                                 $('#update_form_of_goi_fund #goi_ST_transactions').val(data[0].st_transactions);
@@ -1850,7 +1868,7 @@
                                 $('#update_form_of_gom_fund #st_utilization').val(data[0].st_utilization_certificate);
                                 $('#update_form_of_gom_fund #obc_utilization').val(data[0].obc_utilization_certificate);
                                 $('#update_form_of_gom_fund #gom_total_gom_amount').val(data[0].total_gom_amount);
-
+                                
                             }
 
                             $('#save_note').val('');
